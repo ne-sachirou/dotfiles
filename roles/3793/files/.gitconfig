@@ -1,0 +1,20 @@
+[core]
+	excludesfile = ~/.gitignore
+[user]
+	name = ne_Sachirou
+	email = utakata.c4se@gmail.com
+[http]
+[https]
+[url "https://"]
+[http]
+[https]
+[url "https://"]
+[alias]
+	st = status -sb
+	br = branch
+	ci = commit
+	co = checkout
+	graph = log --graph --oneline --decorate=full
+[push]
+	default = simple
+# vim:noet:

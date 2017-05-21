@@ -1,0 +1,11 @@
+---
+- name: ~/.emacs.d
+  file: path={{ansible_env.HOME}}/.emacs.d state=directory
+
+- name: ~/.emacs.d/init.el
+  file: path={{ansible_env.HOME}}/.emacs.d/init.el src={{role_path}}/files/emacs/init.el state=link
+
+- name: package-get
+  shell: >-
+    emacs --batch -l '~/.emacs.d/init.el' --kill && \
+    emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'el-get-self-update' --eval '(el-get-update-all t)' -f 'package-utils-upgrade-all-no-fetch' --kill

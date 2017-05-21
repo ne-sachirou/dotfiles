@@ -1,0 +1,28 @@
+---
+- name: Tap Homebrew Bundle
+  homebrew_tap: tap=Homebrew/bundle
+
+- name: brew bundle
+  shell: >-
+    brew update && \
+    brew bundle --file={{role_path}}/files/.Brewfile && \
+    brew bundle cleanup --file={{role_path}}/files/.Brewfile && \
+    brew upgrade
+
+- include: anyenv.yml
+- include: emacs.yml
+- include: terminal.yml
+- include: vim.yml
+- include: zsh.yml
+
+- name: ~/dev
+  file: path={{ansible_env.HOME}}/dev state=directory
+
+- name: ~/.gitconfig
+  file: path={{ansible_env.HOME}}/.gitconfig src={{role_path}}/files/.gitconfig state=link
+
+- name: ~/.gitignore
+  file: path={{ansible_env.HOME}}/.gitignore src={{role_path}}/files/.gitignore state=link
+
+- name: ~/.editorconfig
+  file: path={{ansible_env.HOME}}/.editorconfig src={{role_path}}/files/.editorconfig state=link
