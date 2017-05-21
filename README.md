@@ -1,4 +1,6 @@
-Manual
+![dotfiles](dotfiles.png)
+
+Install manually.
 
 - [Docker](https://store.docker.com/search?type=edition&offering=community)
 - [Google 日本語入力](https://www.google.co.jp/ime/)
@@ -8,4 +10,10 @@ Manual
 - [uBlock Origin](https://github.com/gorhill/uBlock/)
 - [Vivaldi](https://vivaldi.com/blog/)
 
-ansible-playbook -i hosts playbooks/3793.yml
+Setup & update.
+
+```sh
+curl https://raw.githubusercontent.com/ne-sachirou/dotfiles/master/init.sh | bash
+cd ~/dotfiles
+ansible-playbook -i hosts playbooks/〜.yml
+```
