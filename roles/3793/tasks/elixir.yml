@@ -1,0 +1,26 @@
+---
+- name: Lookup `anyenv envs`
+  command: anyenv envs
+  register: anyenv_envs
+  changed_when: no
+  check_mode: no
+
+- name: Install exenv
+  command: anyenv install exenv
+  when: >-
+    "exenv" not in anyenv_envs.stdout
+
+- name: Lookup `exenv versions`
+  command: exenv versions --bare
+  register: exenv_versions
+  changed_when: no
+  check_mode: no
+
+- name: Install Elixir
+  command: exenv install {{item}}
+  when: item not in exenv_versions.stdout
+  with_items:
+    - 1.4.4
+
+- name: Set `exenv global`
+  command: exenv global 1.4.4
