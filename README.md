@@ -4,6 +4,7 @@ Install manually.
 
 - [Docker](https://store.docker.com/search?type=edition&offering=community)
 - [Google 日本語入力](https://www.google.co.jp/ime/)
+- [ImageOptim](https://imageoptim.com/mac)
 - [Karabiner Elements](https://github.com/tekezo/Karabiner-Elements)
 - [LastPass](https://www.lastpass.com)
 - [Kinza](https://www.kinza.jp)
