@@ -10,6 +10,7 @@
     brew upgrade
 
 - include: anyenv.yml
+- include: dl-momonga-images-from-pinterest.yml
 - include: elixir.yml
 - include: emacs.yml
 - include: terminal.yml
