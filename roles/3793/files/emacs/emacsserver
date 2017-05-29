@@ -1,0 +1,56 @@
+#!/usr/bin/env emacs --script
+;;; emacsserver --- Control Emacs daemon
+
+;;; Commentary:
+
+;;; Code:
+
+(require 'subr-x)
+
+(defun ps ()
+  "Emacs daemon status."
+  (string-trim (shell-command-to-string "ps aux | grep '[e]macs .*--daemon'")))
+
+(defun is_running ()
+  "Detect an Emacs daemon is running or not."
+    (not (equal "" (ps))))
+
+(defun start ()
+  "Start an Emacs daemon."
+  (unless (is_running)
+    (princ (shell-command-to-string "emacs --daemon"))))
+
+(defun status ()
+  "Show an Emacs daemon is running or not."
+  (princ (ps))
+  (princ "\n"))
+
+(defun stop ()
+  "Stop the Emacs daemon."
+  (shell-command "emacsclient -e '(kill-emacs)'"))
+
+(defun restart ()
+  "Stop & start an Emacs daemon."
+  (if (is_running) (stop))
+  (start))
+
+(defun help ()
+  "Show help."
+  (princ "emacsserver SUBCOMMAND
+
+SUBCOMMAND:
+\tstart\t\tStart an Emacs daemon
+\tstatus\t\tShow a running status of the Emacs daemon
+\tstop\t\tStop the Emacs daemon
+\trestart\t\tStop & start the Emacs daemon
+"))
+
+(let ((command (elt argv 0)))
+  (cond
+    ((equal command "start") (start))
+    ((equal command "status") (status))
+    ((equal command "stop") (stop))
+    ((equal command "restart") (restart))
+    (t (help))))
+
+;;; emacsserver ends here
