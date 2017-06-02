@@ -68,8 +68,8 @@
     (url-retrieve-synchronously "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
-(el-get-bundle crystal-mode)
-; (el-get-bundle proof-general)
+(el-get-bundle 'crystal-mode)
+(el-get-bundle 'proof-general)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
