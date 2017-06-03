@@ -1,0 +1,13 @@
+---
+- name: Lookup `private-values path dotfiles`
+  command: private-values path dotfiles
+  register: private_path
+  changed_when: no
+  check_mode: no
+
+- name: .ssh
+  file: dest={{ansible_env.HOME}}/.ssh/{{item}} src={{private_path}}/.ssh/{{item}}
+  with_items:
+    - config
+    - id_rsa
+    - id_rsa.pub
