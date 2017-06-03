@@ -14,10 +14,17 @@ Install manually.
 - [uBlock Origin](https://github.com/gorhill/uBlock/)
 - [Vivaldi](https://vivaldi.com/blog/)
 
-Setup & update.
+Setup.
 
 ```sh
 curl https://raw.githubusercontent.com/ne-sachirou/dotfiles/master/init.sh | bash
 cd ~/dotfiles
 ansible-playbook -i hosts playbooks/〜.yml
+```
+
+Update.
+
+```sh
+cd ~/dotfiles
+make install
 ```
