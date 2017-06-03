@@ -7,6 +7,7 @@ Install manually.
 - [ImageOptim](https://imageoptim.com/mac)
 - [Karabiner Elements](https://github.com/tekezo/Karabiner-Elements)
 - [LastPass](https://www.lastpass.com)
+- [LessPass](https://lesspass.com/)
 - [Kinza](https://www.kinza.jp)
 - [uBlock Origin](https://github.com/gorhill/uBlock/)
 - [Vivaldi](https://vivaldi.com/blog/)
