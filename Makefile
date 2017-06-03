@@ -16,5 +16,6 @@ install: ## ansible-playbook
 .PHONY: test
 test: ## Test
 	find . -name '*.yml' -exec ansible-lint -x ANSIBLE0012 {} \;
+	find . -name '*.sh' -exec shellcheck {} \;
 
 # vim:set noet:
