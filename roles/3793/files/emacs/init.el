@@ -6,6 +6,7 @@
 
 (defvar my/packages
   '(
+    ag
     alchemist
     clojure-mode
     cider
@@ -81,6 +82,8 @@
 (package-initialize)
 (dolist (package my/packages)
   (unless (package-installed-p package) (package-install package)))
+
+;; ag
 
 ;; alchemist
 
