@@ -104,7 +104,6 @@ Plug 'LeafCage/qutefinger.vim'
 Plug 'vim-scripts/Align', {'on': 'Align'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-scripts/camelcasemotion'
-Plug 'Shougo/vinarise.vim'
 call plug#end()
 
 nmap p     <Plug>(yankround-p)
@@ -213,8 +212,6 @@ function! Lightline_git()
   return ''
 endfunction
 set stl+=\ %{fugitive#statusline()}
-
-let g:vinarise_enable_auto_detect = 1
 
 autocmd vimrc VimEnter * colorscheme molokai
 
