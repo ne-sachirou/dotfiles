@@ -25,6 +25,7 @@
   lineinfile: dest={{rbenv_root.stdout}}/default-gems line={{item}} create=yes
   with_items:
     - bundler
+    - docker-sync
     - rails
 
 - name: Lookup `rbenv versions`
