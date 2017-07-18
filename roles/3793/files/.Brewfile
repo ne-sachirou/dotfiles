@@ -24,5 +24,6 @@ brew 'yarn'
 brew 'youtube-dl'
 brew 'zsh'
 cask 'gimp'
+cask 'vlc'
 mas 'Evernote', id: 406056744
 mas 'Slack', id: 803453959
