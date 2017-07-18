@@ -63,6 +63,7 @@ autocmd vimrc BufNewFile,BufReadPost Guardfile,*.rabl,*.jbuilder setl ft=ruby
 autocmd vimrc BufNewFile,BufReadPost *.ect,*.eex setl ft=html
 autocmd vimrc BufNewFile,BufReadPost .envrc setl ft=sh
 autocmd vimrc BufNewFile,BufReadPost Makefile setl noet
+autocmd vimrc BufNewFile,BufReadPost *.xrl,*.yrl setl ft=erlang
 
 if has('vim_starting')
   set runtimepath+=~/.vim
