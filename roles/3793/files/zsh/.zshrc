@@ -30,6 +30,7 @@ HISTSIZE=10000
 SAVEHIST=100000
 export EDITOR='vim'
 export LESS='-iMR'
+export PAGER='less -X'
 
 alias be='bundle exec'
 alias pv=private-values
