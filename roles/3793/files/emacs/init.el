@@ -32,6 +32,7 @@
     origami
     osx-clipboard
     package-utils
+    plantuml-mode
     projectile
     robe
     slime
@@ -46,6 +47,7 @@
  ;; If there is more than one, they won't work right.
  '(js-indent-level 2)
  '(package-selected-packages my/packages)
+ '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.14/libexec/plantuml.jar")
  '(ruby-insert-encoding-magic-comment nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -155,6 +157,9 @@
 (osx-clipboard-mode +1)
 
 ;; package-utils
+
+;; plantuml-mode
+(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
 
 ;; projectile
 
