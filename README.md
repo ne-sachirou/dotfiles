@@ -9,6 +9,7 @@ Install manually.
 - [LastPass](https://www.lastpass.com)
 - [LessPass](https://lesspass.com/)
 - [Kinza](https://www.kinza.jp)
+- [Mono](http://www.mono-project.com/)
 - [Spotify](https://www.spotify.com/jp/)
 - [Pocket](https://getpocket.com/)
 - [uBlock Origin](https://github.com/gorhill/uBlock/)
