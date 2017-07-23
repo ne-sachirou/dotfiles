@@ -46,6 +46,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(js-indent-level 2)
+ '(js-switch-indent-offset 2)
  '(package-selected-packages my/packages)
  '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.14/libexec/plantuml.jar")
  '(ruby-insert-encoding-magic-comment nil))
