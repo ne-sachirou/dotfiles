@@ -26,8 +26,5 @@
 - name: Set `exenv global`
   command: exenv global 1.5.1
 
-- name: local.hex, local.rebar, local.phoenix
-  command: >-
-    mix do local.hex --force,\
-           local.rebar --force,\
-           local.phoenix --force
+- name: local.hex, local.rebar, local.phx
+  command: mix do local.hex --force, local.rebar --force, local.phx --force
