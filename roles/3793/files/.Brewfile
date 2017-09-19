@@ -17,6 +17,7 @@ brew 'libav'
 brew 'mas'
 brew 'mycli'
 brew 'node'
+brew 'noti'
 brew 'peco'
 brew 'plantuml'
 brew 'shellcheck'
@@ -27,11 +28,13 @@ brew 'wine'
 brew 'yarn'
 brew 'youtube-dl'
 brew 'zsh'
+
 cask 'dash'
 cask 'gimp'
 cask 'inkscape'
 cask 'java'
 cask 'vlc'
 cask 'xquartz'
+
 mas 'Evernote', id: 406056744
 mas 'Slack', id: 803453959
