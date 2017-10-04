@@ -3,6 +3,7 @@ tap 'homebrew/bundle'
 
 brew 'ansible'
 brew 'ansible-lint'
+brew 'chromedriver'
 brew 'crystal-lang'
 brew 'direnv'
 brew 'emacs'
