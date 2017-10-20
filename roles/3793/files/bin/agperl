@@ -1,0 +1,2 @@
+#!/bin/bash -eu
+ag -l "$1" | xargs -L1 perl -pi -e"s/$1/$2/g"
