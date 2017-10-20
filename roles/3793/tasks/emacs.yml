@@ -8,7 +8,8 @@
 - name: package-get
   shell: >-
     emacs --batch -l '~/.emacs.d/init.el' --kill && \
-    emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'el-get-self-update' --eval '(el-get-update-all t)' -f 'package-utils-upgrade-all-no-fetch' --kill
+    emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'package-utils-upgrade-all-no-fetch' --kill && \
+    emacs --batch -l '~/.emacs.d/init.el' -f 'el-get-self-update' --eval '(el-get-update-all t)' --kill
 
 - name: emacsserver
   file: path={{ansible_env.HOME}}/.local/bin/emacsserver src={{role_path}}/files/emacs/emacsserver state=link
