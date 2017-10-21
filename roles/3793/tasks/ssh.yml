@@ -5,9 +5,18 @@
   changed_when: no
   check_mode: no
 
-- name: .ssh
-  file: dest={{ansible_env.HOME}}/.ssh/{{item}} src={{private_path}}/.ssh/{{item}}
+- name: ~/.ssh
+  file: path={{ansible_env.HOME}}/.ssh state=directory
+
+- name: ~/.ssh/id_rsa
+  copy: dest={{ansible_env.HOME}}/.ssh/id_rsa src={{private_path.stdout}}/.ssh/id_rsa mode=0600
+
+- name: ~/.ssh/*
+  copy: dest={{ansible_env.HOME}}/.ssh/{{item}} src={{private_path.stdout}}/.ssh/{{item}}
+  with_items:
+    - id_rsa.pub
+
+- name: ~/.ssh/* for 3793
+  copy: dest={{ansible_env.HOME}}/.ssh/{{item}} src={{private_path.stdout}}/3793/.ssh/{{item}}
   with_items:
     - config
-    - id_rsa
-    - id_rsa.pub

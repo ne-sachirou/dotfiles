@@ -74,7 +74,16 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 (el-get-bundle 'crystal-mode)
-(el-get-bundle 'proof-general)
+; (el-get-bundle 'proof-general)
+(el-get-bundle 'proof-general
+       :description "A generic Emacs interface for interactive proof assistants."
+       :type github
+       :pkgname "ProofGeneral/PG"
+       :build `(("make" "clean")
+                ("make" ,(concat "EMACS=" el-get-emacs) "compile"))
+       :info "doc"
+       :autoloads "generic/proof-site.el"
+       :website "http://proofgeneral.inf.ed.ac.uk/")
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -84,6 +93,7 @@
         ("melpa" . 0)
         ("melpa-stable" . 10)))
 (package-initialize)
+; (package-refresh-contents)
 (dolist (package my/packages)
   (unless (package-installed-p package) (package-install package)))
 

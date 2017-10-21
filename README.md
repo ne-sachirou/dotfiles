@@ -3,12 +3,12 @@
 Install manually.
 
 - [Docker](https://store.docker.com/search?type=edition&offering=community)
+- [Firefox Developer Edition](https://www.mozilla.org/ja/firefox/developer/)
 - [Google 日本語入力](https://www.google.co.jp/ime/)
 - [ImageOptim](https://imageoptim.com/mac)
-- [Karabiner Elements](https://github.com/tekezo/Karabiner-Elements)
+- [Karabiner](https://pqrs.org/osx/karabiner/)
 - [LastPass](https://www.lastpass.com)
 - [LessPass](https://lesspass.com/)
-- [Kinza](https://www.kinza.jp)
 - [Mono](http://www.mono-project.com/)
 - [Spotify](https://www.spotify.com/jp/)
 - [Pocket](https://getpocket.com/)

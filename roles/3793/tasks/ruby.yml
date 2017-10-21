@@ -39,10 +39,10 @@
   command: rbenv install {{item}}
   when: item not in rbenv_versions.stdout
   with_items:
-    - 2.4.1
+    - 2.4.2
 
 - name: Set `rbenv global`
-  command: rbenv global 2.4.1
+  command: rbenv global 2.4.2
 
 - name: gem update
   shell: >-
