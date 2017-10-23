@@ -1,0 +1,3 @@
+#!/bin/bash -eux
+git branch --merged | peco | xargs -L1 git branch -D
+git branch -r --merged | perl -p -e's/^\s+\w+\///g' | peco | xargs -L1 -I{} git push origin :{}
