@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-# Shell & Utilities: Table of Contents http://pubs.opengroup.org/onlinepubs/009696699/utilities/contents.html
+# Single UNIX Specification (SUSv3) Shell and Utilities (XCU) http://pubs.opengroup.org/onlinepubs/009696699/utilities/contents.html
 
 function install_ansible_by_apt() {
   $(with_sudo apt) update
