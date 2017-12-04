@@ -38,6 +38,7 @@
     robe
     slime
     slim-mode
+    quickrun
     vimrc-mode
     yaml-mode
     ))
@@ -194,6 +195,8 @@
 (setq slime-contribs '(slime-fancy))
 
 ;; slim-mode
+
+;; quickrun
 
 ;; vimrc-mode
 
