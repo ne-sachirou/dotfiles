@@ -63,6 +63,8 @@
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq-default indent-tabs-mode nil)
 
+(add-to-list 'auto-mode-alist '("\\.dig\\(\\.erb\\)?\\'" . yaml-mode))
+
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (require 'linum)
