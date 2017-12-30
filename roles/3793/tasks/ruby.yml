@@ -24,7 +24,6 @@
 - name: Setup rbenv-default-gems
   lineinfile: dest={{rbenv_root.stdout}}/default-gems line={{item}} create=yes
   with_items:
-    - bundler
     - command_socksify
     - docker-sync
     - rails
@@ -39,7 +38,7 @@
   command: rbenv install {{item}}
   when: item not in rbenv_versions.stdout
   with_items:
-    - 2.4.2
+    - 2.5.0
 
 - name: Set `rbenv global`
   command: rbenv global 2.4.2
