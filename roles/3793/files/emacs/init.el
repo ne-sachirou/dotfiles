@@ -30,6 +30,7 @@
     j-mode
     markdown-mode
     monokai-theme
+    nginx-mode
     origami
     osx-clipboard
     package-utils
@@ -165,6 +166,8 @@
 
 ;; monokai-theme
 (load-theme 'monokai t)
+
+;; nginx-mode
 
 ;; origami
 (global-origami-mode t)
