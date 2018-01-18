@@ -7,8 +7,9 @@
 
 - name: package-get
   shell: >-
-    emacs --batch -l '~/.emacs.d/init.el' --kill && \
-    emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'package-utils-upgrade-all-no-fetch' --kill && \
+    set -ex
+    emacs --batch -l '~/.emacs.d/init.el' --kill
+    emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'package-utils-upgrade-all-no-fetch' --kill
     emacs --batch -l '~/.emacs.d/init.el' -f 'el-get-self-update' --eval '(el-get-update-all t)' --kill
 
 - name: emacsserver

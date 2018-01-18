@@ -45,5 +45,6 @@
 
 - name: gem update
   shell: >-
-    rbenv exec gem update --system && \
+    set -ex
+    rbenv exec gem update --system
     rbenv exec gem update
