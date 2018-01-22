@@ -4,11 +4,11 @@
 
 - name: brew bundle
   shell: >-
-    set -ex
-    brew update
-    brew bundle --file={{role_path}}/files/.Brewfile
-    brew bundle cleanup --file={{role_path}}/files/.Brewfile
-    brew upgrade
+    set -ex && \
+    brew update && \
+    brew bundle --file={{role_path}}/files/.Brewfile && \
+    brew bundle cleanup --file={{role_path}}/files/.Brewfile && \
+    brew upgrade && \
     mas upgrade
 
 
