@@ -1,0 +1,37 @@
+#!/usr/bin/env runghc
+
+import System.Environment ( getArgs, getExecutablePath )
+import System.FilePath ( takeBaseName )
+import System.Posix.Directory ( getWorkingDirectory )
+import System.Process ( readCreateProcess, shell )
+import Text.Printf ( printf )
+
+main :: IO ()
+main = do
+  args <- getArgs
+  case args of
+    host:remoteDir:_ -> deploy host remoteDir
+    _ -> help
+
+help :: IO ()
+help = putStr $ unlines [ "Help: deploy HOST REMOTE_DIR" ]
+
+deploy :: String -> String -> IO ()
+deploy host remoteDir = do
+  projectName <- fmap takeBaseName getWorkingDirectory
+  sh $ printf "git archive -9 -o /tmp/%s.tar.gz --prefix %s/ HEAD" projectName projectName
+  sh $ printf "scp /tmp/%s.tar.gz %s:%s/%s.tar.gz" projectName host remoteDir projectName
+  sh $ unlines
+    [ (printf "ssh %s -K 'bash -s' <<EOF" host)
+    , (printf "cd %s" remoteDir)
+    , (printf "tar xzf %s.tar.gz" projectName)
+    , "EOF"
+    ]
+
+sh :: String -> IO ()
+sh command = do
+  putStrLn $ "+" ++ command
+  out <- readCreateProcess (shell command) ""
+  putStrLn out
+
+-- vim:set ft=haskell:
