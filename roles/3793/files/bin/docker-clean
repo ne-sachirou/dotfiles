@@ -1,5 +1,13 @@
-#!/bin/bash -eux
-yes y | docker container prune
-yes y | docker volume prune
-yes y | docker network prune
-yes y | docker image prune
+#!/usr/bin/env runghc
+
+import System.Process ( readCreateProcess, shell )
+
+main :: IO ()
+main =
+  do putStrLn $ "+" ++ command
+     out <- readCreateProcess (shell command) ""
+     putStrLn out
+  where
+    command = "yes y | docker system prune --volumes"
+
+-- vim:set ft=haskell:
