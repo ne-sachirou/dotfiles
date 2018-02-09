@@ -41,7 +41,7 @@
     - 2.5.0
 
 - name: Set `rbenv global`
-  command: rbenv global 2.4.2
+  command: rbenv global 2.5.0
 
 - name: gem update
   shell: >-
