@@ -1,4 +1,5 @@
 tap 'caskroom/cask'
+tap 'joshuaclayton/formulae'
 tap 'homebrew/bundle'
 
 brew 'ansible'
@@ -30,6 +31,7 @@ brew 'plantuml'
 brew 'shellcheck'
 brew 'sl'
 brew 'the_silver_searcher'
+brew 'unused'
 brew 'vim'
 brew 'wine'
 brew 'yarn'
