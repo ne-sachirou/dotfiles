@@ -27,9 +27,11 @@
     haskell-mode
     helm
     helm-ag
+    helm-mt
     j-mode
     markdown-mode
     monokai-theme
+    multi-term
     nginx-mode
     origami
     osx-clipboard
@@ -160,12 +162,17 @@
 
 ;; helm-ag
 
+;; helm-mt
+
 ;; j-mode
 
 ;; markdown-mode
 
 ;; monokai-theme
 (load-theme 'monokai t)
+
+;; multi-term
+(setq multi-term-program "/bin/zsh")
 
 ;; nginx-mode
 
