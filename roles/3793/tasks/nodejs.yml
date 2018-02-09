@@ -1,0 +1,8 @@
+---
+- name: Install package
+  command: npm install -g {{item}}
+  with_items:
+    - serverless
+
+- name: npm update
+  command: npm update -g
