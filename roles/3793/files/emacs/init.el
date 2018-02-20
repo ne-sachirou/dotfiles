@@ -13,6 +13,7 @@
     cider
     coffee-mode
     company
+    docker-tramp
     dockerfile-mode
     editorconfig
     elixir-mode
@@ -124,6 +125,10 @@
 
 ;; company
 (add-hook 'after-init-hook 'global-company-mode)
+
+;; docker-tramp
+(require 'docker-tramp-compat)
+(set-variable 'docker-tramp-use-names t)
 
 ;; dockerfile-mode
 
