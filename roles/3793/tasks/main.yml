@@ -11,7 +11,6 @@
     brew upgrade && \
     mas upgrade
 
-
 - name: ~/.local/bin/
   file: path={{ansible_env.HOME}}/.local/bin/ state=directory
 
