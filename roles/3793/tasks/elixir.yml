@@ -21,10 +21,10 @@
   when: item not in exenv_versions.stdout
   with_items:
     - 1.5.3
-    - 1.6.0
+    - 1.6.1
 
 - name: Set `exenv global`
-  command: exenv global 1.6.0
+  command: exenv global 1.6.1
 
 # - name: Install Phoenix
 #   command: mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez
