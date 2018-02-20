@@ -5,12 +5,11 @@
 - name: ~/.emacs.d/init.el
   file: path={{ansible_env.HOME}}/.emacs.d/init.el src={{role_path}}/files/emacs/init.el state=link
 
-- name: package-get
-  shell: >-
-    set -ex
-    emacs --batch -l '~/.emacs.d/init.el' --kill
-    emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'package-utils-upgrade-all-no-fetch' --kill
-    emacs --batch -l '~/.emacs.d/init.el' -f 'el-get-self-update' --eval '(el-get-update-all t)' --kill
-
 - name: emacsserver
   file: path={{ansible_env.HOME}}/.local/bin/emacsserver src={{role_path}}/files/emacs/emacsserver state=link
+
+- name: emacs-package
+  file: path={{ansible_env.HOME}}/.local/bin/emacs-package src={{role_path}}/files/emacs/emacs-package state=link
+
+- name: package-get
+  command: emacs-package update

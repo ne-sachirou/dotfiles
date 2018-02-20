@@ -1,0 +1,27 @@
+#!/usr/bin/env emacs --script
+;;; emacs-package --- Manage Emacs packages
+
+;;; Commentary:
+
+;;; Code:
+
+(defun update ()
+  "Install & update packages."
+  (shell-command "emacs --batch -l '~/.emacs.d/init.el' --kill")
+  (shell-command "emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'package-utils-upgrade-all-no-fetch' --kill")
+  (shell-command "emacs --batch -l '~/.emacs.d/init.el' -f 'el-get-self-update' --eval '(el-get-update-all t)' --kill"))
+
+(defun help ()
+  "Show help."
+  (princ "emacs-package SUBCOMMAND
+
+SUBCOMMAND:
+\tupdate\t\tInstall & update packages
+"))
+
+(let ((command (elt argv 0)))
+  (cond
+    ((equal command "update") (update))
+    (t (help))))
+
+;;; emacs-package ends here
