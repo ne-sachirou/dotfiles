@@ -25,8 +25,8 @@
   lineinfile: dest={{rbenv_root.stdout}}/default-gems line={{item}} create=yes
   with_items:
     - command_socksify
-    - docker-sync
     - rails
+    - rubocop
 
 - name: Lookup `rbenv versions`
   command: rbenv versions --bare
