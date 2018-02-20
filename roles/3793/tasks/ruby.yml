@@ -20,6 +20,7 @@
   git: repo={{item.value}} dest={{rbenv_root.stdout}}/plugins/{{item.key}} version=master depth=1 update=no
   with_dict:
     rbenv-default-gems: https://github.com/rbenv/rbenv-default-gems.git
+    rbenv-each: https://github.com/rbenv/rbenv-each.git
 
 - name: Setup rbenv-default-gems
   lineinfile: dest={{rbenv_root.stdout}}/default-gems line={{item}} create=yes
@@ -46,5 +47,5 @@
 - name: gem update
   shell: >-
     set -ex && \
-    rbenv exec gem update --system && \
-    rbenv exec gem update
+    rbenv each gem update --system && \
+    rbenv each gem update
