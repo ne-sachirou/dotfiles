@@ -70,6 +70,7 @@ if has('vim_starting')
 endif
 call plug#begin('~/.vim/plugged')
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'mgrabovsky/vim-cuesheet', {'for': 'cue'}
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
@@ -84,26 +85,28 @@ Plug 'wavded/vim-stylus', {'for': 'stylus'}
 Plug 'evidens/vim-twig', {'for': 'twig'}
 Plug 'rhysd/vim-crystal', {'for': 'crystal'}
 Plug 'smerrill/vcl-vim-plugin', {'for': 'vcl'}
+
+Plug 'dannyob/quickfixstatus'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
-Plug 'tomasr/molokai'
-Plug 'LeafCage/yankround.vim'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/lightline.vim'
+Plug 'jceb/vim-hier'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-operator-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'LeafCage/yankround.vim'
+Plug 'LeafCage/qutefinger.vim'
+Plug 'lu-ren/SerialExperimentsLain'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'osyo-manga/shabadou.vim'
+Plug 'osyo-manga/vim-watchdogs'
+Plug 'tomasr/molokai'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-operator-user'
-Plug 'kana/vim-textobj-indent'
 Plug 'thinca/vim-quickrun'
-Plug 'dannyob/quickfixstatus'
-Plug 'jceb/vim-hier'
-Plug 'osyo-manga/shabadou.vim'
-Plug 'osyo-manga/vim-watchdogs'
-Plug 'LeafCage/qutefinger.vim'
 Plug 'vim-scripts/Align', {'on': 'Align'}
-Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-scripts/camelcasemotion'
 call plug#end()
 
@@ -214,6 +217,6 @@ function! Lightline_git()
 endfunction
 set stl+=\ %{fugitive#statusline()}
 
-autocmd vimrc VimEnter * colorscheme molokai
+autocmd vimrc VimEnter * colorscheme SerialExperimentsLain
 
 " vim:et sw=2 sts=2 ts=2 tw=0:
