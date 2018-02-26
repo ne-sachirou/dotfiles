@@ -18,6 +18,7 @@
     editorconfig
     elixir-mode
     elscreen
+    ensime
     erlang
     evil
     evil-matchit
@@ -138,6 +139,8 @@
 ;; elixir-mode
 
 ;; elscreen
+
+;; ensime
 
 ;; erlang
 
