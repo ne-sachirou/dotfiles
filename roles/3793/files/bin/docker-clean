@@ -3,11 +3,14 @@
 import System.Process ( readCreateProcess, shell )
 
 main :: IO ()
-main =
-  do putStrLn $ "+" ++ command
-     out <- readCreateProcess (shell command) ""
-     putStrLn out
-  where
-    command = "yes y | docker system prune --volumes"
+main = do
+  sh "yes y | docker system prune --volumes"
+  sh "docker run --rm --privileged alpine hwclock -s"
+
+sh :: String -> IO ()
+sh command = do
+  putStrLn $ "+" ++ command
+  out <- readCreateProcess (shell command) ""
+  putStrLn out
 
 -- vim:set ft=haskell:
