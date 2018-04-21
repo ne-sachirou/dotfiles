@@ -13,6 +13,7 @@
     cider
     coffee-mode
     company
+    company-solidity
     docker-tramp
     dockerfile-mode
     editorconfig
@@ -43,6 +44,7 @@
     robe
     slime
     slim-mode
+    solidity-mode
     quickrun
     vimrc-mode
     yaml-mode
@@ -127,6 +129,10 @@
 ;; company
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; company-solidity
+
+;; crystal-mode
+
 ;; docker-tramp
 (require 'docker-tramp-compat)
 (set-variable 'docker-tramp-use-names t)
@@ -205,6 +211,8 @@
 
 ;; projectile
 
+;; proof-general
+
 ;; robe
 (add-hook 'ruby-mode-hook 'robe-mode)
 (eval-after-load 'company
@@ -215,6 +223,8 @@
 (setq slime-contribs '(slime-fancy))
 
 ;; slim-mode
+
+;; solidity-mode
 
 ;; quickrun
 
