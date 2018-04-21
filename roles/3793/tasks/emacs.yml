@@ -5,6 +5,9 @@
 - name: ~/.emacs.d/init.el
   file: path={{ansible_env.HOME}}/.emacs.d/init.el src={{role_path}}/files/emacs/init.el state=link
 
+- name: ~/.emacs-live.el
+  file: path={{ansible_env.HOME}}/.emacs-live.el src={{role_path}}/files/emacs/.emacs-live.el state=link
+
 - name: emacsserver
   file: path={{ansible_env.HOME}}/.local/bin/emacsserver src={{role_path}}/files/emacs/emacsserver state=link
 

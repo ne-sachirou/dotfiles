@@ -84,6 +84,14 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 (el-get-bundle 'crystal-mode)
+(el-get-bundle 'overtone-emacs-live
+  :type http-zip
+  :url "https://github.com/overtone/emacs-live/archive/master.zip"
+  :build (let* ((username "funisaya")
+                (src-dir (substitute-in-file-name "$HOME/.emacs.d/el-get/overtone-emacs-live/packs/template/user-template-pack/"))
+                (dest-dir (substitute-in-file-name (concat "$HOME/.live-packs/" username "-pack"))))
+           `(("mkdir" "-p" ,(eval dest-dir))
+              ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
 ; (el-get-bundle 'proof-general)
 (el-get-bundle 'proof-general
        :description "A generic Emacs interface for interactive proof assistants."
@@ -203,6 +211,9 @@
 
 ;; osx-clipboard
 (osx-clipboard-mode +1)
+
+;; overtone-emacs-live
+; See ~/.emacs-live.el
 
 ;; package-utils
 
