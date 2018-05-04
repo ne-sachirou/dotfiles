@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(let* ((username "funisaya")
+(let* ((username "my")
        (dest-dir (substitute-in-file-name (concat "$HOME/.live-packs/" username "-pack"))))
   (live-add-packs dest-dir))
 

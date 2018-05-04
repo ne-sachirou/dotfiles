@@ -87,11 +87,11 @@
 (el-get-bundle 'overtone-emacs-live
   :type http-zip
   :url "https://github.com/overtone/emacs-live/archive/master.zip"
-  :build (let* ((username "funisaya")
+  :build (let* ((username "my")
                 (src-dir (substitute-in-file-name "$HOME/.emacs.d/el-get/overtone-emacs-live/packs/template/user-template-pack/"))
                 (dest-dir (substitute-in-file-name (concat "$HOME/.live-packs/" username "-pack"))))
            `(("mkdir" "-p" ,(eval dest-dir))
-              ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
+             ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
 ; (el-get-bundle 'proof-general)
 (el-get-bundle 'proof-general
        :description "A generic Emacs interface for interactive proof assistants."
