@@ -2,14 +2,20 @@
 - name: Tap Homebrew Bundle
   homebrew_tap: tap=Homebrew/bundle
 
+- name: brew update
+  command: brew update
+
 - name: brew bundle
-  shell: >-
-    set -ex && \
-    brew update && \
-    brew bundle --file={{role_path}}/files/.Brewfile && \
-    brew bundle cleanup --file={{role_path}}/files/.Brewfile && \
-    brew upgrade && \
-    mas upgrade
+  command: brew bundle --file={{role_path}}/files/.Brewfile
+
+- name: brew bundle clean
+  command: brew bundle cleanup --file={{role_path}}/files/.Brewfile
+
+- name: brew upgrade
+  command: brew upgrade
+
+- name: mas upgrade
+  command: mas upgrade
 
 - name: ~/.local/bin/
   file: path={{ansible_env.HOME}}/.local/bin/ state=directory
