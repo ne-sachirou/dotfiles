@@ -217,6 +217,6 @@ function! Lightline_git()
 endfunction
 set stl+=\ %{fugitive#statusline()}
 
-autocmd vimrc VimEnter * colorscheme SerialExperimentsLain
+autocmd vimrc VimEnter * colorscheme molokai
 
 " vim:et sw=2 sts=2 ts=2 tw=0:
