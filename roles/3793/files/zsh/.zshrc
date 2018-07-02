@@ -93,6 +93,9 @@ if [ -e /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38 ]; then
 fi
 # }}} cd
 
+. ~/.asdf/asdf.sh
+. ~/.asdf/completions/asdf.bash
+
 case "${OSTYPE}" in
 darwin*)
   source ~/.zsh/.zshrc.darwin

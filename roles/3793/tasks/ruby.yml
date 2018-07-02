@@ -1,49 +1,11 @@
 ---
-- name: Lookup `anyenv envs`
-  command: anyenv envs
-  register: anyenv_envs
-  changed_when: no
-  check_mode: no
-
-- name: Install rbenv
-  command: anyenv install rbenv
-  when: >-
-    "rbenv" not in anyenv_envs.stdout
-
-- name: Lookup `rbenv root`
-  command: rbenv root
-  register: rbenv_root
-  changed_when: no
-  check_mode: no
-
-- name: Install rbenv plugins
-  git: repo={{item.value}} dest={{rbenv_root.stdout}}/plugins/{{item.key}} version=master depth=1 update=no
-  with_dict:
-    rbenv-default-gems: https://github.com/rbenv/rbenv-default-gems.git
-    rbenv-each: https://github.com/rbenv/rbenv-each.git
-
-- name: Setup rbenv-default-gems
-  lineinfile: dest={{rbenv_root.stdout}}/default-gems line={{item}} create=yes
-  with_items:
-    - bundler
-    - command_socksify
-    - rails
-    - rubocop
-
-- name: Lookup `rbenv versions`
-  command: rbenv versions --bare
-  register: rbenv_versions
-  changed_when: no
-  check_mode: no
-
-- name: Install Ruby
-  command: rbenv install {{item}}
-  when: item not in rbenv_versions.stdout
-  with_items:
-    - 2.5.1
-
-- name: Set `rbenv global`
-  command: rbenv global 2.5.1
+# - name: Setup rbenv-default-gems
+#   lineinfile: dest={{rbenv_root.stdout}}/default-gems line={{item}} create=yes
+#   with_items:
+#     - bundler
+#     - command_socksify
+#     - rails
+#     - rubocop
 
 - name: gem update
   shell: >-

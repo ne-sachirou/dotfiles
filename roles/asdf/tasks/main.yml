@@ -1,0 +1,28 @@
+---
+# https://github.com/cimon-io/ansible-role-asdf
+
+- name: Install asdf
+  git: repo=https://github.com/asdf-vm/asdf.git version={{asdf_version}} dest={{ansible_env.HOME}}/.asdf
+
+- name: Install asdf plugins
+  command: asdf plugin-add {{item.name}}
+  args:
+    creates: "{{ansible_env.HOME}}/.asdf/plugins/{{item.name}}"
+  with_items: "{{asdf_plugins}}"
+  ignore_errors: True
+
+- name: Install asdf apps
+  command: "asdf install {{item.0.name}} {{item.1}}"
+  args:
+    creates: "{{ansible_env.HOME}}/.asdf/installs/{{item.0.name}}/{{item.1}}"
+  with_subelements:
+    - "{{asdf_plugins}}"
+    - versions
+    - flags:
+      skip_missing: True
+  when: asdf_plugins|length > 0
+
+- name: "Set asdf global app versions"
+  command: "asdf global {{item.name}} {{item.global | default(item.versions[0])}}"
+  when: item.versions is defined
+  with_items: "{{asdf_plugins}}"

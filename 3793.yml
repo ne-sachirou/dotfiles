@@ -3,3 +3,15 @@
   connection: local
   roles:
     - "3793"
+    - role: asdf
+      asdf_version: v0.5.0
+      asdf_plugins:
+        - name: elixir
+          versions: ["1.6.6"]
+          global: "1.6.6"
+        - name: erlang
+          versions: ["20.3.8.2"]
+          global: "20.3.8.2"
+        - name: ruby
+          versions: ["2.5.1"]
+          global: "2.5.1"
