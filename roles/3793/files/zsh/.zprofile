@@ -6,3 +6,4 @@ PATH=/Library/Frameworks/Mono.framework/Versions/Current/bin:$PATH
 export PATH
 
 eval "$(direnv hook zsh)"
+eval "$(pipenv --completion)"

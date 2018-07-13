@@ -7,8 +7,8 @@
 #     - rails
 #     - rubocop
 
-- name: gem update
-  shell: >-
-    set -ex && \
-    rbenv each gem update --system && \
-    rbenv each gem update
+# - name: gem update
+#   shell: >-
+#     set -ex && \
+#     rbenv each gem update --system && \
+#     rbenv each gem update
