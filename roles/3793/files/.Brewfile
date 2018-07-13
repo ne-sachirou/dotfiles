@@ -59,3 +59,4 @@ cask 'xquartz'
 
 mas 'Evernote', id: 406056744
 mas 'Slack', id: 803453959
+mas 'feedly', id: 865500966
