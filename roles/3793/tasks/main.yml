@@ -21,7 +21,6 @@
   file: path={{ansible_env.HOME}}/.local/bin/ state=directory
 
 - import_tasks: android-sdk.yml
-- import_tasks: anyenv.yml
 - import_tasks: dl-momonga-images-from-pinterest.yml
 - import_tasks: elixir.yml
 - import_tasks: emacs.yml
