@@ -40,12 +40,13 @@
     osx-clipboard
     package-utils
     plantuml-mode
+    prettier-js
     projectile
+    quickrun
     robe
     slime
     slim-mode
     solidity-mode
-    quickrun
     vimrc-mode
     yaml-mode
     ))
@@ -57,7 +58,7 @@
  '(js-indent-level 2)
  '(js-switch-indent-offset 2)
  '(package-selected-packages my/packages)
- '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2017.14/libexec/plantuml.jar")
+ '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.6/libexec/plantuml.jar")
  '(ruby-insert-encoding-magic-comment nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -220,9 +221,16 @@
 ;; plantuml-mode
 (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
 
+;; prettier-js
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode)
+(setq prettier-js-args '())
+
 ;; projectile
 
 ;; proof-general
+
+;; quickrun
 
 ;; robe
 (add-hook 'ruby-mode-hook 'robe-mode)
@@ -237,7 +245,6 @@
 
 ;; solidity-mode
 
-;; quickrun
 
 ;; vimrc-mode
 

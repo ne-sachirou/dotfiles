@@ -2,6 +2,8 @@
 - name: Install package
   command: npm install -g {{item}}
   with_items:
+    - npm-check-updates
+    - prettier
     - serverless
 
 - name: npm update
