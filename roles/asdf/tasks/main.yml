@@ -9,7 +9,7 @@
   args:
     creates: "{{ansible_env.HOME}}/.asdf/plugins/{{item.name}}"
   with_items: "{{asdf_plugins}}"
-  ignore_errors: True
+  ignore_errors: true
 
 - name: Install asdf apps
   command: "asdf install {{item.0.name}} {{item.1}}"
@@ -19,8 +19,8 @@
     - "{{asdf_plugins}}"
     - versions
     - flags:
-      skip_missing: True
-  when: asdf_plugins|length > 0
+      skip_missing: true
+  when: asdf_plugins | length > 0
 
 - name: "Set asdf global app versions"
   command: "asdf global {{item.name}} {{item.global | default(item.versions[0])}}"

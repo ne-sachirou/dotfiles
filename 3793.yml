@@ -7,11 +7,11 @@
       asdf_version: v0.5.0
       asdf_plugins:
         - name: elixir
-          versions: ["1.6.6"]
-          global: "1.6.6"
+          versions: ["1.7.1"]
+          global: "1.7.1"
         - name: erlang
-          versions: ["20.3.8.2", "21.0.3"]
-          global: "21.0.3"
+          versions: ["21.0.4"]
+          global: "21.0.4"
         - name: ruby
           versions: ["2.5.1"]
           global: "2.5.1"

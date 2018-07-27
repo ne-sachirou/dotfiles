@@ -4,8 +4,8 @@ import System.Process ( readCreateProcess, shell )
 
 main :: IO ()
 main = do
-  sh "git branch --merged | peco | xargs -L1 git branch -D"
-  sh "git branch -r --merged | perl -p -e 's/^\\s+\\w+\\///g' | peco | xargs -L1 git push -d origin"
+  sh "git branch --merged | peco | xargs -t -L1 git branch -D"
+  sh "git branch -r --merged | perl -p -e 's/^\\s+\\w+\\///g' | peco | xargs -t -L1 git push -d origin"
   sh "git gc --auto"
 
 sh :: String -> IO ()

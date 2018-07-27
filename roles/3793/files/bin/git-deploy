@@ -1,6 +1,6 @@
 #!/usr/bin/env runghc
 
-import System.Environment ( getArgs, getExecutablePath )
+import System.Environment ( getArgs )
 import System.FilePath ( takeBaseName )
 import System.Posix.Directory ( getWorkingDirectory )
 import System.Process ( readCreateProcess, shell )

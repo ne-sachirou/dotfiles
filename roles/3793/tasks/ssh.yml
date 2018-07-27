@@ -2,8 +2,8 @@
 - name: Lookup `private-values path dotfiles`
   command: private-values path dotfiles
   register: private_path
-  changed_when: no
-  check_mode: no
+  changed_when: false
+  check_mode: false
 
 - name: ~/.ssh
   file: path={{ansible_env.HOME}}/.ssh state=directory

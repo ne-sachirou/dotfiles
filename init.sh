@@ -13,7 +13,7 @@ function install_ansible_by_brew() {
 }
 
 function with_sudo() {
-  if test "" = "$(find "$(which "$1")" -user root)" ; then
+  if test "" = "$(find "$(command -v "$1")" -user root)" ; then
     echo "$1"
   else
     echo "sudo $1"
@@ -22,7 +22,7 @@ function with_sudo() {
 
 case $(uname -s) in
   Darwin*)
-    if ! which brew &> /dev/null ; then
+    if ! command -v brew &> /dev/null ; then
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
     install_ansible_by_brew
