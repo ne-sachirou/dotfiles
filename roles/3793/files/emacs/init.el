@@ -219,7 +219,7 @@
 ;; package-utils
 
 ;; plantuml-mode
-(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(plant\\)?uml\\'" . plantuml-mode))
 
 ;; prettier-js
 (add-hook 'js2-mode-hook 'prettier-js-mode)
