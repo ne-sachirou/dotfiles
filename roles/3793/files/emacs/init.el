@@ -58,7 +58,7 @@
  '(js-indent-level 2)
  '(js-switch-indent-offset 2)
  '(package-selected-packages my/packages)
- '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.6/libexec/plantuml.jar")
+ '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.9/libexec/plantuml.jar")
  '(ruby-insert-encoding-magic-comment nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

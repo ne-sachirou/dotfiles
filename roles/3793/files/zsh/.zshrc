@@ -1,3 +1,5 @@
+fpath=(~/.zsh $fpath)
+
 # {{{ init
 bindkey -e
 zstyle :compinstall filename $HOME/.zshrc
@@ -20,9 +22,6 @@ fi
 zplug load
 # }}} zplug
 
-fpath=(~/.zsh $fpath)
-
-zstyle ':completion:*:*:git:*' script ~/.zsh/.git-completion.zsh
 source ~/.zsh/git-prompt.sh
 
 HISTFILE=~/.bash_history
