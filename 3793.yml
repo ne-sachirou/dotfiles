@@ -12,6 +12,9 @@
         - name: erlang
           versions: ["21.0.5"]
           global: "21.0.5"
+        - name: python
+          versions: ["3.5.3", "3.7.0"] # 3.5.3 for petronetto/docker-python-deep-learning
+          global: 3.7.0
         - name: ruby
           versions: ["2.5.1"]
           global: "2.5.1"
