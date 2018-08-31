@@ -1,3 +1,5 @@
+# zmodload zsh/zprof && zprof
+
 fpath=(~/.zsh $fpath)
 
 # {{{ init
@@ -9,16 +11,16 @@ autoload -Uz compinit
 # else
 #   compinit -C
 # fi
-compinit
+compinit -C
 # }}} init
 
 # {{{ zplug
 export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 zplug "b4b4r07/enhancd", use:init.sh
-if ! zplug check; then
-  zplug install
-fi
+# if ! zplug check; then
+#   zplug install
+# fi
 zplug load
 # }}} zplug
 
@@ -32,10 +34,11 @@ export LESS='-iMR'
 export PAGER='less -X'
 
 alias be='bundle exec'
+alias ssh="assh wrapper ssh"
 alias pv=private-values
 alias vi='emacsclient -nw'
 
-_cache_hosts=($(ssh_configured_hosts))
+# _cache_hosts=($(ssh_configured_hosts))
 
 # {{{ history
 setopt hist_ignore_dups
