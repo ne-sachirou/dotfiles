@@ -1,7 +1,8 @@
+.elixir_ls
 .envrc
 
 
-# Created by https://www.gitignore.io/api/osx,vim,linux,emacs,windows
+# Created by https://www.gitignore.io/api/vim,osx,emacs,linux,windows,visualstudiocode
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -65,7 +66,8 @@ flycheck_*.el
 .nfs*
 
 ### OSX ###
-*.DS_Store
+# General
+.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -92,17 +94,29 @@ Temporary Items
 .apdisk
 
 ### Vim ###
-# swap
+# Swap
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
-[._]s[a-v][a-z]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
 [._]sw[a-p]
-# session
+
+# Session
 Session.vim
-# temporary
+
+# Temporary
 .netrwhist
-# auto-generated tag files
+# Auto-generated tag files
 tags
+# Persistent undo
+[._]*.un~
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -110,8 +124,11 @@ Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
 
+# Dump file
+*.stackdump
+
 # Folder config file
-Desktop.ini
+[Dd]esktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
@@ -119,10 +136,12 @@ $RECYCLE.BIN/
 # Windows Installer files
 *.cab
 *.msi
+*.msix
 *.msm
 *.msp
 
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/osx,vim,linux,emacs,windows
+
+# End of https://www.gitignore.io/api/vim,osx,emacs,linux,windows,visualstudiocode
