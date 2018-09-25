@@ -28,6 +28,7 @@
     evil-tabs
     feature-mode
     flycheck
+    go-mode
     haskell-mode
     helm
     helm-ag
@@ -180,6 +181,8 @@
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; go-mode
 
 ;; haskell-mode
 
