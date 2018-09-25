@@ -6,12 +6,6 @@ fpath=(~/.zsh $fpath)
 bindkey -e
 zstyle :compinstall filename $HOME/.zshrc
 autoload -Uz compinit
-# if [ $(expr $(date +%s) / 86400) != $(expr $(stat --format '%Y' ~/.zcompdump) / 86400) ]; then
-#   compinit
-# else
-#   compinit -C
-# fi
-compinit -C
 # }}} init
 
 # {{{ zplug
@@ -24,7 +18,12 @@ zplug "b4b4r07/enhancd", use:init.sh
 zplug load
 # }}} zplug
 
-source ~/.zsh/git-prompt.sh
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+. ~/.zsh/assh_autocomplete.zsh
+. ~/.zsh/git-prompt.sh
 
 HISTFILE=~/.bash_history
 HISTSIZE=10000
@@ -38,7 +37,7 @@ alias ssh="assh wrapper ssh"
 alias pv=private-values
 alias vi='emacsclient -nw'
 
-# _cache_hosts=($(ssh_configured_hosts))
+_cache_hosts=($(assh config list | perl -waln -F'\->' -e 'if(/->/){$F[0]=~s/^\s*(.*?)\s*$/$1/;print$F[0]}'))
 
 # {{{ history
 setopt hist_ignore_dups
@@ -107,8 +106,15 @@ linux*)
   ;;
 esac
 
+# if [ $(expr $(date +%s) / 86400) != $(expr $(stat --format '%Y' ~/.zcompdump) / 86400) ]; then
+#   compinit
+# else
+#   compinit -C
+# fi
+compinit -C
+
 # if (which zprof > /dev/null) ;then
-#   zprof | less -X
+#   zprof
 # fi
 
 # vim:set fdm=marker:

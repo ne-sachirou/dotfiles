@@ -18,6 +18,7 @@
   with_dict:
     _git: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
     _git-bug: https://raw.githubusercontent.com/MichaelMure/git-bug/master/misc/zsh_completion/git-bug
+    assh_autocomplete.zsh: https://raw.githubusercontent.com/moul/advanced-ssh-config/master/contrib/completion/zsh_autocomplete
     osx.plugin.zsh: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/plugins/osx/osx.plugin.zsh
     git-completion.bash: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
     git-prompt.sh: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
