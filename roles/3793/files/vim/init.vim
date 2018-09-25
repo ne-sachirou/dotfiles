@@ -156,7 +156,7 @@ if !exists('g:lightline')
   let g:lightline.component_function = {}
 endif
 let g:lightline = {
-      \   'colorscheme': 'wombat',
+      \   'colorscheme': 'molokai',
       \   'active': {
       \     'left': [
       \       ['mode', 'paste', 'git'],
