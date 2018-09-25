@@ -13,7 +13,8 @@
     cider
     coffee-mode
     company
-    company-solidity
+    ; company-solidity
+    company-terraform
     docker-tramp
     dockerfile-mode
     editorconfig
@@ -47,6 +48,7 @@
     slime
     slim-mode
     solidity-mode
+    terraform-mode
     vimrc-mode
     yaml-mode
     ))
@@ -139,6 +141,9 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; company-solidity
+
+;; company-terraform
+(company-terraform-init)
 
 ;; crystal-mode
 
@@ -245,6 +250,7 @@
 
 ;; solidity-mode
 
+;; terraform-mode
 
 ;; vimrc-mode
 
