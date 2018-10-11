@@ -5,7 +5,6 @@
 - import_tasks: android-sdk.yml
 - import_tasks: dl-momonga-images-from-pinterest.yml
 - import_tasks: elixir.yml
-- import_tasks: emacs.yml
 - import_tasks: nodejs.yml
 - import_tasks: ruby.yml
 - import_tasks: ssh.yml

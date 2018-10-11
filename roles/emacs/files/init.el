@@ -13,7 +13,7 @@
     cider
     coffee-mode
     company
-    ; company-solidity
+    company-solidity
     company-flow
     company-terraform
     company-web
