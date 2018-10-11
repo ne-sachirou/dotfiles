@@ -1,17 +1,17 @@
 ---
 - name: ~/.zprofile
-  file: path={{ansible_env.HOME}}/.zprofile src={{role_path}}/files/zsh/.zprofile state=link
+  file: path={{ansible_env.HOME}}/.zprofile src={{role_path}}/files/.zprofile state=link
 
 - name: ~/.zshrc
   template: dest={{ansible_env.HOME}}/.zshrc src={{role_path}}/templates/.zshrc.j2
 
-- name: ~/.zsh
+- name: ~/.zsh/
   file: path={{ansible_env.HOME}}/.zsh state=directory
 
 - name: Local ~/.zsh/*.zsh
   file: path={{ansible_env.HOME}}/.zsh/{{item.key}} src={{item.value}} state=link
   with_dict:
-    .zshrc.darwin: "{{role_path}}/files/zsh/.zshrc.darwin"
+    .zshrc.darwin: "{{role_path}}/files/.zshrc.darwin"
 
 - name: Remote ~/.zsh/*.zsh
   get_url: url={{item.value}} dest={{ansible_env.HOME}}/.zsh/{{item.key}}
@@ -27,4 +27,4 @@
   git: repo=https://github.com/zplug/zplug.git depth=1 dest={{ansible_env.HOME}}/.zplug
 
 - name: zplug update
-  command: zsh -c 'source ~/.zshrc; zplug update'
+  command: zsh -c 'source ~/.zshrc; if ! zplug check; then zplug install; fi; zplug update'

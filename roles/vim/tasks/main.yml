@@ -1,5 +1,5 @@
 ---
-- name: ~/.vim
+- name: ~/.vim/
   file: path={{ansible_env.HOME}}/.vim state=directory
 
 - name: init.vim
@@ -8,7 +8,7 @@
     - "{{ansible_env.HOME}}/.vim/init.vim"
     - "{{ansible_env.HOME}}/.vimrc"
 
-- name: ~/.vim/autoload
+- name: ~/.vim/autoload/
   file: path={{ansible_env.HOME}}/.vim/autoload state=directory
 
 - name: vim-plug

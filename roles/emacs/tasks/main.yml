@@ -1,5 +1,5 @@
 ---
-- name: ~/.emacs.d
+- name: ~/.emacs.d/
   file: path={{ansible_env.HOME}}/.emacs.d state=directory
 
 - name: ~/.emacs.d/init.el

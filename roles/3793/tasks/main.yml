@@ -9,7 +9,6 @@
 - import_tasks: ruby.yml
 - import_tasks: ssh.yml
 - import_tasks: terminal.yml
-- import_tasks: zsh.yml
 
 - name: ~/dev
   file: path={{ansible_env.HOME}}/dev state=directory
