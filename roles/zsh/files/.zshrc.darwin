@@ -1,4 +1,6 @@
-source ~/.zsh/osx.plugin.zsh
+zplug "plugins/osx", from:oh-my-zsh
+zplug "modules/osx", from:prezto
+
 source /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
 source /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
 source /Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion

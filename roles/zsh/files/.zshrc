@@ -11,8 +11,8 @@ autoload -Uz compinit
 # {{{ zplug
 export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
+zplug "mollifier/anyframe"
 zplug "b4b4r07/enhancd", use:init.sh
-zplug load
 # }}} zplug
 
 if type brew &>/dev/null; then
@@ -102,6 +102,8 @@ linux*)
   source ~/.zsh/.zshrc.linux
   ;;
 esac
+
+zplug load
 
 # if [ $(expr $(date +%s) / 86400) != $(expr $(stat --format '%Y' ~/.zcompdump) / 86400) ]; then
 #   compinit
