@@ -1,14 +1,16 @@
 zplug "plugins/osx", from:oh-my-zsh
 zplug "modules/osx", from:prezto
 
-source /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
-source /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
-source /Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion
+_docker_init() {
+  source /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
+  source /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
+  source /Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion
+}
+eval "$(lazyenv.load _docker_init docker docker-compose docker-machine)"
+
 
 export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libressl/include -I/usr/local/opt/readline/include -I/usr/local/opt/v8/include"
 export LDFLAGS="$LDFLAGS -L/usr/local/opt/libressl/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/v8/lib"
 export HOMEBREW_GITHUB_API_TOKEN=$(private-values get dotfiles.GITHUB_API_TOKEN)
-
-alias ls="ls -GF"
 
 # vim:set ft=zsh:

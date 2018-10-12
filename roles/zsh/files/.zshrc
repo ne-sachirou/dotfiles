@@ -11,6 +11,7 @@ autoload -Uz compinit
 # {{{ zplug
 export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
+touch $ZPLUG_LOADFILE
 zplug "mollifier/anyframe"
 zplug "b4b4r07/enhancd", use:init.sh
 # }}} zplug
@@ -19,8 +20,19 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-. ~/.zsh/assh_autocomplete.zsh
+. ~/.zsh/lazyenv.bash
 . ~/.zsh/git-prompt.sh
+
+_asdf_init() {
+  . ~/.asdf/asdf.sh
+  . ~/.asdf/completions/asdf.bash
+}
+eval "$(lazyenv.load _asdf_init asdf `ls ~/.asdf/shims`)"
+
+_ssh_init() {
+  . ~/.zsh/assh_autocomplete.zsh
+}
+eval "$(lazyenv.load _ssh_init assh ssh)"
 
 HISTFILE=~/.bash_history
 HISTSIZE=10000
@@ -84,7 +96,6 @@ zle -N do_enter
 bindkey '^m' do_enter
 function chpwd() {
   pwd > /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38
-  list_status
 }
 if [ -e /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38 ]; then
   cd $(cat /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38)
@@ -98,9 +109,6 @@ bindkey '^x^r' anyframe-widget-execute-history
 bindkey '^xk' anyframe-widget-kill
 bindkey '^x^k' anyframe-widget-kill
 # }}}
-
-. ~/.asdf/asdf.sh
-. ~/.asdf/completions/asdf.bash
 
 case "${OSTYPE}" in
 darwin*)

@@ -21,6 +21,7 @@
     assh_autocomplete.zsh: https://raw.githubusercontent.com/moul/advanced-ssh-config/master/contrib/completion/zsh_autocomplete
     git-completion.bash: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
     git-prompt.sh: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    lazyenv.bash: https://raw.githubusercontent.com/takezoh/lazyenv/master/lazyenv.bash
 
 - name: zplug
   git: repo=https://github.com/zplug/zplug.git depth=1 dest={{ansible_env.HOME}}/.zplug
