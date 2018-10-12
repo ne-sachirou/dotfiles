@@ -12,8 +12,11 @@ autoload -Uz compinit
 export ZPLUG_HOME=$HOME/.zplug
 source $ZPLUG_HOME/init.zsh
 touch $ZPLUG_LOADFILE
-zplug "mollifier/anyframe"
 zplug "b4b4r07/enhancd", use:init.sh
+zplug "mollifier/anyframe"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting"
 # }}} zplug
 
 if type brew &>/dev/null; then
