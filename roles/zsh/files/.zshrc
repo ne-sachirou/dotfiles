@@ -19,10 +19,6 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 # }}} zplug
 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-
 . ~/.zsh/lazyenv.bash
 . ~/.zsh/git-prompt.sh
 
@@ -33,6 +29,7 @@ _asdf_init() {
 eval "$(lazyenv.load _asdf_init asdf `ls ~/.asdf/shims`)"
 
 _ssh_init() {
+  # _cache_hosts=($(assh config list | perl -waln -F'\->' -e 'if(/->/){$F[0]=~s/^\s*(.*?)\s*$/$1/;print$F[0]}'))
   . ~/.zsh/assh_autocomplete.zsh
 }
 eval "$(lazyenv.load _ssh_init assh ssh)"
@@ -45,11 +42,9 @@ export LESS='-iMR'
 export PAGER='less -X'
 
 alias be='bundle exec'
-alias ssh="assh wrapper ssh"
 alias pv=private-values
+alias ssh='assh wrapper ssh'
 alias vi='emacsclient -nw'
-
-_cache_hosts=($(assh config list | perl -waln -F'\->' -e 'if(/->/){$F[0]=~s/^\s*(.*?)\s*$/$1/;print$F[0]}'))
 
 # {{{ history
 setopt hist_ignore_dups
@@ -124,15 +119,12 @@ esac
 
 zplug load
 
-# if [ $(expr $(date +%s) / 86400) != $(expr $(stat --format '%Y' ~/.zcompdump) / 86400) ]; then
-#   compinit
-# else
-#   compinit -C
-# fi
-compinit -C
+if [ $(expr $(date +%s) / 86400) != $(expr $(stat -f '%m' ~/.zcompdump) / 86400) ]; then
+  compinit
+else
+  compinit -C
+fi
 
-# if (which zprof > /dev/null) ;then
-#   zprof
-# fi
+# zprof
 
 # vim:set fdm=marker:
