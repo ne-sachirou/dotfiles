@@ -17,5 +17,7 @@ test: ## Test.
 	find . -name '*.yml' -exec yamllint {} \+ || true
 	find . -name '*.yml' -exec ansible-lint -x ANSIBLE0012 {} \+ || true
 	find . -name '*.sh' -exec shellcheck {} \+ || true
+	zsh -n roles/zsh/files/.z* roles/zsh/templates/.z* || true
+	shellcheck -e SC2148 roles/zsh/files/.z* roles/zsh/templates/.z* || true
 
 # vim:set noet:
