@@ -26,3 +26,6 @@
   command: "asdf global {{item.name}} {{item.global | default(item.versions[0])}}"
   when: item.versions is defined
   with_items: "{{asdf_plugins}}"
+
+- import_tasks: elixir.yml
+- import_tasks: ruby.yml
