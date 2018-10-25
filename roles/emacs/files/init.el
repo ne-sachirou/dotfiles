@@ -15,6 +15,7 @@
     company
     company-solidity
     company-flow
+    company-solidity
     company-terraform
     company-web
     docker-tramp
