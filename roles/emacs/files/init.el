@@ -37,6 +37,7 @@
     helm-ag
     helm-mt
     j-mode
+    magit
     markdown-mode
     monokai-theme
     multi-term
@@ -214,6 +215,8 @@
 ;; helm-mt
 
 ;; j-mode
+
+;; magit
 
 ;; markdown-mode
 
