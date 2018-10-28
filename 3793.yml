@@ -21,4 +21,23 @@
     - emacs
     - homebrew
     - vim
+    - role: vscode
+      vscode_extensions:
+        - bung87.rails
+        - bung87.vscode-gemfile
+        - dbaeumer.vscode-eslint
+        - eamodio.gitlens
+        - EditorConfig.EditorConfig
+        - esbenp.prettier-vscode
+        - faustinoaq.crystal-lang
+        - GitHub.vscode-pull-request-github
+        - JakeBecker.elixir-ls
+        - MS-CEINTL.vscode-language-pack-ja
+        - ms-vsliveshare.vsliveshare
+        - ms-vsliveshare.vsliveshare-audio
+        - msjsdiag.debugger-for-chrome
+        - PeterJausovec.vscode-docker
+        - rebornix.ruby
+        - sianglim.slim
+        - vscodevim.vim
     - zsh
