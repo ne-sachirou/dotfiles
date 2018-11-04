@@ -9,10 +9,11 @@ _docker_init() {
 eval "$(lazyenv.load _docker_init docker docker-compose docker-machine)"
 
 FPATH=/usr/local/share/zsh/site-functions:$FPATH
-PATH="$PATH:/Applications/ImageOptim.app/Contents/MacOS"
-CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libressl/include -I/usr/local/opt/readline/include -I/usr/local/opt/v8/include"
-LDFLAGS="$LDFLAGS -L/usr/local/opt/libressl/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/v8/lib"
+PATH="$PATH:/usr/local/opt/openssl/bin:/Applications/ImageOptim.app/Contents/MacOS"
+CPPFLAGS="$CPPFLAGS -I/usr/local/opt/readline/include -I/usr/local/opt/v8/include -I/usr/local/opt/openssl/include"
+LDFLAGS="$LDFLAGS -L/usr/local/opt/readline/lib -L/usr/local/opt/v8/lib -L/usr/local/opt/openssl/lib"
 HOMEBREW_GITHUB_API_TOKEN=$(private-values get dotfiles.GITHUB_API_TOKEN)
-export PATH CPPFLAGS LDFLAGS HOMEBREW_GITHUB_API_TOKEN
+PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
+export CPPFLAGS HOMEBREW_GITHUB_API_TOKEN LDFLAGS PATH PKG_CONFIG_PATH
 
 # vim:set ft=zsh:
