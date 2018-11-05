@@ -1,3 +1,5 @@
+# -*- mode: ruby -*-
+
 tap 'caskroom/cask'
 tap 'joshuaclayton/formulae'
 tap 'homebrew/bundle'
@@ -5,6 +7,7 @@ tap 'homebrew/bundle'
 brew 'ansible'
 brew 'ansible-lint'
 brew 'autoconf'
+brew 'aspell', args: ["with-lang-eo", "with-lang-ja"]
 brew 'assh'
 brew 'chromedriver'
 brew 'clasp'
