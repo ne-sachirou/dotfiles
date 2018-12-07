@@ -6,6 +6,7 @@
     - npm-check-updates
     - prettier
     - serverless
+    - "@google/clasp"
 
 - name: npm update
   command: npm update -g
