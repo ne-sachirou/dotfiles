@@ -104,7 +104,6 @@ fi
 # {{{ anyframe
 bindkey '^xr' anyframe-widget-execute-history
 bindkey '^x^r' anyframe-widget-execute-history
-
 bindkey '^xk' anyframe-widget-kill
 bindkey '^x^k' anyframe-widget-kill
 # }}}

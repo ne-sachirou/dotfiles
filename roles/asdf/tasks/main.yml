@@ -11,6 +11,10 @@
   with_items: "{{asdf_plugins}}"
   ignore_errors: true
 
+- name: Update asdf plugins
+  command: asdf plugin-update {{item.name}}
+  with_items: "{{asdf_plugins}}"
+
 - name: Install asdf apps
   command: "asdf install {{item.0.name}} {{item.1}}"
   args:

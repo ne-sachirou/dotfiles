@@ -4,11 +4,11 @@
   roles:
     - "3793"
     - role: asdf
-      asdf_version: v0.5.1
+      asdf_version: v0.6.2
       asdf_plugins:
         - name: erlang
-          versions: ["21.1.1"]
-          global: "21.1.1"
+          versions: ["21.1.4"]
+          global: "21.1.4"
         - name: elixir
           versions: ["1.7.4-otp-21"]
           global: "1.7.4-otp-21"
@@ -16,8 +16,8 @@
           versions: ["3.5.3", "3.7.0"] # 3.5.3 for petronetto/docker-python-deep-learning
           global: 3.7.0
         - name: ruby
-          versions: ["2.5.1"]
-          global: "2.5.1"
+          versions: ["2.5.3"]
+          global: "2.5.3"
     - emacs
     - homebrew
     - vim
