@@ -1,0 +1,20 @@
+#!/usr/bin/env runghc
+
+import System.Process ( readCreateProcess, shell )
+
+main :: IO ()
+main = do
+  sh "git branch -vv | grep -v '^\\*' | grep -v master | grep ': gone\\] ' | awk '{print$1}' | xargs -t -L1 git branch -d || true"
+  sh "git branch -vv | grep -v '^\\*' | grep -v master | grep ': gone\\] ' | peco --prompt 'LOCAL>' | awk '{print$1}' | xargs -t -L1 git branch -D"
+  sh "git branch --merged | grep -v '^\\*' | grep -v master | xargs -t -L1 git branch -d || true"
+  sh "git branch --merged | grep -v '^\\*' | grep -v master | peco --prompt 'LOCAL>' | xargs -t -L1 git branch -D"
+  sh "git branch -r --merged | perl -nl -e'if($_!~/\\/(HEAD|master)/){$_=~s/^\\s+\\w+\\///;print}' | peco --prompt 'REMOTE>' | xargs -t -L1 git push -d origin"
+  sh "git gc --auto"
+
+sh :: String -> IO ()
+sh command = do
+  putStrLn $ "+" ++ command
+  out <- readCreateProcess (shell command) ""
+  putStrLn out
+
+-- vim:set ft=haskell:
