@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 
 tap 'caskroom/cask'
-tap 'joshuaclayton/formulae'
+tap 'goby-lang/goby'
 tap 'homebrew/bundle'
 
 brew 'ansible'
@@ -19,6 +19,7 @@ brew 'fzy'
 brew 'git-now'
 brew 'ghc'
 brew 'go'
+brew 'goby'
 brew 'hadolint'
 brew 'haskell-stack'
 brew 'heroku'
