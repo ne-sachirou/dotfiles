@@ -10,6 +10,8 @@ brew 'autoconf'
 brew 'aspell', args: ["with-lang-eo", "with-lang-ja"]
 brew 'assh'
 brew 'chromedriver'
+brew 'clojure'
+brew 'clojurescript'
 brew 'closure-compiler'
 brew 'crystal-lang'
 brew 'digdag'
