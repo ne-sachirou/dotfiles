@@ -63,6 +63,7 @@ brew 'wrk'
 brew 'yamllint'
 brew 'yarn'
 brew 'youtube-dl'
+brew 'zlib'
 brew 'zsh'
 
 cask 'android-file-transfer'

@@ -13,7 +13,7 @@
           versions: ["1.7.4-otp-21"]
           global: "1.7.4-otp-21"
         - name: python
-          versions: ["3.5.3", "3.7.0"] # 3.5.3 for petronetto/docker-python-deep-learning
+          versions: ["3.6.7", "3.7.0"] # 3.6.7 for petronetto/docker-python-deep-learning
           global: 3.7.0
         - name: ruby
           versions: ["2.5.3"]
