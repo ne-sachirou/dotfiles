@@ -7,9 +7,16 @@
 
 (require 'subr-x)
 
+(defun sh (command)
+  "Exec COMMAND with -x option & return the output."
+  (princ (concat "+" command "\n"))
+  (let ((out (shell-command-to-string command)))
+    (princ out)
+    out))
+
 (defun ps ()
   "Emacs daemon status."
-  (string-trim (shell-command-to-string "ps aux | grep '[e]macs .*--daemon'")))
+  (string-trim (sh "ps aux | grep '[e]macs .*--daemon'")))
 
 (defun is_running ()
   "Detect an Emacs daemon is running or not."
@@ -17,17 +24,15 @@
 
 (defun start ()
   "Start an Emacs daemon."
-  (unless (is_running)
-    (princ (shell-command-to-string "emacs --daemon"))))
+  (unless (is_running) (sh "emacs --daemon")))
 
 (defun status ()
   "Show an Emacs daemon is running or not."
-  (princ (ps))
-  (princ "\n"))
+  (ps))
 
 (defun stop ()
   "Stop the Emacs daemon."
-  (shell-command "emacsclient -e '(kill-emacs)'"))
+  (sh "emacsclient -e '(kill-emacs)'"))
 
 (defun restart ()
   "Stop & start an Emacs daemon."

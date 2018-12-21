@@ -5,11 +5,18 @@
 
 ;;; Code:
 
+(defun sh (command)
+  "Exec COMMAND with -x option & return the output."
+  (princ (concat "+" command "\n"))
+  (let ((out (shell-command-to-string command)))
+    (princ out)
+    out))
+
 (defun update ()
   "Install & update packages."
-  (shell-command "emacs --batch -l '~/.emacs.d/init.el' --kill")
-  (shell-command "emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'package-utils-upgrade-all-no-fetch' --kill")
-  (shell-command "emacs --batch -l '~/.emacs.d/init.el' -f 'el-get-self-update' --eval '(el-get-update-all t)' --kill"))
+  (sh "emacs --batch -l '~/.emacs.d/init.el' --kill")
+  (sh "emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'package-utils-upgrade-all-no-fetch' --kill")
+  (sh "emacs --batch -l '~/.emacs.d/init.el' -f 'el-get-self-update' --eval '(el-get-update-all t)' --kill"))
 
 (defun help ()
   "Show help."
