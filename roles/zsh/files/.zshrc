@@ -42,6 +42,7 @@ export LESS='-iMR'
 export PAGER='less -X'
 
 alias be='bundle exec'
+alias j='docker run -it --rm nesachirou/jlang'
 alias g=git
 alias pv=private-values
 alias ssh='assh wrapper ssh'
