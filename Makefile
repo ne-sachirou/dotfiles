@@ -19,5 +19,6 @@ test: ## Test.
 	find . -name '*.sh' -exec shellcheck {} \+ || true
 	zsh -n roles/zsh/files/.z* roles/zsh/templates/.z* || true
 	shellcheck -e SC2148 roles/zsh/files/.z* roles/zsh/templates/.z* || true
+	ag -l runghc | xargs -t hlint || true
 
 # vim:set noet:
