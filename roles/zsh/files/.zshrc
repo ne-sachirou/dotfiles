@@ -19,14 +19,10 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 # }}} zplug
 
+. ~/.asdf/asdf.sh
+. ~/.asdf/completions/asdf.bash
 . ~/.zsh/lazyenv.bash
 . ~/.zsh/git-prompt.sh
-
-_asdf_init() {
-  . ~/.asdf/asdf.sh
-  . ~/.asdf/completions/asdf.bash
-}
-eval "$(lazyenv.load _asdf_init asdf `ls ~/.asdf/shims`)"
 
 _ssh_init() {
   # _cache_hosts=($(assh config list | perl -waln -F'\->' -e 'if(/->/){$F[0]=~s/^\s*(.*?)\s*$/$1/;print$F[0]}'))
