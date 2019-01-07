@@ -4,14 +4,14 @@ fpath=(~/.zsh $fpath)
 
 # {{{ init
 bindkey -e
-zstyle :compinstall filename $HOME/.zshrc
+zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 # }}} init
 
 # {{{ zplug
 export ZPLUG_HOME=$HOME/.zplug
-source $ZPLUG_HOME/init.zsh
-touch $ZPLUG_LOADFILE
+. "$ZPLUG_HOME/init.zsh"
+touch "$ZPLUG_LOADFILE"
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "mollifier/anyframe"
 zplug "zsh-users/zsh-autosuggestions"
@@ -33,9 +33,10 @@ eval "$(lazyenv.load _ssh_init assh ssh)"
 HISTFILE=~/.bash_history
 HISTSIZE=10000
 SAVEHIST=100000
-export EDITOR='vim'
-export LESS='-iMR'
-export PAGER='less -X'
+EDITOR='vim'
+LESS='-iMR'
+PAGER='less -X'
+export HISTFILE HISTSIZE SAVEHIST EDITOR LESS PAGER
 
 alias be='bundle exec'
 alias j='docker run -it --rm nesachirou/jlang'
@@ -61,11 +62,13 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWDIRTYSTATE GIT_PS1_SHOWUPSTREAM GIT_PS1_SHOWUNTRACKEDFILES GIT_PS1_SHOWSTASHSTATE
 setopt PROMPT_SUBST
 setopt TRANSIENT_RPROMPT
 precmd () {
   PROMPT="%F{red}%n%f%F{blue}@%f%F{red}%M%f%F{blue} %?%#%f"
   RPROMPT="%F{blue}[%f%F{red}%~$(__git_ps1)%f %F{blue}%*]%f"
+  export PROMPT RPROMPT
 }
 # }}} prompt
 
@@ -94,7 +97,7 @@ function chpwd() {
   pwd > /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38
 }
 if [ -e /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38 ]; then
-  cd $(cat /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38)
+  cd "$(cat /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38)" || return
 fi
 # }}} cd
 
@@ -107,16 +110,16 @@ bindkey '^x^k' anyframe-widget-kill
 
 case "${OSTYPE}" in
 darwin*)
-  source ~/.zsh/.zshrc.darwin
+  . ~/.zsh/.zshrc.darwin
   ;;
 linux*)
-  source ~/.zsh/.zshrc.linux
+  . ~/.zsh/.zshrc.linux
   ;;
 esac
 
 zplug load
 
-if [ $(expr $(date +%s) / 86400) != $(expr $(stat -f '%m' ~/.zcompdump) / 86400) ]; then
+if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' ~/.zcompdump) / 86400)) ]; then
   compinit
 else
   compinit -C

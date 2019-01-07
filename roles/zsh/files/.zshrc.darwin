@@ -2,9 +2,9 @@ zplug "plugins/osx", from:oh-my-zsh
 zplug "modules/osx", from:prezto
 
 _docker_init() {
-  source /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
-  source /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
-  source /Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion
+  . /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
+  . /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
+  . /Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion
 }
 eval "$(lazyenv.load _docker_init docker docker-compose docker-machine)"
 
