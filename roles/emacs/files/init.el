@@ -80,7 +80,15 @@
 
 (add-to-list 'auto-mode-alist '("\\.dig\\(\\.erb\\)?\\'" . yaml-mode))
 
+(defvar delete-trailing-whitespece-before-save t)
+(make-variable-buffer-local 'delete-trailing-whitespece-before-save)
+(advice-add 'delete-trailing-whitespace :before-while
+  (lambda () delete-trailing-whitespece-before-save))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'markdown-mode-hook
+  '(lambda () (set (make-local-variable 'delete-trailing-whitespece-before-save) nil)))
+(add-hook 'yaml-mode-hook
+  '(lambda () (set (make-local-variable 'delete-trailing-whitespece-before-save) nil)))
 
 (require 'linum)
 (global-linum-mode 1)
