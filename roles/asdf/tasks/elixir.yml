@@ -1,6 +1,6 @@
 ---
-# - name: Install Phoenix
-#   command: mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez
+- name: Install Phoenix
+  command: mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez --force
 
 - name: local.hex, local.rebar, local.phx
   command: mix do local.hex --force, local.rebar --force, local.phx --force
