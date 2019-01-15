@@ -7,11 +7,11 @@
       asdf_version: v0.6.2
       asdf_plugins:
         - name: erlang
-          versions: ["21.2.1"]
-          global: "21.2.1"
+          versions: ["21.2.2"]
+          global: "21.2.2"
         - name: elixir
-          versions: ["1.7.4-otp-21"]
-          global: "1.7.4-otp-21"
+          versions: ["1.8.0-otp-21"]
+          global: "1.8.0-otp-21"
         - name: python
           versions: ["3.6.7", "3.7.2"]  # 3.6.7 for petronetto/docker-python-deep-learning
           global: 3.7.2
