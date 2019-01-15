@@ -11,6 +11,9 @@
 - name: brew bundle clean
   command: brew bundle cleanup --file={{role_path}}/files/.Brewfile
 
+- name: brew prune
+  command: brew prune
+
 - name: brew upgrade
   command: brew upgrade
 
