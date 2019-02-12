@@ -1,5 +1,3 @@
-# -*- mode: ruby -*-
-
 tap 'caskroom/cask'
 tap 'goby-lang/goby'
 tap 'homebrew/bundle'
@@ -54,6 +52,7 @@ brew 'sl'
 brew 'stern'
 brew 'the_silver_searcher'
 brew 'terraform'
+brew 'topgrade'
 brew 'tree'
 brew 'vim'
 brew 'watch'
@@ -87,3 +86,5 @@ cask 'xquartz'
 mas 'Evernote', id: 406056744
 mas 'Slack', id: 803453959
 mas 'feedly', id: 865500966
+
+# -*- mode: ruby -*-

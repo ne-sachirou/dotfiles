@@ -10,7 +10,8 @@ clean: ## Clean.
 .PHONY: install
 PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1)
 install: ## ansible-playbook
-	ansible-playbook -i hosts $(PLAYBOOK)
+	ansible-playbook -v -i hosts $(PLAYBOOK)
+	topgrade -c
 
 .PHONY: test
 test: ## Test.
