@@ -27,6 +27,7 @@
     erlang
     evil
     evil-matchit
+    evil-smartparens
     evil-surround
     evil-tabs
     feature-mode
@@ -151,6 +152,8 @@
 ;; alchemist
 
 ;; clojure-mode
+(add-hook 'clojure-mode-hook #'smartparens-strict-mode)
+(add-hook 'clojure-mode-hook #'subword-mode)
 
 ;; cider
 
@@ -195,6 +198,9 @@
 
 ;; evil-matchit
 (global-evil-matchit-mode 1)
+
+;; evil-smartparens
+(add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
 
 ;; evil-surround
 (global-evil-surround-mode 1)
