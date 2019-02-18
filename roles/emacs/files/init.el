@@ -152,7 +152,6 @@
 ;; alchemist
 
 ;; clojure-mode
-(add-hook 'clojure-mode-hook #'smartparens-strict-mode)
 (add-hook 'clojure-mode-hook #'subword-mode)
 
 ;; cider
@@ -200,6 +199,7 @@
 (global-evil-matchit-mode 1)
 
 ;; evil-smartparens
+(smartparens-global-mode t)
 (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
 
 ;; evil-surround
