@@ -13,7 +13,7 @@ main = do
   deleteLocalMergedBranches
   deleteLocalBranchesInteractively
   deleteRemoteBranchesInteractively
-  _ <- sh "git gc --auto"
+  _ <- sh "git gc --auto --prune"
   return ()
 
 deleteLocalMergedBranches :: IO ()
