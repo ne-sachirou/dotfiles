@@ -8,14 +8,17 @@
 - name: brew bundle
   command: brew bundle --file={{role_path}}/files/.Brewfile
 
-- name: brew bundle clean
+- name: brew bundle cleanup
   command: brew bundle cleanup --file={{role_path}}/files/.Brewfile
 
 - name: brew cleanup
-  command: brew cleanup
+  command: brew cleanup --prune 7
 
 - name: brew upgrade
   command: brew upgrade
+
+- name: brew cask upgrade
+  command: brew cask upgrade || true
 
 - name: mas upgrade
   command: mas upgrade
