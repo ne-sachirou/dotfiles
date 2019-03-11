@@ -28,6 +28,7 @@ brew 'hexedit'
 brew 'hlint'
 brew 'hub'
 brew 'imageoptim-cli'
+brew 'istioctl'
 brew 'jasper', link: true # PlantUML JPEG2000
 brew 'jid'
 brew 'jq'
