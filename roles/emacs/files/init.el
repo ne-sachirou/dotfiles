@@ -280,6 +280,22 @@
 (setq prettier-js-args '())
 
 ;; projectile
+(defun projectile-find-file-when-find-file-not-found ()
+  "When find-file-not-found then projectile-find-file."
+  (require 'projectile)
+  (interactive)
+  (let* ((project-root (projectile-ensure-project (projectile-project-root)))
+          (file-name (substring buffer-file-name (length project-root)))
+          (file (projectile-completing-read
+                  "Find file: "
+                  (projectile-project-files project-root)
+                  :initial-input file-name))
+          )
+    (when file
+      (funcall #'find-file (expand-file-name file project-root))
+      (run-hooks 'projectile-find-file-hook)
+      t)))
+(add-hook 'find-file-not-found-hooks 'projectile-find-file-when-find-file-not-found)
 
 ;; proof-general
 
