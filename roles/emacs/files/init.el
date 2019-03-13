@@ -26,6 +26,7 @@
     ensime
     erlang
     evil
+    evil-leader
     evil-matchit
     evil-smartparens
     evil-surround
@@ -195,12 +196,21 @@
 ;; evil
 (evil-mode 1)
 
+;; evil-leader
+(global-evil-leader-mode)
+
 ;; evil-matchit
 (global-evil-matchit-mode 1)
 
 ;; evil-smartparens
 (smartparens-global-mode t)
 (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
+; Slurp Barf · Clojure development with Spacemacs & Cider https://practicalli.github.io/spacemacs/structured-editing/lisp-state-slurp-barf.html
+(evil-leader/set-key
+  "kb" 'sp-forward-barf-sexp
+  "kB" 'sp-backward-barf-sexp
+  "ks" 'sp-forward-slurp-sexp
+  "kS" 'sp-backward-slurp-sexp)
 
 ;; evil-surround
 (global-evil-surround-mode 1)
