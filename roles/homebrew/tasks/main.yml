@@ -18,7 +18,7 @@
   command: brew upgrade
 
 - name: brew cask upgrade
-  command: brew cask upgrade || true
+  shell: brew cask upgrade || true
 
 - name: mas upgrade
   command: mas upgrade
