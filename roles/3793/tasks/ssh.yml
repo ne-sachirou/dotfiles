@@ -6,17 +6,17 @@
   check_mode: false
 
 - name: ~/.ssh
-  file: path={{ansible_env.HOME}}/.ssh state=directory
+  file: path={{ ansible_env.HOME }}/.ssh state=directory
 
 - name: ~/.ssh/id_rsa
-  copy: dest={{ansible_env.HOME}}/.ssh/id_rsa src={{private_path.stdout}}/.ssh/id_rsa mode=0600
+  copy: dest={{ ansible_env.HOME }}/.ssh/id_rsa src={{ private_path.stdout }}/.ssh/id_rsa mode=0600
 
 - name: ~/.ssh/*
-  copy: dest={{ansible_env.HOME}}/.ssh/{{item}} src={{private_path.stdout}}/.ssh/{{item}}
+  copy: dest={{ ansible_env.HOME }}/.ssh/{{ item }} src={{ private_path.stdout }}/.ssh/{{ item }}
   with_items:
     - id_rsa.pub
 
 - name: ~/.ssh/* for 3793
-  copy: dest={{ansible_env.HOME}}/.ssh/{{item}} src={{private_path.stdout}}/3793/.ssh/{{item}}
+  copy: dest={{ ansible_env.HOME }}/.ssh/{{ item }} src={{ private_path.stdout }}/3793/.ssh/{{ item }}
   with_items:
     - config

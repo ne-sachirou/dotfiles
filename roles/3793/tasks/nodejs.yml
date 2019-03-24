@@ -1,6 +1,6 @@
 ---
 - name: Install package
-  command: npm install -g {{item}}
+  command: npm install -g {{ item }}
   with_items:
     - flow-typed
     - npm-check-updates

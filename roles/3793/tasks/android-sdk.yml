@@ -3,7 +3,7 @@
   command: /usr/local/share/android-sdk/tools/bin/sdkmanager --update
 
 - name: Install by sdkmanager
-  command: /usr/local/share/android-sdk/tools/bin/sdkmanager {{item}}
+  command: /usr/local/share/android-sdk/tools/bin/sdkmanager {{ item }}
   with_items:
     - 'build-tools;24.0.3'
     - 'platforms;android-24'

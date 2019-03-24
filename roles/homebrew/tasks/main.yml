@@ -6,10 +6,10 @@
   command: brew update
 
 - name: brew bundle
-  command: brew bundle --file={{role_path}}/files/.Brewfile
+  command: brew bundle --file={{ role_path }}/files/.Brewfile
 
 - name: brew bundle cleanup
-  command: brew bundle cleanup --file={{role_path}}/files/.Brewfile
+  command: brew bundle cleanup --file={{ role_path }}/files/.Brewfile
 
 - name: brew cleanup
   command: brew cleanup --prune 7

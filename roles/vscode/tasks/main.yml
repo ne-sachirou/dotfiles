@@ -6,13 +6,13 @@
   check_mode: false
 
 - name: Install extensions
-  command: code --install-extension {{item}}
-  with_items: "{{vscode_extensions}}"
+  command: code --install-extension {{ item }}
+  with_items: "{{ vscode_extensions }}"
   when: >-
     item not in vscode_installed_extensions.stdout
 
 - name: Uninstall extensions
-  command: code --uninstall-extension {{item}}
-  with_items: "{{vscode_installed_extensions.stdout.split('\n')}}"
+  command: code --uninstall-extension {{ item }}
+  with_items: "{{ vscode_installed_extensions.stdout.split('\n') }}"
   when: >-
     item not in vscode_extensions

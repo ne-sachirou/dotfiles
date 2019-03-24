@@ -6,6 +6,7 @@ help:
 clean: ## Clean.
 	find . -name '*.retry' -exec rm -v {} \+
 	find . -name '.DS_Store' -exec rm -v {} \+
+	find . -name '.*.un~' -exec rm -v {} \+
 
 .PHONY: install
 PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1)

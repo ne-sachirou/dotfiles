@@ -1,6 +1,6 @@
 ---
 - name: monokai.terminal
-  git: repo=https://github.com/stephenway/monokai.terminal.git depth=1 dest={{ansible_env.HOME}}/monokai.terminal
+  git: repo=https://github.com/stephenway/monokai.terminal.git depth=1 dest={{ ansible_env.HOME }}/monokai.terminal
 
 # - name: Monokai.terminal
-#   command: open {{ansible_env.HOME}}/monokai.terminal/Monokai.terminal
+#   command: open {{ ansible_env.HOME }}/monokai.terminal/Monokai.terminal

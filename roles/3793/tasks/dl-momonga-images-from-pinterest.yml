@@ -1,6 +1,6 @@
 ---
 - name: ~/Documents/ももんが
-  file: path={{ansible_env.HOME}}/Documents/ももんが state=directory
+  file: path={{ ansible_env.HOME }}/Documents/ももんが state=directory
 
 - name: dl-momonga-images-from-pinterest ~/Documents/ももんが
   command: dl-momonga-images-from-pinterest ~/Documents/ももんが

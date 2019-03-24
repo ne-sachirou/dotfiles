@@ -1,15 +1,15 @@
 ---
 - name: ~/.emacs.d/
-  file: path={{ansible_env.HOME}}/.emacs.d state=directory
+  file: path={{ ansible_env.HOME }}/.emacs.d state=directory
 
 - name: ~/.emacs.d/init.el
-  file: path={{ansible_env.HOME}}/.emacs.d/init.el src={{role_path}}/files/init.el state=link
+  file: path={{ ansible_env.HOME }}/.emacs.d/init.el src={{ role_path }}/files/init.el state=link
 
 - name: ~/.emacs-live.el
-  file: path={{ansible_env.HOME}}/.emacs-live.el src={{role_path}}/files/.emacs-live.el state=link
+  file: path={{ ansible_env.HOME }}/.emacs-live.el src={{ role_path }}/files/.emacs-live.el state=link
 
 - name: Emacs management commands
-  file: path={{ansible_env.HOME}}/.local/bin/{{item}} src={{role_path}}/files/{{item}} state=link
+  file: path={{ ansible_env.HOME }}/.local/bin/{{ item }} src={{ role_path }}/files/{{ item }} state=link
   with_items:
     - emacsserver
     - emacs-package
