@@ -9,7 +9,7 @@
 
 (defun sh (command)
   "Exec COMMAND with -x option & return the output."
-  (princ (concat "+" command "\n"))
+  (princ (concat "+ " command "\n"))
   (let ((out (shell-command-to-string command)))
     (princ out)
     out))
