@@ -66,7 +66,13 @@
  '(js-indent-level 2)
  '(js-switch-indent-offset 2)
  '(package-selected-packages my/packages)
- '(plantuml-jar-path "/usr/local/Cellar/plantuml/1.2019.1/libexec/plantuml.jar")
+ '(plantuml-jar-path
+    (let* ((exe-path (car (split-string (shell-command-to-string "which plantuml"))))
+           (exe-str (with-temp-buffer
+                      (insert-file-contents exe-path)
+                      (buffer-string))))
+      (string-match "[/.A-Za-z0-9]+/plantuml.jar" exe-str)
+      (substring exe-str (match-beginning 0) (match-end 0))))
  '(ruby-insert-encoding-magic-comment nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
