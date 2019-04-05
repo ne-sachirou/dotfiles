@@ -4,7 +4,7 @@
   roles:
     - "3793"
     - role: asdf
-      asdf_version: v0.6.2
+      asdf_version: v0.7.0
       asdf_plugins:
         - name: erlang
           versions: ["21.2.2"]
