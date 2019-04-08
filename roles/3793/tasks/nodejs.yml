@@ -2,6 +2,8 @@
 - name: Install package
   command: npm install -g {{ item }}
   with_items:
+    - elchemy
+    - elm
     - flow-typed
     - npm-check-updates
     - prettier
