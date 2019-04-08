@@ -2,6 +2,8 @@
 - name: gem install
   command: gem install {{ item }}
   with_items:
+    - faastruby
+    - inesita
     - rails
     - rubocop
 
