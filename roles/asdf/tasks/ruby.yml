@@ -1,11 +1,9 @@
 ---
-# - name: Setup rbenv-default-gems
-#   lineinfile: dest={{rbenv_root.stdout}}/default-gems line={{item}} create=yes
-#   with_items:
-#     - bundler
-#     - command_socksify
-#     - rails
-#     - rubocop
+- name: gem install
+  command: gem install {{ item }}
+  with_items:
+    - rails
+    - rubocop
 
 - name: gem update
   shell: >-
