@@ -2,8 +2,9 @@
 
 import System.Environment ( getArgs )
 import System.FilePath ( takeBaseName )
+import System.IO ( hGetLine, hIsEOF )
 import System.Posix.Directory ( getWorkingDirectory )
-import System.Process ( readCreateProcess, shell )
+import System.Process ( createProcess, shell, StdStream ( CreatePipe ), std_out )
 import Text.Printf ( printf )
 
 main :: IO ()
@@ -30,9 +31,17 @@ deploy host remoteDir = do
 
 sh :: String -> IO [String]
 sh command = do
-  putStrLn $ "+" ++ command
-  out <- readCreateProcess (shell command) ""
-  putStrLn out
-  return $ lines out
+  putStrLn $ "+ " ++ command
+  (_, Just hout, _, _) <- createProcess (shell command) { std_out = CreatePipe }
+  streamOut hout []
+  where
+    streamOut hout out = do
+      isEof <- hIsEOF hout
+      if isEof
+        then return $ reverse out
+        else do
+          line <- hGetLine hout
+          putStrLn line
+          streamOut hout (line:out)
 
 -- vim:set ft=haskell:
