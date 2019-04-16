@@ -7,7 +7,7 @@ import Data.List ( elemIndex, isInfixOf, isPrefixOf )
 import Data.Maybe ( catMaybes )
 import qualified Data.Text as T
 import System.IO ( hGetLine, hIsEOF )
-import System.Process ( createProcess, shell, StdStream ( CreatePipe ), std_out )
+import System.Process ( createProcess, readCreateProcess, shell, StdStream ( CreatePipe ), std_out )
 
 main :: IO ()
 main = do
