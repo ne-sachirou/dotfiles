@@ -6,7 +6,7 @@
   command: brew update
 
 - name: brew bundle
-  command: brew bundle --file={{ role_path }}/files/.Brewfile
+  shell: brew bundle --file={{ role_path }}/files/.Brewfile --no-upgrade || true
 
 - name: brew bundle cleanup
   command: brew bundle cleanup --file={{ role_path }}/files/.Brewfile
