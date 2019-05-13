@@ -16,8 +16,8 @@
           versions: ["3.6.7", "3.7.3"]  # 3.6.7 for petronetto/docker-python-deep-learning
           global: 3.7.3
         - name: ruby
-          versions: ["2.6.0"]
-          global: "2.6.0"
+          versions: ["2.6.3"]
+          global: "2.6.3"
     - emacs
     - homebrew
     - vim
