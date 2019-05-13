@@ -35,6 +35,7 @@
         - JakeBecker.elixir-ls
         - mjmcloug.vscode-elixir
         - MS-CEINTL.vscode-language-pack-ja
+        - ms-python.python
         - ms-vsliveshare.vsliveshare
         - ms-vsliveshare.vsliveshare-audio
         - msjsdiag.debugger-for-chrome
