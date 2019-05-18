@@ -10,6 +10,7 @@
     - serverless
     - typescript
     - "@google/clasp"
+    - "@marp-team/marp-cli"
 
 - name: npm update
   command: npm update -g
