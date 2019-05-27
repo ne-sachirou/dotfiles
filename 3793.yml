@@ -4,16 +4,16 @@
   roles:
     - "3793"
     - role: asdf
-      asdf_version: v0.7.0
+      asdf_version: v0.7.1
       asdf_plugins:
         - name: erlang
-          versions: ["21.2.2"]
-          global: "21.2.2"
+          versions: ["22.0"]
+          global: "22.0"
         - name: elixir
-          versions: ["1.8.0-otp-21"]
-          global: "1.8.0-otp-21"
+          versions: ["1.8.2-otp-22"]
+          global: "1.8.2-otp-22"
         - name: python
-          versions: ["3.6.7", "3.7.3"]  # 3.6.7 for petronetto/docker-python-deep-learning
+          versions: ["3.6.8", "3.7.3"]  # 3.6.8 for petronetto/docker-python-deep-learning
           global: 3.7.3
         - name: ruby
           versions: ["2.6.3"]
@@ -33,6 +33,7 @@
         - faustinoaq.crystal-lang
         - GitHub.vscode-pull-request-github
         - JakeBecker.elixir-ls
+        - jebbs.plantuml
         - marp-team.marp-vscode
         - mjmcloug.vscode-elixir
         - MS-CEINTL.vscode-language-pack-ja
@@ -43,5 +44,6 @@
         - PeterJausovec.vscode-docker
         - rebornix.ruby
         - sianglim.slim
+        - taichi.vscode-textlint
         - vscodevim.vim
     - zsh

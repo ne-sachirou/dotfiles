@@ -8,6 +8,7 @@
     - npm-check-updates
     - prettier
     - serverless
+    - textlint
     - typescript
     - "@google/clasp"
     - "@marp-team/marp-cli"

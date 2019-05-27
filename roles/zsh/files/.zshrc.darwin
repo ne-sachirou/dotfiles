@@ -8,11 +8,11 @@ _docker_init() {
 }
 eval "$(lazyenv.load _docker_init docker docker-compose docker-machine)"
 
-CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
+CFLAGS="-I$(xcrun --show-sdk-path)/usr/include -O2 -g"
 CPPFLAGS="$CPPFLAGS -I/usr/local/opt/readline/include -I/usr/local/opt/v8/include -I/usr/local/opt/openssl/include -I/usr/local/opt/zlib/include"
 FPATH=/usr/local/share/zsh/site-functions:$FPATH
-LDFLAGS="$LDFLAGS -L/usr/local/opt/readline/lib -L/usr/local/opt/v8/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib"
 HOMEBREW_GITHUB_API_TOKEN=$(private-values get dotfiles.GITHUB_API_TOKEN)
+LDFLAGS="$LDFLAGS -L/usr/local/opt/readline/lib -L/usr/local/opt/v8/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib"
 PATH="$PATH:/usr/local/opt/openssl/bin:/Applications/ImageOptim.app/Contents/MacOS"
 PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:/usr/local/opt/readline/lib/pkgconfig:/usr/local/opt/zlib/lib/pkgconfig"
 export CFLAGS CPPFLAGS HOMEBREW_GITHUB_API_TOKEN LDFLAGS PATH PKG_CONFIG_PATH
