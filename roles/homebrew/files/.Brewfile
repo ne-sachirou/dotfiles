@@ -43,6 +43,7 @@ brew 'mysql'
 brew 'nghttp2' # h2load
 brew 'node'
 brew 'noti'
+brew 'nyuichi/satysfi/satysfi'
 brew 'p7zip'
 brew 'peco'
 brew 'pipenv'
