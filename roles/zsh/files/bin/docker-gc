@@ -5,6 +5,7 @@ import System.Process ( createProcess, shell, StdStream ( CreatePipe ), std_out 
 
 main :: IO ()
 main = do
+  _ <- sh "docker image prune -af --filter until=720h"
   _ <- sh "docker system prune -f --volumes"
   _ <- sh "docker run --rm --privileged alpine:latest hwclock -s"
   return ()
