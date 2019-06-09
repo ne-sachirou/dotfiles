@@ -36,7 +36,7 @@ SAVEHIST=100000
 EDITOR='vim'
 LESS='-iMR'
 PAGER='less -X'
-export HISTFILE HISTSIZE SAVEHIST EDITOR LESS PAGER
+export GOPATH HISTFILE HISTSIZE SAVEHIST EDITOR LESS PAGER
 
 alias be='bundle exec'
 alias j='docker run -it --rm nesachirou/jlang'

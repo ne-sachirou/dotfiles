@@ -32,4 +32,5 @@
   with_items: "{{ asdf_plugins }}"
 
 - import_tasks: elixir.yml
+- import_tasks: python.yml
 - import_tasks: ruby.yml

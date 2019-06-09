@@ -3,7 +3,7 @@
   file: path={{ ansible_env.HOME }}/.local/bin/ state=directory
 
 - import_tasks: android-sdk.yml
-- import_tasks: dl-momonga-images-from-pinterest.yml
+# - import_tasks: dl-momonga-images-from-pinterest.yml
 - import_tasks: haskell.yml
 - import_tasks: nodejs.yml
 - import_tasks: ssh.yml

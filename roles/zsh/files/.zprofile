@@ -1,7 +1,8 @@
 # zmodload zsh/zprof && zprof
 
-PATH=$HOME/.local/bin:$HOME/.cargo/bin/:$PATH
-export PATH
+GOPATH=$HOME/dev/go
+PATH=$HOME/.local/bin:$HOME/.cargo/bin/:$GOPATH/bin:$PATH
+export GOPATH PATH
 
 eval "$(direnv hook zsh)"
 eval "$(helm completion zsh)"

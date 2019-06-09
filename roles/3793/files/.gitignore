@@ -3,6 +3,7 @@
 
 
 # Created by https://www.gitignore.io/api/vim,osx,emacs,linux,windows,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=vim,osx,emacs,linux,windows,visualstudiocode
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -50,6 +51,10 @@ flycheck_*.el
 
 # directory configuration
 .dir-locals.el
+
+# network security
+/network-security.data
+
 
 ### Linux ###
 
@@ -118,6 +123,10 @@ tags
 !.vscode/launch.json
 !.vscode/extensions.json
 
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -142,6 +151,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
 
 # End of https://www.gitignore.io/api/vim,osx,emacs,linux,windows,visualstudiocode

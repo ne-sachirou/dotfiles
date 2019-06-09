@@ -8,6 +8,8 @@ brew 'argoproj/tap/argo'
 brew 'autoconf'
 brew 'aspell', args: ["with-lang-eo", "with-lang-ja"]
 brew 'assh'
+brew 'boot-clj'
+brew 'cmake'
 brew 'chromedriver'
 brew 'clojure'
 brew 'clojurescript'
