@@ -1,5 +1,5 @@
-zplug "plugins/osx", from:oh-my-zsh
-zplug "modules/osx", from:prezto
+# zplug "plugins/osx", from:oh-my-zsh
+# zplug "modules/osx", from:prezto
 
 _docker_init() {
   . /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion

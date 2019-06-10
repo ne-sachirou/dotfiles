@@ -6,4 +6,4 @@
   command: cabal install --upgrade-dependencies {{ item }}
   with_items:
     - microlens-th
-    - rio
+    # - rio
