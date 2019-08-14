@@ -1,6 +1,6 @@
 # zmodload zsh/zprof && zprof
 
-fpath=(~/.zsh $fpath)
+fpath=(/usr/local/share/zsh/functions ~/.zsh "$fpath")
 
 # {{{ init
 bindkey -e
@@ -30,13 +30,14 @@ _ssh_init() {
 }
 eval "$(lazyenv.load _ssh_init assh ssh)"
 
+EDITOR='vim'
 HISTFILE=~/.bash_history
 HISTSIZE=10000
-SAVEHIST=100000
-EDITOR='vim'
 LESS='-iMR'
+MACKEREL_APIKEY="$(private-values get hatena.MACKEREL_APIKEY)"
 PAGER='less -X'
-export HISTFILE HISTSIZE SAVEHIST EDITOR LESS PAGER
+SAVEHIST=100000
+export EDITOR HISTFILE HISTSIZE LESS MACKEREL_APIKEY PAGER SAVEHIST
 
 alias be='bundle exec'
 alias j='docker run -it --rm nesachirou/jlang'

@@ -1,8 +1,8 @@
 [core]
 	excludesfile = ~/.gitignore
 [user]
-	name = ne_Sachirou
-	email = utakata.c4se@gmail.com
+	name = {{ user_name | default("ne_Sachirou") }}
+	email = {{ user_email | default("utakata.c4se@gmail.com") }}
 [http]
 [https]
 [url "https://"]

@@ -1,0 +1,3 @@
+---
+- name: ~/dev
+  file: path={{ ansible_env.HOME }}/dev state=directory

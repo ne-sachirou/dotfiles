@@ -1,0 +1,21 @@
+---
+- name: Lookup `private-values path dotfiles`
+  command: private-values path {{ private_values_project }}
+  register: private_path
+  changed_when: false
+  check_mode: false
+
+- name: ~/.ssh
+  file: path={{ ansible_env.HOME }}/.ssh state=directory
+
+- name: ~/.ssh/id_rsa
+  copy: dest={{ ansible_env.HOME }}/.ssh/id_rsa src={{ private_path.stdout }}/id_rsa mode=0600
+
+- name: ~/.ssh/*
+  copy: dest={{ ansible_env.HOME }}/.ssh/{{ item }} src={{ private_path.stdout }}/{{ item }}
+  with_items:
+    - id_rsa.pub
+    - assh.yml
+
+- name: assh config build
+  shell: assh config build > {{ ansible_env.HOME }}/.ssh/config

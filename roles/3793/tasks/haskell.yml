@@ -1,9 +1,0 @@
----
-- name: cabal update
-  command: cabal update
-
-- name: Install cabal
-  command: cabal install --upgrade-dependencies {{ item }}
-  with_items:
-    - microlens-th
-    - rio

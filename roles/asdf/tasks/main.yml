@@ -31,5 +31,8 @@
   when: item.versions is defined
   with_items: "{{ asdf_plugins }}"
 
+# - import_tasks: android-sdk.yml
 - import_tasks: elixir.yml
+- import_tasks: haskell.yml
+- import_tasks: nodejs.yml
 - import_tasks: ruby.yml
