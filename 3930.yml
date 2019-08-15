@@ -1,36 +1,39 @@
 ---
-- hosts: "3793"
+- hosts: default
   connection: local
   roles:
-    - "3793"
     - role: asdf
-      asdf_version: v0.7.1
+      asdf_version: v0.7.3
       asdf_plugins:
         - name: erlang
-          versions: ["22.0"]
-          global: "22.0"
+          versions: ["22.0.7"]
+          global: "22.0.7"
         - name: elixir
-          versions: ["1.8.2-otp-22"]
-          global: "1.8.2-otp-22"
-        - name: python
-          versions: ["3.6.8", "3.7.3"]  # 3.6.8 for petronetto/docker-python-deep-learning
-          global: 3.7.3
+          versions: ["1.9.1-otp-22"]
+          global: "1.9.1-otp-22"
+        - name: nodejs
+          versions: ["10.15.3"]
+          global: "10.15.3"
         - name: ruby
-          versions: ["2.6.3"]
-          global: "2.6.3"
+          versions: ["2.3.1"]
+          global: "2.3.1"
+    - dev_dir
+    - editorconfig
     - emacs
+    - role: git
+      user_name: ne-sachirou
+      user_email: ne-sachirou@hatena.ne.jp
     - homebrew
+    - role: ssh
+      private_values_project: hatena
     - vim
     - role: vscode
       vscode_extensions:
-        - bung87.rails
         - bung87.vscode-gemfile
-        - castwide.solargraph
         - dbaeumer.vscode-eslint
         - eamodio.gitlens
         - EditorConfig.EditorConfig
         - esbenp.prettier-vscode
-        - faustinoaq.crystal-lang
         - GitHub.vscode-pull-request-github
         - JakeBecker.elixir-ls
         - jebbs.plantuml
@@ -39,11 +42,10 @@
         - MS-CEINTL.vscode-language-pack-ja
         - ms-python.python
         - ms-vsliveshare.vsliveshare
-        - ms-vsliveshare.vsliveshare-audio
         - msjsdiag.debugger-for-chrome
-        - PeterJausovec.vscode-docker
         - rebornix.ruby
-        - sianglim.slim
+        - scala-lang.scala
+        - scalameta.metals
         - taichi.vscode-textlint
         - vscodevim.vim
     - zsh

@@ -2,15 +2,14 @@
 - name: Install package
   command: npm install -g {{ item }}
   with_items:
-    - elchemy
-    - elm
-    - flow-typed
+    # - elchemy
+    # - elm
     - npm-check-updates
     - prettier
-    - serverless
+    # - serverless
     - textlint
     - typescript
-    - "@google/clasp"
+    # - "@google/clasp"
     - "@marp-team/marp-cli"
 
 - name: npm update

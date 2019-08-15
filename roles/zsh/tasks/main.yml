@@ -28,3 +28,6 @@
 
 - name: zplug update
   command: zsh -c 'source ~/.zshrc; if ! zplug check; then zplug install; fi; zplug update'
+
+- name: ~/.local/bin/
+  file: path={{ ansible_env.HOME }}/.local/bin/ state=directory

@@ -38,6 +38,7 @@
     helm-ag
     helm-mt
     j-mode
+    jinja2-mode
     magit
     markdown-mode
     monokai-theme
@@ -47,11 +48,11 @@
     osx-clipboard
     package-utils
     plantuml-mode
+    poly-ansible
     prettier-js
     projectile
     quickrun
     robe
-    slime
     slim-mode
     solidity-mode
     terraform-mode
@@ -115,15 +116,15 @@
        :pkgname "flowtype/flow-for-emacs"
        :autoloads "flow.el"
        :website "https://github.com/flowtype/flow-for-emacs")
-(el-get-bundle 'overtone-emacs-live
-  :type http-zip
-  :url "https://github.com/overtone/emacs-live/archive/master.zip"
-  :build (let* ((username "my")
-                (src-dir (substitute-in-file-name "$HOME/.emacs.d/el-get/overtone-emacs-live/packs/template/user-template-pack/"))
-                (dest-dir (substitute-in-file-name (concat "$HOME/.live-packs/" username "-pack"))))
-           `(("mkdir" "-p" ,(eval dest-dir))
-             ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
-; (el-get-bundle 'proof-general)
+; (el-get-bundle 'overtone-emacs-live
+;   :type http-zip
+;   :url "https://github.com/overtone/emacs-live/archive/master.zip"
+;   :build (let* ((username "my")
+;                 (src-dir (substitute-in-file-name "$HOME/.emacs.d/el-get/overtone-emacs-live/packs/template/user-template-pack/"))
+;                 (dest-dir (substitute-in-file-name (concat "$HOME/.live-packs/" username "-pack"))))
+;            `(("mkdir" "-p" ,(eval dest-dir))
+;              ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
+(el-get-bundle 'proof-general)
 (el-get-bundle 'proof-general
        :description "A generic Emacs interface for interactive proof assistants."
        :type github
@@ -141,6 +142,8 @@
       '(("gnu" . 5)
         ("melpa" . 0)
         ("melpa-stable" . 10)))
+; https://emacs.stackexchange.com/questions/51721/failed-to-download-gnu-archive
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 ; (package-refresh-contents)
 (dolist (package my/packages)
@@ -268,6 +271,8 @@
 
 ;; j-mode
 
+;; jinja2-mode
+
 ;; magit
 
 ;; markdown-mode
@@ -302,6 +307,8 @@
 ;; plantuml-mode
 (add-to-list 'auto-mode-alist '("\\.\\(plant\\)?uml\\'" . plantuml-mode))
 
+;; poly-ansible
+
 ;; prettier-js
 (add-hook 'js2-mode-hook 'prettier-js-mode)
 (add-hook 'web-mode-hook 'prettier-js-mode)
@@ -334,10 +341,6 @@
 (add-hook 'ruby-mode-hook 'robe-mode)
 (eval-after-load 'company
   '(push 'company-robe company-backends))
-
-;; slime
-(setq inferior-lisp-program "/usr/local/bin/clisp")
-(setq slime-contribs '(slime-fancy))
 
 ;; slim-mode
 

@@ -15,10 +15,12 @@
   command: brew cleanup --prune 7
 
 - name: brew upgrade
-  command: brew upgrade
+  shell: brew upgrade || true
 
 - name: brew cask upgrade
   shell: brew cask upgrade || true
 
 - name: mas upgrade
   command: mas upgrade
+
+- import_tasks: terminal.yml
