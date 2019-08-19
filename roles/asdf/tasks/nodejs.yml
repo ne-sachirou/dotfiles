@@ -9,6 +9,7 @@
     # - serverless
     - textlint
     - typescript
+    - widdershins
     # - "@google/clasp"
     - "@marp-team/marp-cli"
 
