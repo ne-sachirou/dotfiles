@@ -29,17 +29,17 @@
     - vim
     - role: vscode
       vscode_extensions:
+        - EditorConfig.EditorConfig
+        - GitHub.vscode-pull-request-github
+        - JakeBecker.elixir-ls
+        - MS-CEINTL.vscode-language-pack-ja
         - bung87.vscode-gemfile
         - dbaeumer.vscode-eslint
         - eamodio.gitlens
-        - EditorConfig.EditorConfig
         - esbenp.prettier-vscode
-        - GitHub.vscode-pull-request-github
-        - JakeBecker.elixir-ls
         - jebbs.plantuml
         - marp-team.marp-vscode
         - mjmcloug.vscode-elixir
-        - MS-CEINTL.vscode-language-pack-ja
         - ms-python.python
         - ms-vsliveshare.vsliveshare
         - msjsdiag.debugger-for-chrome
@@ -47,5 +47,6 @@
         - scala-lang.scala
         - scalameta.metals
         - taichi.vscode-textlint
+        - uraway.hatenablogger
         - vscodevim.vim
     - zsh
