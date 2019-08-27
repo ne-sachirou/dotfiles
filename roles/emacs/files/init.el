@@ -14,6 +14,7 @@
     company
     company-solidity
     company-flow
+    company-lsp
     company-solidity
     company-terraform
     company-web
@@ -22,7 +23,6 @@
     editorconfig
     elixir-mode
     elscreen
-    ensime
     erlang
     evil
     evil-leader
@@ -40,6 +40,8 @@
     helm-mt
     j-mode
     jinja2-mode
+    lsp-mode
+    lsp-ui
     magit
     markdown-mode
     monokai-theme
@@ -53,6 +55,8 @@
     prettier-js
     projectile
     quickrun
+    sbt-mode
+    scala-mode
     slim-mode
     solidity-mode
     terraform-mode
@@ -174,6 +178,8 @@
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-flow))
 
+;; company-lsp
+
 ;; company-solidity
 
 ;; company-terraform
@@ -220,8 +226,6 @@
       (setq elixir-format-arguments nil))))
 
 ;; elscreen
-
-;; ensime
 
 ;; erlang
 ; (add-hook 'erlang-mode-hook #'lsp)
@@ -277,6 +281,12 @@
 ;; j-mode
 
 ;; jinja2-mode
+
+;; lsp-mode
+(setq lsp-enable-snippet nil)
+(setq lsp-prefer-flymake nil)
+
+;; lsp-ui
 
 ;; magit
 
@@ -341,6 +351,15 @@
 ;; proof-general
 
 ;; quickrun
+
+;; sbt-mode
+(substitute-key-definition
+  'minibuffer-complete-word
+  'self-insert-command
+  minibuffer-local-completion-map)
+
+;; scala-mode
+(add-hook 'scala-mode-hook #'lsp)
 
 ;; slim-mode
 

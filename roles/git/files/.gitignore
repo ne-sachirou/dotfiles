@@ -1,7 +1,9 @@
 ,
+.bloop/
 .elixir_ls/
 .envrc
 .ignore
+.metals/
 .tool-versions
 
 

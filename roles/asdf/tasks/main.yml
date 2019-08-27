@@ -37,3 +37,4 @@
 - import_tasks: nodejs.yml
 - import_tasks: perl.yml
 - import_tasks: ruby.yml
+- import_tasks: scala.yml
