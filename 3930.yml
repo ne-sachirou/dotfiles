@@ -23,6 +23,7 @@
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
+    - hatenablog
     - homebrew
     - role: ssh
       private_values_project: hatena

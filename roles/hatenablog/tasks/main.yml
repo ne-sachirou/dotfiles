@@ -1,0 +1,26 @@
+---
+- name: Get latest blogsync ver.
+  shell: |
+    set -o pipefail
+    curl https://api.github.com/repos/motemen/blogsync/releases/latest | jq -r '.tag_name'
+  args:
+    warn: false
+  register: blogsync_ver
+  changed_when: false
+  check_mode: false
+
+- name: Download blogsync.zip
+  get_url:
+    url: https://github.com/motemen/blogsync/releases/download/{{ blogsync_ver.stdout }}/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
+    dest: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
+
+- name: unzip blogsync.zip
+  unarchive:
+    src: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
+    dest: /tmp
+
+- name: /usr/local/bin/blogsync
+  copy:
+    src: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64/blogsync
+    dest: /usr/local/bin/blogsync
+    mode: "0755"
