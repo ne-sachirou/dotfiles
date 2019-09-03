@@ -1,8 +1,14 @@
 ---
+- name: Lookup `private-values path`
+  command: private-values path {{ private_values_project }}
+  register: private_path
+  changed_when: false
+  check_mode: false
+
 - name: Get latest blogsync ver.
   shell: |
     set -o pipefail
-    curl https://api.github.com/repos/motemen/blogsync/releases/latest | jq -r '.tag_name'
+    curl -H "Authorization:$(private-values get dotfiles.GITHUB_API_TOKEN)" https://api.github.com/repos/motemen/blogsync/releases/latest | jq -r '.tag_name'
   args:
     warn: false
   register: blogsync_ver
@@ -24,3 +30,9 @@
     src: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64/blogsync
     dest: /usr/local/bin/blogsync
     mode: "0755"
+
+- name: ~/.config/blogsync
+  file: dest={{ ansible_env.HOME }}/.config/blogsync state=directory
+
+- name: ~/.config/blogsync/config.yaml
+  file: dest={{ ansible_env.HOME }}/.config/blogsync/config.yaml src={{ private_path.stdout }}/blogsync.yaml state=link

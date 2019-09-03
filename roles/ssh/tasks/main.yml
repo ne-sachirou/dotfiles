@@ -1,5 +1,5 @@
 ---
-- name: Lookup `private-values path dotfiles`
+- name: Lookup `private-values path`
   command: private-values path {{ private_values_project }}
   register: private_path
   changed_when: false
