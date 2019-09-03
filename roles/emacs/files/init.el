@@ -52,7 +52,6 @@
     prettier-js
     projectile
     quickrun
-    robe
     slim-mode
     solidity-mode
     terraform-mode
@@ -209,6 +208,7 @@
 (editorconfig-mode 1)
 
 ;; elixir-mode
+; (add-hook 'elixir-mode-hook #'lsp)
 (add-hook 'elixir-mode-hook
   (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
 (add-hook 'elixir-format-hook
@@ -223,6 +223,7 @@
 ;; ensime
 
 ;; erlang
+; (add-hook 'erlang-mode-hook #'lsp)
 
 ;; evil
 (evil-mode 1)
@@ -336,11 +337,6 @@
 ;; proof-general
 
 ;; quickrun
-
-;; robe
-(add-hook 'ruby-mode-hook 'robe-mode)
-(eval-after-load 'company
-  '(push 'company-robe company-backends))
 
 ;; slim-mode
 
