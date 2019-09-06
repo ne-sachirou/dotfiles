@@ -15,8 +15,8 @@
           versions: ["10.15.3"]
           global: "10.15.3"
         - name: ruby
-          versions: ["2.3.1"]
-          global: "2.3.1"
+          versions: ["2.3.1", "2.6.3"]
+          global: "2.6.3"
     - dev_dir
     - editorconfig
     - emacs
