@@ -9,6 +9,7 @@ brew 'autoconf'
 # brew 'aspell', args: ["with-lang-eo", "with-lang-ja"]
 brew 'assh'
 brew 'awscli'
+brew 'awslogs'
 # brew 'chromedriver'
 # brew 'clojure'
 # brew 'clojurescript'
