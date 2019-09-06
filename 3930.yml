@@ -45,6 +45,7 @@
         - ms-python.python
         - ms-vsliveshare.vsliveshare
         - msjsdiag.debugger-for-chrome
+        - pgourlain.erlang
         - rebornix.ruby
         - scala-lang.scala
         - scalameta.metals
