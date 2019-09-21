@@ -2,6 +2,7 @@
 .elixir_ls/
 .envrc
 .ignore
+.tool-versions
 
 
 # Created by https://www.gitignore.io/api/vim,osx,emacs,linux,windows,visualstudiocode
