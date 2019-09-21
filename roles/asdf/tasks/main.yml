@@ -35,4 +35,5 @@
 - import_tasks: elixir.yml
 - import_tasks: haskell.yml
 - import_tasks: nodejs.yml
+- import_tasks: perl.yml
 - import_tasks: ruby.yml

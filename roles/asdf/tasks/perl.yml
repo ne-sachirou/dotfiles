@@ -1,0 +1,5 @@
+---
+- name: cpanm
+  command: cpanm {{ item }}
+  with_items:
+    - Carton
