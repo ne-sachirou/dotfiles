@@ -1,6 +1,7 @@
 ,
 .elixir_ls/
 .envrc
+.ignore
 
 
 # Created by https://www.gitignore.io/api/vim,osx,emacs,linux,windows,visualstudiocode
