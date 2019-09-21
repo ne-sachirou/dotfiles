@@ -14,6 +14,9 @@
         - name: nodejs
           versions: ["10.15.3"]
           global: "10.15.3"
+        - name: python
+          versions: ["3.7.4"]
+          global: "3.7.4"
         - name: ruby
           versions: ["2.3.1", "2.6.3"]
           global: "2.6.3"
