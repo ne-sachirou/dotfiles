@@ -33,6 +33,7 @@
     feature-mode
     flycheck
     go-mode
+    groovy-mode
     haskell-mode
     helm
     helm-ag
@@ -258,6 +259,8 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; go-mode
+
+;; groovy-mode
 
 ;; haskell-mode
 
