@@ -94,12 +94,9 @@ cask 'imageoptim'
 # cask 'java'
 cask 'karabiner-elements'
 cask 'notion'
-# cask 'vlc'
 cask 'visual-studio-code'
 cask 'xquartz'
 
-# mas 'Evernote', id: 406056744
-# mas 'LastPass', id: 926036361
 # mas 'LINE', id: 539883307
 mas 'Slack', id: 803453959
 mas 'feedly', id: 865500966
