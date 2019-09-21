@@ -71,41 +71,42 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
-Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
-Plug 'mgrabovsky/vim-cuesheet', {'for': 'cue'}
-Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
-Plug 'kongo2002/fsharp-vim', {'for': 'fsharp'}
-Plug 'groenewege/vim-less', {'for': 'less'}
-Plug 'tpope/vim-liquid', {'for': 'liquid'}
-Plug 'vim-perl/vim-perl', {'for': 'perl'}
 Plug 'digitaltoad/vim-pug', {'for': 'pug'}
+Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
+Plug 'evidens/vim-twig', {'for': 'twig'}
+Plug 'groenewege/vim-less', {'for': 'less'}
+Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
+Plug 'kongo2002/fsharp-vim', {'for': 'fsharp'}
+Plug 'mgrabovsky/vim-cuesheet', {'for': 'cue'}
+Plug 'motemen/hatena-vim', {'for': 'hatena'}
+Plug 'rhysd/vim-crystal', {'for': 'crystal'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'slim-template/vim-slim', {'for': 'slim'}
-Plug 'wavded/vim-stylus', {'for': 'stylus'}
-Plug 'evidens/vim-twig', {'for': 'twig'}
-Plug 'rhysd/vim-crystal', {'for': 'crystal'}
 Plug 'smerrill/vcl-vim-plugin', {'for': 'vcl'}
+Plug 'tpope/vim-liquid', {'for': 'liquid'}
+Plug 'vim-perl/vim-perl', {'for': 'perl'}
+Plug 'wavded/vim-stylus', {'for': 'stylus'}
 
+Plug 'LeafCage/qutefinger.vim'
+Plug 'LeafCage/yankround.vim'
 Plug 'dannyob/quickfixstatus'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'jceb/vim-hier'
-Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-operator-user'
 Plug 'kana/vim-textobj-indent'
-Plug 'LeafCage/yankround.vim'
-Plug 'LeafCage/qutefinger.vim'
+Plug 'kana/vim-textobj-user'
 Plug 'lu-ren/SerialExperimentsLain'
+Plug 'mattn/emmet-vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'osyo-manga/shabadou.vim'
 Plug 'osyo-manga/vim-watchdogs'
+Plug 'thinca/vim-quickrun'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'thinca/vim-quickrun'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'vim-scripts/Align', {'on': 'Align'}
 Plug 'vim-scripts/camelcasemotion'
 call plug#end()
