@@ -4,7 +4,7 @@ tap 'homebrew/bundle'
 
 brew 'ansible'
 brew 'ansible-lint'
-# brew 'argoproj/tap/argo'
+brew 'argoproj/tap/argo'
 brew 'autoconf'
 # brew 'aspell', args: ["with-lang-eo", "with-lang-ja"]
 brew 'assh'
