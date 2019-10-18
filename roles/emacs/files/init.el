@@ -259,6 +259,7 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; go-mode
+(add-hook 'go-mode-hook #'lsp-deferred)
 
 ;; groovy-mode
 
