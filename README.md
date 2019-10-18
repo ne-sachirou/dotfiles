@@ -7,7 +7,6 @@ Install manually.
 - [Google 日本語入力](https://www.google.co.jp/ime/)
 - [LastPass](https://www.lastpass.com)
 - [LessPass](https://lesspass.com/)
-- [uBlock Origin](https://github.com/gorhill/uBlock/)
 - [Vivaldi](https://vivaldi.com/blog/)
 
 Setup.
