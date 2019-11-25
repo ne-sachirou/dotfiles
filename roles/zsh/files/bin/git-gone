@@ -3,8 +3,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Applicative ( liftA2 )
 import Control.Monad ( forM_ )
-import Data.List ( elemIndex, isInfixOf, isPrefixOf )
-import Data.Maybe ( catMaybes )
+import Data.List ( elemIndex, isInfixOf, isPrefixOf, isSuffixOf )
+import Data.Maybe ( catMaybes, fromJust, isNothing, listToMaybe )
 import qualified Data.Text as T
 import System.IO ( hGetLine, hIsEOF )
 import System.Process ( createProcess, readCreateProcess, shell, StdStream ( CreatePipe ), std_out )
@@ -42,13 +42,21 @@ fromString expr =
   let Just (remote_, '/' : branch_) = splitAt <$> elemIndex '/' expr <*> Just expr in
     GitBranch { remote = Just remote_, branch = branch_ }
 
+currentUpstreamBranch :: IO (Maybe GitBranch)
+currentUpstreamBranch = do
+  lines_ <- sh "git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null || true"
+  return $ do
+    line <- listToMaybe lines_
+    return $ fromString line
+
 localMergedBranches :: IO [GitBranch]
 localMergedBranches = do
   lines_ <- sh "git branch --merged"
   return [GitBranch { remote = Nothing, branch = line } |
           line <- lines_,
           not $ "*" `isPrefixOf` line,
-          not $ "master" `isInfixOf` line]
+          not $ " master" `isSuffixOf` line,
+          not $ " develop" `isSuffixOf` line]
 
 localForceRemovableBranches :: IO [GitBranch]
 localForceRemovableBranches = do
@@ -57,7 +65,8 @@ localForceRemovableBranches = do
     [line |
      line <- lines_,
      not $ "*" `isPrefixOf` line,
-     not $ "master" `isInfixOf` line,
+     not $ " master " `isInfixOf` line,
+     not $ " develop " `isInfixOf` line,
      ": gone] " `isInfixOf` line]
     pecoDefaultOption { prompt = Just "LOCAL>" }
   return [GitBranch { remote = Nothing, branch = branch_ } |
@@ -67,11 +76,15 @@ localForceRemovableBranches = do
 remoteForceRemovableBranches :: IO [GitBranch]
 remoteForceRemovableBranches = do
   lines_ <- sh "git branch -r --merged"
+  mCubr <- currentUpstreamBranch
   selectedLines <- peco
     [line |
      line <- lines_,
-     not $ "/HEAD" `isInfixOf` line,
-     not $ "/master" `isInfixOf` line]
+     not $ "/HEAD " `isInfixOf` line,
+     not $ "/master" `isSuffixOf` line,
+     not $ "/develop" `isSuffixOf` line,
+     isNothing mCubr ||
+     let cubr = fromJust mCubr in not ((fromJust (remote cubr) ++ "/" ++ branch cubr) `isSuffixOf` line)]
     pecoDefaultOption { prompt = Just "REMOTE>" }
   return $ map (fromString . head . words) selectedLines
 
