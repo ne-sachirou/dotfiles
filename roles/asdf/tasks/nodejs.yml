@@ -5,6 +5,7 @@
     # - elchemy
     # - elm
     - npm-check-updates
+    - npm-safety-updater
     - prettier
     # - serverless
     - textlint
