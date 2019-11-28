@@ -1,3 +1,5 @@
+# -*- mode: ruby -*-
+
 tap 'AdoptOpenJDK/openjdk'
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
@@ -36,7 +38,7 @@ brew 'jq'
 # brew 'kubernetes-helm'
 brew 'kustomize'
 # brew 'leiningen'
-brew 'mackerelio/mackerel-agent/mackerel-agent'
+brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
 brew 'mackerelio/mackerel-agent/mkr'
 brew 'mas'
 brew 'noti'
@@ -90,5 +92,3 @@ cask 'xquartz'
 # mas 'LINE', id: 539883307
 mas 'Slack', id: 803453959
 mas 'feedly', id: 865500966
-
-# -*- mode: ruby -*-
