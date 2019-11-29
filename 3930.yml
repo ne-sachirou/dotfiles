@@ -3,14 +3,14 @@
   connection: local
   roles:
     - role: asdf
-      asdf_version: v0.7.3
+      asdf_version: v0.7.5
       asdf_plugins:
         - name: erlang
-          versions: ["22.0.7"]
-          global: "22.0.7"
+          versions: ["22.1.8"]
+          global: "22.0.8"
         - name: elixir
-          versions: ["1.9.1-otp-22"]
-          global: "1.9.1-otp-22"
+          versions: ["1.9.4-otp-22"]
+          global: "1.9.4-otp-22"
         - name: nodejs
           versions: ["10.15.3"]
           global: "10.15.3"
