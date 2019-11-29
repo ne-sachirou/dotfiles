@@ -29,6 +29,7 @@
     - role: hatenablog
       private_values_project: hatena
     - homebrew
+    - mackerel-agent
     - role: ssh
       private_values_project: hatena
     - vim
