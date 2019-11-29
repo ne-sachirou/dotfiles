@@ -2,17 +2,15 @@
 - name: Install package
   command: npm install -g {{ item }}
   with_items:
-    # - elchemy
-    # - elm
+    - "@google/clasp"
+    - "@marp-team/marp-cli"
+    - aws-cdk
     - npm-check-updates
     - npm-safety-updater
     - prettier
-    # - serverless
     - textlint
     - typescript
     - widdershins
-    # - "@google/clasp"
-    - "@marp-team/marp-cli"
 
 - name: npm update
   command: npm update -g

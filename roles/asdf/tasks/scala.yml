@@ -16,7 +16,7 @@
 
 - name: 1.0/plugins.sbt
   file: path={{ ansible_env.HOME }}/.sbt/1.0/plugins/plugins.sbt src={{ role_path }}/files/plugins.sbt state=link
-  
+
 - name: coursier
   get_url:
     url: https://git.io/coursier
