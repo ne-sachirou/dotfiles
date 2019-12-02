@@ -21,7 +21,7 @@
   get_url:
     url: https://git.io/coursier
     dest: /tmp/coursier
-    mode: "0550"
+    mode: "0750"
 
 - name: metals-emacs
   command: |

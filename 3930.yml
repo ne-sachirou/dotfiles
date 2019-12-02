@@ -7,7 +7,7 @@
       asdf_plugins:
         - name: erlang
           versions: ["22.1.8"]
-          global: "22.0.8"
+          global: "22.1.8"
         - name: elixir
           versions: ["1.9.4-otp-22"]
           global: "1.9.4-otp-22"
@@ -56,4 +56,5 @@
         - taichi.vscode-textlint
         - uraway.hatenablogger
         - vscodevim.vim
+        - wingrunr21.vscode-ruby
     - zsh
