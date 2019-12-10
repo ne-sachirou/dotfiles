@@ -6,21 +6,12 @@
   command: brew update
 
 - name: brew bundle
-  shell: brew bundle --file={{ role_path }}/files/.Brewfile --no-upgrade || true
+  shell: brew bundle --file={{ role_path }}/files/.Brewfile || true
 
 - name: brew bundle cleanup
   command: brew bundle cleanup --file={{ role_path }}/files/.Brewfile
 
 - name: brew cleanup
   command: brew cleanup --prune 7
-
-- name: brew upgrade
-  shell: brew upgrade || true
-
-- name: brew cask upgrade
-  shell: brew cask upgrade || true
-
-- name: mas upgrade
-  command: mas upgrade
 
 - import_tasks: terminal.yml

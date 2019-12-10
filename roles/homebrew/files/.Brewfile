@@ -3,6 +3,10 @@
 tap 'AdoptOpenJDK/openjdk'
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
+tap 'homebrew/cask'
+tap 'homebrew/services'
+tap 'mackerelio/mackerel-agent'
+tap 'scalacenter/bloop'
 
 brew 'ansible'
 brew 'ansible-lint'
@@ -41,7 +45,9 @@ brew 'kustomize'
 brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
 brew 'mackerelio/mackerel-agent/mkr'
 brew 'mas'
+brew 'mkcert'
 brew 'noti'
+brew 'nss' # mkcert Firefox
 brew 'openapi-generator'
 brew 'peco'
 brew 'pipenv'
@@ -91,4 +97,3 @@ cask 'xquartz'
 
 # mas 'LINE', id: 539883307
 mas 'Slack', id: 803453959
-mas 'feedly', id: 865500966
