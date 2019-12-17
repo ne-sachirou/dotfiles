@@ -6,8 +6,8 @@
       asdf_version: v0.7.5
       asdf_plugins:
         - name: erlang
-          versions: ["22.1.8"]
-          global: "22.1.8"
+          versions: ["22.2"]
+          global: "22.2"
         - name: elixir
           versions: ["1.9.4-otp-22"]
           global: "1.9.4-otp-22"
@@ -15,11 +15,11 @@
           versions: ["10.15.3"]
           global: "10.15.3"
         - name: python
-          versions: ["3.7.4"]
-          global: "3.7.4"
+          versions: ["3.8.0"]
+          global: "3.8.0"
         - name: ruby
-          versions: ["2.3.1", "2.6.3"]
-          global: "2.6.3"
+          versions: ["2.3.1", "2.6.5"]
+          global: "2.6.5"
     - dev_dir
     - editorconfig
     - emacs
