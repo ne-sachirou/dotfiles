@@ -33,7 +33,6 @@
     feature-mode
     flycheck
     go-mode
-    groovy-mode
     haskell-mode
     helm
     helm-ag
@@ -264,8 +263,6 @@
 
 ;; go-mode
 (add-hook 'go-mode-hook #'lsp-deferred)
-
-;; groovy-mode
 
 ;; haskell-mode
 
