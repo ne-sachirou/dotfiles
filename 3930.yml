@@ -39,7 +39,6 @@
         - GitHub.vscode-pull-request-github
         - JakeBecker.elixir-ls
         - MS-CEINTL.vscode-language-pack-ja
-        - bung87.vscode-gemfile
         - dbaeumer.vscode-eslint
         - eamodio.gitlens
         - esbenp.prettier-vscode
@@ -51,11 +50,9 @@
         - ms-vsliveshare.vsliveshare
         - msjsdiag.debugger-for-chrome
         - pgourlain.erlang
-        - rebornix.ruby
         - scala-lang.scala
         - scalameta.metals
         - taichi.vscode-textlint
         - uraway.hatenablogger
         - vscodevim.vim
-        - wingrunr21.vscode-ruby
     - zsh
