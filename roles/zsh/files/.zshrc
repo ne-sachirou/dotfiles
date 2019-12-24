@@ -37,14 +37,21 @@ LESS='-iMR'
 MACKEREL_APIKEY="$(private-values get hatena.MACKEREL_APIKEY)"
 PAGER='less -X'
 SAVEHIST=100000
-export EDITOR HISTFILE HISTSIZE LESS MACKEREL_APIKEY PAGER SAVEHIST
+export EDITOR HISTFILE HISTSIZE LESS MACKEREL_APIKEY OP_SESSION_hatena PAGER SAVEHIST
 
 alias be='bundle exec'
 alias j='docker run -it --rm nesachirou/jlang'
 alias g=git
 alias pv=private-values
 alias ssh='assh wrapper ssh'
-alias vi='emacsclient -nw'
+
+#alias vi='emacsclient -nw'
+function vi() {
+  if test "$(stat $1 > /dev/null || echo $?)" ; then
+    touch $1
+  fi
+  emacsclient -nw $1
+}
 
 # {{{ history
 setopt hist_ignore_dups
