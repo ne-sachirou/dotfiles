@@ -12,7 +12,7 @@ clean: ## Clean.
 PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1)
 install: ## ansible-playbook
 	ansible-playbook -v -i hosts $(PLAYBOOK)
-	topgrade -c
+	topgrade -c --no-retry
 
 .PHONY: test
 test: ## Test.
