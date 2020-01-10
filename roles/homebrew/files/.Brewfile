@@ -76,6 +76,7 @@ brew 'zsh'
 
 cask 'adoptopenjdk8'
 cask 'adoptopenjdk11'
+cask 'adoptopenjdk13'
 # cask 'android-file-transfer'
 # cask 'android-ndk'
 # cask 'android-sdk'
