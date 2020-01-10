@@ -6,8 +6,10 @@ Install manually.
 - [Docker](https://store.docker.com/search?type=edition&offering=community)
 - [Firefox Developer Edition](https://www.mozilla.org/ja/firefox/developer/)
 - [Google 日本語入力](https://www.google.co.jp/ime/)
+- [HTTPS Everywhere | Electronic Frontier Foundation](https://www.eff.org/https-everywhere)
 - [LastPass](https://www.lastpass.com) for Vivaldi
 - [LessPass](https://lesspass.com/)
+- [Privacy Badger | Electronic Frontier Foundation](https://www.eff.org/privacybadger)
 - [Vivaldi](https://vivaldi.com/blog/)
 
 Setup.
