@@ -11,6 +11,7 @@
     - textlint
     - typescript
     - widdershins
+    - yarn-deduplicate
 
 - name: npm update
   command: npm update -g
