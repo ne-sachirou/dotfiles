@@ -11,6 +11,7 @@
     - textlint
     - typescript
     - widdershins
+    - yarn
     - yarn-deduplicate
 
 - name: npm update
