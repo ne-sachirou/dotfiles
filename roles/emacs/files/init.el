@@ -20,6 +20,7 @@
     company-web
     docker-tramp
     dockerfile-mode
+    doom-themes
     editorconfig
     elixir-mode
     elscreen
@@ -44,7 +45,6 @@
     lsp-ui
     magit
     markdown-mode
-    monokai-theme
     multi-term
     nginx-mode
     origami
@@ -211,6 +211,11 @@
 
 ;; dockerfile-mode
 
+;; doom-themes
+(setq doom-themes-enable-bold t
+  doom-themes-enable-italic t)
+(load-theme 'doom-molokai t)
+
 ;; editorconfig
 (editorconfig-mode 1)
 
@@ -291,9 +296,6 @@
 ;; magit
 
 ;; markdown-mode
-
-;; monokai-theme
-(load-theme 'monokai t)
 
 ;; multi-term
 (setq multi-term-program "/bin/zsh")
