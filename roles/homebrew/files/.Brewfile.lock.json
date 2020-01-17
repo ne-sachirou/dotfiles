@@ -5,13 +5,13 @@
         "revision": "19d716f1c9ebc325ed23c5df580e0d2b027285a1"
       },
       "caskroom/cask": {
-        "revision": "ff2f85078a176468ba60fa8657f107c5f6f9fb6e"
+        "revision": "a7e9087a609260ccaa38a2f758d1fbedfa1775da"
       },
       "homebrew/bundle": {
-        "revision": "4852b2de4140b093084fd7999eaa0303bc5882ea"
+        "revision": "dc16c62efeaca298c6e3565663192fbe0081a6aa"
       },
       "homebrew/cask": {
-        "revision": "ff2f85078a176468ba60fa8657f107c5f6f9fb6e"
+        "revision": "a7e9087a609260ccaa38a2f758d1fbedfa1775da"
       },
       "homebrew/services": {
         "revision": "eca39722f130e8bc1e2e322588db493ca0398c01"
@@ -172,22 +172,22 @@
         }
       },
       "azure-cli": {
-        "version": "2.0.79_2",
+        "version": "2.0.80",
         "bottle": {
           "cellar": ":any",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/azure-cli-2.0.79_2.catalina.bottle.tar.gz",
-              "sha256": "6dd20a1d9b33b20f84168180bfe63287fea8d8ce3845f16664ac8f097dda1e6f"
+              "url": "https://homebrew.bintray.com/bottles/azure-cli-2.0.80.catalina.bottle.tar.gz",
+              "sha256": "e4eb4db187fc67bc3e77d5ddb153b898636e84b0c7a7bf5f66088d3e30436487"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/azure-cli-2.0.79_2.mojave.bottle.tar.gz",
-              "sha256": "1a1feefa90b26c71446f3c08f069dd93ee09c8a995d6ca36f1497ad77ffdf2ed"
+              "url": "https://homebrew.bintray.com/bottles/azure-cli-2.0.80.mojave.bottle.tar.gz",
+              "sha256": "0287f144a62b81dfcd73e2ec2cd175e24190f778118481ef039a9850409b5f6f"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/azure-cli-2.0.79_2.high_sierra.bottle.tar.gz",
-              "sha256": "aad5ab4fa95c8e344340331d639df90d41905b14bfd4349185de2870cc5f7d1f"
+              "url": "https://homebrew.bintray.com/bottles/azure-cli-2.0.80.high_sierra.bottle.tar.gz",
+              "sha256": "7c517cb7c4acc5d9e0bbe2023b38bc6aa38437f78d71a5d8f257bec02d2397bd"
             }
           }
         }
@@ -781,6 +781,9 @@
               "sha256": "5cb677d78de78977268e13b421bee6f1057760ea1b0f1be35bc80a64c3665714"
             }
           }
+        },
+        "options": {
+          "restart_service": true
         }
       },
       "pstree": {
@@ -839,13 +842,20 @@
               "sha256": "789cf8094a5909d295ce3b9996b8470d565e6c9dedbc952176af670a660a8c6f"
             }
           }
+        },
+        "options": {
+          "restart_service": true
         }
       },
       "sbt": {
         "version": "1.3.6",
         "bottle": false
       },
-      "scalacenter/bloop/bloop": null,
+      "scalacenter/bloop/bloop": {
+        "options": {
+          "restart_service": true
+        }
+      },
       "shellcheck": {
         "version": "0.7.0",
         "bottle": {
@@ -1218,7 +1228,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.2.2",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "5715bdbb8742d6441a4260440d59371b448d7f38",
+        "Homebrew/homebrew-core": "f2463cbba086689c872cddd3a8bc242976a603ff",
         "CLT": "11.0.33.16",
         "Xcode": "11.3.1",
         "macOS": "10.15.2"
