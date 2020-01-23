@@ -1,0 +1,5 @@
+---
+- name: ingydotnet/git-subrepo
+  git:
+    repo: https://github.com/ingydotnet/git-subrepo
+    dest: "{{ ansible_env.HOME }}/git-subrepo"

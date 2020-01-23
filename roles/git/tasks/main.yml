@@ -4,3 +4,5 @@
 
 - name: ~/.gitignore
   file: path={{ ansible_env.HOME }}/.gitignore src={{ role_path }}/files/.gitignore state=link
+
+- import_tasks: git-subrepo.yml
