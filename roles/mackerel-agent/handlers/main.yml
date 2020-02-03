@@ -1,0 +1,4 @@
+---
+
+- name: mackerel_agent_restart
+  command: brew services restart mackerel-agent

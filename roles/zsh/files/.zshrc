@@ -48,10 +48,10 @@ alias ssh='assh wrapper ssh'
 
 #alias vi='emacsclient -nw'
 function vi() {
-  if test "$(stat $1 > /dev/null || echo $?)" ; then
-    touch $1
+  if test "$(stat "$1" > /dev/null || echo $?)" ; then
+    touch "$1"
   fi
-  emacsclient -nw $1
+  emacsclient -nw "$1"
 }
 
 # {{{ history

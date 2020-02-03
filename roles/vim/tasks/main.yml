@@ -12,7 +12,9 @@
   file: path={{ ansible_env.HOME }}/.vim/autoload state=directory
 
 - name: vim-plug
-  get_url: url=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim dest={{ ansible_env.HOME }}/.vim/autoload/plug.vim
+  get_url:
+    dest: "{{ ansible_env.HOME }}/.vim/autoload/plug.vim"
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 - name: Plug
   command: vim -c "silent exe 'PlugUpgrade | PlugUpdate | qa'"

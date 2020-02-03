@@ -8,7 +8,8 @@
 - name: Get latest blogsync ver.
   shell: |
     set -o pipefail
-    curl -L -H "Authorization:$(private-values get dotfiles.GITHUB_API_TOKEN)" https://api.github.com/repos/motemen/blogsync/releases/latest | jq -r '.tag_name'
+    curl -L -H "Authorization:$(private-values get dotfiles.GITHUB_API_TOKEN)" https://api.github.com/repos/motemen/blogsync/releases/latest | \
+      jq -r '.tag_name'
   args:
     warn: false
   register: blogsync_ver

@@ -8,8 +8,4 @@
 
 - name: /usr/local/etc/mackerel-agent.conf
   template: dest=/usr/local/etc/mackerel-agent.conf src={{ role_path }}/templates/mackerel-agent.conf.j2
-  register: mackerel_agent_conf
-
-- name: Restart mackerel-agent
-  command: brew services restart mackerel-agent
-  when: mackerel_agent_conf.changed
+  notify: mackerel_agent_restart
