@@ -94,6 +94,7 @@ cask 'vagrant'
 cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'visual-studio-code'
+cask 'visualvm'
 cask 'xquartz'
 
 # mas 'LINE', id: 539883307
