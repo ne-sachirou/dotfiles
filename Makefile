@@ -9,11 +9,16 @@ clean: ## Clean.
 	find . -name '.*.un~' -exec rm -v {} \+
 
 .PHONY: install
-PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1)
+PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1 --on-cancel error)
 install: ## ansible-playbook
-	ansible-playbook -v -i hosts $(PLAYBOOK)
+	ansible-playbook -v -K -i hosts $(PLAYBOOK)
 	topgrade -c -v --no-retry --disable go || true
 	topgrade -c -v --no-retry --only go || true
+
+.PHONY: format
+format: ## Format files.
+	ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}
+	# npx prettier --write README.md
 
 .PHONY: test
 test: ## Test.

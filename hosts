@@ -1,2 +1,12 @@
 [default]
 localhost
+
+[home-win]
+172.20.230.81
+
+[home-win:vars]
+ansible_winrm_server_cert_validation=ignore
+ansible_connection=winrm
+ansible_port=5985
+ansible_user=c4se
+ansible_password=sYy8hmz#oUNGSXXP

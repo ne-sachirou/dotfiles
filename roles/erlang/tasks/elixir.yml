@@ -11,11 +11,11 @@
     creates: "{{ ansible_env.HOME }}/.asdf/installs/elixir/{{ item }}"
   with_items: "{{ elixir.versions }}"
 
+- name: asdf global elixir
+  command: "asdf global elixir {{ elixir.global | default(elixir.versions[0]) }}"
+
 - name: mix do local.hex --force, local.rebar --force
   command: mix do local.hex --force, local.rebar --force
 
 - name: mix archive.install hex phx_new --force
   command: mix archive.install hex phx_new --force
-
-- name: asdf global elixir
-  command: "asdf global elixir {{ elixir.global | default(elixir.versions[0]) }}"

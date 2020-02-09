@@ -146,8 +146,9 @@
       '(("gnu" . 5)
         ("melpa" . 0)
         ("melpa-stable" . 10)))
+; https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure 
 ; https://emacs.stackexchange.com/questions/51721/failed-to-download-gnu-archive
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 ; (package-refresh-contents)
 (dolist (package my/packages)

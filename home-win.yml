@@ -1,0 +1,16 @@
+---
+# ansible home-win -i hosts -m win_ping -vvvv
+- hosts: home-win
+  connection: winrm
+  roles: []
+
+# scoop bucket add extras
+# scoop install python
+# wget https://bootstrap.pypa.io/get-pip.py -OutFile get-pip.py
+# python get-pip.py
+# python -m pip install -U flake8 pipenv --user
+
+# scoop install brave gimp git
+
+# scoop update
+# scoop update *
