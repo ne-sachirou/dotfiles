@@ -19,7 +19,7 @@
 
 - name: coursier
   get_url:
-    url: https://git.io/coursier
+    url: https://git.io/coursier-cli-macos
     dest: /tmp/coursier
     mode: "0750"
 
