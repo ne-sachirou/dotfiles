@@ -1,0 +1,9 @@
+---
+- name: vagrant plugin install
+  command: vagrant plugin install {{ item }}
+  with_items:
+    - vagrant-serverspec
+    - vagrant-vbguest
+
+- name: vagrant plugin update
+  command: vagrant plugin update

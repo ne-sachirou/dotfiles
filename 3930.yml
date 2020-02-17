@@ -32,6 +32,7 @@
     - mackerel-agent
     - role: ssh
       private_values_project: hatena
+    - vagrant
     - vim
     - role: vscode
       vscode_extensions:

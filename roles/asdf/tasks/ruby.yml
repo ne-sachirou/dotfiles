@@ -9,6 +9,7 @@
     - # - inesita
       # - rails
       - rubocop
+      - serverspec
 
 - name: gem update
   shell: >-
