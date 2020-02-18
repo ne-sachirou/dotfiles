@@ -10,7 +10,6 @@ tap 'scalacenter/bloop'
 
 brew 'ansible'
 brew 'ansible-lint'
-brew 'argoproj/tap/argo'
 brew 'autoconf'
 brew 'assh'
 brew 'awscli'
