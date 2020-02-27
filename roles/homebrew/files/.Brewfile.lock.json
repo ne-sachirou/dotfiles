@@ -5,13 +5,13 @@
         "revision": "c90188349b1e4782fb2b8a8ce19b102405c8f837"
       },
       "caskroom/cask": {
-        "revision": "85f0a9c7998b8144e19fccc791d022f0090f2f98"
+        "revision": "143d57a500bc8206ece7561f04eca71343627c6f"
       },
       "homebrew/bundle": {
-        "revision": "04a8b37bbdd9bb801a5fde72fd82232846cf2b69"
+        "revision": "0796bb72fa0b6615cdb51d0ec07ca405e4550870"
       },
       "homebrew/cask": {
-        "revision": "85f0a9c7998b8144e19fccc791d022f0090f2f98"
+        "revision": "143d57a500bc8206ece7561f04eca71343627c6f"
       },
       "homebrew/services": {
         "revision": "9ddb42a9add6845053d098ffc4c568b55b70776e"
@@ -349,16 +349,16 @@
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/ghc-8.8.2.catalina.bottle.tar.gz",
-              "sha256": "bf0bccb87e793a052b2f49109ae3e99342e239ae213408825d30d16cf2170b19"
+              "url": "https://homebrew.bintray.com/bottles/ghc-8.8.2.catalina.bottle.1.tar.gz",
+              "sha256": "523ef0b1257da703f3d066ed2199a92add1a842d4a8fd9cd723fa6d819f4341b"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/ghc-8.8.2.mojave.bottle.tar.gz",
-              "sha256": "b04d036de7bdace378f178a15bb67eda8d0932e911f4519d6abf266b0fa44678"
+              "url": "https://homebrew.bintray.com/bottles/ghc-8.8.2.mojave.bottle.1.tar.gz",
+              "sha256": "09c8245bccd809280062915eab7600a3ef86bd4676cca93b720db0c7df5a8005"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/ghc-8.8.2.high_sierra.bottle.tar.gz",
-              "sha256": "3361eba5ff14c5ee50a90ee1090c01e1a6cac005788e4d05a9b66ddeddecc50c"
+              "url": "https://homebrew.bintray.com/bottles/ghc-8.8.2.high_sierra.bottle.1.tar.gz",
+              "sha256": "8201a8cee5d4204bd7ae044d44edaf9d0a7108998407346ca0f4185048a888e8"
             }
           }
         }
@@ -401,22 +401,22 @@
         }
       },
       "go": {
-        "version": "1.13.8",
+        "version": "1.14",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/go-1.13.8.catalina.bottle.tar.gz",
-              "sha256": "8305b022bd8a799e4809c72e23d54cbb19ebe7c93506aba8387905e0980beabb"
+              "url": "https://homebrew.bintray.com/bottles/go-1.14.catalina.bottle.tar.gz",
+              "sha256": "a4e81b1025b77af039a34888545ce0f4a3a332b1ed6358ca8107e878d25e46aa"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/go-1.13.8.mojave.bottle.tar.gz",
-              "sha256": "39312df94599f8c4bc9ce394b09121a9c5ac2fe81514900b77107227de0e8ddf"
+              "url": "https://homebrew.bintray.com/bottles/go-1.14.mojave.bottle.tar.gz",
+              "sha256": "998c9c9f95091a3567d9ac27def2d3d4d33aeae06e621d78bf76f3f4f4a2a793"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/go-1.13.8.high_sierra.bottle.tar.gz",
-              "sha256": "e97af4feacaeaba7c1647ff9b56cad0b972fb09998810c91bd7c844091dd9a57"
+              "url": "https://homebrew.bintray.com/bottles/go-1.14.high_sierra.bottle.tar.gz",
+              "sha256": "c26d2ecb7e2c53a78fa0cca9b7117355f953ebf1b4bd31eef04ebe4e576a174b"
             }
           }
         }
@@ -1299,7 +1299,7 @@
         }
       },
       "visualvm": {
-        "version": "1.4.4",
+        "version": "2.0",
         "options": {
           "full_name": "visualvm"
         }
@@ -1321,7 +1321,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.2.6",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "72ac35e596fde689234cf5c407c3febe680415e2",
+        "Homebrew/homebrew-core": "79aa71f79fc49e3af1679824d6ecc701be3c1ae2",
         "CLT": "11.0.33.16",
         "Xcode": "11.3.1",
         "macOS": "10.15.3"

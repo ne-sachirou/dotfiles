@@ -22,7 +22,7 @@ brew 'bash'
 # brew 'closure-compiler'
 brew 'coreutils'
 brew 'cpanminus'
-brew 'ctags' # rm -f TAGS && etags $(ag -g '\.java$')
+brew 'ctags'
 brew 'direnv'
 brew 'emacs'
 brew 'fswatch'
