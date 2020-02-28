@@ -12,15 +12,15 @@ clean: ## Clean.
 PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1)
 install: ## ansible-playbook
 	ansible-playbook -v -i hosts $(PLAYBOOK)
-	topgrade -c --no-retry
+	topgrade -c -v --no-retry
 
 .PHONY: test
 test: ## Test.
 	find . -name '*.yml' -exec yamllint {} \+ || true
-	find . -name '*.yml' -exec ansible-lint -x ANSIBLE0004,ANSIBLE0012 {} \+ || true
-	find . -name '*.sh' -exec shellcheck {} \+ || true
+	find . -name '*.yml' -exec ansible-lint -x ANSIBLE0004,ANSIBLE0012 {} \+
+	find . -name '*.sh' -exec shellcheck {} \+
 	zsh -n roles/zsh/files/.z* || true
 	shellcheck -e SC1090,SC1091,SC2148 roles/zsh/files/.z* || true
-	ag -l '^#!.*runghc' | xargs -t hlint || true
+	ag -l '^#!.*runghc' | xargs -t hlint
 
 # vim:set noet:
