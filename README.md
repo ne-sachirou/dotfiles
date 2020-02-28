@@ -15,7 +15,8 @@ Install manually.
 Setup.
 
 ```sh
-curl https://raw.githubusercontent.com/ne-sachirou/dotfiles/master/init.sh | bash
+curl https://raw.githubusercontent.com/ne-sachirou/dotfiles/master/init/macos.sh | bash
+curl https://raw.githubusercontent.com/ne-sachirou/dotfiles/master/init/ubuntu.sh | bash
 cd ~/dotfiles
 ansible-playbook -i hosts playbooks/〜.yml
 ```
