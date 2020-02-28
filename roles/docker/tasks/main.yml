@@ -1,0 +1,3 @@
+---
+- name: docker-gc
+  command: docker-gc

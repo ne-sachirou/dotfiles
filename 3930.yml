@@ -21,6 +21,7 @@
           versions: ["2.3.1", "2.7.0"]
           global: "2.7.0"
     - dev_dir
+    - docker
     - editorconfig
     - emacs
     - role: git
