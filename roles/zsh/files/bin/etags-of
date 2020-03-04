@@ -1,3 +1,4 @@
 #!/bin/bash -eux
 rm -f TAGS
-ag -g "$1" | xargs etags -a
+ag -g "$1" | xargs -t etags -a
+ls -lh TAGS
