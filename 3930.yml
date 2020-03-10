@@ -6,17 +6,17 @@
       asdf_version: v0.7.6
       asdf_plugins:
         - name: erlang
-          versions: ["22.2.3"]
-          global: "22.2.3"
+          versions: ["22.2.8"]
+          global: "22.2.8"
         - name: elixir
-          versions: ["1.10.0-otp-22"]
-          global: "1.10.0-otp-22"
+          versions: ["1.10.2-otp-22"]
+          global: "1.10.2-otp-22"
         - name: nodejs
-          versions: ["12.14.0", "13.6.0"]
-          global: "13.6.0"
+          versions: ["12.14.0", "13.10.1"]
+          global: "13.10.1"
         - name: python
-          versions: ["3.8.1"]
-          global: "3.8.1"
+          versions: ["3.8.2"]
+          global: "3.8.2"
         - name: ruby
           versions: ["2.3.1", "2.7.0"]
           global: "2.7.0"
