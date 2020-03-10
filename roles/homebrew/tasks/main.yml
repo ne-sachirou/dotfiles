@@ -9,7 +9,7 @@
   shell: brew bundle --file={{ role_path }}/files/.Brewfile || true
 
 - name: brew bundle cleanup
-  command: brew bundle cleanup --file={{ role_path }}/files/.Brewfile --force
+  command: brew bundle cleanup -f --file={{ role_path }}/files/.Brewfile
 
 - name: brew cleanup
   command: brew cleanup --prune 7
