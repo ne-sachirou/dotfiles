@@ -1,5 +1,5 @@
 ---
-- name: Install package
+- name: npm install
   shell: >-
     set -ex && \
     asdf local nodejs {{ item[0] }} && \
@@ -17,7 +17,7 @@
       - yarn
       - yarn-deduplicate
 
-- name: npm update
+- name: npm update -g
   shell: >-
     set -ex && \
     asdf local nodejs {{ item }} && \

@@ -1,6 +1,6 @@
 ---
-- name: local.hex, local.rebar
+- name: mix do local.hex --force, local.rebar --force
   command: mix do local.hex --force, local.rebar --force
 
-- name: Install Phoenix
+- name: mix archive.install hex phx_new --force
   command: mix archive.install hex phx_new --force
