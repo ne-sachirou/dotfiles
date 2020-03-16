@@ -5,6 +5,7 @@
     - role: asdf
       asdf_version: v0.7.6
       asdf_plugins:
+        # locate .tool-version | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo'
         - name: erlang
           versions: ["22.2.8"]
           global: "22.2.8"
@@ -13,15 +14,18 @@
           global: "1.10.2-otp-22"
         - name: nodejs
           versions:
-            - "12.14.0"  # Mackerel
+            - "12.14.0"  # mackerel3
             - "12.16.1"  # Discover
             - "13.10.1"
           global: "13.10.1"
         - name: python
-          versions: ["3.8.2"]
+          versions:
+            - "3.8.2"
           global: "3.8.2"
         - name: ruby
-          versions: ["2.3.1", "2.7.0"]
+          versions:
+            - "2.3.1"  # mackerel3
+            - "2.7.0"
           global: "2.7.0"
     - dev_dir
     - docker
