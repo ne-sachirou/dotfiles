@@ -20,17 +20,20 @@
   get_url:
     url: https://github.com/motemen/blogsync/releases/download/{{ blogsync_ver.stdout }}/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
     dest: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
+  when: blogsync_ver.stdout != "null"
 
 - name: unzip blogsync.zip
   unarchive:
     src: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
     dest: /tmp
+  when: blogsync_ver.stdout != "null"
 
 - name: /usr/local/bin/blogsync
   copy:
     src: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64/blogsync
     dest: /usr/local/bin/blogsync
     mode: "0755"
+  when: blogsync_ver.stdout != "null"
 
 - name: ~/.config/blogsync
   file: dest={{ ansible_env.HOME }}/.config/blogsync state=directory
