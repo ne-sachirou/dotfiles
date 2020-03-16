@@ -1,3 +1,9 @@
 . {{ role_path }}/files/.zshrc
 PATH={{ role_path }}/files/bin:$PATH
 export PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ne-sachirou/.local/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ne-sachirou/.local/bin/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ne-sachirou/.local/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ne-sachirou/.local/bin/google-cloud-sdk/completion.zsh.inc'; fi
