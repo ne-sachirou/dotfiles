@@ -64,6 +64,7 @@
     typescript-mode
     vimrc-mode
     yaml-mode
+    web-mode
     ))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -197,8 +198,15 @@
 (setq company-tooltip-align-annotations t)
 (add-hook 'before-save-hook 'tide-format-before-save)
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+  (lambda ()
+    (when (string-equal "tsx" (file-name-extension buffer-file-name))
+      (setup-tide-mode))))
+;(flycheck-add-mode 'typescript-tslint 'web-mode)
 
 ;; typescript-mode
+(add-to-list 'auto-mode-alist '("\.tsx\'" . typescript-mode))
 
 ;; company-web
 (require 'company-web-html)
