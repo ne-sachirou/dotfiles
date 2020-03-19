@@ -7,3 +7,4 @@
   with_nested:
     - "{{ asdf_plugins | json_query('[?name==`python`].versions') | join(',') }}"
     - - poetry
+      - python-language-server[all]
