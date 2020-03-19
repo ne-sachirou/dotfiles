@@ -14,6 +14,7 @@
       - prettier
       - textlint
       - typescript
+      - typescript-language-server
       - yarn
       - yarn-deduplicate
 

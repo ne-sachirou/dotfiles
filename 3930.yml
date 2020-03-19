@@ -3,7 +3,7 @@
   connection: local
   roles:
     - role: asdf
-      asdf_version: v0.7.6
+      asdf_version: v0.7.7
       asdf_plugins:
         # locate .tool-version | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo'
         - name: erlang
