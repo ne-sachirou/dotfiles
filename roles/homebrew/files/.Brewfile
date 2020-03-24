@@ -43,6 +43,7 @@ brew 'jq'
 # brew 'kubernetes-cli'
 # brew 'kubernetes-helm'
 brew 'kustomize'
+brew 'libav' # youtube-dl
 # brew 'leiningen'
 brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
 brew 'mackerelio/mackerel-agent/mkr'
@@ -72,6 +73,7 @@ brew 'vim'
 brew 'watch'
 brew 'wget'
 brew 'yamllint'
+brew 'youtube-dl'
 brew 'zsh'
 
 cask 'adoptopenjdk8'
@@ -95,6 +97,7 @@ cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'visual-studio-code'
 cask 'visualvm'
+cask 'vlc'
 cask 'xquartz'
 
 # mas 'LINE', id: 539883307
