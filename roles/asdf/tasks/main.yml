@@ -1,41 +1,11 @@
 ---
-# https://github.com/cimon-io/ansible-role-asdf
-
 - name: Install asdf
-  git: repo=https://github.com/asdf-vm/asdf.git version={{ asdf_version }} dest={{ ansible_env.HOME }}/.asdf
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    version: "{{ asdf_version }}"
+    dest: "{{ ansible_env.HOME }}/.asdf"
 
-- name: asdf plugin-add
-  command: asdf plugin-add {{ item.name }}
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/plugins/{{ item.name }}"
-  with_items: "{{ asdf_plugins }}"
-  ignore_errors: true
+- name: asdf plugin-update --all
+  command: asdf plugin-update --all
 
-- name: asdf plugin-update
-  command: asdf plugin-update {{ item.name }}
-  with_items: "{{ asdf_plugins }}"
-
-- name: asdf install
-  command: "asdf install {{ item.0.name }} {{ item.1 }}"
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/installs/{{ item.0.name }}/{{ item.1 }}"
-  with_subelements:
-    - "{{ asdf_plugins }}"
-    - versions
-    - flags:
-      skip_missing: true
-  when: asdf_plugins | length > 0
-
-- name: asdf global
-  command: "asdf global {{ item.name }} {{ item.global | default(item.versions[0]) }}"
-  when: item.versions is defined
-  with_items: "{{ asdf_plugins }}"
-
-# - import_tasks: android-sdk.yml
-- import_tasks: elixir.yml
-- import_tasks: haskell.yml
-- import_tasks: nodejs.yml
-- import_tasks: perl.yml
-- import_tasks: python.yml
-- import_tasks: ruby.yml
-- import_tasks: scala.yml
+# locate .tool-version | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo'

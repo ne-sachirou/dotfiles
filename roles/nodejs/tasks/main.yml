@@ -1,0 +1,38 @@
+---
+- name: asdf plugin-add nodejs
+  command: asdf plugin-add nodejs
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/plugins/nodejs"
+  ignore_errors: true
+
+- name: asdf install nodejs
+  command: "asdf install nodejs {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/installs/nodejs/{{ item }}"
+  with_items: "{{ versions }}"
+
+- name: npm install
+  shell: >-
+    asdf local nodejs {{ item[0] }} && \
+    npm install -g {{ item[1] }}
+  with_nested:
+    - "{{ versions }}"
+    - - "@google/clasp"
+      - "@marp-team/marp-cli"
+      - npm-check-updates
+      - npm-safety-updater
+      - prettier
+      - textlint
+      - typescript
+      - typescript-language-server
+      - yarn
+      - yarn-deduplicate
+
+- name: npm update -g
+  shell: >-
+    asdf local nodejs {{ item }} && \
+    npm update -g
+  with_items: "{{ versions }}"
+
+- name: asdf global nodejs
+  command: "asdf global nodejs {{ global | default(versions[0]) }}"

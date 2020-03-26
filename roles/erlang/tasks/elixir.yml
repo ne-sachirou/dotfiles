@@ -1,0 +1,21 @@
+---
+- name: asdf plugin-add elixir
+  command: asdf plugin-add elixir
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/plugins/elixir"
+  ignore_errors: true
+
+- name: asdf install elixir
+  command: "asdf install elixir {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/installs/elixir/{{ item }}"
+  with_items: "{{ elixir.versions }}"
+
+- name: mix do local.hex --force, local.rebar --force
+  command: mix do local.hex --force, local.rebar --force
+
+- name: mix archive.install hex phx_new --force
+  command: mix archive.install hex phx_new --force
+
+- name: asdf global elixir
+  command: "asdf global elixir {{ elixir.global | default(elixir.versions[0]) }}"

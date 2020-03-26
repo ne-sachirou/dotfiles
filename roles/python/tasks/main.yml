@@ -1,0 +1,24 @@
+---
+- name: asdf plugin-add python
+  command: asdf plugin-add python
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/plugins/python"
+  ignore_errors: true
+
+- name: asdf install python
+  command: "asdf install python {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/installs/python/{{ item }}"
+  with_items: "{{ versions }}"
+
+- name: pip install --user
+  shell: >-
+    asdf local python {{ item[0] }} && \
+    pip install --user {{ item[1] }}
+  with_nested:
+    - "{{ versions }}"
+    - - poetry
+      - python-language-server[all]
+
+- name: asdf global python
+  command: "asdf global python {{ global | default(versions[0]) }}"

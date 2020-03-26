@@ -1,0 +1,17 @@
+---
+- name: asdf plugin-add erlang
+  command: asdf plugin-add erlang
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/plugins/erlang"
+  ignore_errors: true
+
+- name: asdf install erlang
+  command: "asdf install erlang {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/installs/erlang/{{ item }}"
+  with_items: "{{ versions }}"
+
+- name: asdf global erlang
+  command: "asdf global erlang {{ global | default(versions[0]) }}"
+
+- import_tasks: elixir.yml
