@@ -88,11 +88,11 @@ function list_status() {
     return 0
   fi
   echo
-  ls -FG
+  ls -aFG
   if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
     echo
     echo -e "\e[0;33m--- git status ---\e[0m"
-    git status -sb
+    git status -sb --show-stash
   fi
 }
 function do_enter() {
