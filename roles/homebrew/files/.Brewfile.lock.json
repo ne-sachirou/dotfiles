@@ -2,16 +2,16 @@
   "entries": {
     "tap": {
       "adoptopenjdk/openjdk": {
-        "revision": "0d62b5c0ac82f46a8e4b1e3fe6edd1df068acbc0"
+        "revision": "df45d0209be67ba9cfbb6059960860a2ffea7254"
       },
       "caskroom/cask": {
-        "revision": "1394568f89f0aab94f07044749f2f7bc8173c429"
+        "revision": "d8b7c7b44ea3a01ed961913c543857851c7db376"
       },
       "homebrew/bundle": {
-        "revision": "e6396404ae589aaf47adbd34d1fcb81c9baa928c"
+        "revision": "20e7cee19a59595d72a1b1886bd57fc69d97506e"
       },
       "homebrew/cask": {
-        "revision": "1394568f89f0aab94f07044749f2f7bc8173c429"
+        "revision": "d8b7c7b44ea3a01ed961913c543857851c7db376"
       },
       "homebrew/services": {
         "revision": "984f3a2528961b01a5481af6d79dfd6a7c903995"
@@ -126,22 +126,22 @@
         }
       },
       "awscli": {
-        "version": "2.0.4",
+        "version": "2.0.5",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.4.catalina.bottle.tar.gz",
-              "sha256": "76223bb3530150558fad23ccf7147e4544c157c21c1c0b0d5b1e9e73711c6a83"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.5.catalina.bottle.tar.gz",
+              "sha256": "9c5584c1e6cfa1d857bf97d26f13a04c3d26dbb8c315381fb506b075f9912024"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.4.mojave.bottle.tar.gz",
-              "sha256": "91500dc3c3f742f0fcad7c80cb5bea0f55b39009a6c29e5dda6774b775257611"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.5.mojave.bottle.tar.gz",
+              "sha256": "d872a3d0a3ea847a8ab113d8e360a3166102c88e5312f1bbab3c4e829ee33f5b"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.4.high_sierra.bottle.tar.gz",
-              "sha256": "3170cd1fd724694f2def5818480ab7116e61181793a2b46dbe68679f4c515abc"
+              "url": "https://homebrew.bintray.com/bottles/awscli-2.0.5.high_sierra.bottle.tar.gz",
+              "sha256": "c4180a66aebe47083268dadae44bd4257aaf8665849a1aecd6a4fc20f9898c9f"
             }
           }
         }
@@ -1221,7 +1221,7 @@
         }
       },
       "youtube-dl": {
-        "version": "2020.03.08",
+        "version": "2020.03.24",
         "bottle": false
       }
     },
@@ -1330,6 +1330,12 @@
         "options": {
           "full_name": "google-cloud-sdk"
         }
+      },
+      "vlc": {
+        "version": "3.0.8",
+        "options": {
+          "full_name": "vlc"
+        }
       }
     },
     "mas": {
@@ -1340,17 +1346,21 @@
       "The Unarchiver": {
         "id": "425424353",
         "version": "4.2.0"
+      },
+      "Trello": {
+        "id": "1278508951",
+        "version": "2.11.4"
       }
     }
   },
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.2.10",
+        "HOMEBREW_VERSION": "2.2.11",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "b9f498cd2316ac7cf830f0618623715615e2d7ed",
+        "Homebrew/homebrew-core": "a36a0cd03067ea6afae2df2262ac416b7c90ab60",
         "CLT": "11.0.33.16",
-        "Xcode": "11.3.1",
+        "Xcode": "11.4",
         "macOS": "10.15.3"
       }
     }

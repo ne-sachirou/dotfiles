@@ -103,3 +103,4 @@ cask 'xquartz'
 # mas 'LINE', id: 539883307
 mas 'Slack', id: 803453959
 mas 'The Unarchiver', id: 425424353
+mas 'Trello', id: 1278508951
