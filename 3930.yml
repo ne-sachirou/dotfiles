@@ -34,7 +34,7 @@
       global: "3.8.2"
     - role: ruby
       versions:
-        - "2.3.1"  # mackerel3
+        - "2.5.7"  # mackerel3
         - "2.7.0"
       global: "2.7.0"
     - scala
