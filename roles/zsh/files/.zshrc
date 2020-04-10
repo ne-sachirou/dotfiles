@@ -1,6 +1,6 @@
 # zmodload zsh/zprof && zprof
 
-fpath=(/usr/local/share/zsh/functions ~/.zsh "$fpath")
+fpath=(/usr/local/share/zsh/functions ~/.zsh ~/.asdf/completions "$fpath")
 
 # {{{ init
 bindkey -e
@@ -20,7 +20,6 @@ zplug "zsh-users/zsh-syntax-highlighting"
 # }}} zplug
 
 . ~/.asdf/asdf.sh
-. ~/.asdf/completions/asdf.bash
 . ~/.zsh/git-prompt.sh
 . ~/.zsh/lazyenv.bash
 . ~/git-subrepo/.rc
