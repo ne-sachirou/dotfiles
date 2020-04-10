@@ -10,8 +10,8 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["22.3"]
-      global: "22.3"
+      versions: ["22.3.2"]
+      global: "22.3.2"
       elixir:
         versions: ["1.10.2-otp-22"]
         global: "1.10.2-otp-22"
