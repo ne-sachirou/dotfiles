@@ -1,0 +1,27 @@
+---
+- name: Get browser_download_url
+  shell:
+    cmd: |
+      set -o pipefail
+      curl -L -H "Authorization:$(private-values get dotfiles.GITHUB_API_TOKEN)" https://api.github.com/repos/ne-sachirou/private-values/releases/latest | \
+        jq -r 'jq '.assets[] | select(.name == "private-values-linux-x64") | .browser_download_url'
+  args:
+    warn: false
+  register: private_values_browser_download_url
+  changed_when: false
+  check_mode: false
+
+- name: Install
+  get_url:
+    url: "{{ private_values_browser_download_url.stdout }}"
+    # url: https://github.com/ne-sachirou/private-values/releases/download/v0.1.1/private-values-linux-x64
+    dest: /usr/local/bin/private-values
+    mode: "0755"
+  when: private_values_browser_download_url.stdout != "null"
+  become: true
+
+- name: ~/private-values.rc
+  file: dest={{ ansible_env.HOME }}/private-values.rc src={{ role_path }}/files/private-values.rc state=link
+
+- name: ~/.private-values/
+  git: repo=git@gitlab.com:ne_sachirou/private-values.git dest={{ ansible_env.HOME }}/.private-values

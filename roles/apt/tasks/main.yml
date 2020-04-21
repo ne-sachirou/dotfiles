@@ -1,0 +1,42 @@
+---
+- name: apt-get update
+  apt: update_cache=yes
+  become: true
+
+- name: apt-get -y install
+  apt: name={{ item }} install_recommends=no
+  become: true
+  with_items:
+    - ansible
+    - autoconf  # Erlang/OTP
+    - build-essential
+    - direnv
+    - dirmngr  # Node.js
+    - emacs
+    - fop  # Erlang/OTP
+    - gpg  # Node.js
+    - jq
+    - libwxgtk3.0-dev  # Erlang/OTP
+    - libgl1-mesa-dev  # Erlang/OTP
+    - libglu1-mesa-dev  # Erlang/OTP
+    - libncurses5-dev  # Erlang/OTP
+    - libpng-dev  # Erlang/OTP
+    - libreadline-dev  # Ruby
+    - libssh-dev  # Erlang/OTP
+    - libssl-dev  # Ruby
+    - peco
+    - python-jmespath
+    - shellcheck
+    - silversearcher-ag
+    - unixodbc-dev  # Erlang/OTP
+    - xsltproc  # Erlang/OTP
+    - yamllint
+    - zsh
+
+- name: apt-get -y upgrade && apt-get -y autoremove && apt-get autoclean
+  apt:
+    autoclean: yes
+    autoremove: yes
+    install_recommends: no
+    upgrade: safe
+  become: true

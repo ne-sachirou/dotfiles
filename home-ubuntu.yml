@@ -1,0 +1,46 @@
+---
+- hosts: default
+  connection: local
+  roles:
+    - apt
+    - role: asdf
+      asdf_version: v0.7.8
+    # - docker
+    - editorconfig
+    - emacs
+    - role: erlang
+      versions: ["22.3.2"]
+      global: "22.3.2"
+      elixir:
+        versions: ["1.10.2-otp-22"]
+        global: "1.10.2-otp-22"
+    - role: git
+      user_name: ne-sachirou
+      user_email: utakata.c4se@gmail.com
+    - role: hatenablog
+      private_values_project: dotfiles
+    - role: nodejs
+      versions:
+        - "13.12.0"
+      global: "13.12.0"
+    - private-values
+    - role: python
+      versions:
+        - "3.8.2"
+      global: "3.8.2"
+    - vim
+    - zsh
+
+# ~/profile
+# export DOCKER_HOST="tcp://0.0.0.0:2375"
+# PATH="$HOME/.poetry/bin:$PATH"
+# export PATH
+
+# ~/.bashrc
+# . $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/completions/asdf.bash
+# eval "$(direnv hook bash)"
+# alias cd-dev="cd /mnt/c/Users/c4se/dev"
+# DISPLAY=:0.0
+# LIBGL_ALWAYS_INDIRECT=1
+# export DISPLAY LIBGL_ALWAYS_INDIRECT

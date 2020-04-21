@@ -18,7 +18,7 @@ Setup.
 curl https://raw.githubusercontent.com/ne-sachirou/dotfiles/master/init/macos.sh | bash
 curl https://raw.githubusercontent.com/ne-sachirou/dotfiles/master/init/ubuntu.sh | bash
 cd ~/dotfiles
-ansible-playbook -i hosts playbooks/〜.yml
+ansible-playbook -v -i hosts 〜.yml
 ```
 
 Update.

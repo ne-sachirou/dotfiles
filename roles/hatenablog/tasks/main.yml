@@ -7,8 +7,7 @@
 
 - name: Get latest blogsync ver.
   shell: |
-    set -o pipefail
-    curl -L -H "Authorization:$(private-values get dotfiles.GITHUB_API_TOKEN)" https://api.github.com/repos/motemen/blogsync/releases/latest | \
+    curl -L -H "Authorization:$(private-values get dotfiles.GITHUB_API_TOKEN)" https://api.github.com/repos/x-motemen/blogsync/releases/latest | \
       jq -r '.tag_name'
   args:
     warn: false
@@ -16,24 +15,44 @@
   changed_when: false
   check_mode: false
 
-- name: Download blogsync.zip
+- name: Download blogsync.zip on macOS
   get_url:
-    url: https://github.com/motemen/blogsync/releases/download/{{ blogsync_ver.stdout }}/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
+    url: https://github.com/x-motemen/blogsync/releases/download/{{ blogsync_ver.stdout }}/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
     dest: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
-  when: blogsync_ver.stdout != "null"
+  when: blogsync_ver.stdout != "null" and ansible_system == "Darwin"
 
-- name: unzip blogsync.zip
+- name: unzip blogsync.zip on macOS
   unarchive:
     src: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
     dest: /tmp
-  when: blogsync_ver.stdout != "null"
+  when: blogsync_ver.stdout != "null" and ansible_system == "Darwin"
 
-- name: /usr/local/bin/blogsync
+- name: /usr/local/bin/blogsync on macOS
   copy:
     src: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64/blogsync
     dest: /usr/local/bin/blogsync
     mode: "0755"
-  when: blogsync_ver.stdout != "null"
+  when: blogsync_ver.stdout != "null" and ansible_system == "Darwin"
+
+- name: Download blogsync.tar.gz on Linux
+  get_url:
+    url: https://github.com/x-motemen/blogsync/releases/download/{{ blogsync_ver.stdout }}/blogsync_{{ blogsync_ver.stdout }}_linux_amd64.tar.gz
+    dest: /tmp/blogsync_{{ blogsync_ver.stdout }}_linux_amd64.tar.gz
+  when: blogsync_ver.stdout != "null" and ansible_system == "Linux"
+
+- name: tar -xzf blogsync.tar.gz on Linux
+  unarchive:
+    src: /tmp/blogsync_{{ blogsync_ver.stdout }}_linux_amd64.tar.gz
+    dest: /tmp
+  when: blogsync_ver.stdout != "null" and ansible_system == "Linux"
+
+- name: /usr/local/bin/blogsync on Linux
+  copy:
+    src: /tmp/blogsync_{{ blogsync_ver.stdout }}_linux_amd64/blogsync
+    dest: /usr/local/bin/blogsync
+    mode: "0755"
+  when: blogsync_ver.stdout != "null" and ansible_system == "Linux"
+  become: true
 
 - name: ~/.config/blogsync
   file: dest={{ ansible_env.HOME }}/.config/blogsync state=directory
