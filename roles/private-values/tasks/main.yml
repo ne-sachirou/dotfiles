@@ -1,20 +1,19 @@
 ---
-- name: Get browser_download_url
+- name: Get browser_download_url on Linux
   shell:
     cmd: |
-      set -o pipefail
       curl -L -H "Authorization:$(private-values get dotfiles.GITHUB_API_TOKEN)" https://api.github.com/repos/ne-sachirou/private-values/releases/latest | \
-        jq -r 'jq '.assets[] | select(.name == "private-values-linux-x64") | .browser_download_url'
+        jq -r '.assets[] | select(.name == "private-values-linux-x64") | .browser_download_url'
   args:
     warn: false
   register: private_values_browser_download_url
   changed_when: false
   check_mode: false
+  when: ansible_system == "Linux"
 
 - name: Install
   get_url:
     url: "{{ private_values_browser_download_url.stdout }}"
-    # url: https://github.com/ne-sachirou/private-values/releases/download/v0.1.1/private-values-linux-x64
     dest: /usr/local/bin/private-values
     mode: "0755"
   when: private_values_browser_download_url.stdout != "null"
