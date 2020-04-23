@@ -1,6 +1,9 @@
 [default]
 localhost
 
+[default:vars]
+ansible_connection=local
+
 [home-win]
 172.20.230.81
 

@@ -3,7 +3,6 @@
 - hosts: home-win
   connection: winrm
   roles: []
-
 # scoop bucket add extras
 # scoop install python
 # wget https://bootstrap.pypa.io/get-pip.py -OutFile get-pip.py

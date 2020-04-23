@@ -8,35 +8,35 @@
   become: true
   with_items:
     - ansible
-    - autoconf  # Erlang/OTP
+    - autoconf # Erlang/OTP
     - build-essential
     - direnv
-    - dirmngr  # Node.js
+    - dirmngr # Node.js
     - emacs
-    - fop  # Erlang/OTP
-    - gpg  # Node.js
+    - fop # Erlang/OTP
+    - gpg # Node.js
     - jq
-    - libwxgtk3.0-dev  # Erlang/OTP
-    - libgl1-mesa-dev  # Erlang/OTP
-    - libglu1-mesa-dev  # Erlang/OTP
-    - libncurses5-dev  # Erlang/OTP
-    - libpng-dev  # Erlang/OTP
-    - libreadline-dev  # Ruby
-    - libssh-dev  # Erlang/OTP
-    - libssl-dev  # Ruby
+    - libwxgtk3.0-dev # Erlang/OTP
+    - libgl1-mesa-dev # Erlang/OTP
+    - libglu1-mesa-dev # Erlang/OTP
+    - libncurses5-dev # Erlang/OTP
+    - libpng-dev # Erlang/OTP
+    - libreadline-dev # Ruby
+    - libssh-dev # Erlang/OTP
+    - libssl-dev # Ruby
     - peco
     - python-jmespath
     - shellcheck
     - silversearcher-ag
-    - unixodbc-dev  # Erlang/OTP
-    - xsltproc  # Erlang/OTP
+    - unixodbc-dev # Erlang/OTP
+    - xsltproc # Erlang/OTP
     - yamllint
     - zsh
 
 - name: apt-get -y upgrade && apt-get -y autoremove && apt-get autoclean
   apt:
-    autoclean: yes
-    autoremove: yes
-    install_recommends: no
+    autoclean: true
+    autoremove: true
+    install_recommends: false
     upgrade: safe
   become: true

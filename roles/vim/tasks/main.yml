@@ -3,7 +3,8 @@
   alternatives:
     name: editor
     path: /usr/bin/vim.basic
-  bacome: true
+  become: true
+  when: ansible_distribution == "Ubuntu"
 
 - name: ~/.vim/
   file: path={{ ansible_env.HOME }}/.vim state=directory

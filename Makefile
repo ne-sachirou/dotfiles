@@ -11,6 +11,7 @@ clean: ## Clean.
 .PHONY: install
 PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1 --on-cancel error)
 install: ## ansible-playbook
+	rm -fv .tool-versions
 	ansible-playbook -v -K -i hosts $(PLAYBOOK)
 	topgrade -c -v --no-retry --disable go || true
 	topgrade -c -v --no-retry --only go || true
@@ -18,10 +19,12 @@ install: ## ansible-playbook
 .PHONY: format
 format: ## Format files.
 	ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}
-	# npx prettier --write README.md
+	npx prettier --write README.md
+	find . -name '*.yml' -exec prettier --write {} \+
 
 .PHONY: test
 test: ## Test.
+	ansible -i hosts -m setup default > /dev/null 2>&1
 	find . -name '*.yml' -exec yamllint {} \+ || true
 	find . -name '*.yml' -exec ansible-lint -x ANSIBLE0004,ANSIBLE0012 {} \+
 	find . -name '*.sh' -exec shellcheck {} \+

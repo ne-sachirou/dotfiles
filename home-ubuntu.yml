@@ -1,6 +1,5 @@
 ---
 - hosts: default
-  connection: local
   roles:
     - apt
     - role: asdf
@@ -30,7 +29,6 @@
       global: "3.8.2"
     - vim
     - zsh
-
 # ~/profile
 # export DOCKER_HOST="tcp://0.0.0.0:2375"
 # PATH="$HOME/.poetry/bin:$PATH"

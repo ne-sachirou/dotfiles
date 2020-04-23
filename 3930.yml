@@ -1,6 +1,5 @@
 ---
 - hosts: default
-  connection: local
   roles:
     - homebrew
     - role: asdf

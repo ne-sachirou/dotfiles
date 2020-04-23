@@ -1,5 +1,4 @@
 ---
-
 - name: MACKEREL_APIKEY
   command: private-values get dotfiles.MACKEREL_APIKEY_ne-sachirou
   register: MACKEREL_APIKEY
