@@ -33,9 +33,9 @@
       global: "3.8.2"
     - role: ruby
       versions:
-        - "2.5.7"  # mackerel3
-        - "2.7.0"
-      global: "2.7.0"
+        - "2.5.7" # mackerel3
+        - "2.7.1"
+      global: "2.7.1"
     - scala
     - role: ssh
       private_values_project: hatena
