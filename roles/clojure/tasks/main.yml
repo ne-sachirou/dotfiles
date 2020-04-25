@@ -1,0 +1,15 @@
+---
+- name: asdf plugin-add clojure
+  command: asdf plugin-add clojure
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/plugins/clojure"
+  ignore_errors: true
+
+- name: asdf install clojure
+  command: "asdf install clojure {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/installs/clojure/{{ item }}"
+  with_items: "{{ versions }}"
+
+- name: asdf global clojure
+  command: "asdf global clojure {{ global | default(versions[0]) }}"
