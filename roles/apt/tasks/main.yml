@@ -8,6 +8,7 @@
   become: true
   with_items:
     - ansible
+    - aptitude # for Ansible apt module
     - autoconf # Erlang/OTP
     - build-essential
     - direnv
