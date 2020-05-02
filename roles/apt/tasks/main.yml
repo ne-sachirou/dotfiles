@@ -28,6 +28,7 @@
     - libssl-dev # Ruby
     - peco
     - python-jmespath
+    - rlwrap # for Clojure REPL
     - shellcheck
     - silversearcher-ag
     - unixodbc-dev # Erlang/OTP
