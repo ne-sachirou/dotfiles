@@ -4,16 +4,16 @@
     - homebrew
     - role: asdf
       asdf_version: v0.7.8
+    - role: clojure
+      versions: ["1.10.1"]
     - dev_dir
     - docker
     - editorconfig
     - emacs
     - role: erlang
       versions: ["22.3.2"]
-      global: "22.3.2"
       elixir:
         versions: ["1.10.2-otp-22"]
-        global: "1.10.2-otp-22"
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
@@ -22,20 +22,16 @@
     - mackerel-agent
     - role: nodejs
       versions:
-        - "12.14.0" # mackerel3
-        - "12.16.1" # Discover
         - "14.0.0"
-      global: "14.0.0"
+        - "12.16.1" # Discover
+        - "12.14.0" # mackerel3
     - perl
     - role: python
-      versions:
-        - "3.8.2"
-      global: "3.8.2"
+      versions: ["3.8.2"]
     - role: ruby
       versions:
-        - "2.5.7" # mackerel3
         - "2.7.1"
-      global: "2.7.1"
+        - "2.5.7" # mackerel3
     - scala
     - role: ssh
       private_values_project: hatena

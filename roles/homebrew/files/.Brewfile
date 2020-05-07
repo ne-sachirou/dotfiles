@@ -58,6 +58,7 @@ brew 'ponyc'
 brew 'postgresql@9.6', restart_service: true
 brew 'pstree'
 brew 'redis', restart_service: true
+brew 'rlwrap'
 # brew 'rust'
 brew 'sbt'
 brew 'scalacenter/bloop/bloop', restart_service: true
