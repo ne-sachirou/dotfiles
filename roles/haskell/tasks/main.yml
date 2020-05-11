@@ -1,0 +1,15 @@
+---
+- name: asdf plugin-add haskell
+  command: asdf plugin-add haskell
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/plugins/haskell"
+  ignore_errors: true
+
+- name: asdf install haskell
+  command: "asdf install haskell {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/installs/haskell/{{ item }}"
+  with_items: "{{ versions }}"
+
+- name: asdf global haskell
+  command: "asdf global haskell {{ global | default(versions[0]) }}"
