@@ -19,7 +19,7 @@
     - role: haskell
       versions: ["8.10.1"]
     - role: nodejs
-      versions: ["14.0.0"]
+      versions: ["14.2.0"]
     - private-values
     - role: python
       versions: ["3.8.2"]
