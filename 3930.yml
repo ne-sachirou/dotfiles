@@ -17,6 +17,10 @@
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
+    - role: golang
+      versions:
+        - "1.14"
+        - "1.12"
     - role: haskell
       versions: ["8.10.1"]
     - role: hatenablog

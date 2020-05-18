@@ -15,7 +15,6 @@
     - dirmngr # Node.js
     - emacs
     - fop # Erlang/OTP
-    - golang-go
     - gpg # Node.js
     - jq
     - libwxgtk3.0-dev # Erlang/OTP

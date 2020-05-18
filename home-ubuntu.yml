@@ -16,6 +16,8 @@
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
+    - role: golang
+      versions: ["1.14"]
     - role: haskell
       versions: ["8.10.1"]
     - role: nodejs
