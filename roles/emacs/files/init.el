@@ -12,12 +12,12 @@
     cider
     coffee-mode
     company
-    company-solidity
     company-flow
     company-lsp
     company-solidity
     company-terraform
     company-web
+    csharp-mode
     docker-tramp
     dockerfile-mode
     doom-themes
@@ -146,7 +146,7 @@
       '(("gnu" . 5)
         ("melpa" . 0)
         ("melpa-stable" . 10)))
-; https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure 
+; https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure
 ; https://emacs.stackexchange.com/questions/51721/failed-to-download-gnu-archive
 ; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
@@ -194,7 +194,7 @@
 ;; company-web
 (require 'company-web-html)
 
-;; crystal-mode
+;; csharp-mode
 
 ;; docker-tramp
 (require 'docker-tramp-compat)
