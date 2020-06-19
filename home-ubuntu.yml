@@ -24,7 +24,7 @@
       versions: ["14.4.0"]
     - private-values
     - role: python
-      versions: ["3.8.2"]
+      versions: ["3.8.3"]
     - vim
     - zsh
 # ~/profile
