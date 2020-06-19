@@ -11,7 +11,7 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.0"]
+      versions: ["23.0.2"]
       elixir:
         versions: ["1.10.3-otp-23"]
     - role: git
