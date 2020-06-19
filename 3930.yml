@@ -28,7 +28,7 @@
     - mackerel-agent
     - role: nodejs
       versions:
-        - "14.2.0"
+        - "14.4.0"
         - "12.16.1" # Discover
         - "12.14.0" # mackerel3
     - perl
