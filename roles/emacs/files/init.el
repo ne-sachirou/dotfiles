@@ -12,7 +12,6 @@
     cider
     coffee-mode
     company
-    company-flow
     company-lsp
     company-solidity
     company-terraform
@@ -114,12 +113,6 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 (el-get-bundle 'crystal-mode)
-(el-get-bundle 'flow-for-emacs
-       :description "An emacs plugin for Flow"
-       :type github
-       :pkgname "flowtype/flow-for-emacs"
-       :autoloads "flow.el"
-       :website "https://github.com/flowtype/flow-for-emacs")
 ; (el-get-bundle 'overtone-emacs-live
 ;   :type http-zip
 ;   :url "https://github.com/overtone/emacs-live/archive/master.zip"
@@ -174,10 +167,6 @@
 
 ;; company
 (add-hook 'after-init-hook 'global-company-mode)
-
-;; company-flow
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-flow))
 
 ;; company-lsp
 
@@ -252,8 +241,6 @@
 (global-evil-tabs-mode t)
 
 ;; feature-mode
-
-;; flow-for-emacs
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
