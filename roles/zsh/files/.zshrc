@@ -20,7 +20,11 @@ zplug "zsh-users/zsh-syntax-highlighting"
 # }}} zplug
 
 . ~/.asdf/asdf.sh
-. ~/.zsh/git-prompt.sh
+if [[ -a /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then
+  . /usr/local/etc/bash_completion.d/git-prompt.sh
+else
+  . ~/.zsh/git-prompt.sh
+fi
 . ~/.zsh/lazyenv.bash
 . ~/git-subrepo/.rc
 
