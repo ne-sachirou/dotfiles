@@ -95,7 +95,7 @@ function list_status() {
   if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
     echo
     echo -e "\e[0;33m--- git status ---\e[0m"
-    git -c color.status=always status -sb  --show-stash | head
+    git -c color.status=always status -sb  --show-stash | head -n 20
   fi
 }
 function do_enter() {
