@@ -17,6 +17,7 @@
     company-terraform
     company-web
     csharp-mode
+    dap-mode
     docker-tramp
     dockerfile-mode
     doom-themes
@@ -40,6 +41,7 @@
     helm-mt
     j-mode
     jinja2-mode
+    lsp-metals
     lsp-mode
     lsp-ui
     magit
@@ -185,6 +187,8 @@
 
 ;; csharp-mode
 
+;; dap-mode
+
 ;; docker-tramp
 (require 'docker-tramp-compat)
 (set-variable 'docker-tramp-use-names t)
@@ -265,9 +269,14 @@
 
 ;; jinja2-mode
 
+;; lsp-metals
+
 ;; lsp-mode
 (setq lsp-enable-snippet nil)
 (setq lsp-prefer-flymake nil)
+(add-hook 'lsp-mode-hook #'dap)
+(add-hook 'lsp-mode-hook #'dap-ui)
+(add-hook 'lsp-mode-hook #'lsp-lens)
 
 ;; lsp-ui
 
@@ -337,6 +346,7 @@
   'minibuffer-complete-word
   'self-insert-command
   minibuffer-local-completion-map)
+; (setq :program-options '("-Dsbt.supershell=false"))
 
 ;; scala-mode
 (add-hook 'scala-mode-hook #'lsp)
