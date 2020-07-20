@@ -19,8 +19,8 @@
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.14"
-        - "1.12"
+        - "1.14.6"
+        - "1.12.17"
     - role: haskell
       versions: ["8.10.1"]
     - role: hatenablog
@@ -28,12 +28,12 @@
     - mackerel-agent
     - role: nodejs
       versions:
-        - "14.4.0"
+        - "14.5.0"
         - "12.16.1" # Discover
         - "12.14.0" # mackerel3
     - perl
     - role: python
-      versions: ["3.8.3"]
+      versions: ["3.8.4"]
     - role: ruby
       versions:
         - "2.7.1"

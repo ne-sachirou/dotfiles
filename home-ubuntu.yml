@@ -17,14 +17,14 @@
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
     - role: golang
-      versions: ["1.14"]
+      versions: ["1.14.6"]
     - role: haskell
       versions: ["8.10.1"]
     - role: nodejs
-      versions: ["14.4.0"]
+      versions: ["14.5.0"]
     - private-values
     - role: python
-      versions: ["3.8.3"]
+      versions: ["3.8.4"]
     - vim
     - zsh
 # ~/profile
