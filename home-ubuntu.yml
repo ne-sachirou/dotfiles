@@ -10,7 +10,7 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.0.2"]
+      versions: ["23.0.3"]
       elixir:
         versions: ["1.10.4-otp-23"]
     - role: git
