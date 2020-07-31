@@ -2,16 +2,16 @@
   "entries": {
     "tap": {
       "adoptopenjdk/openjdk": {
-        "revision": "c918ed717d158bfa13bdabe346dca8c4d280ce81"
+        "revision": "8ba7c46ea725a98334d3ca2815474e4973921915"
       },
       "caskroom/cask": {
-        "revision": "c496cd71eca3a2fce4dadb19ae64479f543d87a0"
+        "revision": "769f55b4e66200513c0858b2b7749a3dbb33b02a"
       },
       "homebrew/bundle": {
-        "revision": "94d474d9ab199720ff34560c82493e18da9b612d"
+        "revision": "32a953e3cb16231f3a62ed41be9ea38c2258771a"
       },
       "homebrew/cask": {
-        "revision": "c496cd71eca3a2fce4dadb19ae64479f543d87a0"
+        "revision": "769f55b4e66200513c0858b2b7749a3dbb33b02a"
       },
       "homebrew/services": {
         "revision": "e68b1b8a05ee097338d2b21a0edbe1dda905c61e"
@@ -1291,11 +1291,32 @@
             }
           }
         }
+      },
+      "gh": {
+        "version": "0.11.1",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/gh-0.11.1.catalina.bottle.tar.gz",
+              "sha256": "8c407d1a98c582f12b7830c854b1c29e706a4215b5d5fae94cdf85b1929a9dfe"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/gh-0.11.1.mojave.bottle.tar.gz",
+              "sha256": "d758ddf6c6e240b09cb2133a35b4c05cf78c722d1e54f40622485628a6d544ac"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/gh-0.11.1.high_sierra.bottle.tar.gz",
+              "sha256": "9f65a309f159a2bed8f7b4d737aa01b4b4f7037cf79f8b112db4f04ac38a3666"
+            }
+          }
+        }
       }
     },
     "cask": {
       "adoptopenjdk8": {
-        "version": "8,262:b10",
+        "version": "8,265:b01",
         "options": {
           "full_name": "adoptopenjdk8"
         }
@@ -1426,7 +1447,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.4.9",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "fa8ddc467e9b79510683ab6b543eda8188808603",
+        "Homebrew/homebrew-core": "fbfdf236bb721d702b09caf0a82c7b8acbc2f745",
         "CLT": "11.0.33.16",
         "Xcode": "11.6",
         "macOS": "10.15.5"
