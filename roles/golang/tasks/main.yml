@@ -1,6 +1,6 @@
 ---
-- name: asdf plugin-add golang
-  command: asdf plugin-add golang
+- name: asdf plugin add golang
+  command: asdf plugin add golang
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/plugins/golang"
   ignore_errors: true

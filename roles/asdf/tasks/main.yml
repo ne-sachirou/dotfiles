@@ -5,6 +5,6 @@
     version: "{{ asdf_version }}"
     dest: "{{ ansible_env.HOME }}/.asdf"
 
-- name: asdf plugin-update --all
-  command: asdf plugin-update --all
+- name: asdf plugin update --all
+  command: asdf plugin update --all
 # locate .tool-version | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo'

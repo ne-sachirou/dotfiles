@@ -1,6 +1,6 @@
 ---
-- name: asdf plugin-add nodejs
-  command: asdf plugin-add nodejs
+- name: asdf plugin add nodejs
+  command: asdf plugin add nodejs
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/plugins/nodejs"
   ignore_errors: true

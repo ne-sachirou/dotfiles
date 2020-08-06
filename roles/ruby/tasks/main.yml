@@ -1,6 +1,6 @@
 ---
-- name: asdf plugin-add ruby
-  command: asdf plugin-add ruby
+- name: asdf plugin add ruby
+  command: asdf plugin add ruby
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/plugins/ruby"
   ignore_errors: true

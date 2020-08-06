@@ -1,6 +1,6 @@
 ---
-- name: asdf plugin-add erlang
-  command: asdf plugin-add erlang
+- name: asdf plugin add erlang
+  command: asdf plugin add erlang
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/plugins/erlang"
   ignore_errors: true

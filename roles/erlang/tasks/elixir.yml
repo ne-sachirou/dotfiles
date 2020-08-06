@@ -1,6 +1,6 @@
 ---
-- name: asdf plugin-add elixir
-  command: asdf plugin-add elixir
+- name: asdf plugin add elixir
+  command: asdf plugin add elixir
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/plugins/elixir"
   ignore_errors: true

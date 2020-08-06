@@ -1,6 +1,6 @@
 ---
-- name: asdf plugin-add haskell
-  command: asdf plugin-add haskell
+- name: asdf plugin add haskell
+  command: asdf plugin add haskell
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/plugins/haskell"
   ignore_errors: true

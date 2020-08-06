@@ -1,6 +1,6 @@
 ---
-- name: asdf plugin-add python
-  command: asdf plugin-add python
+- name: asdf plugin add python
+  command: asdf plugin add python
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/plugins/python"
   ignore_errors: true

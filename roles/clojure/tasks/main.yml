@@ -1,6 +1,6 @@
 ---
-- name: asdf plugin-add clojure
-  command: asdf plugin-add clojure
+- name: asdf plugin add clojure
+  command: asdf plugin add clojure
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/plugins/clojure"
   ignore_errors: true
