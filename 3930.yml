@@ -29,15 +29,15 @@
     - role: nodejs
       versions:
         - "14.5.0"
-        - "12.16.1" # Discover
-        - "12.14.0" # mackerel3
+        - "12.16.1"
+        - "12.14.0"
     - perl
     - role: python
       versions: ["3.8.4"]
     - role: ruby
       versions:
         - "2.7.1"
-        - "2.5.7" # mackerel3
+        - "2.5.7"
     - scala
     - role: ssh
       private_values_project: hatena
