@@ -1,5 +1,24 @@
 ---
+- name: asdf plugin add perl
+  command: asdf plugin add perl https://github.com/chrolis/asdf-perl.git
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/plugins/perl"
+  ignore_errors: true
+
+- name: asdf install perl
+  command: "asdf install perl {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/installs/perl/{{ item }}"
+  with_items: "{{ versions }}"
+
 - name: cpanm
-  command: cpanm {{ item }}
-  with_items:
-    - Carton
+  shell: >-
+    set -ex && \
+    asdf local perl {{ item[0] }} && \
+    cpanm {{ item[1] }}
+  with_nested:
+    - "{{ versions }}"
+    - - Carton
+
+- name: asdf global perl
+  command: "asdf global perl {{ global | default(versions[0]) }}"
