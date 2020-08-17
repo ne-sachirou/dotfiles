@@ -11,11 +11,28 @@
     creates: "{{ ansible_env.HOME }}/.asdf/installs/elixir/{{ item }}"
   with_items: "{{ elixir.versions }}"
 
+- name: mix archive.install
+  shell: >-
+    set -ex && \
+    asdf local elixir {{ item[0] }} && \
+    mix {{ item[1] }}
+  with_nested:
+    - "{{ elixir.versions }}"
+    - - local.hex --force
+      - local.rebar --force
+      - archive.install hex phx_new --force
+
 - name: asdf global elixir
   command: "asdf global elixir {{ elixir.global | default(elixir.versions[0]) }}"
 
-- name: mix do local.hex --force, local.rebar --force
-  command: mix do local.hex --force, local.rebar --force
+- name: asdf list elixir
+  command: asdf list elixir
+  register: asdf_list_elixir
+  changed_when: false
+  check_mode: false
 
-- name: mix archive.install hex phx_new --force
-  command: mix archive.install hex phx_new --force
+- name: asdf uninstall elixir
+  command: "asdf uninstall elixir {{ item }}"
+  with_items: "{{ asdf_list_elixir.stdout.split('\n') | map('trim') | list }}"
+  when: >-
+    item not in elixir.versions

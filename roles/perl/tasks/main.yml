@@ -22,3 +22,15 @@
 
 - name: asdf global perl
   command: "asdf global perl {{ global | default(versions[0]) }}"
+
+- name: asdf list perl
+  command: asdf list perl
+  register: asdf_list_perl
+  changed_when: false
+  check_mode: false
+
+- name: asdf uninstall perl
+  command: "asdf uninstall perl {{ item }}"
+  with_items: "{{ asdf_list_perl.stdout.split('\n') | map('trim') | list }}"
+  when: >-
+    item not in versions

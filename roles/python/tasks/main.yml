@@ -22,3 +22,15 @@
 
 - name: asdf global python
   command: "asdf global python {{ global | default(versions[0]) }}"
+
+- name: asdf list python
+  command: asdf list python
+  register: asdf_list_python
+  changed_when: false
+  check_mode: false
+
+- name: asdf uninstall python
+  command: "asdf uninstall python {{ item }}"
+  with_items: "{{ asdf_list_python.stdout.split('\n') | map('trim') | list }}"
+  when: >-
+    item not in versions

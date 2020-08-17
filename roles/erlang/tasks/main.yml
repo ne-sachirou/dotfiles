@@ -14,4 +14,16 @@
 - name: asdf global erlang
   command: "asdf global erlang {{ global | default(versions[0]) }}"
 
+- name: asdf list erlang
+  command: asdf list erlang
+  register: asdf_list_erlang
+  changed_when: false
+  check_mode: false
+
+- name: asdf uninstall erlang
+  command: "asdf uninstall erlang {{ item }}"
+  with_items: "{{ asdf_list_erlang.stdout.split('\n') | map('trim') | list }}"
+  when: >-
+    item not in versions
+
 - import_tasks: elixir.yml

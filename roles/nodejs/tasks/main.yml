@@ -36,3 +36,15 @@
 
 - name: asdf global nodejs
   command: "asdf global nodejs {{ global | default(versions[0]) }}"
+
+- name: asdf list nodejs
+  command: asdf list nodejs
+  register: asdf_list_nodejs
+  changed_when: false
+  check_mode: false
+
+- name: asdf uninstall nodejs
+  command: "asdf uninstall nodejs {{ item }}"
+  with_items: "{{ asdf_list_nodejs.stdout.split('\n') | map('trim') | list }}"
+  when: >-
+    item not in versions

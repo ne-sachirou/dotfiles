@@ -31,3 +31,15 @@
 
 - name: asdf global ruby
   command: "asdf global ruby {{ global | default(versions[0]) }}"
+
+- name: asdf list ruby
+  command: asdf list ruby
+  register: asdf_list_ruby
+  changed_when: false
+  check_mode: false
+
+- name: asdf uninstall ruby
+  command: "asdf uninstall ruby {{ item }}"
+  with_items: "{{ asdf_list_ruby.stdout.split('\n') | map('trim') | list }}"
+  when: >-
+    item not in versions
