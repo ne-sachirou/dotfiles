@@ -12,7 +12,6 @@
     cider
     coffee-mode
     company
-    company-lsp
     company-solidity
     company-terraform
     company-web
@@ -170,8 +169,6 @@
 ;; company
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; company-lsp
-
 ;; company-solidity
 
 ;; company-terraform
@@ -273,6 +270,7 @@
 
 ;; lsp-mode
 (setq lsp-enable-snippet nil)
+(setq lsp-prefer-capf t)
 (setq lsp-prefer-flymake nil)
 (add-hook 'lsp-mode-hook #'dap)
 (add-hook 'lsp-mode-hook #'dap-ui)
