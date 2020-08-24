@@ -53,6 +53,7 @@
         - dbaeumer.vscode-eslint
         - eamodio.gitlens
         - esbenp.prettier-vscode
+        - golang.go
         - humao.rest-client
         - jebbs.plantuml
         - marp-team.marp-vscode
