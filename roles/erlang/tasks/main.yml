@@ -34,4 +34,7 @@
     owner: root
   become: true
 
+- name: rebar3 local install
+  command: rebar3 local install
+
 - import_tasks: elixir.yml
