@@ -26,4 +26,12 @@
   when: >-
     item not in versions
 
+- name: Install rebar3
+  get_url:
+    url: https://s3.amazonaws.com/rebar3/rebar3
+    dest: /usr/local/bin/rebar3
+    mode: "0755"
+    owner: root
+  become: true
+
 - import_tasks: elixir.yml
