@@ -13,23 +13,29 @@
     - build-essential
     - direnv
     - dirmngr # Node.js
-    - emacs
     - fop # Erlang/OTP
     - gpg # Node.js
     - jq
-    - libwxgtk3.0-dev # Erlang/OTP
+    - libgif-dev # Emacs
     - libgl1-mesa-dev # Erlang/OTP
     - libglu1-mesa-dev # Erlang/OTP
+    - libgnutls28-dev # Emacs
+    - libgpm-dev # Emacs
     - libncurses5-dev # Erlang/OTP
     - libpng-dev # Erlang/OTP
     - libreadline-dev # Ruby
+    - librsvg2-dev # Emacs
     - libssh-dev # Erlang/OTP
     - libssl-dev # Ruby
+    - libtiff-dev # Emacs
+    - libwxgtk3.0-dev # Erlang/OTP
+    - libxml2-dev # Emacs
     - peco
     - python-jmespath
     - rlwrap # for Clojure REPL
     - shellcheck
     - silversearcher-ag
+    - texinfo # Emacs
     - unixodbc-dev # Erlang/OTP
     - xsltproc # Erlang/OTP
     - yamllint

@@ -1,4 +1,12 @@
 ---
+# @ Ubuntu
+# cd dev/emacs
+# git checkout emacs-27.1
+# ./autogen.sh
+# ./configure --with-x-toolkit=no
+# make bootstrap
+# sudo make install
+
 - name: ~/.emacs.d/
   file: path={{ ansible_env.HOME }}/.emacs.d state=directory
 
