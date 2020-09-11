@@ -1,0 +1,32 @@
+---
+- name: asdf plugin add rust
+  command: asdf plugin add rust
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/plugins/rust"
+  ignore_errors: true
+
+- name: asdf install rust
+  command: "asdf install rust {{ item }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.asdf/installs/rust/{{ item }}"
+  with_items: "{{ versions }}"
+
+- name: rustup update stable
+  command: >-
+    asdf local rust stable && \
+    rustup update stable
+
+- name: asdf global rust
+  command: "asdf global rust {{ global | default(versions[0]) }}"
+
+- name: asdf list rust
+  command: asdf list rust
+  register: asdf_list_rust
+  changed_when: false
+  check_mode: false
+
+- name: asdf uninstall rust
+  command: "asdf uninstall rust {{ item }}"
+  with_items: "{{ asdf_list_rust.stdout.split('\n') | map('trim') | list }}"
+  when: >-
+    item not in versions
