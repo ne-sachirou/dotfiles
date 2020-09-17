@@ -78,6 +78,8 @@ class Version
   end
 
   def ==(rhs)
+    return false if rhs.nil?
+
     @major == rhs.major && @minor == rhs.minor && @patch == rhs.patch && @suffix == rhs.suffix
   end
 
@@ -113,7 +115,9 @@ class ASDF
     plugins.each do |plugin|
       latest = all_versions(plugin).max
       local = versions(plugin).max
-      if latest != local
+      if latest.nil?
+        puts "Latest version cannot detected (current is #{local})."
+      elsif latest != local
         puts "#{plugin} is upgradable to #{latest} (current is #{local})."
       else
         puts "#{plugin} is latest (current is #{local})."
@@ -140,7 +144,7 @@ class ASDF
 end
 
 asdf = ASDF.new
-asdf.update
+# asdf.update
 asdf.check_updates
 # sh 'asdf plugin list | xargs -t -I{} asdf list {}'
 sh %(locate .tool-version | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo')
