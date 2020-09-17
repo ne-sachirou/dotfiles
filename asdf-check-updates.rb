@@ -1,62 +1,98 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# rubocop:disable Style/GlobalVars
+# rubocop:disable Style/Documentation, Style/GlobalVars
 
 require 'stringio'
 
 $threads = []
 $threads_mutex = Mutex.new
 
+class StdoutOut
+  attr_reader :reader, :writer
+
+  def initialize
+    @reader = nil
+    @writer = $stdout
+  end
+
+  def close_writer
+    nil
+  end
+
+  def read
+    nil
+  end
+end
+
+class StreamOut
+  attr_reader :reader, :writer
+
+  def initialize
+    @reader, @writer = IO.pipe
+  end
+
+  def close_writer
+    @writer.close
+  end
+
+  def read
+    nil
+  end
+end
+
+class StringOut
+  attr_reader :reader, :writer
+
+  def initialize
+    io = StringIO.new
+    @reader = io
+    @writer = io
+  end
+
+  def close_writer
+    @writer.close_write
+  end
+
+  def read
+    @reader.read
+  end
+end
+
 def sh(cmd, out: :stdout)
   puts "+#{cmd}"
-  out_r, out_w =
-    case out
-    when :stdout then [nil, $stdout]
-    when :stream then IO.pipe
-    when :string then StringIO.new.tap { |io| break [io, io] }
-    else raise "Unknown out: #{out}"
+  out_rw = { stdout: StdoutOut, stream: StreamOut, string: StringOut }[out].new
+  thread = Thread.new do
+    IO.popen(cmd) do |io|
+      io.each_line { |line| out_rw.writer << line }
     end
-  th = Thread.new do
-    begin
-      IO.popen(cmd) do |io|
-        io.each_line { |line| out_w << line }
-      end
-    ensure
-      case out
-      when :stdout then nil
-      when :stream then out_w.close
-      when :string then out_w.close_write
-      end
-      $threads_mutex.synchronize do
-        $threads = $threads.reject { |_th| _th == th }
-      end
+  ensure
+    out_rw.close_writer
+    $threads_mutex.synchronize do
+      $threads = $threads.reject { |th| th == thread }
     end
   end
-  $threads_mutex.synchronize { $threads << th }
-  case out
-  when :stdout then th.join
-  when :stream then out_r
-  when :string
-    th.join
-    out_r.read
-  end
+  $threads_mutex.synchronize { $threads << thread }
+  return out_rw.reader if out == :stream
+
+  thread.join
+  out_rw.read
 rescue StandardError => e
-  out_w.close
+  out_rw.close_writer
   raise e
 end
 
 class Version
-  def self.from_s(s)
-    raise "#{s} is not a version" unless version?(s)
+  def self.from_s(str)
+    raise "#{str} is not a version" unless version?(str)
 
-    body, suffix = s.split('-', 2)
+    body, suffix = str.split('-', 2)
     major, minor, patch = body.split('.')
     new(major.to_i, minor.to_i, patch && patch.to_i, suffix)
   end
 
-  def self.version?(s)
-    s.match?(/^(?:\d+\.){1,2}\d+(?:-(?!dev|rc).+)?$/i)
+  def self.version?(str)
+    str.match?(/^(?:\d+\.){1,2}\d+(?:-(?!dev|rc).+)?$/i)
   end
 
   attr_reader :major, :minor, :patch, :suffix, :otp
@@ -71,30 +107,30 @@ class Version
   end
 
   def to_s
-    s = "#{@major}.#{@minor}"
-    s += ".#{@patch}" if @patch
-    s += "-#{@suffix}" if @suffix
-    s
+    str = "#{@major}.#{@minor}"
+    str += ".#{@patch}" if @patch
+    str += "-#{@suffix}" if @suffix
+    str
   end
 
-  def ==(rhs)
-    return false if rhs.nil?
+  def ==(other)
+    return false if other.nil?
 
-    @major == rhs.major && @minor == rhs.minor && @patch == rhs.patch && @suffix == rhs.suffix
+    @major == other.major && @minor == other.minor && @patch == other.patch && @suffix == other.suffix
   end
 
-  def <=>(rhs)
-    if @major != rhs.major
-      @major <=> rhs.major
-    elsif @minor != rhs.minor
-      @minor <=> rhs.minor
-    elsif @patch != rhs.patch
-      (@patch || 0) <=> (rhs.patch || 0)
-    elsif @otp && rhs.otp && @otp != rhs.otp
-      @otp <=> rhs.otp
-    elsif @otp && !rhs.otp
+  def <=>(other)
+    if @major != other.major
+      @major <=> other.major
+    elsif @minor != other.minor
+      @minor <=> other.minor
+    elsif @patch != other.patch
+      (@patch || 0) <=> (other.patch || 0)
+    elsif @otp && other.otp && @otp != other.otp
+      @otp <=> other.otp
+    elsif @otp && !other.otp
       1
-    elsif !@otp && rhs.otp
+    elsif !@otp && other.otp
       -1
     else
       0
@@ -144,10 +180,10 @@ class ASDF
 end
 
 asdf = ASDF.new
-# asdf.update
+asdf.update
 asdf.check_updates
 # sh 'asdf plugin list | xargs -t -I{} asdf list {}'
 sh %(locate .tool-version | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo')
 $threads_mutex.synchronize { $threads.each(&:kill) }
 
-# rubocop:enable Style/GlobalVars
+# rubocop:enable Style/Documentation, Style/GlobalVars
