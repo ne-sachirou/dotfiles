@@ -12,7 +12,7 @@
   with_items: "{{ versions }}"
 
 - name: rustup update stable
-  command: >-
+  shell: >-
     asdf local rust stable && \
     rustup update stable
 
