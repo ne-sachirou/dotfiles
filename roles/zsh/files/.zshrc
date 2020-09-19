@@ -35,13 +35,14 @@ _ssh_init() {
 eval "$(lazyenv.load _ssh_init assh ssh)"
 
 EDITOR='vim'
+GOPATH=$HOME/go
 HISTFILE=~/.bash_history
 HISTSIZE=10000
 LESS='-iMR'
 MACKEREL_APIKEY="$(private-values get hatena.MACKEREL_APIKEY)"
 PAGER='less -X'
 SAVEHIST=100000
-export EDITOR HISTFILE HISTSIZE LESS MACKEREL_APIKEY OP_SESSION_hatena PAGER SAVEHIST
+export EDITOR GOPATH HISTFILE HISTSIZE LESS MACKEREL_APIKEY OP_SESSION_hatena PAGER SAVEHIST
 
 alias be='bundle exec'
 alias j='docker run -it --rm nesachirou/jlang'

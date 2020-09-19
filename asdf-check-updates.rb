@@ -182,7 +182,7 @@ end
 asdf = ASDF.new
 asdf.update
 asdf.check_updates
-# sh 'asdf plugin list | xargs -t -I{} asdf list {}'
+sh 'asdf plugin list | xargs -t -I{} asdf list {}'
 sh %(locate .tool-version | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo')
 $threads_mutex.synchronize { $threads.each(&:kill) }
 
