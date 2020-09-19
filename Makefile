@@ -26,7 +26,7 @@ format: ## Format files.
 test: ## Test.
 	ansible -i hosts -m setup default > /dev/null 2>&1
 	find . -name '*.yml' -exec yamllint {} \+ || true
-	find . -name '*.yml' -exec ansible-lint -x ANSIBLE0004,ANSIBLE0012 {} \+
+	find . -name '*.yml' -exec ansible-lint {} \+
 	find . -name '*.sh' -exec shellcheck {} \+
 	zsh -n roles/zsh/files/.z* || true
 	shellcheck -e SC1090,SC1091,SC2148 roles/zsh/files/.z* || true
