@@ -99,6 +99,7 @@ cask 'virtualbox-extension-pack'
 cask 'visual-studio-code'
 cask 'visualvm'
 cask 'vlc'
+cask 'wireshark'
 cask 'xquartz'
 
 # mas 'LINE', id: 539883307
