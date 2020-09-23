@@ -41,7 +41,9 @@
         - "2.7.1"
         - "2.5.7"
     - role: rust
-      versions: ["stable"]
+      versions:
+        - stable
+        - nightly
     - scala
     - role: ssh
       private_values_project: hatena
