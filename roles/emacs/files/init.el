@@ -55,6 +55,7 @@
     prettier-js
     projectile
     quickrun
+    rust-mode
     sbt-mode
     scala-mode
     slim-mode
@@ -70,16 +71,29 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+  '(custom-safe-themes
+     (quote
+       ("d2e9c7e31e574bf38f4b0fb927aaff20c1e5f92f72001102758005e53d77b8c9" "1c082c9b84449e54af757bcae23617d11f563fc9f33a832a8a2813c4d7dfb652" "151bde695af0b0e69c3846500f58d9a0ca8cb2d447da68d7fbf4154dcf818ebc" "3a3de615f80a0e8706208f0a71bbcc7cc3816988f971b6d237223b6731f91605" "4697a2d4afca3f5ed4fdf5f715e36a6cac5c6154e105f3596b44a4874ae52c45" "b35a14c7d94c1f411890d45edfb9dc1bd61c5becd5c326790b51df6ebf60f402" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "d1b4990bd599f5e2186c3f75769a2c5334063e9e541e37514942c27975700370" "b54826e5d9978d59f9e0a169bbd4739dd927eead3ef65f56786621b53c031a7c" default)))
+ '(helm-completion-style (quote emacs))
  '(js-indent-level 2)
  '(js-switch-indent-offset 2)
- '(package-selected-packages my/packages)
- '(plantuml-jar-path
-    (let* ((exe-path (car (split-string (shell-command-to-string "which plantuml"))))
-           (exe-str (with-temp-buffer
-                      (insert-file-contents exe-path)
-                      (buffer-string))))
-      (string-match "[/.A-Za-z0-9]+/plantuml.jar" exe-str)
-      (substring exe-str (match-beginning 0) (match-end 0))))
+  '(package-selected-packages
+     (quote
+       (ac-cider ag clojure-mode cider coffee-mode company company-lsp company-solidity company-terraform company-web csharp-mode docker-tramp dockerfile-mode doom-themes editorconfig elixir-mode elscreen erlang evil evil-leader evil-matchit evil-smartparens evil-surround evil-tabs feature-mode flycheck go-mode groovy-mode haskell-mode helm helm-ag helm-mt j-mode jinja2-mode lsp-mode lsp-ui magit markdown-mode multi-term nginx-mode origami osx-clipboard package-utils plantuml-mode poly-ansible prettier-js projectile quickrun sbt-mode scala-mode slim-mode solidity-mode terraform-mode typescript-mode vimrc-mode yaml-mode web-mode)))
+  '(plantuml-jar-path
+     (let*
+       ((exe-path
+          (car
+            (split-string
+              (shell-command-to-string "which plantuml"))))
+         (exe-str
+           (with-temp-buffer
+             (insert-file-contents exe-path)
+             (buffer-string))))
+       (string-match "[/.A-Za-z0-9]+/plantuml.jar" exe-str)
+       (substring exe-str
+         (match-beginning 0)
+         (match-end 0))))
  '(ruby-insert-encoding-magic-comment nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -338,6 +352,9 @@
 ;; proof-general
 
 ;; quickrun
+
+;; rust-mode
+(setq rust-format-on-save t)
 
 ;; sbt-mode
 (substitute-key-definition
