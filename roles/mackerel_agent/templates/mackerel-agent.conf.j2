@@ -1,7 +1,9 @@
+# Prod
+apikey = "{{ MACKEREL_APIKEY.stdout }}"
+
 # pidfile = "/var/run/mackerel-agent.pid"
 # root = "/var/lib/mackerel-agent"
 # verbose = false
-apikey = "{{ MACKEREL_APIKEY.stdout }}"
 roles = ["ne-sachirou:hatena-macbook"]
 
 # [host_status]
@@ -120,3 +122,6 @@ command = "/Users/ne-sachirou/dev/mackerel/mackerel-agent-plugins/build/darwin/a
 # command = "ruby /etc/sensu/plugins/system/vmstat-metrics.rb"
 # [plugin.metrics.curl]
 # command = "ruby /etc/sensu/plugins/http/metrics-curl.rb"
+
+[plugin.metrics.battery]
+command = "$HOME/go/bin/mackerel-plugin-darwin-battery"

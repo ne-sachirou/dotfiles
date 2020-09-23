@@ -60,7 +60,7 @@ class StringOut
 end
 
 def sh(cmd, out: :stdout)
-  puts "+#{cmd}"
+  puts "+ #{cmd}"
   out_rw = { stdout: StdoutOut, stream: StreamOut, string: StringOut }[out].new
   thread = Thread.new do
     IO.popen(cmd) do |io|

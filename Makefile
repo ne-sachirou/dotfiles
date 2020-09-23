@@ -25,6 +25,7 @@ format: ## Format files.
 .PHONY: test
 test: ## Test.
 	ansible -i hosts -m setup default > /dev/null 2>&1
+	# ansible-playbook -v -C -K -i hosts $(PLAYBOOK)
 	find . -name '*.yml' -exec yamllint {} \+ || true
 	find . -name '*.yml' -exec ansible-lint {} \+
 	find . -name '*.sh' -exec shellcheck {} \+
