@@ -25,12 +25,14 @@ format: ## Format files.
 .PHONY: test
 test: ## Test.
 	ansible -i hosts -m setup default > /dev/null 2>&1
-	# ansible-playbook -v -C -K -i hosts $(PLAYBOOK)
 	find . -name '*.yml' -exec yamllint {} \+ || true
+	ansible-playbook -v -K -i hosts --syntax-check $(PLAYBOOK)
+	# ansible-playbook -v -C -K -i hosts $(PLAYBOOK)
 	find . -name '*.yml' -exec ansible-lint {} \+
 	find . -name '*.sh' -exec shellcheck {} \+
 	zsh -n roles/zsh/files/.z* || true
 	shellcheck -e SC1090,SC1091,SC2148 roles/zsh/files/.z* || true
 	ag -l '^#!.*runghc' | xargs -t hlint
+	rubocop asdf-check-updates.rb || true
 
 # vim:set noet:

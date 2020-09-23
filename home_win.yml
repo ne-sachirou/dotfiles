@@ -1,6 +1,6 @@
 ---
-# ansible home-win -i hosts -m win_ping -vvvv
-- hosts: home-win
+# ansible home_win -i hosts -m win_ping -vvvv
+- hosts: home_win
   connection: winrm
   roles: []
 # scoop bucket add extras

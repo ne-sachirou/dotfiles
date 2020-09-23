@@ -4,10 +4,10 @@ localhost
 [default:vars]
 ansible_connection=local
 
-[home-win]
+[home_win]
 172.20.230.81
 
-[home-win:vars]
+[home_win:vars]
 ansible_winrm_server_cert_validation=ignore
 ansible_connection=winrm
 ansible_port=5985
