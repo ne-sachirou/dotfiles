@@ -20,6 +20,7 @@
     url: https://github.com/x-motemen/blogsync/releases/download/{{ blogsync_ver.stdout }}/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
     dest: /tmp/blogsync_{{ blogsync_ver.stdout }}_darwin_amd64.zip
   when: blogsync_ver.stdout != "null" and ansible_system == "Darwin"
+  check_mode: false
 
 - name: unzip blogsync.zip on macOS
   unarchive:
@@ -33,12 +34,14 @@
     dest: /usr/local/bin/blogsync
     mode: "0755"
   when: blogsync_ver.stdout != "null" and ansible_system == "Darwin"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Download blogsync.tar.gz on Linux
   get_url:
     url: https://github.com/x-motemen/blogsync/releases/download/{{ blogsync_ver.stdout }}/blogsync_{{ blogsync_ver.stdout }}_linux_amd64.tar.gz
     dest: /tmp/blogsync_{{ blogsync_ver.stdout }}_linux_amd64.tar.gz
   when: blogsync_ver.stdout != "null" and ansible_system == "Linux"
+  check_mode: false
 
 - name: tar -xzf blogsync.tar.gz on Linux
   unarchive:
@@ -53,6 +56,7 @@
     mode: "0755"
   when: blogsync_ver.stdout != "null" and ansible_system == "Linux"
   become: true
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: ~/.config/blogsync
   file: dest={{ ansible_env.HOME }}/.config/blogsync state=directory

@@ -1,6 +1,8 @@
+---
 skip_list:
-  - "301" # Commands should not change things if nothing needs doing
-  - "401" # Git checkouts must contain explicit version
+  - "301"  # Commands should not change things if nothing needs doing
+  - "401"  # Git checkouts must contain explicit version
 warn_list:
-  - "306" # Shells that use pipes should set the pipefail option
+  - "306"  # Shells that use pipes should set the pipefail option
   - experimental
+# vim:set ft=yaml:
