@@ -11,7 +11,7 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.1"]
+      versions: ["23.1.1"]
       elixir:
         versions: ["1.10.4-otp-23"]
     - role: git
@@ -35,7 +35,7 @@
       versions: ["5.32.0"]
     # - private_values
     - role: python
-      versions: ["3.8.6"]
+      versions: ["3.9.0"]
     - role: ruby
       versions:
         - "2.7.1"
