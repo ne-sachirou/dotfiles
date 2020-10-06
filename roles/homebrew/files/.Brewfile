@@ -18,7 +18,6 @@ brew 'awslogs'
 brew 'azure-cli'
 brew 'bash'
 # brew 'chromedriver'
-# brew 'clojure'
 # brew 'clojurescript'
 # brew 'closure-compiler'
 brew 'coreutils'
@@ -39,11 +38,9 @@ brew 'imageoptim-cli'
 # brew 'istioctl'
 brew 'jasper', link: true # PlantUML JPEG2000
 brew 'jq'
-# brew 'kubernetes-cli'
-# brew 'kubernetes-helm'
+brew 'krew'
 brew 'kustomize'
 brew 'libav' # youtube-dl
-# brew 'leiningen'
 brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
 brew 'mackerelio/mackerel-agent/mkr'
 brew 'mas'
@@ -58,7 +55,6 @@ brew 'postgresql@9.6', restart_service: true
 brew 'pstree'
 brew 'redis', restart_service: true
 brew 'rlwrap'
-# brew 'rust'
 brew 'sbt'
 brew 'scalacenter/bloop/bloop', restart_service: true
 brew 'shellcheck'
