@@ -12,7 +12,7 @@
     - role: erlang
       versions: ["23.1.1"]
       elixir:
-        versions: ["1.10.4-otp-23"]
+        versions: ["1.11.0-otp-23"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
