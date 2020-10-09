@@ -26,6 +26,7 @@
       versions: ["8.10.2"]
     - role: hatenablog
       private_values_project: hatena
+    - kubernetes
     - mackerel_agent
     - role: nodejs
       versions:

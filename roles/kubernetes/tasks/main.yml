@@ -1,0 +1,17 @@
+---
+- name: Lookup `kubectl krew list`
+  shell: kubectl krew list | tail -n +1
+  register: kubectl_krew_list
+  changed_when: false
+  check_mode: false
+
+- name: kubectl krew install
+  command: kubectl krew install {{ item }}
+  when: item not in kubectl_krew_list.stdout
+  with_items:
+    - ctx
+    - get-all
+    - ns
+
+- name: kubectl krew upgrade
+  command: lubectl krew upgrade
