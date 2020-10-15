@@ -14,4 +14,4 @@
     - ns
 
 - name: kubectl krew upgrade
-  command: lubectl krew upgrade
+  command: kubectl krew upgrade
