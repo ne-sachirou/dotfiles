@@ -45,8 +45,9 @@ SAVEHIST=100000
 export EDITOR GOPATH HISTFILE HISTSIZE LESS MACKEREL_APIKEY OP_SESSION_hatena PAGER SAVEHIST
 
 alias be='bundle exec'
-alias j='docker run -it --rm nesachirou/jlang'
 alias g=git
+alias j='docker run -it --rm nesachirou/jlang'
+alias k=kubectl
 alias pv=private-values
 alias ssh='assh wrapper ssh'
 
