@@ -191,7 +191,6 @@
 
 ;; counsel
 (global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 (global-set-key (kbd "<f1> o") 'counsel-describe-symbol)
@@ -231,7 +230,8 @@
   (lambda ()
     (if (projectile-project-p)
       (setq elixir-format-arguments
-        (list "--dot-formatter" (concat (locate-dominating-file buffer-file-name ".formatter.exs") ".formatter.exs")))
+        (list "--dot-formatter"
+              (concat (locate-dominating-file buffer-file-name ".formatter.exs") ".formatter.exs")))
       (setq elixir-format-arguments nil))))
 
 ;; elscreen
@@ -338,23 +338,24 @@
 (setq prettier-js-args '())
 
 ;; projectile
-(defun projectile-find-file-when-find-file-not-found ()
-  "When find-file-not-found then projectile-find-file."
-  (require 'projectile)
-  (if (projectile-project-p)
-    (do
-      (interactive)
-      (let* ((project-root (projectile-ensure-project (projectile-project-root)))
-              (file-name (substring buffer-file-name (length project-root)))
-              (file (projectile-completing-read
-                      "Find file: "
-                      (projectile-project-files project-root)
-                      :initial-input file-name)))
-        (when file
-          (funcall #'find-file (expand-file-name file project-root))
-          (run-hooks 'projectile-find-file-hook)
-          t)))))
-(add-hook 'find-file-not-found-hooks 'projectile-find-file-when-find-file-not-found)
+(global-set-key (kbd "C-x C-f") 'projectile-find-file)
+; (defun projectile-find-file-when-find-file-not-found ()
+;   "When find-file-not-found then projectile-find-file."
+;   (require 'projectile)
+;   (if (projectile-project-p)
+;     (do
+;       (interactive)
+;       (let* ((project-root (projectile-ensure-project (projectile-project-root)))
+;               (file-name (substring buffer-file-name (length project-root)))
+;               (file (projectile-completing-read
+;                       "Find file: "
+;                       (projectile-project-files project-root)
+;                       :initial-input file-name)))
+;         (when file
+;           (funcall #'find-file (expand-file-name file project-root))
+;           (run-hooks 'projectile-find-file-hook)
+;           t)))))
+; (add-hook 'find-file-not-found-hooks 'projectile-find-file-when-find-file-not-found)
 
 ;; proof-general
 
