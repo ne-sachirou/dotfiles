@@ -41,6 +41,7 @@
     lsp-metals
     lsp-mode
     lsp-ui
+    lua-mode
     magit
     markdown-mode
     multi-term
@@ -298,6 +299,8 @@
 (add-hook 'lsp-mode-hook #'lsp-lens)
 
 ;; lsp-ui
+
+;; lua-mode
 
 ;; magit
 
