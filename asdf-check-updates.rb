@@ -179,6 +179,7 @@ class ASDF
   end
 end
 
+File.delete('.tool-versions') if File.exist?('.tool-versions')
 asdf = ASDF.new
 asdf.update
 asdf.check_updates
