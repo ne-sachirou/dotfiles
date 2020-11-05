@@ -4,6 +4,7 @@ apikey = "{{ MACKEREL_APIKEY.stdout }}"
 # pidfile = "/var/run/mackerel-agent.pid"
 # root = "/var/lib/mackerel-agent"
 # verbose = false
+diagnostic = true
 roles = ["ne-sachirou:hatena-macbook"]
 
 # [host_status]
@@ -125,3 +126,6 @@ command = "/Users/ne-sachirou/dev/mackerel/mackerel-agent-plugins/build/darwin/a
 
 [plugin.metrics.battery]
 command = "$HOME/go/bin/mackerel-plugin-darwin-battery"
+
+[plugin.metrics.speedtest]
+command = "$HOME/dotfiles/roles/zsh/files/bin/mackerel-plugin-speedtest"

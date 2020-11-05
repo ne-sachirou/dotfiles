@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+class Metric
+  def self.from_s(expression)
+    name, value_s, time_s = expression.split("\t")
+    new(name, value_s.to_f, Time.at(time_s.to_i))
+  end
+
+  attr_reader :name, :value, :time
+
+  def initialize(name, value, time)
+    @name = name
+    @value = value
+    @time = time
+  end
+
+  def to_s
+    "#{@name}\t#{@value}\t#{@time.to_i}"
+  end
+end
+
+class Speedtest
+  def measure(time)
+    out_r, out_w = IO.pipe
+    err_r, err_w = IO.pipe
+    pid = spawn('speedtest --json', out: out_w, err: err_w)
+    Process.wait(pid)
+    out_w.close
+    err_w.close
+    raise err_r.read unless $?.success?
+
+    result = JSON.parse(out_r.read)
+    [
+      Metric.new('speedtest.download', result['download'], time),
+      Metric.new('speedtest.upload', result['upload'], time),
+      Metric.new('speedtest.ping', result['ping'], time)
+    ]
+  end
+end
+
+class SpeedtestWithMemory
+  MEMORY_FILE = '/tmp/mackerel-plugin-speedtest'.freeze
+
+  def measure(time)
+    metrics = Speedtest.new.measure(time)
+    IO.write(MEMORY_FILE, metrics.map(&:to_s).join("\n"), mode: 'w', encoding: Encoding::UTF_8)
+    metrics
+  end
+
+  def prev_metrics
+    return [] unless File.exist?(MEMORY_FILE)
+
+    IO.readlines(MEMORY_FILE, mode: 'r', encoding: Encoding::UTF_8, chomp: true).map { |line| Metric.from_s(line) }
+  end
+end
+
+def should_measure?(current_time, prev_metrics)
+  return true if prev_metrics.empty?
+
+  (current_time.to_i / 60 % 30).zero? || prev_metrics[0].time + 30 * 60 < current_time
+end
+
+speedtest = SpeedtestWithMemory.new
+prev_metrics = speedtest.prev_metrics
+time = Time.now
+metrics =
+  if should_measure?(time, speedtest.prev_metrics)
+    speedtest.measure(time)
+  else
+    prev_metrics.map { |metric| Metric.new(metric.name, metric.value, time) }
+  end
+metrics.each { |metric| puts metric }

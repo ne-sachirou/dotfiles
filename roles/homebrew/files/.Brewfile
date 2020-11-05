@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 
 tap 'AdoptOpenJDK/openjdk'
+tap 'aquasecurity/trivy'
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
 tap 'homebrew/cask'
@@ -60,6 +61,7 @@ brew 'sbt'
 brew 'scalacenter/bloop/bloop', restart_service: true
 brew 'shellcheck'
 brew 'sl'
+brew 'speedtest-cli'
 brew 'sshuttle'
 brew 'stern'
 brew 'the_silver_searcher'

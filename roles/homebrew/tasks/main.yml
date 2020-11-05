@@ -1,5 +1,5 @@
 ---
-- name: Tap Homebrew Bundle
+- name: brew tap Homebrew/bundle
   homebrew_tap: tap=Homebrew/bundle
 
 - name: brew update

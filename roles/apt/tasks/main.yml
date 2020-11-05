@@ -35,6 +35,7 @@
     - rlwrap  # for Clojure REPL
     - shellcheck
     - silversearcher-ag
+    - speedtest-cli
     - texinfo  # Emacs
     - unixodbc-dev  # Erlang/OTP
     - xsltproc  # Erlang/OTP
