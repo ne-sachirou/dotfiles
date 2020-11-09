@@ -2,6 +2,7 @@
 
 require 'json'
 
+# Metric for Mackerel.
 class Metric
   def self.from_s(expression)
     name, value_s, time_s = expression.split("\t")
@@ -21,11 +22,12 @@ class Metric
   end
 end
 
+# Runner for speedtest-cli.
 class Speedtest
   def measure(time)
     out_r, out_w = IO.pipe
     err_r, err_w = IO.pipe
-    pid = spawn('speedtest --json', out: out_w, err: err_w)
+    pid = spawn('/usr/local/bin/speedtest --json --secure', out: out_w, err: err_w)
     Process.wait(pid)
     out_w.close
     err_w.close
@@ -33,36 +35,70 @@ class Speedtest
 
     result = JSON.parse(out_r.read)
     [
-      Metric.new('speedtest.download', result['download'], time),
-      Metric.new('speedtest.upload', result['upload'], time),
-      Metric.new('speedtest.ping', result['ping'], time)
+      Metric.new('speedtest.speed.download', result['download'] / 8, time),
+      Metric.new('speedtest.speed.upload', result['upload'] / 8, time),
+      Metric.new('speedtest.ping.ping', result['ping'], time)
     ]
   end
 end
 
-class SpeedtestWithMemory
-  MEMORY_FILE = '/tmp/mackerel-plugin-speedtest'.freeze
+# Runner for speedtest-cli. Cache the result.
+class SpeedtestWithCache
+  CACHE_FILE = '/tmp/mackerel-plugin-speedtest'.freeze
 
   def measure(time)
     metrics = Speedtest.new.measure(time)
-    IO.write(MEMORY_FILE, metrics.map(&:to_s).join("\n"), mode: 'w', encoding: Encoding::UTF_8)
+    IO.write(CACHE_FILE, metrics.map(&:to_s).join("\n"), mode: 'w', encoding: Encoding::UTF_8)
     metrics
   end
 
   def prev_metrics
-    return [] unless File.exist?(MEMORY_FILE)
+    return [] unless File.exist?(CACHE_FILE)
 
-    IO.readlines(MEMORY_FILE, mode: 'r', encoding: Encoding::UTF_8, chomp: true).map { |line| Metric.from_s(line) }
+    IO.readlines(CACHE_FILE, mode: 'r', encoding: Encoding::UTF_8, chomp: true)
+      .map { |line| Metric.from_s(line) }
   end
 end
 
-def should_measure?(current_time, prev_metrics)
-  return true if prev_metrics.empty?
-
-  (current_time.to_i / 60 % 30).zero? || prev_metrics[0].time + 30 * 60 < current_time
+def print_meta
+  puts '# mackerel-agent-plugin'
+  puts({
+    graphs: {
+      'speedtest.speed': {
+        label: 'Speedtest',
+        unit: 'bytes',
+        metrics: [
+          { name: 'download', lebel: 'download' },
+          { name: 'upload', lebel: 'upload' }
+        ]
+      },
+      'speedtest.ping': {
+        label: 'Speedtest Ping',
+        unit: 'float',
+        metrics: [
+          { name: 'ping', lebel: 'ping' } # seconds
+        ]
+      }
+    }
+  }.to_json)
 end
 
-speedtest = SpeedtestWithMemory.new
+# Should run speedtest-cli once in a 10 minutes.
+def should_measure?(current_time, prev_metrics)
+  duration = 10
+  prev_metrics.empty? ||
+    prev_metrics[0].time + duration * 60 < current_time ||
+    (
+      prev_metrics[0].time + 1 * 60 > current_time &&
+      (current_time.to_i / 60 % duration).zero?
+    )
+end
+
+if ENV['MACKEREL_AGENT_PLUGIN_META'] == '1'
+  print_meta
+  exit 0
+end
+speedtest = SpeedtestWithCache.new
 prev_metrics = speedtest.prev_metrics
 time = Time.now
 metrics =
