@@ -15,7 +15,8 @@
   shell: >-
     set -ex && \
     asdf local ruby {{ item[0] }} && \
-    gem install {{ item[1] }}
+    gem install {{ item[1] }} && \
+    asdf reshim ruby
   with_nested:
     - "{{ versions }}"
     - - rubocop

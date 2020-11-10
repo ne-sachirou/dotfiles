@@ -15,7 +15,8 @@
   shell: >-
     set -ex && \
     asdf local perl {{ item[0] }} && \
-    cpanm {{ item[1] }}
+    cpanm {{ item[1] }} && \
+    asdf reshim perl
   with_nested:
     - "{{ versions }}"
     - - Carton

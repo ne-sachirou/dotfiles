@@ -14,7 +14,8 @@
 - name: npm install
   shell: >-
     asdf local nodejs {{ item[0] }} && \
-    npm install -g {{ item[1] }}
+    npm install -g {{ item[1] }} && \
+    asdf reshim nodejs
   with_nested:
     - "{{ versions }}"
     - - "@google/clasp"
@@ -31,7 +32,7 @@
 - name: npm update -g
   shell: >-
     asdf local nodejs {{ item }} && \
-    npm update -g
+    npm update -g || true
   with_items: "{{ versions }}"
 
 - name: asdf global nodejs
