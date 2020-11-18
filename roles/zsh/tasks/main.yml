@@ -23,11 +23,14 @@
     git-prompt.sh: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
     lazyenv.bash: https://raw.githubusercontent.com/takezoh/lazyenv/master/lazyenv.bash
 
-- name: zplug
-  git: repo=https://github.com/zplug/zplug.git depth=1 dest={{ ansible_env.HOME }}/.zplug
+- name: zinit
+  git: repo=https://github.com/zdharma/zinit.git depth=1 dest={{ ansible_env.HOME }}/.zinit/bin
 
-- name: zplug update
-  command: zsh -c 'source ~/.zshrc; if ! zplug check; then zplug install; fi; zplug update'
+- name: zinit self-update
+  command: zinit self-update
+
+- name: zinit update --all
+  command: zinit update --all
 
 - name: ~/.local/bin/
   file: path={{ ansible_env.HOME }}/.local/bin/ state=directory

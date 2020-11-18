@@ -8,16 +8,17 @@ zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 # }}} init
 
-# {{{ zplug
-export ZPLUG_HOME=$HOME/.zplug
-. "$ZPLUG_HOME/init.zsh"
-touch "$ZPLUG_LOADFILE"
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "mollifier/anyframe"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting"
-# }}} zplug
+# {{{ zinit
+. ~/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+zinit ice src"init.sh"
+zinit light b4b4r07/enhancd
+zinit light mollifier/anyframe
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-syntax-highlighting
+# }}} zinit
 
 . ~/.asdf/asdf.sh
 if [[ -a /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then
@@ -131,9 +132,7 @@ linux*)
   ;;
 esac
 
-zplug load
-
-if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' ~/.zcompdump) / 86400)) ]; then
+if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' $HOME/.zcompdump) / 86400)) ]; then
   compinit
 else
   compinit -C

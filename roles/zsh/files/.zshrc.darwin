@@ -1,5 +1,7 @@
-zplug "plugins/osx", from:oh-my-zsh
-zplug "modules/osx", from:prezto
+zinit ice pick"plugins/osx"
+zinit light ohmyzsh/ohmyzsh
+zinit ice pick"modules/osx"
+zinit light sorin-ionescu/prezto
 
 _docker_init() {
   . /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
