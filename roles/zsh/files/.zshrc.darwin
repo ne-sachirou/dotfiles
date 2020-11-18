@@ -1,3 +1,5 @@
+fpath=(/usr/local/share/zsh/functions /usr/share/zsh/*/functions /usr/local/Cellar/git/*/share/zsh/site-functions $fpath)
+
 zinit ice pick"plugins/osx"
 zinit light ohmyzsh/ohmyzsh
 zinit ice pick"modules/osx"
@@ -12,7 +14,6 @@ eval "$(lazyenv.load _docker_init docker docker-compose docker-machine)"
 
 CFLAGS="-I$(xcrun --show-sdk-path)/usr/include -O2 -g"
 CPPFLAGS="$CPPFLAGS -I/usr/local/opt/readline/include -I/usr/local/opt/v8/include -I/usr/local/opt/openssl/include -I/usr/local/opt/zlib/include"
-FPATH=/usr/local/share/zsh/site-functions:$FPATH
 HOMEBREW_GITHUB_API_TOKEN=$(private-values get dotfiles.GITHUB_API_TOKEN)
 LDFLAGS="$LDFLAGS -L/usr/local/opt/readline/lib -L/usr/local/opt/v8/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib"
 PATH="$PATH:/usr/local/opt/openssl/bin:/Applications/ImageOptim.app/Contents/MacOS:/usr/local/opt/postgresql@9.6/bin"

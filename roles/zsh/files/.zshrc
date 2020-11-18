@@ -1,11 +1,12 @@
 # zmodload zsh/zprof && zprof
 
-fpath=(/usr/local/share/zsh/functions ~/.zsh ~/.asdf/completions "$fpath")
+fpath=(~/.zsh ~/.asdf/completions $fpath)
 
 # {{{ init
 bindkey -e
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
+compinit
 # }}} init
 
 # {{{ zinit
@@ -132,11 +133,11 @@ linux*)
   ;;
 esac
 
-if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' $HOME/.zcompdump) / 86400)) ]; then
-  compinit
-else
-  compinit -C
-fi
+# if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' $HOME/.zcompdump) / 86400)) ]; then
+#   compinit
+# else
+#   compinit -C
+# fi
 
 # zprof
 
