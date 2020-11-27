@@ -37,7 +37,9 @@
       versions: ["5.32.0"]
     # - private_values
     - role: python
-      versions: ["3.9.0"]
+      versions:
+        - "3.9.0"
+        - "3.7.2"
     - role: ruby
       versions:
         - "2.7.1"
