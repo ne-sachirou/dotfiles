@@ -207,6 +207,11 @@
 ;; csharp-mode
 
 ;; dap-mode
+(dap-mode 1)
+(dap-ui-mode 1)
+(dap-tooltip-mode 1)
+(tooltip-mode 1)
+(dap-ui-controls-mode 1)
 
 ;; docker-tramp
 (require 'docker-tramp-compat)
@@ -293,9 +298,9 @@
 (setq lsp-enable-snippet nil)
 (setq lsp-prefer-capf t)
 (setq lsp-prefer-flymake nil)
-(add-hook 'lsp-mode-hook #'dap)
-(add-hook 'lsp-mode-hook #'dap-ui)
-(add-hook 'lsp-mode-hook #'lsp-lens)
+(add-hook 'lsp-mode-hook #'dap-mode)
+(add-hook 'lsp-mode-hook #'dap-ui-mode)
+(add-hook 'lsp-mode-hook #'lsp-lens-mode)
 
 ;; lsp-ui
 
