@@ -79,7 +79,6 @@ Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'kongo2002/fsharp-vim', {'for': 'fsharp'}
 Plug 'mgrabovsky/vim-cuesheet', {'for': 'cue'}
 Plug 'motemen/hatena-vim', {'for': 'hatena'}
-Plug 'rhysd/vim-crystal', {'for': 'crystal'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'slim-template/vim-slim', {'for': 'slim'}
 Plug 'smerrill/vcl-vim-plugin', {'for': 'vcl'}

@@ -123,7 +123,6 @@
     (url-retrieve-synchronously "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
     (goto-char (point-max))
     (eval-print-last-sexp)))
-(el-get-bundle 'crystal-mode)
 ; (el-get-bundle 'overtone-emacs-live
 ;   :type http-zip
 ;   :url "https://github.com/overtone/emacs-live/archive/master.zip"
