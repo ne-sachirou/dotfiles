@@ -69,6 +69,7 @@
         - marp-team.marp-vscode
         - mjmcloug.vscode-elixir
         - ms-python.python
+        - ms-toolsai.jupyter
         - ms-vsliveshare.vsliveshare
         - msjsdiag.debugger-for-chrome
         - pgourlain.erlang
