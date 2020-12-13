@@ -25,6 +25,7 @@
     - libpng-dev # Erlang/OTP
     - libreadline-dev # Ruby
     - librsvg2-dev # Emacs
+    - libsqlite3-dev # Python
     - libssh-dev # Erlang/OTP
     - libssl-dev # Ruby
     - libtiff-dev # Emacs

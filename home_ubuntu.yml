@@ -24,7 +24,9 @@
       versions: ["15.4.0"]
     - private_values
     - role: python
-      versions: ["3.9.1"]
+      versions:
+        - "3.9.0"
+        - "3.7.9" # Transcrypt needs 3.7.x
     - vim
     - zsh
 # ~/profile
