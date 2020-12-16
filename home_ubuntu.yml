@@ -10,21 +10,21 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.1.4"]
+      versions: ["23.2"]
       elixir:
         versions: ["1.11.2-otp-23"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
     - role: golang
-      versions: ["1.15.5"]
+      versions: ["1.15.6"]
     - role: haskell
       versions: ["8.10.2"]
     - role: nodejs
-      versions: ["15.3.0"]
+      versions: ["15.4.0"]
     - private_values
     - role: python
-      versions: ["3.9.0"]
+      versions: ["3.9.1"]
     - vim
     - zsh
 
