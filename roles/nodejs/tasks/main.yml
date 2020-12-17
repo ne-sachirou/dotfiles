@@ -6,7 +6,10 @@
   ignore_errors: true
 
 - name: asdf install nodejs
-  command: "asdf install nodejs {{ item }}"
+  shell: >-
+    bash -c '{{ ansible_env.HOME }}/.asdf/plugins/nodejs/bin/import-release-team-keyring'
+    bash -c '{{ ansible_env.HOME }}/.asdf/plugins/nodejs/bin/import-previous-release-team-keyring'
+    asdf install nodejs {{ item }}
   args:
     creates: "{{ ansible_env.HOME }}/.asdf/installs/nodejs/{{ item }}"
   with_items: "{{ versions }}"
