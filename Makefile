@@ -18,9 +18,9 @@ install: ## ansible-playbook
 
 .PHONY: format
 format: ## Format files.
-	ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}
+	# ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}
 	npx prettier --write README.md
-	find . -name '*.yml' -exec prettier --write {} \+
+	find . -name '*.yml' -exec npx prettier --write {} \+
 	find . -name '*.py' -exec black {} \+
 	find . -name '*.py' -exec isort {} \+
 

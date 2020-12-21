@@ -27,7 +27,6 @@
       versions: ["3.9.1"]
     - vim
     - zsh
-
 # ~/profile
 # export DOCKER_HOST="tcp://0.0.0.0:2375"
 # PATH="$HOME/.poetry/bin:$PATH"
