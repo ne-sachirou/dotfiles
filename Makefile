@@ -21,6 +21,8 @@ format: ## Format files.
 	ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}
 	npx prettier --write README.md
 	find . -name '*.yml' -exec prettier --write {} \+
+	find . -name '*.py' -exec black {} \+
+	find . -name '*.py' -exec isort {} \+
 
 .PHONY: test
 test: ## Test.

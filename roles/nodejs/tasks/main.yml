@@ -1,54 +1,11 @@
 ---
-- name: asdf plugin add nodejs
-  command: asdf plugin add nodejs
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/plugins/nodejs"
-  ignore_errors: true
-
 - name: asdf install nodejs
-  shell: >-
-    bash -c '{{ ansible_env.HOME }}/.asdf/plugins/nodejs/bin/import-release-team-keyring'
-    bash -c '{{ ansible_env.HOME }}/.asdf/plugins/nodejs/bin/import-previous-release-team-keyring'
-    asdf install nodejs {{ item }}
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/installs/nodejs/{{ item }}"
-  with_items: "{{ versions }}"
+  asdf:
+    plugin: nodejs
+    versions: "{{ versions }}"
+    global: "{{ global | default(versions[0]) }}"
 
-- name: npm install
-  shell: >-
-    asdf local nodejs {{ item[0] }} && \
-    npm install -g {{ item[1] }} && \
-    asdf reshim nodejs
-  with_nested:
-    - "{{ versions }}"
-    - - "@google/clasp"
-      - "@marp-team/marp-cli"
-      - npm-check-updates
-      - npm-safety-updater
-      - prettier
-      - textlint
-      - typescript
-      - typescript-language-server
-      - yarn
-      - yarn-deduplicate
-
-- name: npm update -g
-  shell: >-
-    asdf local nodejs {{ item }} && \
-    npm update -g || true
-  with_items: "{{ versions }}"
-
-- name: asdf global nodejs
-  command: "asdf global nodejs {{ global | default(versions[0]) }}"
-
-- name: asdf list nodejs
-  command: asdf list nodejs
-  register: asdf_list_nodejs
-  changed_when: false
-  check_mode: false
-
-- name: asdf uninstall nodejs
-  command: "asdf uninstall nodejs {{ item }}"
-  with_items: "{{ asdf_list_nodejs.stdout.split('\n') | map('trim') | list }}"
-  when: >-
-    item not in versions
+- include: npm.yml
+  loop: "{{ versions }}"
+  vars:
+    version: "{{ item }}"

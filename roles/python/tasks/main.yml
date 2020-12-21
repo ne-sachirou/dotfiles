@@ -18,7 +18,9 @@
     asdf reshim python
   with_nested:
     - "{{ versions }}"
-    - - poetry
+    - - black
+      - isort
+      - poetry
       - python-language-server[all]
 
 - name: asdf global python

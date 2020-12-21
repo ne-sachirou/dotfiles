@@ -1,0 +1,28 @@
+---
+- name: asdf local
+  command: asdf local nodejs {{ version }}
+
+- name: npm update -g
+  command: npm update -g
+  ignore_errors: yes
+
+- name: npm install -g
+  command: npm install -g {{ item }}
+  # community.general.npm:
+  #   global: yes
+  #   name: "{{ item }}"
+  #   state: latest
+  loop:
+    - "@google/clasp"
+    - "@marp-team/marp-cli"
+    - npm-check-updates
+    - npm-safety-updater
+    - prettier
+    - textlint
+    - typescript
+    - typescript-language-server
+    - yarn
+    - yarn-deduplicate
+
+- name: asdf reshim
+  command: asdf reshim nodejs
