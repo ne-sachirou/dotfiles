@@ -34,6 +34,12 @@
     owner: root
   become: true
 
+- name: ~/.config/rebar3
+  file: path={{ ansible_env.HOME }}/.config/rebar3 state=directory
+
+- name: rebar.config
+  file: path={{ ansible_env.HOME }}/.config/rebar3/rebar.config src={{ role_path }}/files/rebar.config state=link
+
 - name: rebar3 local install
   command: rebar3 local install
 
