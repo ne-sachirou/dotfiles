@@ -172,6 +172,7 @@
 
 ;; clojure-mode
 (add-hook 'clojure-mode-hook #'subword-mode)
+(add-to-list 'auto-mode-alist '("\\.clje\\'" . clojure-mode))
 
 ;; coffee-mode
 
