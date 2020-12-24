@@ -114,6 +114,8 @@
 (add-hook 'yaml-mode-hook
   '(lambda () (set (make-local-variable 'delete-trailing-whitespece-before-save) nil)))
 
+(add-to-list 'auto-mode-alist '("\\.t\\'" . perl-mode))
+
 (require 'linum)
 (global-linum-mode 1)
 
