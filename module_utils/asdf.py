@@ -164,8 +164,8 @@ class ErlangVersion(Version):
 
     def __init__(self, major: int, minor: int, patch: int, patch2: int):
         """Initialize."""
-        super().__init__(major, minor, patch)
-        self.patch2 = int(patch2)
+        super().__init__(major, minor, patch or 0)
+        self.patch2 = int(patch2 or 0)
 
     def __gt__(self, other: object) -> bool:
         """Greater than."""
@@ -274,6 +274,11 @@ class ToolVersions:
 class Asdf:
     """Run asdf."""
 
+    def update(self) -> None:
+        """Update asdf itself."""
+        subprocess.run(["asdf", "update"], check=True)
+        subprocess.run(["asdf", "plugin", "update", "--all"], check=True)
+
     def list_all_plugins(self) -> t.List[str]:
         """asdf plugin list all."""
         process = subprocess.run(
@@ -293,7 +298,7 @@ class Asdf:
         )
         return process.stdout.splitlines()
 
-    def add_plugin(self, plugin_name: str):
+    def add_plugin(self, plugin_name: str) -> None:
         """asdf plugin add."""
         subprocess.run(["asdf", "plugin", "add", plugin_name], check=True)
 
@@ -307,7 +312,10 @@ class Asdf:
         )
         version_cls = Version.version_of(plugin_name)
         return list(
-            map(lambda line: version_cls.from_s(line), process.stdout.splitlines())
+            filter(
+                lambda version: version is not None,
+                map(lambda line: version_cls.from_s(line), process.stdout.splitlines()),
+            )
         )
 
     def list_versions(self, plugin_name: str) -> t.List[Version]:
@@ -317,13 +325,16 @@ class Asdf:
         )
         version_cls = Version.version_of(plugin_name)
         return list(
-            map(
-                lambda line: version_cls.from_s(line.lstrip()),
-                process.stdout.splitlines(),
+            filter(
+                lambda version: version is not None,
+                map(
+                    lambda line: version_cls.from_s(line.lstrip()),
+                    process.stdout.splitlines(),
+                ),
             )
         )
 
-    def install_version(self, plugin_name: str, version: Version):
+    def install_version(self, plugin_name: str, version: Version) -> None:
         """asdf install."""
         if plugin_name == "nodejs":
             subprocess.run(
@@ -336,22 +347,22 @@ class Asdf:
             )
         subprocess.run(["asdf", "install", plugin_name, str(version)], check=True)
 
-    def uninstall_version(self, plugin_name: str, version: Version):
+    def uninstall_version(self, plugin_name: str, version: Version) -> None:
         """asdf uninstall."""
         subprocess.run(["asdf", "uninstall", plugin_name, str(version)], check=True)
 
-    def set_global_version(self, plugin_name: str, version: Version):
+    def set_global_version(self, plugin_name: str, version: Version) -> None:
         """asdf global."""
         subprocess.run(["asdf", "global", plugin_name, str(version)], check=True)
 
-    def set_local_version(self, plugin_name: str, version: Version):
+    def set_local_version(self, plugin_name: str, version: Version) -> None:
         """asdf local."""
         subprocess.run(["asdf", "local", plugin_name, str(version)], check=True)
 
-    def unset_local_version(self, plugin_name: str):
+    def unset_local_version(self, plugin_name: str) -> None:
         """."""
         raise NotImplementedError()
 
-    def reshim(self, plugin_name: str):
+    def reshim(self, plugin_name: str) -> None:
         """asdf reshim."""
         subprocess.run(["asdf", "reshim", plugin_name], check=True)
