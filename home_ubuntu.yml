@@ -5,12 +5,12 @@
     - role: asdf
       asdf_version: v0.8.0
     - role: clojure
-      versions: ["1.10.1"]
+      versions: ["1.10.1.739"]
     # - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.2"]
+      versions: ["23.2.1"]
       elixir:
         versions: ["1.11.2-otp-23"]
     - role: git
@@ -19,13 +19,13 @@
     - role: golang
       versions: ["1.15.6"]
     - role: haskell
-      versions: ["8.10.2"]
+      versions: ["8.10.3"]
     - role: nodejs
-      versions: ["15.4.0"]
+      versions: ["14.15.1"]
     - private_values
     - role: python
       versions:
-        - "3.9.0"
+        - "3.9.1"
         - "3.7.9" # Transcrypt needs 3.7.x
     - vim
     - zsh

@@ -32,9 +32,6 @@ if __name__ == "__main__":
     asdf = Asdf()
     asdf.update()
     check_updates(asdf)
-    # subprocess.run(
-    #     ["sh", "-c", "asdf plugin list | xargs -t -I{} asdf list {}"], check=True
-    # )
     subprocess.run(
         [
             "sh",
