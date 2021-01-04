@@ -24,10 +24,10 @@ notes: []
 EXAMPLES = """
 - name: Lookup a private-values value.
   debug:
-    msg: "{{ lookup('private_values', 'get', 'example_project', 'EXAMPLE_KEY') }}"
+    msg: "{{ lookup('private_values', 'get example_project EXAMPLE_KEY') }}"
 - name: Lookup a private-values project path.
   debug:
-    msg: "{{ lookup('private_values', 'path', 'example_project') }}"
+    msg: "{{ lookup('private_values', 'path example_project') }}"
 """
 
 RETURN = """
