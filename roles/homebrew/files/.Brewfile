@@ -52,7 +52,6 @@ brew 'nss' # mkcert Firefox
 brew 'openapi-generator'
 brew 'peco'
 brew 'plantuml'
-brew 'ponyc'
 brew 'postgresql@11', link: true, restart_service: true
 brew 'pstree'
 brew 'redis', restart_service: true
