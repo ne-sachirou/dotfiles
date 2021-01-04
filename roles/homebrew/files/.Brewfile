@@ -1,7 +1,6 @@
 # -*- mode: ruby -*-
 
 tap 'AdoptOpenJDK/openjdk'
-tap 'aquasecurity/trivy'
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
 tap 'homebrew/cask'
@@ -12,7 +11,6 @@ tap 'scalacenter/bloop'
 
 brew 'ansible'
 brew 'ansible-lint'
-brew 'aquasecurity/trivy/trivy'
 brew 'assh'
 brew 'autoconf'
 brew 'awscli'
