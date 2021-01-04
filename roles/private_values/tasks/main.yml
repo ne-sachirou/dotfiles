@@ -2,7 +2,7 @@
 - name: Get browser_download_url on Linux
   shell:
     cmd: |
-      curl -L -H "Authorization:$(private-values get dotfiles.GITHUB_API_TOKEN)" https://api.github.com/repos/ne-sachirou/private-values/releases/latest | \
+      curl -L -H "Authorization:{{ lookup('private_values', 'get dotfiles GITHUB_API_TOKEN') }}" https://api.github.com/repos/ne-sachirou/private-values/releases/latest | \
         jq -r '.assets[] | select(.name == "private-values-linux-x64") | .browser_download_url'
   args:
     warn: false

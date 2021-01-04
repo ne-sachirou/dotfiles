@@ -11,6 +11,7 @@ ANSIBLE_METADATA = {
     "status": ["preview"],
     "supported_by": "community",
 }
+
 DOCUMENTATION = """
 ---
 module: asdf
@@ -35,6 +36,7 @@ options:
 author:
   - "ne_Sachirou (@ne-sachirou)"
 """
+
 EXAMPLES = """
 # Install Python plugin and Python.
 - asdf:
@@ -44,6 +46,7 @@ EXAMPLES = """
     - "3.8.6"
   global: "3.9.1"
 """
+
 RETURN = """
 changed:
   description: Is changed or not.

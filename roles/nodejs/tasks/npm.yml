@@ -4,7 +4,7 @@
 
 - name: npm update -g
   command: npm update -g
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: npm install -g
   command: npm install -g {{ item }}
