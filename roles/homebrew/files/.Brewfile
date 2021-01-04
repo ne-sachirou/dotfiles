@@ -46,9 +46,12 @@ brew 'libav' # youtube-dl
 brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
 brew 'mackerelio/mackerel-agent/mkr'
 brew 'mas'
+brew 'maven'
 brew 'mkcert'
+brew 'mono'
 brew 'noti'
 brew 'nss' # mkcert Firefox
+brew 'nuget'
 brew 'openapi-generator'
 brew 'peco'
 brew 'plantuml'
