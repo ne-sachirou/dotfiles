@@ -1,39 +1,11 @@
 ---
-- name: asdf plugin add python
-  command: asdf plugin add python
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/plugins/python"
-  ignore_errors: true
-
 - name: asdf install python
-  command: "asdf install python {{ item }}"
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/installs/python/{{ item }}"
-  with_items: "{{ versions }}"
+  asdf:
+    plugin: python
+    versions: "{{ versions }}"
+    global: "{{ global | default(versions[0]) }}"
 
-- name: pip install --user
-  shell: >-
-    asdf local python {{ item[0] }} && \
-    pip install --user {{ item[1] }} && \
-    asdf reshim python
-  with_nested:
-    - "{{ versions }}"
-    - - black
-      - isort
-      - poetry
-      - python-language-server[all]
-
-- name: asdf global python
-  command: "asdf global python {{ global | default(versions[0]) }}"
-
-- name: asdf list python
-  command: asdf list python
-  register: asdf_list_python
-  changed_when: false
-  check_mode: false
-
-- name: asdf uninstall python
-  command: "asdf uninstall python {{ item }}"
-  with_items: "{{ asdf_list_python.stdout.split('\n') | map('trim') | list }}"
-  when: >-
-    item not in versions
+- include: pip.yml
+  loop: "{{ versions }}"
+  vars:
+    version: "{{ item }}"

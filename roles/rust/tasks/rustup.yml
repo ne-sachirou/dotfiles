@@ -1,0 +1,9 @@
+---
+- name: asdf local
+  command: asdf local rust {{ version }}
+
+- name: rustup update
+  command: rustup update {{ version }}
+
+- name: asdf reshim
+  command: asdf reshim rust

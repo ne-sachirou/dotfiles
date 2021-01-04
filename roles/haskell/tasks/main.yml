@@ -1,27 +1,6 @@
 ---
-- name: asdf plugin add haskell
-  command: asdf plugin add haskell
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/plugins/haskell"
-  ignore_errors: true
-
 - name: asdf install haskell
-  command: "asdf install haskell {{ item }}"
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/installs/haskell/{{ item }}"
-  with_items: "{{ versions }}"
-
-- name: asdf global haskell
-  command: "asdf global haskell {{ global | default(versions[0]) }}"
-
-- name: asdf list haskell
-  command: asdf list haskell
-  register: asdf_list_haskell
-  changed_when: false
-  check_mode: false
-
-- name: asdf uninstall haskell
-  command: "asdf uninstall haskell {{ item }}"
-  with_items: "{{ asdf_list_haskell.stdout.split('\n') | map('trim') | list }}"
-  when: >-
-    item not in versions
+  asdf:
+    plugin: haskell
+    versions: "{{ versions }}"
+    global: "{{ global | default(versions[0]) }}"

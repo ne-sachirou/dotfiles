@@ -1,0 +1,11 @@
+---
+- name: asdf local
+  command: asdf local perl {{ version }}
+
+- name: cpanm
+  command: cpanm {{ item }}
+  loop:
+    - Carton
+
+- name: asdf reshim
+  command: asdf reshim perl

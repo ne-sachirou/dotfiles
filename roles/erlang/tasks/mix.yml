@@ -1,0 +1,15 @@
+---
+- name: asdf local
+  command: asdf local elixir {{ version }}
+
+- name: mix local.hex --force
+  command: mix local.hex --force
+
+- name: mix local.rebar --force
+  command: mix local.rebar --force
+
+- name: mix archive.install hex phx_new --force
+  command: mix archive.install hex phx_new --force
+
+- name: asdf reshim
+  command: asdf reshim elixir

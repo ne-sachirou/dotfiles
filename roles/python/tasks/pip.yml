@@ -1,0 +1,14 @@
+---
+- name: asdf local
+  command: asdf local python {{ version }}
+
+- name: pip install --user
+  command: pip install --user {{ item }}
+  loop:
+    - black
+    - isort
+    - poetry
+    - python-language-server[all]
+
+- name: asdf reshim
+  command: asdf reshim python

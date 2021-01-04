@@ -1,0 +1,15 @@
+---
+- name: asdf local
+  command: asdf local ruby {{ version }}
+
+- name: gem update
+  shell: gem update --system && gem update
+
+- name: gem install
+  command: gem install {{ item }}
+  loop:
+    - rubocop
+    - serverspec
+
+- name: asdf reshim
+  command: asdf reshim ruby

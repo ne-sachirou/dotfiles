@@ -1,30 +1,9 @@
 ---
-- name: asdf plugin add erlang
-  command: asdf plugin add erlang
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/plugins/erlang"
-  ignore_errors: true
-
 - name: asdf install erlang
-  command: "asdf install erlang {{ item }}"
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/installs/erlang/{{ item }}"
-  with_items: "{{ versions }}"
-
-- name: asdf global erlang
-  command: "asdf global erlang {{ global | default(versions[0]) }}"
-
-- name: asdf list erlang
-  command: asdf list erlang
-  register: asdf_list_erlang
-  changed_when: false
-  check_mode: false
-
-- name: asdf uninstall erlang
-  command: "asdf uninstall erlang {{ item }}"
-  with_items: "{{ asdf_list_erlang.stdout.split('\n') | map('trim') | list }}"
-  when: >-
-    item not in versions
+  asdf:
+    plugin: erlang
+    versions: "{{ versions }}"
+    global: "{{ global | default(versions[0]) }}"
 
 - name: Install rebar3
   get_url:

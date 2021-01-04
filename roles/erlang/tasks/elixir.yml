@@ -1,38 +1,11 @@
 ---
-- name: asdf plugin add elixir
-  command: asdf plugin add elixir
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/plugins/elixir"
-  ignore_errors: true
-
 - name: asdf install elixir
-  command: "asdf install elixir {{ item }}"
-  args:
-    creates: "{{ ansible_env.HOME }}/.asdf/installs/elixir/{{ item }}"
-  with_items: "{{ elixir.versions }}"
+  asdf:
+    plugin: elixir
+    versions: "{{ elixir.versions }}"
+    global: "{{ elixir.global | default(elixir.versions[0]) }}"
 
-- name: mix archive.install
-  shell: >-
-    set -ex && \
-    asdf local elixir {{ item[0] }} && \
-    mix {{ item[1] }}
-  with_nested:
-    - "{{ elixir.versions }}"
-    - - local.hex --force
-      - local.rebar --force
-      - archive.install hex phx_new --force
-
-- name: asdf global elixir
-  command: "asdf global elixir {{ elixir.global | default(elixir.versions[0]) }}"
-
-- name: asdf list elixir
-  command: asdf list elixir
-  register: asdf_list_elixir
-  changed_when: false
-  check_mode: false
-
-- name: asdf uninstall elixir
-  command: "asdf uninstall elixir {{ item }}"
-  with_items: "{{ asdf_list_elixir.stdout.split('\n') | map('trim') | list }}"
-  when: >-
-    item not in elixir.versions
+- include: mix.yml
+  loop: "{{ elixir.versions }}"
+  vars:
+    version: "{{ item }}"
