@@ -171,6 +171,7 @@
 ;; ag
 
 ;; cider
+(add-hook 'clojure-mode-hook #'cider-mode)
 
 ;; clojure-mode
 (add-hook 'clojure-mode-hook #'subword-mode)
