@@ -12,7 +12,7 @@
     - role: erlang
       versions: ["23.2.1"]
       elixir:
-        versions: ["1.11.2-otp-23"]
+        versions: ["1.11.3-otp-23"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
@@ -21,7 +21,7 @@
     - role: haskell
       versions: ["8.10.3"]
     - role: nodejs
-      versions: ["14.15.3"]
+      versions: ["14.15.4"]
     - private_values
     - role: python
       versions:

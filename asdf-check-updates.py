@@ -28,7 +28,7 @@ def check_updates(asdf: Asdf) -> None:
 
 if __name__ == "__main__":
     if os.path.exists(".tool-versions"):
-        os.remove(".tool-version")
+        os.remove(".tool-versions")
     asdf = Asdf()
     asdf.update()
     check_updates(asdf)
