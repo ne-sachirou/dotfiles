@@ -48,7 +48,7 @@ export EDITOR GOPATH HISTFILE HISTSIZE LESS MACKEREL_APIKEY OP_SESSION_hatena PA
 
 alias be='bundle exec'
 alias g=git
-alias j='docker run -it --rm nesachirou/jlang'
+alias j='docker run -it -v "$(pwd):/mnt" --rm nesachirou/jlang'
 alias k=kubectl
 alias pv=private-values
 alias ssh='assh wrapper ssh'
