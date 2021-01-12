@@ -56,9 +56,16 @@ alias ssh='assh wrapper ssh'
 #alias vi='emacsclient -nw'
 function vi() {
   if test "$(stat "$1" > /dev/null || echo $?)" ; then
-    touch "$1"
+    echo -n "Create a file? (y/N): "
+    read yn
+    case "$yn" in
+      [yY]*) touch "$1"
+             emacsclient -nw "$1" ;;
+      *) : ;;
+    esac
+  else
+    emacsclient -nw "$1"
   fi
-  emacsclient -nw "$1"
 }
 
 # {{{ history
