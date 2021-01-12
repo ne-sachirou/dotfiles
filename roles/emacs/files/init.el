@@ -17,6 +17,7 @@
     counsel
     csharp-mode
     dap-mode
+    diminish
     docker-tramp
     dockerfile-mode
     doom-themes
@@ -97,6 +98,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(menu-bar-mode -1)
+(tool-bar-mode 0)
 
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
@@ -214,6 +218,19 @@
 (dap-tooltip-mode 1)
 (tooltip-mode 1)
 (dap-ui-controls-mode 1)
+
+;; diminish
+; 指定したマイナーモードを表示しない(diminish篇) - Qiita https://qiita.com/tadsan/items/c859c5c04724cbda75fc
+(defmacro safe-diminish (file mode &optional new-name)
+  "https://github.com/larstvei/dot-emacs/blob/master/init.org"
+  `(with-eval-after-load ,file
+     (diminish ,mode ,new-name)))
+(safe-diminish "company" 'company-mode)
+(safe-diminish "editorconfig" 'editorconfig-mode)
+(safe-diminish "eldoc" 'eldoc-mode)
+(safe-diminish "osx-clipboard" 'osx-clipboard-mode)
+(safe-diminish "smartparens" 'smartparens-mode)
+(safe-diminish "undo-tree" 'undo-tree-mode)
 
 ;; docker-tramp
 (require 'docker-tramp-compat)
