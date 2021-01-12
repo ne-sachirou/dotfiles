@@ -102,8 +102,6 @@
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq-default indent-tabs-mode nil)
 
-(add-to-list 'auto-mode-alist '("\\.dig\\(\\.erb\\)?\\'" . yaml-mode))
-
 (defvar delete-trailing-whitespece-before-save t)
 (make-variable-buffer-local 'delete-trailing-whitespece-before-save)
 (advice-add 'delete-trailing-whitespace :before-while
