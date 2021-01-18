@@ -12,54 +12,9 @@
   copy:
     dest: "{{ ansible_env.HOME }}/.m2/settings.xml"
     src: "{{ lookup('private_values', 'path dotfiles') }}/settings.xml"
-# set -eux
-# cd /tmp || exit 1
-# nuget install Clojure -Version 1.9.0
-# cd Clojure.1.9.0 || exit 1
-# mkdir all
-# cp -r lib/net40 all
-# cp -r tools/net40/* all/net40
-# cp -r lib/net35 all/
-# cp -r tools/net35/* all/net35/
-# cat > mklinks.sh <<-EOF
-# #!/usr/bin/env bash
-# ln -s Clojure.dll clojure.clr.io.clj.dll
-# ln -s Clojure.dll clojure.core.clj.dll
-# ln -s Clojure.dll clojure.core_clr.clj.dll
-# ln -s Clojure.dll clojure.core_deftype.clj.dll
-# ln -s Clojure.dll clojure.core_print.clj.dll
-# ln -s Clojure.dll clojure.core.protocols.clj.dll
-# ln -s Clojure.dll clojure.core_proxy.clj.dll
-# ln -s Clojure.dll clojure.genclass.clj.dll
-# ln -s Clojure.dll clojure.gvec.clj.dll
-# ln -s Clojure.dll clojure.instant.clj.dll
-# ln -s Clojure.dll clojure.main.clj.dll
-# ln -s Clojure.dll clojure.pprint.cl_format.clj.dll
-# ln -s Clojure.dll clojure.pprint.clj.dll
-# ln -s Clojure.dll clojure.pprint.column_writer.clj.dll
-# ln -s Clojure.dll clojure.pprint.dispatch.clj.dll
-# ln -s Clojure.dll clojure.pprint.pprint_base.clj.dll
-# ln -s Clojure.dll clojure.pprint.pretty_writer.clj.dll
-# ln -s Clojure.dll clojure.pprint.print_table.clj.dll
-# ln -s Clojure.dll clojure.pprint.utilities.clj.dll
-# ln -s Clojure.dll clojure.repl.clj.dll
-# ln -s Clojure.dll clojure.set.clj.dll
-# ln -s Clojure.dll clojure.stacktrace.clj.dll
-# ln -s Clojure.dll clojure.string.clj.dll
-# ln -s Clojure.dll clojure.template.clj.dll
-# ln -s Clojure.dll clojure.test.clj.dll
-# ln -s Clojure.dll clojure.uuid.clj.dll
-# ln -s Clojure.dll clojure.walk.clj.dll
-# ln -s Clojure.dll clojure.spec.cljc.dll
-# ln -s Clojure.dll clojure.spec.gen.cljc.dll
-# ln -s Clojure.dll clojure.core.specs.cljc.dll
-# ln -s Clojure.dll clojure.core.server.cljc.dll
-# ln -s Clojure.dll clojure.edn.cljc.dll
-# EOF
-# cd all/net40 || exit 1
-# bash -eux ../../mklinks.sh
-# cd ../../all/net35 || exit 1
-# bash -eux ../../mklinks.sh
-# cd ../.. || exit 1
-#
-# cd all/net40 && mono Clojure.Main.exe
+
+- name: Install babashka
+  shell: |
+    bash <(curl -s https://raw.githubusercontent.com/babashka/babashka/master/install)
+  args:
+    creates: /usr/local/bin/bb
