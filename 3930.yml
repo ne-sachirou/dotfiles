@@ -11,7 +11,7 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.2.1"]
+      versions: ["23.2.3"]
       elixir:
         versions: ["1.11.3-otp-23"]
     - role: git
@@ -19,7 +19,7 @@
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.15.6"
+        - "1.15.7"
         - "1.14.13"
         - "1.12.17"
     - role: haskell
