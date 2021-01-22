@@ -55,6 +55,7 @@ localMergedBranches = do
   return [GitBranch { remote = Nothing, branch = line } |
           line <- lines_,
           not $ "*" `isPrefixOf` line,
+          not $ " main" `isSuffixOf` line,
           not $ " master" `isSuffixOf` line,
           not $ " develop" `isSuffixOf` line]
 
@@ -65,6 +66,7 @@ localForceRemovableBranches = do
     [line |
      line <- lines_,
      not $ "*" `isPrefixOf` line,
+     not $ " main " `isInfixOf` line,
      not $ " master " `isInfixOf` line,
      not $ " develop " `isInfixOf` line,
      ": gone] " `isInfixOf` line]
@@ -81,6 +83,7 @@ remoteForceRemovableBranches = do
     [line |
      line <- lines_,
      not $ "/HEAD " `isInfixOf` line,
+     not $ "/main" `isSuffixOf` line,
      not $ "/master" `isSuffixOf` line,
      not $ "/develop" `isSuffixOf` line,
      isNothing mCubr ||
