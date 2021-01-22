@@ -33,6 +33,7 @@
     evil-tabs
     feature-mode
     flycheck
+    flycheck-golangci-lint
     go-mode
     groovy-mode
     haskell-mode
@@ -292,6 +293,11 @@
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; flycheck-golangci-lint
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+(setq flycheck-golangci-lint-fast t)
 
 ;; go-mode
 (add-hook 'go-mode-hook #'lsp-deferred)
