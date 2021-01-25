@@ -1,2 +1,28 @@
-#!/bin/bash -eux
-ag -l "$1" | xargs -I{} -t perl -pi -e"s/$1/$2/g" {}
+#!/usr/bin/env bb
+; -*- mode: clojure; -*-
+(require '[babashka.process :refer [process]])
+
+
+(defn sh
+  [& args]
+  (println "+" (str/join " " args))
+  (let [{:keys [exit out err]} (apply shell/sh args)]
+    (if (not= 0 exit) (throw (Exception. err)))
+    (println out)
+    out))
+
+
+(defn ag-l
+  [pattern]
+  (let [proc (process ["ag" "-l" pattern] {:in :inherit})]
+    (filter #(not= "" %) (-> proc :out slurp str/split-lines))))
+
+
+(let [[match replacement] *command-line-args*
+      filenames (ag-l match)]
+  (doseq [filename filenames]
+    (sh "perl"
+        "-pi"
+        "-e"
+        (str "s/" (str/replace match "/" "\\/") "/" (str/replace replacement "/" "\\/") "/g")
+        filename)))

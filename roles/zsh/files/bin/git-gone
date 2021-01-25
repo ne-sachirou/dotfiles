@@ -1,151 +1,145 @@
-#!/usr/bin/env runghc
+#!/usr/bin/env bb
+; -*- mode: clojure; -*-
 
-{-# LANGUAGE OverloadedStrings #-}
-import Control.Applicative ( liftA2 )
-import Control.Monad ( forM_ )
-import Data.List ( elemIndex, isInfixOf, isPrefixOf, isSuffixOf )
-import Data.Maybe ( catMaybes, fromJust, isNothing, listToMaybe )
-import qualified Data.Text as T
-import System.IO ( hGetLine, hIsEOF )
-import System.Process ( createProcess, readCreateProcess, shell, StdStream ( CreatePipe ), std_out )
+(ns util
+  (:require
+    [clojure.java.shell :as shell]
+    [clojure.string :as str]))
 
-main :: IO ()
-main = do
-  deleteLocalMergedBranches
-  deleteLocalBranchesInteractively
-  deleteRemoteBranchesInteractively
-  _ <- sh "git gc --auto --prune"
-  return ()
 
-deleteLocalMergedBranches :: IO ()
-deleteLocalMergedBranches = do
-  branches <- localMergedBranches
-  forM_ branches delete
+(defn sh
+  [& args]
+  (println "+" (str/join " " args))
+  (let [{:keys [exit out err]} (apply shell/sh args)]
+    (if (not= 0 exit) (throw (Exception. err)))
+    (println out)
+    out))
 
-deleteLocalBranchesInteractively :: IO ()
-deleteLocalBranchesInteractively = do
-  branches <- localForceRemovableBranches
-  forM_ branches deleteForce
 
-deleteRemoteBranchesInteractively :: IO ()
-deleteRemoteBranchesInteractively = do
-  branches <- remoteForceRemovableBranches
-  forM_ branches deleteForce
+(defn peco
+  [input {:keys [prompt]}]
+  (if (not (empty? input))
+    (let [{:keys [exit out err]} (shell/sh "peco" "--prompt" prompt :in (str/join "\n" input))]
+      (if (not= 0 exit) (throw err))
+      (filter #(not= "" %) (str/split-lines out)))))
 
-data GitBranch = GitBranch {
-  remote :: Maybe String,
-  branch :: String
-  }
 
-fromString :: String -> GitBranch
-fromString expr =
-  let Just (remote_, '/' : branch_) = splitAt <$> elemIndex '/' expr <*> Just expr in
-    GitBranch { remote = Just remote_, branch = branch_ }
+(ns git
+  (:require [clojure.string :as str]))
 
-currentUpstreamBranch :: IO (Maybe GitBranch)
-currentUpstreamBranch = do
-  lines_ <- sh "git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null || true"
-  return $ do
-    line <- listToMaybe lines_
-    return $ fromString line
 
-localMergedBranches :: IO [GitBranch]
-localMergedBranches = do
-  lines_ <- sh "git branch --merged"
-  return [GitBranch { remote = Nothing, branch = line } |
-          line <- lines_,
-          not $ "*" `isPrefixOf` line,
-          not $ " main" `isSuffixOf` line,
-          not $ " master" `isSuffixOf` line,
-          not $ " develop" `isSuffixOf` line]
+(defn branch-
+  ([branch] {:branch branch :remote nil})
+  ([branch remote] {:branch branch :remote remote}))
 
-localForceRemovableBranches :: IO [GitBranch]
-localForceRemovableBranches = do
-  lines_ <- sh "git branch -vv"
-  selectedLines <- peco
-    [line |
-     line <- lines_,
-     not $ "*" `isPrefixOf` line,
-     not $ " main " `isInfixOf` line,
-     not $ " master " `isInfixOf` line,
-     not $ " develop " `isInfixOf` line,
-     ": gone] " `isInfixOf` line]
-    pecoDefaultOption { prompt = Just "LOCAL>" }
-  return [GitBranch { remote = Nothing, branch = branch_ } |
-          line <- selectedLines,
-          let branch_ = head $ words line]
 
-remoteForceRemovableBranches :: IO [GitBranch]
-remoteForceRemovableBranches = do
-  lines_ <- sh "git branch -r --merged"
-  mCubr <- currentUpstreamBranch
-  selectedLines <- peco
-    [line |
-     line <- lines_,
-     not $ "/HEAD " `isInfixOf` line,
-     not $ "/main" `isSuffixOf` line,
-     not $ "/master" `isSuffixOf` line,
-     not $ "/develop" `isSuffixOf` line,
-     isNothing mCubr ||
-     let cubr = fromJust mCubr in not ((fromJust (remote cubr) ++ "/" ++ branch cubr) `isSuffixOf` line)]
-    pecoDefaultOption { prompt = Just "REMOTE>" }
-  return $ map (fromString . head . words) selectedLines
+(defn branch-from-str
+  [s]
+  (let [[fst snd] (str/split s #"/" 2)]
+    (if (nil? snd)
+      (branch- fst)
+      (branch- fst snd))))
 
-delete :: GitBranch -> IO ()
-delete GitBranch { remote = Nothing, branch = branch_ } = do
-  _ <- sh $ "git branch -d " ++ shellescape branch_
-  return ()
-delete _ = return ()
 
-deleteForce :: GitBranch -> IO ()
-deleteForce GitBranch { remote = Nothing, branch = branch_ } = do
-  _ <- sh $ "git branch -D " ++ shellescape branch_
-  return ()
-deleteForce GitBranch { remote = Just remote_, branch = branch_ } = do
-  _ <- sh $ unwords ["git push -d", shellescape remote_, shellescape branch_]
-  return ()
+(defn branch-to-str
+  [{:keys [branch remote]}]
+  (if (nil? remote)
+    branch
+    (str remote "/" branch)))
 
-sh :: String -> IO [String]
-sh command = do
-  putStrLn $ "+ " ++ command
-  (_, Just hout, _, _) <- createProcess (shell command) { std_out = CreatePipe }
-  streamOut hout []
-  where
-    streamOut hout out = do
-      isEof <- hIsEOF hout
-      if isEof
-        then return $ reverse out
-        else do
-          line <- hGetLine hout
-          putStrLn line
-          streamOut hout (line:out)
 
--- TODO: https://github.com/ruby/ruby/blob/4444025d16ae1a586eee6a0ac9bdd09e33833f3c/lib/shellwords.rb#L109
-shellescape :: String -> String
-shellescape str = T.unpack $ T.replace ">" "\\>" $ T.pack str
+(defn current-upstream-branch
+  []
+  (if-let [line (first (str/split-lines (util/sh "sh"
+                                                 "-c"
+                                                 "git rev-parse --abbrev-ref --symbolic-full-name @{u} 2> /dev/null || true")))]
+    (branch-from-str line)
+    nil))
 
-data PecoOption = PecoOption {
-  layout :: Maybe String,
-  prompt :: Maybe String
-  }
 
-pecoDefaultOption :: PecoOption
-pecoDefaultOption = PecoOption {
-  layout = Nothing,
-  prompt = Nothing
-  }
+(defn local-merged-branches
+  []
+  (map #(branch- %)
+       (filter (fn [line]
+                 (and (not (str/starts-with? line "*"))
+                      (not (str/ends-with? line " main"))
+                      (not (str/ends-with? line " master"))
+                      (not (str/ends-with? line " develop"))))
+               (str/split-lines (util/sh "git" "branch" "--merged")))))
 
-pecoCommand :: PecoOption -> String
-pecoCommand option =
-  let flags = [("--layout ", layout option),
-               ("--prompt ", prompt option)]
-      parts = catMaybes [(++) <$> Just flag <*> value | (flag, value) <- flags] in
-    unwords $ "peco" : map shellescape parts
 
-peco :: [String] -> PecoOption -> IO [String]
-peco [] _ = return []
-peco input option = do
-  out <- readCreateProcess (shell $ pecoCommand option) $ unlines input
-  return $ lines out
+(defn local-force-removable-branches
+  []
+  (map #(branch- (first (str/split % #"\s+")))
+       (util/peco (map str/triml
+                       (filter (fn [line]
+                                 (and (not (str/starts-with? line "*"))
+                                      (not (str/includes? line " main "))
+                                      (not (str/includes? line " master "))
+                                      (not (str/includes? line " develop "))
+                                      (str/includes? line ": gone]")))
+                               (str/split-lines (util/sh "git" "branch" "-vv"))))
+                  {:prompt "LOCAL>"})))
 
--- vim:set ft=haskell:
+
+(defn remote-force-removable-branches
+  []
+  (let [current-upstream-br (current-upstream-branch)]
+    (map #(branch-from-str (first (str/split % #"\s+")))
+         (util/peco (map str/triml
+                         (filter (fn [line]
+                                   (and (not (str/includes? line "/HEAD "))
+                                        (not (str/ends-with? line "/main"))
+                                        (not (str/ends-with? line "/master"))
+                                        (not (str/ends-with? line "/develop"))
+                                        (if current-upstream-br
+                                          (not (str/ends-with? line
+                                                               (branch-to-str current-upstream-br)))
+                                          true)))
+                                 (str/split-lines (util/sh "git" "branch" "-r" "--merged"))))
+                    {:prompt "REMOTE>"}))))
+
+
+(defn delete-branch
+  [{:keys [branch remote]}]
+  (if (nil? remote)
+    (util/sh "git" "branch" "-d" branch)))
+
+
+(defn delete-branch-force
+  [{:keys [branch remote]}]
+  (if (nil? remote)
+    (util/sh "git" "branch" "-D" branch)
+    (util/sh "git" "push" "-d" remote branch)))
+
+
+(ns git-gone)
+
+
+(defn delete-local-merged-branches
+  []
+  (doseq [branch (git/local-merged-branches)]
+    (git/delete-branch branch)))
+
+
+(defn delete-local-branches-interactively
+  []
+  (doseq [branch (git/local-force-removable-branches)]
+    (git/delete-branch-force branch)))
+
+
+(defn delete-remote-branches-interactively
+  []
+  (doseq [branch (git/remote-force-removable-branches)]
+    (git/delete-branch-force branch)))
+
+
+(defn -main
+  []
+  (delete-local-merged-branches)
+  (delete-local-branches-interactively)
+  (delete-remote-branches-interactively)
+  (util/sh "git" "gc" "--auto" "--prune"))
+
+
+(-main)

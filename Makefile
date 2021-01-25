@@ -23,6 +23,7 @@ format: ## Format files.
 	find . -name '*.yml' -exec npx prettier --write {} \+
 	find . -name '*.py' -exec black {} \+
 	find . -name '*.py' -exec isort {} \+
+	cljstyle fix || true
 
 .PHONY: test
 test: ## Test.
@@ -34,6 +35,7 @@ test: ## Test.
 	find . -name '*.sh' -exec shellcheck {} \+
 	zsh -n roles/zsh/files/.z* || true
 	shellcheck -e SC1090,SC1091,SC2148 roles/zsh/files/.z* || true
-	ag -l '^#!.*runghc' | xargs -t hlint
+	cljstyle check || true
+	ag -l '^#!/usr/bin/env bb' | xargs -t -I{} -P $(shell nproc) joker --lint {} || true
 
 # vim:set noet:

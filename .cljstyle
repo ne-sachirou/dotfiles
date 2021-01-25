@@ -1,0 +1,2 @@
+{:files {:extensions #{"clj" "cljc" "clje" "cljs" "cljstyle" "edn"}
+         :ignore #{"_build"}}}
