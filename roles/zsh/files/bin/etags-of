@@ -20,14 +20,15 @@
 
 (defn -main
   []
+  ; rm -vf TAGS
   (if (.exists (io/file "TAGS"))
     (io/delete-file "TAGS"))
+  ; ag -g '\.(c|cpp|erl|h|hrl|java|php|pl|py|rb|tex|y)$' | xargs -t etags -a
   (let [filenames (ag-g "\\.(c|cpp|erl|h|hrl|java|php|pl|py|rb|tex|y)$")]
     (doseq [filenames (partition-all 101 filenames)]
       (try
         (apply sh (concat ["etags" "-a"] filenames))
-        (catch Exception err
-          nil)))))
+        (catch Exception err (println (.getMessage err)))))))
 
 
 (-main)

@@ -1,1 +1,1 @@
-{:files {:pattern #"^(agperl|etags-of|git-gone)$"}}
+{:files {:pattern #"^(agperl|docker-gc|etags-of|git-gone|mackerel-plugin-speedtest)$"}}

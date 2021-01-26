@@ -18,6 +18,7 @@
     (filter #(not= "" %) (-> proc :out slurp str/split-lines))))
 
 
+; ag -l "$1" | xargs -I{} -t perl -pi -e"s/$1/$2/g" {}
 (let [[match replacement] *command-line-args*
       filenames (ag-l match)]
   (doseq [filename filenames]
