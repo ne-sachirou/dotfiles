@@ -38,7 +38,7 @@
   (let [[fst snd] (str/split s #"/" 2)]
     (if (nil? snd)
       (branch- fst)
-      (branch- fst snd))))
+      (branch- snd fst))))
 
 
 (defn branch-to-str
@@ -60,12 +60,13 @@
 (defn local-merged-branches
   []
   (map #(branch- %)
-       (filter (fn [line]
-                 (and (not (str/starts-with? line "*"))
-                      (not (str/ends-with? line " main"))
-                      (not (str/ends-with? line " master"))
-                      (not (str/ends-with? line " develop"))))
-               (str/split-lines (util/sh "git" "branch" "--merged")))))
+       (map str/triml
+            (filter (fn [line]
+                      (and (not (str/starts-with? line "*"))
+                           (not (str/ends-with? line " main"))
+                           (not (str/ends-with? line " master"))
+                           (not (str/ends-with? line " develop"))))
+                    (str/split-lines (util/sh "git" "branch" "--merged"))))))
 
 
 (defn local-force-removable-branches
