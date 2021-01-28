@@ -5,7 +5,7 @@
     - role: asdf
       asdf_version: v0.8.0
     - role: clojure
-      versions: ["1.10.1.739"]
+      versions: ["1.10.2.774"]
     - dev_dir
     - docker
     - editorconfig
@@ -34,7 +34,7 @@
         - "12.20.0"
         - "10.15.3"
     - role: perl
-      versions: ["5.32.0"]
+      versions: ["5.32.1"]
     # - private_values
     - role: python
       versions:
