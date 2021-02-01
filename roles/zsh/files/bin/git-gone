@@ -11,21 +11,23 @@
   [& args]
   (println "+" (str/join " " args))
   (let [{:keys [exit out err]} (apply shell/sh args)]
-    (if (not= 0 exit) (throw (Exception. err)))
+    (if (not= 0 exit) (throw (Exception. err)) :ok)
     (println out)
     out))
 
 
 (defn peco
   [input {:keys [prompt]}]
-  (if (not (empty? input))
+  (if (seq input)
     (let [{:keys [exit out err]} (shell/sh "peco" "--prompt" prompt :in (str/join "\n" input))]
-      (if (not= 0 exit) (throw err))
-      (filter #(not= "" %) (str/split-lines out)))))
+      (if (not= 0 exit) (throw (Exception. err)) :ok)
+      (filter #(not= "" %) (str/split-lines out)))
+    []))
 
 
 (ns git
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            util))
 
 
 (defn branch-
@@ -104,7 +106,8 @@
 (defn delete-branch
   [{:keys [branch remote]}]
   (if (nil? remote)
-    (util/sh "git" "branch" "-d" branch)))
+    (util/sh "git" "branch" "-d" branch)
+    ""))
 
 
 (defn delete-branch-force
@@ -114,7 +117,9 @@
     (util/sh "git" "push" "-d" remote branch)))
 
 
-(ns user)
+(ns user
+  (:require git
+            util))
 
 
 (defn delete-local-merged-branches

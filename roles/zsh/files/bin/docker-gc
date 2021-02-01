@@ -5,7 +5,7 @@
   [& args]
   (println "+" (str/join " " args))
   (let [{:keys [exit out err]} (apply shell/sh args)]
-    (if (not= 0 exit) (throw (Exception. err)))
+    (if (not= 0 exit) (throw (Exception. err)) :ok)
     (println out)
     out))
 

@@ -22,7 +22,8 @@
 (ns speedtest
   (:require [cheshire.core :as json]
             [clojure.java.shell :as shell]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            metric))
 
 
 (def cache-filename
@@ -36,7 +37,7 @@
 (defn measure
   [time]
   (let [{:keys [exit out err]} (shell/sh "speedtest" "--json" "--secure")]
-    (if (not= 0 exit) (throw (Exception. err)))
+    (if (not= 0 exit) (throw (Exception. err)) :ok)
     (let [result (json/decode out)]
       [{:name "speedtest.speed.download" :value (/ (get result "download") 8.0) :time time}
        {:name "speedtest.speed.upload" :value (/ (get result "upload") 8.0) :time time}
@@ -64,7 +65,9 @@
       (map #(assoc % :time time) prev-metrics))))
 
 
-(ns user)
+(ns user
+  (:require metric
+            speedtest))
 
 
 (defn print-meta

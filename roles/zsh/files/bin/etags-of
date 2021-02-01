@@ -7,7 +7,7 @@
   [& args]
   (println "+" (str/join " " args))
   (let [{:keys [exit out err]} (apply shell/sh args)]
-    (if (not= 0 exit) (throw (Exception. err)))
+    (if (not= 0 exit) (throw (Exception. err)) :ok)
     (println out)
     out))
 
@@ -22,7 +22,8 @@
   []
   ; rm -vf TAGS
   (if (.exists (io/file "TAGS"))
-    (io/delete-file "TAGS"))
+    (io/delete-file "TAGS")
+    :ok)
   ; ag -g '\.(c|cpp|erl|h|hrl|java|php|pl|py|rb|tex|y)$' | xargs -t etags -a
   (let [filenames (ag-g "\\.(c|cpp|erl|h|hrl|java|php|pl|py|rb|tex|y)$")]
     (doseq [filenames (partition-all 101 filenames)]
