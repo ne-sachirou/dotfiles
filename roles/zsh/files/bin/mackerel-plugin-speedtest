@@ -46,7 +46,10 @@
 
 (defn read-cache
   []
-  (->> cache-filename slurp str/split-lines (filter #(not= "" %)) (map metric/from-str)))
+  (try
+    (->> cache-filename slurp str/split-lines (filter #(not= "" %)) (map metric/from-str))
+    (catch java.io.FileNotFoundException _err
+      [])))
 
 
 (defn write-cache
