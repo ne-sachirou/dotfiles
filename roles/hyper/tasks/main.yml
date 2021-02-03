@@ -1,0 +1,3 @@
+---
+- name: ~/.hyper.js
+  file: path={{ ansible_env.HOME }}/.hyper.js src={{ role_path }}/files/.hyper.js state=link

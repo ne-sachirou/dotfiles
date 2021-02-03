@@ -94,6 +94,7 @@ cask 'firefox'
 cask 'gfortran' # scipy
 cask 'gimp'
 cask 'google-cloud-sdk'
+cask 'hyper'
 cask 'imageoptim'
 # cask 'inkscape'
 cask 'karabiner-elements'
