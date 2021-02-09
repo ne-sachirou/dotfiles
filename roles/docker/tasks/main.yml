@@ -1,3 +1,27 @@
 ---
-- name: docker-gc
-  command: docker-gc
+- name: Install docuum
+  shell: curl https://raw.githubusercontent.com/stepchowfun/docuum/master/install.sh -LSfs | bash -eux
+
+- name: /Library/LaunchDaemons/local.docuum.plist
+  copy:
+    dest: /Library/LaunchDaemons/local.docuum.plist
+    group: wheel
+    mode: "0644"
+    owner: root
+    src: "{{ role_path }}/files/local.docuum.plist"
+  become: true
+
+- name: Lookup `launchd list`
+  shell: launchctl list | tail -n +2 | awk '{print $3}'
+  register: launchd_services
+  changed_when: false
+  check_mode: false
+
+- name: Launch docuum
+  command: launchctl load /Library/LaunchDaemons/local.docuum.plist
+  become: true
+  when: >-
+    "local.docuum" not in launchd_services.stdout
+
+# - name: docker-gc
+#   command: docker-gc
