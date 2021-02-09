@@ -148,6 +148,8 @@ module.exports = {
   //   `project#1.0.1`
   plugins: [
     'hyper-monokai-deluxe',
+    'hyperterm-tabs',
+    //'hyper-dnd-tabs',
   ],
 
   // in development, you can create a directory under
