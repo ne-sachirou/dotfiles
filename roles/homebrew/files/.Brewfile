@@ -9,6 +9,7 @@ tap 'itchyny/tap'
 tap 'mackerelio/mackerel-agent'
 tap 'scalacenter/bloop'
 
+brew 'alp'
 brew 'ansible'
 brew 'ansible-lint'
 brew 'assh'
@@ -43,6 +44,7 @@ brew 'jasper', link: true # PlantUML JPEG2000
 brew 'jq'
 brew 'krew'
 brew 'kustomize'
+brew 'leiningen'
 brew 'libav' # youtube-dl
 brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
 brew 'mackerelio/mackerel-agent/mkr'
@@ -55,6 +57,7 @@ brew 'nss' # mkcert Firefox
 brew 'nuget'
 brew 'openapi-generator'
 brew 'peco'
+brew 'percona-toolkit'
 brew 'plantuml'
 brew 'postgresql@11', link: true, restart_service: true
 brew 'pstree'
