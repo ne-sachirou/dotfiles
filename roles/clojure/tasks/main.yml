@@ -13,6 +13,24 @@
     dest: "{{ ansible_env.HOME }}/.m2/settings.xml"
     src: "{{ lookup('private_values', 'path dotfiles') }}/settings.xml"
 
+- name: Get latest clojure-lsp ver.
+  shell: |
+    curl -L -H "Authorization:{{ lookup('private_values', 'get dotfiles GITHUB_API_TOKEN') }}" https://api.github.com/repos/clojure-lsp/clojure-lsp/releases/latest | \
+      jq -r '.tag_name'
+  args:
+    warn: false
+  register: clojure_lsp_ver
+  changed_when: false
+  check_mode: false
+
+- name: Install clojure-lsp
+  get_url:
+    url: https://github.com/clojure-lsp/clojure-lsp/releases/download/{{ clojure_lsp_ver.stdout }}/clojure-lsp
+    dest: /usr/local/bin/clojure-lsp
+    mode: "0755"
+  when: clojure_lsp_ver.stdout != "null"
+  check_mode: false
+
 - name: Install babashka
   shell: |
     bash <(curl -s https://raw.githubusercontent.com/babashka/babashka/master/install)
