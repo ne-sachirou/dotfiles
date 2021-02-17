@@ -112,6 +112,8 @@ module.exports = {
     // for environment variables
     env: {},
 
+    scrollback: 100000,
+
     // set to `false` for no bell
     bell: 'SOUND',
 
