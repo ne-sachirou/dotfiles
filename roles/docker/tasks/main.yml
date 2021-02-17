@@ -23,5 +23,5 @@
   when: >-
     "local.docuum" not in launchd_services.stdout
 
-# - name: docker-gc
-#   command: docker-gc
+- name: docker-gc
+  command: docker-gc

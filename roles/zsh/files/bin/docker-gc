@@ -28,28 +28,28 @@
 
 
 ; docker image prune -af --filter "until=2160h"
-(defn prune-old-images
-  []
-  (doseq [[image _created-since] (->> (sh "docker" "image" "ls" "--format" "{{.Repository}}:{{.Tag}}\t{{.CreatedSince}}")
-                                      str/split-lines
-                                      (drop 1)
-                                      (map (fn [line]
-                                             (let [[image created-since-str] (str/split line #"\t")
-                                                   [number unit] (take 2 (str/split created-since-str #" "))]
-                                               [image {:number number :unit unit}])))
-                                      (filter (fn [[image {:keys [number unit]}]]
-                                                (and (not (str/starts-with? image "k8s.gcr.io/"))
-                                                     (not (str/starts-with? image "docker/"))
-                                                     (= "years" unit)
-                                                     (and (= "months" unit) (>= 6 number))))))]
-    (sh "docker" "image" "rm" "-f" image)))
+; (defn prune-old-images
+;   []
+;   (doseq [[image _created-since] (->> (sh "docker" "image" "ls" "--format" "{{.Repository}}:{{.Tag}}\t{{.CreatedSince}}")
+;                                       str/split-lines
+;                                       (drop 1)
+;                                       (map (fn [line]
+;                                              (let [[image created-since-str] (str/split line #"\t")
+;                                                    [number unit] (take 2 (str/split created-since-str #" "))]
+;                                                [image {:number number :unit unit}])))
+;                                       (filter (fn [[image {:keys [number unit]}]]
+;                                                 (and (not (str/starts-with? image "k8s.gcr.io/"))
+;                                                      (not (str/starts-with? image "docker/"))
+;                                                      (= "years" unit)
+;                                                      (and (= "months" unit) (>= 6 number))))))]
+;     (sh "docker" "image" "rm" "-f" image)))
 
 
 (defn -main
   []
   (sh "docker" "system" "prune" "-f" "--volumes")
   (update-images)
-  (prune-old-images)
+  ; (prune-old-images)
   (sh "docker" "run" "--rm" "--privileged" "alpine:latest" "hwclock" "-s"))
 
 
