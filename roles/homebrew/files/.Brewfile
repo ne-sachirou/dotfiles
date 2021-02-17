@@ -71,7 +71,7 @@ brew 'speedtest-cli'
 brew 'sshuttle'
 brew 'stern'
 brew 'the_silver_searcher'
-# brew 'terraform'
+brew 'terraform'
 brew 'topgrade'
 brew 'tree'
 brew 'v8@3.15' # for therubyracer on Ruby 2.6.3
