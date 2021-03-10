@@ -1,0 +1,11 @@
+---
+- name: asdf local
+  command: asdf local golang {{ version }}
+
+- name: go get
+  command: go get {{ item }}
+  loop:
+    - github.com/motemen/gore
+
+- name: asdf reshim
+  command: asdf reshim golang
