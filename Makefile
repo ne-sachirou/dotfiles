@@ -13,8 +13,7 @@ PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --sel
 install: ## ansible-playbook
 	rm -fv .tool-versions
 	ansible-playbook -v -K -i hosts $(PLAYBOOK)
-	topgrade -c -v -y --no-retry --disable go || true
-	topgrade -c -v -y --no-retry --only go || true
+	topgrade -c -v -y --no-retry || true
 
 .PHONY: format
 format: ## Format files.
