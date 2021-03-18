@@ -19,7 +19,7 @@
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.15.8"
+        - "1.16.2"
         - "1.14.13"
         - "1.12.17"
     - role: haskell
