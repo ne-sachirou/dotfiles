@@ -5,6 +5,13 @@
   changed_when: false
   check_mode: false
 
+- name: ~/Library/mackerel-agent/id
+  replace:
+    path: "{{ ansible_env.HOME }}/Library/mackerel-agent/id"
+    regexp: "^(.+)$"
+    replace: "{{ lookup('private_values', 'get dotfiles MACKEREL_HOST_ID_ne-sachirou') }}"
+  notify: mackerel_agent_restart
+
 - name: /usr/local/etc/mackerel-agent.conf
   template: dest=/usr/local/etc/mackerel-agent.conf src={{ role_path }}/templates/mackerel-agent.conf.j2
   notify: mackerel_agent_restart
