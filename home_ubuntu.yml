@@ -10,7 +10,7 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.3"]
+      versions: ["23.3.1"]
       elixir:
         versions: ["1.11.4-otp-23"]
     - role: git
@@ -19,14 +19,14 @@
     - role: haskell
       versions: ["9.0.1"]
     - role: nodejs
-      versions: ["14.16.0"]
+      versions: ["14.16.1"]
     - private_values
     - role: python
       versions:
-        - "3.9.2"
+        - "3.9.4"
         - "3.7.9" # Transcrypt needs 3.7.x
     - role: ruby
-      versions: ["3.0.0"]
+      versions: ["3.0.1"]
     - vim
     - zsh
 # ~/profile
