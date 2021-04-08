@@ -26,7 +26,7 @@
         - "3.9.4"
         - "3.7.9" # Transcrypt needs 3.7.x
     - role: ruby
-      versions: ["3.0.1"]
+      versions: ["3.0.0"]
     - vim
     - zsh
 # ~/profile
