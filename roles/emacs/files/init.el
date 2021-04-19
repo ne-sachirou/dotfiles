@@ -101,7 +101,6 @@
  )
 
 (menu-bar-mode -1)
-(tool-bar-mode 0)
 
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
