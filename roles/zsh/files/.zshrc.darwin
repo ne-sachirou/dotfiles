@@ -1,10 +1,5 @@
 fpath=(/usr/local/share/zsh/functions /usr/share/zsh/*/functions /usr/local/Cellar/git/*/share/zsh/site-functions $fpath)
 
-zinit ice pick"plugins/osx"
-zinit light ohmyzsh/ohmyzsh
-zinit ice pick"modules/osx"
-zinit light sorin-ionescu/prezto
-
 _docker_init() {
   . /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
   . /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
