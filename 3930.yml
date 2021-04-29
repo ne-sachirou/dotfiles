@@ -62,6 +62,7 @@
         - GitHub.vscode-pull-request-github
         - JakeBecker.elixir-ls
         - MS-CEINTL.vscode-language-pack-ja
+        - betterthantomorrow.calva
         - dbaeumer.vscode-eslint
         - eamodio.gitlens
         - esbenp.prettier-vscode
@@ -78,6 +79,5 @@
         - scala-lang.scala
         - scalameta.metals
         - taichi.vscode-textlint
-        - uraway.hatenablogger
         - vscodevim.vim
     - zsh
