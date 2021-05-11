@@ -19,11 +19,11 @@
     - role: haskell
       versions: ["9.0.1"]
     - role: nodejs
-      versions: ["16.0.0"]
+      versions: ["16.1.0"]
     - private_values
     - role: python
       versions:
-        - "3.9.4"
+        - "3.9.5"
         - "3.7.9" # Transcrypt needs 3.7.x
     - role: ruby
       versions: ["3.0.0"]

@@ -11,7 +11,7 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.3.1"]
+      versions: ["23.3.3"]
       elixir:
         versions: ["1.11.4-otp-23"]
     - role: git
@@ -19,7 +19,7 @@
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.16.3"
+        - "1.16.4"
         - "1.14.13"
         - "1.12.17"
     - role: haskell
@@ -31,7 +31,7 @@
     - mackerel_agent
     - role: nodejs
       versions:
-        - "16.0.0"
+        - "16.1.0"
         - "14.15.4"
         - "12.20.0"
         - "10.15.3"
@@ -40,7 +40,7 @@
     # - private_values
     - role: python
       versions:
-        - "3.9.4"
+        - "3.9.5"
         - "3.7.2"
     - role: ruby
       versions:
