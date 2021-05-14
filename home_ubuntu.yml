@@ -10,9 +10,9 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["23.3.1"]
+      versions: ["24.0"]
       elixir:
-        versions: ["1.11.4-otp-23"]
+        versions: ["1.11.4-otp-24"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
