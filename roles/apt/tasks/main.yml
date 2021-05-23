@@ -7,7 +7,7 @@
   apt: name={{ item }} install_recommends=no
   become: true
   with_items:
-    - ansible
+    #- ansible
     - aptitude # for Ansible apt module
     - autoconf # Erlang/OTP
     - build-essential
@@ -33,6 +33,8 @@
     - libxml2-dev # Emacs
     - peco
     - python-jmespath
+    - python3-pip
+    - python3-setuptools
     - rlwrap # for Clojure REPL
     - shellcheck
     - silversearcher-ag
