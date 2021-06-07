@@ -47,6 +47,7 @@ brew 'krew'
 brew 'kustomize'
 brew 'leiningen'
 brew 'libav' # youtube-dl
+brew 'libyaml' # Ruby
 brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
 brew 'mackerelio/mackerel-agent/mkr'
 brew 'mas'
