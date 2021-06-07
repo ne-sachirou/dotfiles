@@ -3,7 +3,7 @@
   roles:
     - homebrew
     - role: asdf
-      asdf_version: v0.8.0
+      asdf_version: v0.8.1
     - role: clojure
       versions: ["1.10.2.774"]
     - dev_dir
@@ -11,15 +11,15 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["24.0"]
+      versions: ["24.0.2"]
       elixir:
-        versions: ["1.11.4-otp-24"]
+        versions: ["1.12.1-otp-24"]
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.16.4"
+        - "1.16.5"
         - "1.14.13"
         - "1.12.17"
     - role: haskell
@@ -31,13 +31,13 @@
     - mackerel_agent
     - role: nodejs
       versions:
-        - "16.1.0"
+        - "16.3.0"
         - "14.17.0"
         - "14.15.4"
         - "12.20.0"
         - "10.15.3"
     - role: perl
-      versions: ["5.32.1"]
+      versions: ["5.34.0"]
     # - private_values
     - role: python
       versions:
@@ -45,7 +45,7 @@
         - "3.7.2"
     - role: ruby
       versions:
-        - "3.0.0"
+        - "3.0.1"
         - "2.6.3"
         - "2.5.7"
     - role: rust

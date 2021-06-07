@@ -3,30 +3,30 @@
   roles:
     - apt
     - role: asdf
-      asdf_version: v0.8.0
+      asdf_version: v0.8.1
     - role: clojure
       versions: ["1.10.2.774"]
     # - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["24.0"]
+      versions: ["24.0.2"]
       elixir:
-        versions: ["1.11.4-otp-24"]
+        versions: ["1.12.1-otp-24"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
     - role: haskell
       versions: ["9.0.1"]
     - role: nodejs
-      versions: ["16.1.0"]
+      versions: ["16.3.0"]
     - private_values
     - role: python
       versions:
         - "3.9.5"
         - "3.7.9" # Transcrypt needs 3.7.x
     - role: ruby
-      versions: ["3.0.0"]
+      versions: ["3.0.1"]
     - vim
     - zsh
 # ~/profile
