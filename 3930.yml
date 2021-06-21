@@ -5,7 +5,7 @@
     - role: asdf
       asdf_version: v0.8.1
     - role: clojure
-      versions: ["1.10.2.774"]
+      versions: ["1.10.3.855"]
     - dev_dir
     - docker
     - editorconfig
