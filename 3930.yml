@@ -11,7 +11,7 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["24.0.2"]
+      versions: ["24.0.3"]
       elixir:
         versions: ["1.12.1-otp-24"]
     - role: git
@@ -31,7 +31,7 @@
     - mackerel_agent
     - role: nodejs
       versions:
-        - "16.3.0"
+        - "16.4.0"
         - "14.17.0"
         - "14.15.4"
         - "12.20.0"
@@ -41,7 +41,7 @@
     # - private_values
     - role: python
       versions:
-        - "3.9.5"
+        - "3.9.6"
         - "3.7.2"
     - role: ruby
       versions:
