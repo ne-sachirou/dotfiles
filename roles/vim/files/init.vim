@@ -148,6 +148,8 @@ let g:quickrun_config.ps1 = {
       \   'exec'    : '%c %o -F %s:p',
       \   'tempfile': '%{tempname()}.ps1'
       \ }
+nmap \r <Plug>(quickrun)
+
 let g:watchdogs_check_BufWritePost_enable = 1
 
 if !exists('g:lightline')
