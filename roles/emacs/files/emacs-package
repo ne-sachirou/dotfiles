@@ -16,7 +16,8 @@
   "Install & update packages."
   (sh "emacs --batch -l '~/.emacs.d/init.el' --kill")
   (sh "emacs --batch -l '~/.emacs.d/init.el' -f 'package-refresh-contents' -f 'package-utils-upgrade-all-no-fetch' --kill")
-  (sh "emacs --batch -l '~/.emacs.d/init.el' -f 'el-get-self-update' --eval '(el-get-update-all t)' --kill"))
+  (sh "emacs --batch -l '~/.emacs.d/init.el' -f 'el-get-self-update' --eval '(el-get-update-all t)' --kill")
+  (sh "topgrade -c -v -y --no-retry --only emacs"))
 
 (defun help ()
   "Show help."
