@@ -43,6 +43,7 @@ brew 'istioctl'
 brew 'itchyny/tap/base58'
 brew 'jasper', link: true # PlantUML JPEG2000
 brew 'jq'
+brew 'k1LoW/tap/tbls'
 brew 'krew'
 brew 'kustomize'
 brew 'leiningen'
@@ -54,6 +55,7 @@ brew 'mas'
 brew 'maven'
 brew 'mkcert'
 brew 'mono'
+brew 'mysql-client', link: true
 brew 'noti'
 brew 'nss' # mkcert Firefox
 brew 'nuget'
