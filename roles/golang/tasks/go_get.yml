@@ -5,7 +5,7 @@
 - name: go get
   command: go get {{ item }}
   loop:
-    - github.com/motemen/gore
+    - github.com/x-motemen/gore
 
 - name: asdf reshim
   command: asdf reshim golang
