@@ -19,14 +19,14 @@
     - role: haskell
       versions: ["9.0.1"]
     - role: nodejs
-      versions: ["16.7.0"]
+      versions: ["16.9.1"]
     - private_values
     - role: python
       versions:
-        - "3.9.6"
+        - "3.9.7"
         - "3.7.9" # Transcrypt needs 3.7.x
     - role: ruby
-      versions: ["3.0.1"]
+      versions: ["3.0.2"]
     - vim
     - zsh
 # ~/profile

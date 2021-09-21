@@ -19,6 +19,7 @@
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
+        - "1.17.1"
         - "1.16.7"
         - "1.14.13"
         - "1.12.17"
@@ -31,7 +32,7 @@
     - mackerel_agent
     - role: nodejs
       versions:
-        - "16.7.0"
+        - "16.9.1"
         - "14.17.0"
         - "14.15.4"
         - "12.20.0"
