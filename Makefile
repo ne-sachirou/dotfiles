@@ -11,9 +11,9 @@ clean: ## Clean.
 .PHONY: install
 PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1 --on-cancel error)
 install: ## ansible-playbook
+	topgrade -c -v -y --no-retry || true
 	rm -fv .tool-versions
 	ansible-playbook -v -K -i hosts $(PLAYBOOK)
-	topgrade -c -v -y --no-retry || true
 
 .PHONY: format
 format: ## Format files.

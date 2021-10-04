@@ -5,13 +5,13 @@
     - role: asdf
       asdf_version: v0.8.1
     - role: clojure
-      versions: ["1.10.3.967"]
+      versions: ["1.10.3.986"]
     - dev_dir
     - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["24.1"]
+      versions: ["24.1.1"]
       elixir:
         versions: ["1.12.3-otp-24"]
     - role: git
@@ -32,7 +32,7 @@
     - mackerel_agent
     - role: nodejs
       versions:
-        - "16.9.1"
+        - "16.10.0"
         - "14.17.0"
         - "14.15.4"
         - "12.20.0"
