@@ -16,6 +16,7 @@ autoload -Uz _zinit
 zinit ice src"init.sh"
 zinit light b4b4r07/enhancd
 zinit light mollifier/anyframe
+zinit light momo-lab/zsh-abbrev-alias
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
@@ -46,11 +47,12 @@ PAGER='less -X'
 SAVEHIST=100000
 export EDITOR GOPATH HISTFILE HISTSIZE LESS MACKEREL_APIKEY OP_SESSION_hatena PAGER SAVEHIST
 
-alias be='bundle exec'
-alias g=git
+abbrev-alias -g be='bundle exec'
+abbrev-alias -g g=git
+abbrev-alias -g k=kubectl
+abbrev-alias -g pv=private-values
+
 alias j='docker run -it -v "$(pwd):/mnt" --rm nesachirou/jlang'
-alias k=kubectl
-alias pv=private-values
 alias ssh='assh wrapper ssh'
 
 #alias vi='emacsclient -nw'
