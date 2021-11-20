@@ -22,4 +22,7 @@
 - name: rebar3 local install
   command: rebar3 local install
 
+- name: rebar3 plugins upgrade
+  command: rebar3 plugins upgrade
+
 - import_tasks: elixir.yml
