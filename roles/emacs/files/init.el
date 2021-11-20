@@ -51,6 +51,7 @@
     origami
     osx-clipboard
     package-utils
+    php-mode
     plantuml-mode
     poly-ansible
     prettier-js
@@ -357,6 +358,8 @@
 ; See ~/.emacs-live.el
 
 ;; package-utils
+
+;; php-mode
 
 ;; plantuml-mode
 (add-to-list 'auto-mode-alist '("\\.\\(plant\\)?uml\\'" . plantuml-mode))
