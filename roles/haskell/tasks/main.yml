@@ -1,6 +1,0 @@
----
-- name: asdf install haskell
-  asdf:
-    plugin: haskell
-    versions: "{{ versions }}"
-    global: "{{ global | default(versions[0]) }}"

@@ -23,8 +23,6 @@
         - "1.16.7"
         - "1.14.13"
         - "1.12.17"
-    - role: haskell
-      versions: ["9.2.1"]
     - role: hatenablog
       private_values_project: hatena
     - hyper
