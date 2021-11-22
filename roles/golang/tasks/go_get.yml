@@ -4,8 +4,8 @@
 
 - name: go get
   command: go get {{ item }}
-  loop:
-    - github.com/x-motemen/gore
+  loop: []
+    # - github.com/x-motemen/gore
 
 - name: asdf reshim
   command: asdf reshim golang
