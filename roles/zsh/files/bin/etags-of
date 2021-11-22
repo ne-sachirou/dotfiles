@@ -1,5 +1,5 @@
 #!/usr/bin/env bb
-; -*- mode: clojure; -*-
+;; -*- mode: clojure; -*-
 (require '[babashka.process :refer [process]])
 
 
@@ -20,11 +20,11 @@
 
 (defn -main
   []
-  ; rm -vf TAGS
+  ;; rm -vf TAGS
   (if (.exists (io/file "TAGS"))
     (io/delete-file "TAGS")
     :ok)
-  ; ag -g '\.(c|cpp|erl|h|hrl|java|php|pl|py|rb|tex|y)$' | xargs -t etags -a
+  ;; ag -g '\.(c|cpp|erl|h|hrl|java|php|pl|py|rb|tex|y)$' | xargs -t etags -a
   (let [filenames (ag-g "\\.(c|cpp|erl|h|hrl|java|php|pl|py|rb|tex|y)$")]
     (doseq [filenames (partition-all 101 filenames)]
       (try

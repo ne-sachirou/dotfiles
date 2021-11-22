@@ -1,0 +1,14 @@
+#!/usr/bin/env bb
+;; -*- mode: clojure; -*-
+(require '[babashka.process :refer [process]])
+
+
+;; ag -G '(?<!\.test)\.ts(x?)$' "(class|const|function|interface|let|type|var|(^ *)) $1"
+(-> ["ag"
+     "-G" "(?<!\\.test)\\.ts(x?)$"
+     "--color"
+     (str "(class|const|function|interface|let|type|var|(^ *)) " (first *command-line-args*))]
+    (process {:in :inherit})
+    :out
+    slurp
+    println)

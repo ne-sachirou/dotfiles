@@ -1,5 +1,5 @@
 #!/usr/bin/env bb
-; -*- mode: clojure; -*-
+;; -*- mode: clojure; -*-
 
 (ns util
   (:require
@@ -26,8 +26,9 @@
 
 
 (ns git
-  (:require [clojure.string :as str]
-            util))
+  (:require
+    [clojure.string :as str]
+    [util]))
 
 
 (defn branch-
@@ -118,8 +119,9 @@
 
 
 (ns user
-  (:require git
-            util))
+  (:require
+    [git]
+    [util]))
 
 
 (defn delete-local-merged-branches

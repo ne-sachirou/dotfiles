@@ -1,5 +1,5 @@
 #!/usr/bin/env bb
-; -*- mode: clojure; -*-
+;; -*- mode: clojure; -*-
 
 (defn sh
   [& args]
@@ -10,7 +10,7 @@
     out))
 
 
-; docker image ls --format "{{.Repository}}:{{.Tag}}" | tail -n +2 | xargs -t -I{} docker pull {}
+;; docker image ls --format "{{.Repository}}:{{.Tag}}" | tail -n +2 | xargs -t -I{} docker pull {}
 (defn update-images
   []
   (doseq [image (->> (sh "docker" "image" "ls" "--format" "{{.Repository}}:{{.Tag}}")
@@ -20,36 +20,36 @@
                                (and (not (str/includes? line "<none>"))
                                     (not (str/starts-with? line "k8s.gcr.io/"))
                                     (not (str/starts-with? line "docker/"))
-                                        ; WARNING: ⚠️ Failed to pull manifest by the resolved digest. This registry does not appear to conform to the distribution registry specification; falling back to pull by tag.  This fallback is DEPRECATED, and will be removed in a future release.  Please contact admins of https://docker.pkg.github.com. ⚠️
+                                    ;; WARNING: ⚠️ Failed to pull manifest by the resolved digest. This registry does not appear to conform to the distribution registry specification; falling back to pull by tag.  This fallback is DEPRECATED, and will be removed in a future release.  Please contact admins of https://docker.pkg.github.com. ⚠️
                                     (not (str/starts-with? line "docker.pkg.github.com/"))))))]
     (try
       (sh "docker" "pull" image)
       (catch Exception err (println (.getMessage err))))))
 
 
-; docker image prune -af --filter "until=2160h"
-; (defn prune-old-images
-;   []
-;   (doseq [[image _created-since] (->> (sh "docker" "image" "ls" "--format" "{{.Repository}}:{{.Tag}}\t{{.CreatedSince}}")
-;                                       str/split-lines
-;                                       (drop 1)
-;                                       (map (fn [line]
-;                                              (let [[image created-since-str] (str/split line #"\t")
-;                                                    [number unit] (take 2 (str/split created-since-str #" "))]
-;                                                [image {:number number :unit unit}])))
-;                                       (filter (fn [[image {:keys [number unit]}]]
-;                                                 (and (not (str/starts-with? image "k8s.gcr.io/"))
-;                                                      (not (str/starts-with? image "docker/"))
-;                                                      (= "years" unit)
-;                                                      (and (= "months" unit) (>= 6 number))))))]
-;     (sh "docker" "image" "rm" "-f" image)))
+;; docker image prune -af --filter "until=2160h"
+;; (defn prune-old-images
+;;   []
+;;   (doseq [[image _created-since] (->> (sh "docker" "image" "ls" "--format" "{{.Repository}}:{{.Tag}}\t{{.CreatedSince}}")
+;;                                       str/split-lines
+;;                                       (drop 1)
+;;                                       (map (fn [line]
+;;                                              (let [[image created-since-str] (str/split line #"\t")
+;;                                                    [number unit] (take 2 (str/split created-since-str #" "))]
+;;                                                [image {:number number :unit unit}])))
+;;                                       (filter (fn [[image {:keys [number unit]}]]
+;;                                                 (and (not (str/starts-with? image "k8s.gcr.io/"))
+;;                                                      (not (str/starts-with? image "docker/"))
+;;                                                      (= "years" unit)
+;;                                                      (and (= "months" unit) (>= 6 number))))))]
+;;     (sh "docker" "image" "rm" "-f" image)))
 
 
 (defn -main
   []
   (sh "docker" "system" "prune" "-f" "--volumes")
   (update-images)
-  ; (prune-old-images)
+  ;; (prune-old-images)
   (sh "docker" "run" "--rm" "--privileged" "alpine:latest" "hwclock" "-s"))
 
 
