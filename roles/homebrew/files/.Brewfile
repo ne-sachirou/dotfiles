@@ -28,6 +28,7 @@ brew 'direnv'
 brew 'dotnet'
 brew 'emacs'
 brew 'envchain'
+brew 'fop' # Erlang/OTP
 brew 'fswatch'
 brew 'fzy'
 brew 'gh'
@@ -48,6 +49,7 @@ brew 'krew'
 brew 'kustomize'
 brew 'leiningen'
 brew 'libav' # youtube-dl
+brew 'libxslt' # Erlang/OTP
 brew 'libyaml' # Ruby
 brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
 brew 'mackerelio/mackerel-agent/mkr'
@@ -83,6 +85,7 @@ brew 'v8@3.15' # for therubyracer on Ruby 2.6.3
 brew 'vim'
 brew 'watch'
 brew 'wget'
+brew 'wxwidgets' # Erlang/OTP
 brew 'yamllint'
 brew 'youtube-dl'
 brew 'zsh'

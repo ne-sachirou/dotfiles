@@ -3,26 +3,26 @@
   roles:
     - apt
     - role: asdf
-      asdf_version: v0.8.1
+      asdf_version: v0.9.0
     - role: clojure
-      versions: ["1.10.3.1029"]
+      versions: ["1.10.3.1040"]
     # - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["24.1.5"]
+      versions: ["24.1.7"]
       elixir:
-        versions: ["1.12.3-otp-24"]
+        versions: ["1.13.0-otp-24"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
     - role: haskell
       versions: ["9.2.1"]
     - role: nodejs
-      versions: ["16.13.0"]
+      versions: ["16.13.1"]
     - private_values
     - role: python
-      versions: ["3.10.0"]
+      versions: ["3.10.1"]
     - role: ruby
       versions: ["3.0.2"]
     - vim
