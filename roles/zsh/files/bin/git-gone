@@ -17,7 +17,7 @@
 
 
 (defn peco
-  [input {:keys [prompt]}]
+  [{:keys [prompt]} input]
   (if (seq input)
     (let [{:keys [exit out err]} (shell/sh "peco" "--prompt" prompt :in (str/join "\n" input))]
       (if (not= 0 exit) (throw (Exception. err)) :ok)
@@ -62,46 +62,48 @@
 
 (defn local-merged-branches
   []
-  (map #(branch- %)
-       (map str/triml
-            (filter (fn [line]
-                      (and (not (str/starts-with? line "*"))
-                           (not (str/ends-with? line " main"))
-                           (not (str/ends-with? line " master"))
-                           (not (str/ends-with? line " develop"))))
-                    (str/split-lines (util/sh "git" "branch" "--merged"))))))
+  (->> (util/sh "git" "branch" "--merged")
+       (str/split-lines)
+       (filter (fn [line]
+                 (and (not (str/starts-with? line "*"))
+                      (not (str/ends-with? line " main"))
+                      (not (str/ends-with? line " master"))
+                      (not (str/ends-with? line " develop")))))
+       (map str/triml)
+       (map #(branch- %))))
 
 
 (defn local-force-removable-branches
   []
-  (map #(branch- (first (str/split % #"\s+")))
-       (util/peco (map str/triml
-                       (filter (fn [line]
-                                 (and (not (str/starts-with? line "*"))
-                                      (not (str/includes? line " main "))
-                                      (not (str/includes? line " master "))
-                                      (not (str/includes? line " develop "))
-                                      (str/includes? line ": gone]")))
-                               (str/split-lines (util/sh "git" "branch" "-vv"))))
-                  {:prompt "LOCAL>"})))
+  (->> (util/sh "git" "branch" "-vv")
+       (str/split-lines)
+       (filter (fn [line]
+                 (and (not (str/starts-with? line "*"))
+                      (not (str/includes? line " main "))
+                      (not (str/includes? line " master "))
+                      (not (str/includes? line " develop "))
+                      (str/includes? line ": gone]"))))
+       (map str/triml)
+       (util/peco {:prompt "LOCAL>"})
+       (map #(branch- (first (str/split % #"\s+"))))))
 
 
 (defn remote-force-removable-branches
   []
   (let [current-upstream-br (current-upstream-branch)]
-    (map #(branch-from-str (first (str/split % #"\s+")))
-         (util/peco (map str/triml
-                         (filter (fn [line]
-                                   (and (not (str/includes? line "/HEAD "))
-                                        (not (str/ends-with? line "/main"))
-                                        (not (str/ends-with? line "/master"))
-                                        (not (str/ends-with? line "/develop"))
-                                        (if current-upstream-br
-                                          (not (str/ends-with? line
-                                                               (branch-to-str current-upstream-br)))
-                                          true)))
-                                 (str/split-lines (util/sh "git" "branch" "-r" "--merged"))))
-                    {:prompt "REMOTE>"}))))
+    (->> (util/sh "git" "branch" "-r" "--merged")
+         (str/split-lines)
+         (filter (fn [line]
+                   (and (not (str/includes? line "/HEAD "))
+                        (not (str/ends-with? line "/main"))
+                        (not (str/ends-with? line "/master"))
+                        (not (str/ends-with? line "/develop"))
+                        (if current-upstream-br
+                          (not (str/ends-with? line (branch-to-str current-upstream-br)))
+                          true))))
+         (map str/triml)
+         (util/peco {:prompt "REMOTE>"})
+         (map #(branch-from-str (first (str/split % #"\s+")))))))
 
 
 (defn delete-branch
