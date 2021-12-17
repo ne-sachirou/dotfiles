@@ -16,7 +16,7 @@
     company-web
     counsel
     csharp-mode
-    dap-mode
+    ; dap-mode
     diminish
     docker-tramp
     dockerfile-mode
@@ -46,6 +46,7 @@
     lua-mode
     magit
     markdown-mode
+    ; monokai-theme
     multi-term
     nginx-mode
     origami
@@ -61,6 +62,7 @@
     sbt-mode
     scala-mode
     slim-mode
+    smartparens
     swiper
     terraform-mode
     typescript-mode
@@ -177,6 +179,7 @@
 (add-hook 'clojure-mode-hook #'cider-mode)
 
 ;; clojure-mode
+(add-hook 'clojure-mode-hook #'smartparens-mode)
 (add-hook 'clojure-mode-hook #'subword-mode)
 (add-to-list 'auto-mode-alist '("\\.clje\\'" . clojure-mode))
 
@@ -214,11 +217,11 @@
 ;; csharp-mode
 
 ;; dap-mode
-(dap-mode 1)
-(dap-ui-mode 1)
-(dap-tooltip-mode 1)
-(tooltip-mode 1)
-(dap-ui-controls-mode 1)
+; (dap-mode 1)
+; (dap-ui-mode 1)
+; (dap-tooltip-mode 1)
+; (tooltip-mode 1)
+; (dap-ui-controls-mode 1)
 
 ;; diminish
 ; 指定したマイナーモードを表示しない(diminish篇) - Qiita https://qiita.com/tadsan/items/c859c5c04724cbda75fc
@@ -274,7 +277,6 @@
 (global-evil-matchit-mode 1)
 
 ;; evil-smartparens
-(smartparens-global-mode t)
 (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
 ; Slurp Barf · Clojure development with Spacemacs & Cider https://practicalli.github.io/spacemacs/structured-editing/lisp-state-slurp-barf.html
 (evil-leader/set-key
@@ -323,8 +325,8 @@
 (setq lsp-enable-snippet nil)
 (setq lsp-prefer-capf t)
 (setq lsp-prefer-flymake nil)
-(add-hook 'lsp-mode-hook #'dap-mode)
-(add-hook 'lsp-mode-hook #'dap-ui-mode)
+; (add-hook 'lsp-mode-hook #'dap-mode)
+; (add-hook 'lsp-mode-hook #'dap-ui-mode)
 (add-hook 'lsp-mode-hook #'lsp-lens-mode)
 
 ;; lsp-ui
@@ -334,6 +336,9 @@
 ;; magit
 
 ;; markdown-mode
+
+;; monokai-theme
+; (load-theme 'monokai t)
 
 ;; multi-term
 (setq multi-term-program "/bin/zsh")
@@ -410,6 +415,11 @@
 (add-hook 'scala-mode-hook #'lsp)
 
 ;; slim-mode
+
+;; smartparens
+; (smartparens-global-mode t)
+(smartparens-strict-mode t)
+(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
 
 ;; swiper
 (global-set-key "\C-s" 'swiper)
