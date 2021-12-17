@@ -46,6 +46,7 @@ brew 'jasper', link: true # PlantUML JPEG2000
 brew 'jq'
 brew 'k1LoW/tap/tbls'
 brew 'krew'
+brew 'kubeval'
 brew 'kustomize'
 brew 'leiningen'
 brew 'libav' # youtube-dl
