@@ -23,27 +23,18 @@
         timeout-ms 60000
         threads (mapv (fn [_]
                         (let [on-exit (async/chan)
-                              ;; thread (async/go-loop []
-                              ;;          (async/alt!!
-                              ;;            chan ([data _]
-                              ;;                  (if data
-                              ;;                    (try
-                              ;;                      (consumer data)
-                              ;;                      (recur)
-                              ;;                      (catch Exception ex
-                              ;;                        (println ex)
-                              ;;                        (recur)))
-                              ;;                    (async/close! on-exit)))
-                              ;;            (async/timeout timeout-ms) (async/close! on-exit)))
                               ;; Using alts!! instead of alts! because of Babashka compatibility.
                               thread (async/go-loop [[data _] (async/alts!! [chan (async/timeout timeout-ms)])]
                                        (if data
-                                         (try
-                                           (consumer data)
-                                           (recur (async/alts!! [chan (async/timeout timeout-ms)]))
-                                           (catch Exception ex
-                                             (println ex)
-                                             (recur (async/alts!! [chan (async/timeout timeout-ms)]))))
+                                         ;; Can only recur from tail position
+                                         (do (consumer data)
+                                             (recur (async/alts!! [chan (async/timeout timeout-ms)])))
+                                         ;; (try
+                                         ;;   (consumer data)
+                                         ;;   (recur (async/alts!! [chan (async/timeout timeout-ms)]))
+                                         ;;   (catch Exception ex
+                                         ;;     (println ex)
+                                         ;;     (recur (async/alts!! [chan (async/timeout timeout-ms)]))))
                                          (async/close! on-exit)))]
                           {:on-exit on-exit :thread thread}))
                       (range nproc))]
