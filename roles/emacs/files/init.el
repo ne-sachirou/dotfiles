@@ -105,6 +105,7 @@
 
 (when window-system
   (set-frame-size (selected-frame) 160 63))
+(setq visible-bell 1)
 
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
