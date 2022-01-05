@@ -5,21 +5,21 @@
     - role: asdf
       asdf_version: v0.9.0
     - role: clojure
-      versions: ["1.10.3.1040"]
+      versions: ["1.10.3.1058"]
     - dev_dir
     - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["24.1.7"]
+      versions: ["24.2"]
       elixir:
-        versions: ["1.13.0-otp-24"]
+        versions: ["1.13.1-otp-24"]
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.17.4"
+        - "1.17.5"
         - "1.16.7"
         - "1.14.13"
         - "1.12.17"
@@ -45,7 +45,7 @@
         - "3.7.2"
     - role: ruby
       versions:
-        # - "3.0.2"
+        # - "3.0.3"
         - "2.6.3"
         - "2.5.7"
     - role: rust

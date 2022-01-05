@@ -5,12 +5,12 @@
     - role: asdf
       asdf_version: v0.9.0
     - role: clojure
-      versions: ["1.10.3.1040"]
+      versions: ["1.10.3.1058"]
     # - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["24.1.7"]
+      versions: ["24.2"]
       elixir:
         versions: ["1.13.0-otp-24"]
     - role: git
@@ -24,7 +24,7 @@
     - role: python
       versions: ["3.10.1"]
     - role: ruby
-      versions: ["3.0.2"]
+      versions: ["3.0.3"]
     - vim
     - zsh
 # ~/profile
