@@ -40,9 +40,9 @@
     ivy
     j-mode
     jinja2-mode
-    lsp-metals
-    lsp-mode
-    lsp-ui
+    ; lsp-metals
+    ; lsp-mode
+    ; lsp-ui
     lua-mode
     magit
     markdown-mode
@@ -196,7 +196,7 @@
 ;; typescript-mode
 ;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-(add-hook 'typescript-mode-hook #'lsp)
+; (add-hook 'typescript-mode-hook #'lsp)
 
 ;; company-web
 (require 'company-web-html)
@@ -304,7 +304,7 @@
 (setq flycheck-golangci-lint-fast t)
 
 ;; go-mode
-(add-hook 'go-mode-hook #'lsp-deferred)
+; (add-hook 'go-mode-hook #'lsp-deferred)
 (add-hook 'go-mode-hook
   (lambda () (add-hook 'before-save-hook 'gofmt-before-save nil t)))
 
@@ -326,12 +326,12 @@
 ;; lsp-metals
 
 ;; lsp-mode
-(setq lsp-enable-snippet nil)
-(setq lsp-prefer-capf t)
-(setq lsp-prefer-flymake nil)
+; (setq lsp-enable-snippet nil)
+; (setq lsp-prefer-capf t)
+; (setq lsp-prefer-flymake nil)
 ; (add-hook 'lsp-mode-hook #'dap-mode)
 ; (add-hook 'lsp-mode-hook #'dap-ui-mode)
-(add-hook 'lsp-mode-hook #'lsp-lens-mode)
+; (add-hook 'lsp-mode-hook #'lsp-lens-mode)
 
 ;; lsp-ui
 
@@ -416,7 +416,7 @@
 ; (setq :program-options '("-Dsbt.supershell=false"))
 
 ;; scala-mode
-(add-hook 'scala-mode-hook #'lsp)
+; (add-hook 'scala-mode-hook #'lsp)
 
 ;; slim-mode
 
