@@ -13,13 +13,13 @@
     - role: erlang
       versions: ["24.2"]
       elixir:
-        versions: ["1.13.1-otp-24"]
+        versions: ["1.13.2-otp-24"]
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.17.5"
+        - "1.17.6"
         - "1.16.7"
         - "1.14.13"
         - "1.12.17"
@@ -30,7 +30,7 @@
     - mackerel_agent
     - role: nodejs
       versions:
-        - "16.13.1"
+        - "16.13.2"
         - "14.17.6"
         - "14.17.0"
         - "14.15.4"
@@ -45,7 +45,7 @@
         - "3.7.2"
     - role: ruby
       versions:
-        # - "3.0.3"
+        # - "3.1.0"
         - "2.6.3"
         - "2.5.7"
     - role: rust
