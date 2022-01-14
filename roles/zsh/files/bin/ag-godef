@@ -1,0 +1,15 @@
+#!/usr/bin/env bb
+;; -*- mode: clojure; -*-
+(require '[babashka.process :refer [process]])
+
+;; Goの型や関数定義を検索するコマンド - Plan 9とGo言語のブログ https://blog.lufia.org/entry/2021/11/15/135843
+(-> ["ag"
+     "-G" "\\.go$"
+     "--color"
+     (format "((func|package|type|var).*\\W%s(?=\\W))|((?<=\\W)%s *:?=)"
+             (first *command-line-args*)
+             (first *command-line-args*))]
+    (process {:in :inherit})
+    :out
+    slurp
+    println)
