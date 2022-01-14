@@ -24,7 +24,7 @@
     lazyenv.bash: https://raw.githubusercontent.com/takezoh/lazyenv/master/lazyenv.bash
 
 - name: zinit
-  git: repo=https://github.com/zdharma/zinit.git depth=1 dest={{ ansible_env.HOME }}/.zinit/bin
+  git: repo=https://github.com/z-shell/zinit.git depth=1 dest={{ ansible_env.HOME }}/.zinit/bin
 
 - name: zinit self-update
   command: zsh -c '. ~/.zshrc && zinit self-update'
