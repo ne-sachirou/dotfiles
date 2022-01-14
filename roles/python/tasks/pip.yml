@@ -7,7 +7,6 @@
   loop:
     - black
     - isort
-    - poetry
     - python-language-server[all]
 
 - name: asdf reshim
