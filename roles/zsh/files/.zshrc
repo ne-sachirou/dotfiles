@@ -9,18 +9,18 @@ autoload -Uz compinit
 compinit
 # }}} init
 
-# {{{ zinit
-. ~/.zinit/bin/zinit.zsh
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-zinit ice src"init.sh"
-zinit light b4b4r07/enhancd
-zinit light mollifier/anyframe
-zinit light momo-lab/zsh-abbrev-alias
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-syntax-highlighting
-# }}} zinit
+# {{{ zi
+. ~/.zi/bin/zi.zsh
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
+zi ice src"init.sh"
+zi light b4b4r07/enhancd
+zi light mollifier/anyframe
+zi light momo-lab/zsh-abbrev-alias
+zi light zsh-users/zsh-autosuggestions
+zi light zsh-users/zsh-completions
+zi light zsh-users/zsh-syntax-highlighting
+# }}} zi
 
 . ~/.asdf/asdf.sh
 if [[ -a /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then

@@ -23,14 +23,14 @@
     git-prompt.sh: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
     lazyenv.bash: https://raw.githubusercontent.com/takezoh/lazyenv/master/lazyenv.bash
 
-- name: zinit
-  git: repo=https://github.com/z-shell/zinit.git depth=1 dest={{ ansible_env.HOME }}/.zinit/bin
+- name: zi
+  git: repo=https://github.com/z-shell/zi.git depth=1 dest={{ ansible_env.HOME }}/.zi/bin
 
-- name: zinit self-update
-  command: zsh -c '. ~/.zshrc && zinit self-update'
+- name: zi self-update
+  command: zsh -c '. ~/.zshrc && zi self-update'
 
-- name: zinit update --all
-  command: zsh -c '. ~/.zshrc && zinit update --all'
+- name: zi update --all
+  command: zsh -c '. ~/.zshrc && zi update --all'
 
 - name: ~/.local/bin/
   file: path={{ ansible_env.HOME }}/.local/bin/ state=directory
