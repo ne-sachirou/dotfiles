@@ -132,6 +132,10 @@ if !exists('g:quickrun_config')
         \  }
         \ }
 endif
+let g:quickrun_config.clojure = {
+      \   'command': 'bb',
+      \   'tempfile': '%{tempname()}.clj',
+      \ }
 let g:quickrun_config.fsharp = {
       \   'command': 'fsharpc',
       \   'runmode': 'simple',
