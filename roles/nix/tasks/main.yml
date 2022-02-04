@@ -1,0 +1,9 @@
+---
+- name: Install Nix
+  command: sh <(curl -L https://nixos.org/nix/install)
+
+- name: nix-channel --add
+  command: nix-channel --add https://nixos.org/channels/nixpkgs-21.11-darwin
+
+- name: nix-channel --update
+  command: nix-channel --update
