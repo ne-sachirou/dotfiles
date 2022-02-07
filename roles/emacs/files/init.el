@@ -404,6 +404,10 @@
 ;; proof-general
 
 ;; quickrun
+(quickrun-add-command "clojure/babashka"
+  '((:command . "bb")
+    (:exec . "%c %s"))
+  :default "clojure")
 
 ;; rust-mode
 (setq rust-format-on-save t)
