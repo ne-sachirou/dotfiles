@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 
 tap 'AdoptOpenJDK/openjdk'
+tap 'aws/tap'
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
 tap 'homebrew/cask'
@@ -15,6 +16,7 @@ brew 'ansible'
 brew 'ansible-lint'
 brew 'assh'
 brew 'autoconf'
+brew 'aws-sam-cli'
 brew 'awscli'
 brew 'awslogs'
 brew 'azure-cli'
@@ -29,6 +31,7 @@ brew 'direnv'
 brew 'dotnet'
 brew 'emacs'
 brew 'envchain'
+brew 'kayac/tap/ecspresso'
 brew 'fop' # Erlang/OTP
 brew 'fswatch'
 brew 'fzy'
@@ -47,7 +50,7 @@ brew 'jasper', link: true # PlantUML JPEG2000
 brew 'jq'
 brew 'k1LoW/tap/tbls'
 brew 'krew'
-brew 'kubeval'
+brew 'kubeconform'
 brew 'kustomize'
 brew 'leiningen'
 brew 'libav' # youtube-dl
