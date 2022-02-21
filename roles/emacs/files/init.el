@@ -49,6 +49,8 @@
     ; monokai-theme
     multi-term
     nginx-mode
+    nix-mode
+    nixpkgs-fmt
     origami
     osx-clipboard
     package-utils
@@ -348,6 +350,12 @@
 (setq multi-term-program "/bin/zsh")
 
 ;; nginx-mode
+
+;; nix-mode
+(add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
+
+;; nixpkgs-fmt
+(add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode)
 
 ;; origami
 (global-origami-mode t)

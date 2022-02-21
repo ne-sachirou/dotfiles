@@ -3,7 +3,17 @@
   command: sh <(curl -L https://nixos.org/nix/install)
 
 - name: nix-channel --add
-  command: nix-channel --add https://nixos.org/channels/nixpkgs-21.11-darwin
+  command: nix-channel --add {{ item }}
+  loop:
+    - https://nixos.org/channels/nixpkgs-21.11-darwin
 
 - name: nix-channel --update
   command: nix-channel --update
+
+- name: nix-env --install
+  command: nix-env --install {{ item }}
+  loop:
+    - nixpkgs-fmt
+
+- name: nix-env --upgrade
+  command: nix-env --upgrade
