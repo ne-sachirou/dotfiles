@@ -22,7 +22,7 @@
     dockerfile-mode
     doom-themes
     editorconfig
-    elixir-mode
+    eglot
     elscreen
     erlang
     evil
@@ -40,9 +40,6 @@
     ivy
     j-mode
     jinja2-mode
-    ; lsp-metals
-    ; lsp-mode
-    ; lsp-ui
     lua-mode
     magit
     markdown-mode
@@ -82,7 +79,7 @@
  '(js-indent-level 2)
  '(js-switch-indent-offset 2)
  '(package-selected-packages
-   '(ac-cider ag clojure-mode cider coffee-mode company company-lsp company-terraform company-web csharp-mode docker-tramp dockerfile-mode doom-themes editorconfig elixir-mode elscreen erlang evil evil-leader evil-matchit evil-smartparens evil-surround evil-tabs feature-mode flycheck go-mode groovy-mode haskell-mode j-mode jinja2-mode lsp-mode lsp-ui magit markdown-mode multi-term nginx-mode origami osx-clipboard package-utils plantuml-mode poly-ansible prettier-js projectile quickrun sbt-mode scala-mode slim-mode terraform-mode typescript-mode vimrc-mode yaml-mode web-mode))
+   '(ac-cider ag clojure-mode cider coffee-mode company company-terraform company-web csharp-mode docker-tramp dockerfile-mode doom-themes editorconfig elscreen erlang evil evil-leader evil-matchit evil-smartparens evil-surround evil-tabs feature-mode flycheck go-mode groovy-mode haskell-mode j-mode jinja2-mode magit markdown-mode multi-term nginx-mode origami osx-clipboard package-utils plantuml-mode poly-ansible prettier-js projectile quickrun sbt-mode scala-mode slim-mode terraform-mode typescript-mode vimrc-mode yaml-mode web-mode))
  '(plantuml-jar-path
    (let*
        ((exe-path
@@ -183,6 +180,7 @@
 (add-hook 'clojure-mode-hook #'cider-mode)
 
 ;; clojure-mode
+(add-hook 'clojure-mode-hook 'eglot-ensure)
 (add-hook 'clojure-mode-hook #'smartparens-mode)
 (add-hook 'clojure-mode-hook #'subword-mode)
 (add-to-list 'auto-mode-alist '("\\.clje\\'" . clojure-mode))
@@ -198,7 +196,7 @@
 ;; typescript-mode
 ;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-; (add-hook 'typescript-mode-hook #'lsp)
+(add-hook 'typescript-mode-hook 'eglot-ensure)
 
 ;; company-web
 (require 'company-web-html)
@@ -254,22 +252,12 @@
 ;; editorconfig
 (editorconfig-mode 1)
 
-;; elixir-mode
-; (add-hook 'elixir-mode-hook #'lsp)
-(add-hook 'elixir-mode-hook
-  (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
-(add-hook 'elixir-format-hook
-  (lambda ()
-    (if (projectile-project-p)
-      (setq elixir-format-arguments
-        (list "--dot-formatter"
-              (concat (locate-dominating-file buffer-file-name ".formatter.exs") ".formatter.exs")))
-      (setq elixir-format-arguments nil))))
+;; eglot
 
 ;; elscreen
 
 ;; erlang
-; (add-hook 'erlang-mode-hook #'lsp)
+(add-hook 'erlang-mode-hook 'eglot-ensure)
 
 ;; evil
 (evil-mode 1)
@@ -306,7 +294,7 @@
 (setq flycheck-golangci-lint-fast t)
 
 ;; go-mode
-; (add-hook 'go-mode-hook #'lsp-deferred)
+(add-hook 'go-mode-hook 'eglot-ensure)
 (add-hook 'go-mode-hook
   (lambda () (add-hook 'before-save-hook 'gofmt-before-save nil t)))
 
@@ -325,18 +313,6 @@
 
 ;; jinja2-mode
 
-;; lsp-metals
-
-;; lsp-mode
-; (setq lsp-enable-snippet nil)
-; (setq lsp-prefer-capf t)
-; (setq lsp-prefer-flymake nil)
-; (add-hook 'lsp-mode-hook #'dap-mode)
-; (add-hook 'lsp-mode-hook #'dap-ui-mode)
-; (add-hook 'lsp-mode-hook #'lsp-lens-mode)
-
-;; lsp-ui
-
 ;; lua-mode
 
 ;; magit
@@ -353,6 +329,7 @@
 
 ;; nix-mode
 (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
+(add-hook 'nix-mode-hook 'eglot-ensure)
 
 ;; nixpkgs-fmt
 (add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode)
@@ -428,7 +405,7 @@
 ; (setq :program-options '("-Dsbt.supershell=false"))
 
 ;; scala-mode
-; (add-hook 'scala-mode-hook #'lsp)
+(add-hook 'scala-mode-hook 'eglot-ensure)
 
 ;; slim-mode
 
