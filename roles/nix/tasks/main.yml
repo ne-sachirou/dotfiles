@@ -17,3 +17,6 @@
 
 - name: nix-env --upgrade
   command: nix-env --upgrade
+
+- name: nix-store --gc
+  command: nix-store --gc

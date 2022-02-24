@@ -133,6 +133,10 @@ bindkey '^xk' anyframe-widget-kill
 bindkey '^x^k' anyframe-widget-kill
 # }}}
 
+PATH=/nix/var/nix/profiles/default/bin:$PATH
+. /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+export PATH
+
 case "${OSTYPE}" in
 darwin*)
   . ~/.zsh/.zshrc.darwin
