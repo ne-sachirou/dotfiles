@@ -1,0 +1,6 @@
+---
+- name: ~/.config/sbx/
+  file: path={{ ansible_env.HOME }}/.config/sbx state=directory
+
+- name: ~/.config/sbx/config.json
+  file: path={{ ansible_env.HOME }}/.config/sbx/config.json src={{ role_path }}/files/config.json state=link
