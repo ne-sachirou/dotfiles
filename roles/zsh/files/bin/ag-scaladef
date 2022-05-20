@@ -4,11 +4,12 @@
 
 
 ;; ag -G '\.scala$' "(class|def|object|trait|type|val|var) $1(?=\W)"
-(-> ["ag"
-     "-G" "\\.scala$"
-     "--color"
-     (str "(class|def|object|trait|type|val|var) " (first *command-line-args*) "(?=\\W)")]
-    (process {:in :inherit})
-    :out
-    slurp
-    println)
+(let [word (first *command-line-args*)]
+  (-> ["ag"
+       "-G" "\\.scala$"
+       "--color"
+       (str "(class|def|object|trait|type|val|var) " word "(?=\\W)")]
+      (process {:in :inherit})
+      :out
+      slurp
+      println))

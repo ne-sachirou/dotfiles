@@ -3,12 +3,14 @@
 (require '[babashka.process :refer [process]])
 
 
-;; ag -G '(?<!\.test)\.ts(x?)$' "(class|const|function|interface|let|type|var|(^ *)) $1(?=\W)"
-(-> ["ag"
-     "-G" "(?<!\\.test)\\.ts(x?)$"
-     "--color"
-     (str "(class|const|function|interface|let|type|var|(^ *)) " (first *command-line-args*) "(?=\\W)")]
-    (process {:in :inherit})
-    :out
-    slurp
-    println)
+(let [word (first *command-line-args*)]
+  (-> ["ag"
+       "-G" "(?<!\\.test)\\.ts(x?)$"
+       "--color"
+       (format "((class|const|function|interface|let|type|var) %s(?=\\W))|(^ *%s:)"
+               word
+               word)]
+      (process {:in :inherit})
+      :out
+      slurp
+      println))

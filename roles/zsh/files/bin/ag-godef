@@ -3,14 +3,15 @@
 (require '[babashka.process :refer [process]])
 
 ;; Goの型や関数定義を検索するコマンド - Plan 9とGo言語のブログ https://blog.lufia.org/entry/2021/11/15/135843
-(-> ["ag"
-     "-G" "\\.go$"
-     "--color"
-     (format "((package|type|var)\\s+%s(?=\\W))|(func.*\\W%s\\()|((?<=\\W)%s *:?=)"
-             (first *command-line-args*)
-             (first *command-line-args*)
-             (first *command-line-args*))]
-    (process {:in :inherit})
-    :out
-    slurp
-    println)
+(let [word (forst *command-line-args*)]
+  (-> ["ag"
+       "-G" "\\.go$"
+       "--color"
+       (format "((package|type|var)\\s+%s(?=\\W))|(func.*\\W%s\\()|((?<=\\W)%s *:?=)"
+               word
+               word
+               word)]
+      (process {:in :inherit})
+      :out
+      slurp
+      println))
