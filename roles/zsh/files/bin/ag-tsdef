@@ -3,13 +3,14 @@
 (require '[babashka.process :refer [process]])
 
 
-(let [word (first *command-line-args*)]
+(let [[word & paths] *command-line-args*]
   (-> ["ag"
-       "-G" "(?<!\\.test)\\.ts(x?)$"
+       "-G" "(?<!\\.test)\\.[jt]s(x?)$"
        "--color"
        (format "((class|const|function|interface|let|type|var) %s(?=\\W))|(^ *%s:)"
                word
                word)]
+      (concat paths)
       (process {:in :inherit})
       :out
       slurp

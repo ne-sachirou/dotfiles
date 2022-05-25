@@ -2,8 +2,9 @@
 ;; -*- mode: clojure; -*-
 (require '[babashka.process :refer [process]])
 
+
 ;; Goの型や関数定義を検索するコマンド - Plan 9とGo言語のブログ https://blog.lufia.org/entry/2021/11/15/135843
-(let [word (forst *command-line-args*)]
+(let [[word & paths] *command-line-args*]
   (-> ["ag"
        "-G" "\\.go$"
        "--color"
@@ -11,6 +12,7 @@
                word
                word
                word)]
+      (concat paths)
       (process {:in :inherit})
       :out
       slurp

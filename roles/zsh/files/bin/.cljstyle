@@ -1,1 +1,1 @@
-{:files {:pattern #"^(agperl|ag-scaladef|ag-tsdef|docker-gc|etags-of|git-gone|mackerel-plugin-speedtest)$"}}
+{:files {:pattern #"^(agperl|ag-godef|ag-scaladef|ag-tsdef|docker-gc|etags-of|git-gone|mackerel-plugin-speedtest)$"}}
