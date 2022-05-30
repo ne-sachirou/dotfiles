@@ -1,8 +1,11 @@
 ---
+- name: ~/.config/git/
+  file: path={{ ansible_env.HOME }}/.config/git state=directory
+
 - name: ~/.gitconfig
-  template: dest={{ ansible_env.HOME }}/.gitconfig src={{ role_path }}/templates/.gitconfig.j2
+  template: dest={{ ansible_env.HOME }}/.config/git/config src={{ role_path }}/templates/.gitconfig.j2
 
 - name: ~/.gitignore
-  file: path={{ ansible_env.HOME }}/.gitignore src={{ role_path }}/files/.gitignore state=link
+  file: path={{ ansible_env.HOME }}/.config/git/ignore src={{ role_path }}/files/.gitignore state=link
 
 - import_tasks: git-subrepo.yml
