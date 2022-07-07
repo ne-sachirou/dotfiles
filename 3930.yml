@@ -14,6 +14,7 @@
       versions: ["24.2"]
       elixir:
         versions: ["1.13.2-otp-24"]
+    - gcloud
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp

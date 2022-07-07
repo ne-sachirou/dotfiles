@@ -1,0 +1,5 @@
+---
+- name: gcloud components install
+  shell: gcloud components install {{ item }}
+  with_items:
+    - gke-gcloud-auth-plugin
