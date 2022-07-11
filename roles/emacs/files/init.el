@@ -364,10 +364,11 @@
 ;; poly-ansible
 
 ;; prettier-js
-(add-hook 'js2-mode-hook 'prettier-js-mode)
-(add-hook 'typescript-mode-hook 'prettier-js-mode)
-(add-hook 'web-mode-hook 'prettier-js-mode)
-(setq prettier-js-args '())
+(dolist (mode '('js2-mode-hook 'typescript-mode-hook 'web-mode)
+  (eval-after-load mode
+                   '(progn (add-hook mode #'add-node-modules-path)
+                           (add-hook mode #'prettier-js-mode)))))
+;(setq prettier-js-args '())
 
 ;; projectile
 (global-set-key (kbd "C-x C-f") 'projectile-find-file)
