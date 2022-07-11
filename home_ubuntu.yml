@@ -5,26 +5,24 @@
     - role: asdf
       asdf_version: v0.9.0
     - role: clojure
-      versions: ["1.10.3.1058"]
+      versions: ["1.10.3.1087"]
     # - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["24.2"]
-      elixir:
-        versions: ["1.13.2-otp-24"]
+      versions: ["25.0.2"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
     - role: haskell
       versions: ["9.2.1"]
     - role: nodejs
-      versions: ["16.13.2"]
+      versions: ["18.5.0"]
     - private_values
     - role: python
-      versions: ["3.10.1"]
+      versions: ["3.10.4"]
     - role: ruby
-      versions: ["3.1.0"]
+      versions: ["3.1.1"]
     - vim
     - zsh
 # ~/profile
