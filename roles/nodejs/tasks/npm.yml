@@ -20,6 +20,7 @@
     - npm-check-updates
     - npm-safety-updater
     - prettier
+    - sql-formatter
     - textlint
     - typescript
     - typescript-language-server
