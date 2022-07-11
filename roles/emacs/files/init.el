@@ -26,6 +26,7 @@
     elscreen
     erlang
     evil
+    evil-indent-textobject
     evil-leader
     evil-matchit
     evil-smartparens
@@ -261,6 +262,8 @@
 
 ;; evil
 (evil-mode 1)
+
+;; evil-indent-textobject
 
 ;; evil-leader
 (global-evil-leader-mode)
