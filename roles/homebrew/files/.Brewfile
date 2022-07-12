@@ -70,7 +70,7 @@ brew 'openapi-generator'
 brew 'peco'
 brew 'percona-toolkit'
 brew 'plantuml'
-brew 'postgresql@11', link: true, restart_service: true
+brew 'postgresql@12', link: true, restart_service: true
 brew 'pstree'
 brew 'redis', restart_service: true
 brew 'rlwrap'
@@ -109,12 +109,14 @@ cask 'firefox'
 # cask 'fontforge'
 cask 'gfortran' # scipy
 cask 'gimp'
+cask 'github'
 cask 'google-cloud-sdk'
 cask 'hyper'
 cask 'imageoptim'
 # cask 'inkscape'
 cask 'karabiner-elements'
 cask 'notion'
+cask 'obs'
 cask 'tunnelblick' # AWS Client VPN
 cask 'vagrant'
 cask 'virtualbox'
