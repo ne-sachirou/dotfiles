@@ -11,6 +11,8 @@
     - emacs
     - role: erlang
       versions: ["25.0.2"]
+      elixir:
+        versions: ["1.13.4-otp-25"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
