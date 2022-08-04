@@ -56,20 +56,20 @@ abbrev-alias -g pv=private-values
 alias j='docker run -it -v "$(pwd):/mnt" --rm nesachirou/jlang'
 alias ssh='assh wrapper ssh'
 
-#alias vi='emacsclient -nw'
-function vi() {
-  if test "$(stat "$1" > /dev/null || echo $?)" ; then
-    echo -n "Create a file? (y/N): "
-    read yn
-    case "$yn" in
-      [yY]*) touch "$1"
-             emacsclient -nw "$1" ;;
-      *) : ;;
-    esac
-  else
-    emacsclient -nw "$1"
-  fi
-}
+alias vi='emacsclient -nw'
+#function vi() {
+#  if test "$(stat "$1" > /dev/null || echo $?)" ; then
+#    echo -n "Create a file? (y/N): "
+#    read yn
+#    case "$yn" in
+#      [yY]*) touch "$1"
+#             emacsclient -nw "$1" ;;
+#      *) : ;;
+#    esac
+#  else
+#    emacsclient -nw "$1"
+#  fi
+#}
 
 # {{{ history
 setopt hist_ignore_dups
