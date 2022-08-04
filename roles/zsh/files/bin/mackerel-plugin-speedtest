@@ -7,6 +7,7 @@
 
 
 (defn from-str
+  ""
   [expression]
   (let [[name value-str time-str] (str/split expression #"\t" 3)]
     {:name name
@@ -15,6 +16,7 @@
 
 
 (defn to-str
+  ""
   [{:keys [name value time]}]
   (str/join "\t" [name value (-> time .getTime (/ 1000) Math/floor int)]))
 
@@ -36,6 +38,7 @@
 
 
 (defn measure
+  ""
   [time]
   (let [{:keys [exit out err]} (shell/sh "speedtest" "--json" "--secure")]
     (if (not= 0 exit) (throw (Exception. err)) :ok)
@@ -46,6 +49,7 @@
 
 
 (defn read-cache
+  ""
   []
   (try
     (->> cache-filename slurp str/split-lines (filter #(not= "" %)) (map metric/from-str))
@@ -54,11 +58,13 @@
 
 
 (defn write-cache
+  ""
   [metrics]
   (->> metrics (map metric/to-str) (str/join "\n") (spit cache-filename)))
 
 
 (defn measure-with-cache
+  ""
   [time]
   (let [prev-metrics (read-cache)]
     (if (or (empty? prev-metrics)
@@ -76,6 +82,7 @@
 
 
 (defn print-meta
+  ""
   []
   (println "# mackerel-agent-plugin")
   (println (json/encode {:graphs {:speedtest.speed {:label "Speedtest"
@@ -88,6 +95,7 @@
 
 
 (defn print-metrics
+  ""
   []
   (let [time (java.util.Date.)
         metrics (speedtest/measure-with-cache time)]
