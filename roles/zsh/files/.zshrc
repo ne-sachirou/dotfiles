@@ -92,8 +92,8 @@ export GIT_PS1_SHOWDIRTYSTATE GIT_PS1_SHOWUPSTREAM GIT_PS1_SHOWUNTRACKEDFILES GI
 setopt PROMPT_SUBST
 setopt TRANSIENT_RPROMPT
 precmd () {
-  PROMPT="%F{blue}%? %#%f "
-  RPROMPT="%F{blue}[%f%F{red}%~$(__git_ps1)%f %F{blue}%*]%f"
+  PROMPT="%F{blue}%*%f %F{red}%?%f%F{blue}%#%f "
+  RPROMPT="%F{blue}[%f%F{red}%~$(__git_ps1)%f %F{blue}]%f"
   export PROMPT RPROMPT
 }
 # }}} prompt
