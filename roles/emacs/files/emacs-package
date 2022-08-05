@@ -29,7 +29,7 @@ SUBCOMMAND:
 
 (let ((command (elt argv 0)))
   (cond
-    ((equal command "update") (update))
+    ((string= command "update") (update))
     (t (help))))
 
 ;;; emacs-package ends here

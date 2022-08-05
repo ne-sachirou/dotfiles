@@ -52,10 +52,10 @@ SUBCOMMAND:
 
 (let ((command (elt argv 0)))
   (cond
-    ((equal command "start") (start))
-    ((equal command "status") (status))
-    ((equal command "stop") (stop))
-    ((equal command "restart") (restart))
+    ((string= command "start") (start))
+    ((string= command "status") (status))
+    ((string= command "stop") (stop))
+    ((string= command "restart") (restart))
     (t (help))))
 
 ;;; emacsserver ends here
