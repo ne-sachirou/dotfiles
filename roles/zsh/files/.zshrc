@@ -14,6 +14,7 @@ compinit
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 zi ice src"init.sh"
+export ENHANCD_COMMAND=_cd
 zi light b4b4r07/enhancd
 zi light mollifier/anyframe
 zi light momo-lab/zsh-abbrev-alias
@@ -112,6 +113,7 @@ function list_status() {
     git -c color.status=always status -sb  --show-stash | head -n 20
   fi
 }
+
 function do_enter() {
   pwd > /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38
   list_status
@@ -119,6 +121,7 @@ function do_enter() {
 }
 zle -N do_enter
 bindkey '^m' do_enter
+
 function chpwd() {
   pwd > /tmp/pwd_11a37b13f64c46bfb5a0282279e6bb38
 }

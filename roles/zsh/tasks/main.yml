@@ -17,7 +17,6 @@
   get_url: url={{ item.value }} dest={{ ansible_env.HOME }}/.zsh/{{ item.key }}
   with_dict:
     _git: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
-    _git-bug: https://raw.githubusercontent.com/MichaelMure/git-bug/master/misc/zsh_completion/git-bug
     assh_autocomplete.zsh: https://raw.githubusercontent.com/moul/advanced-ssh-config/master/contrib/completion/zsh_autocomplete
     git-completion.bash: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
     git-prompt.sh: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
