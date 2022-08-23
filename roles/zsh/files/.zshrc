@@ -14,7 +14,9 @@ compinit
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 zi ice src"init.sh"
-export ENHANCD_COMMAND=_cd
+# export ENHANCD_COMMAND=_cd
+export ENHANCD_COMPLETION_KEYBIND=^I
+export ENHANCD_COMPLETION_BEHAVIOR=list
 zi light b4b4r07/enhancd
 zi light mollifier/anyframe
 zi light momo-lab/zsh-abbrev-alias
