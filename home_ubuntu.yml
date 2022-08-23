@@ -3,14 +3,14 @@
   roles:
     - apt
     - role: asdf
-      asdf_version: v0.9.0
+      asdf_version: v0.10.2
     - role: clojure
       versions: ["1.10.3.1087"]
     # - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["25.0.3"]
+      versions: ["25.0.4"]
       elixir:
         versions: ["1.13.4-otp-25"]
     - role: git
