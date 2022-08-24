@@ -16,8 +16,6 @@
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
-    - role: haskell
-      versions: ["9.2.1"]
     - role: nodejs
       versions: ["18.7.0"]
     - private_values

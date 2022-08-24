@@ -25,6 +25,7 @@ class Version:
             "python": Version,
             "ruby": Version,
             "rust": RustVersion,
+            "terraform": Version,
         }
         if plugin_name not in version_classes:
             return Version

@@ -4,9 +4,11 @@ help:
 
 .PHONY: clean
 clean: ## Clean.
+	rm -fv .tool-versions
 	find . -name '*.retry' -exec rm -v {} \+
-	find . -name '.DS_Store' -exec rm -v {} \+
 	find . -name '.*.un~' -exec rm -v {} \+
+	find . -name '.*.~undo-tree~' -exec rm -v {} \+
+	find . -name '.DS_Store' -exec rm -v {} \+
 
 .PHONY: install
 PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1 --on-cancel error)
@@ -20,16 +22,16 @@ format: ## Format files.
 	# ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}
 	npx prettier --write README.md
 	find . -name '*.yml' -exec npx prettier --write {} \+
-	# find . -name '*.py' -exec black {} \+
-	# find . -name '*.py' -exec isort {} \+
+	find . -name '*.py' -exec black {} \+
+	find . -name '*.py' -exec isort {} \+
 	cljstyle fix || true
 
 .PHONY: test
 test: ## Test.
 	ansible -i hosts -m setup default > /dev/null 2>&1
 	find . -name '*.yml' -exec yamllint {} \+ || true
-	ansible-playbook -v -K -i hosts --syntax-check $(PLAYBOOK)
-	find . -name '*.yml' -exec ansible-lint {} \+
+	ls *.yml | xargs -I{} -t ansible-playbook -v -K -i hosts --syntax-check {}
+	ansible-lint *.yml roles/*/tasks/*.yml
 	ansible-playbook -v -C -K -i hosts $(PLAYBOOK)
 	find . -name '*.sh' -exec shellcheck {} \+
 	zsh -n roles/zsh/files/.z* || true

@@ -51,6 +51,8 @@
         - stable
         - nightly
     - scala
+    - role: terraform
+      versions: ["1.2.7"]
     - role: ssh
       private_values_project: hatena
     - vagrant

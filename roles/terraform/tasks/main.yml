@@ -1,0 +1,6 @@
+---
+- name: Run `asdf install terraform`
+  asdf:
+    plugin: terraform
+    versions: "{{ versions }}"
+    global: "{{ global | default(versions[0]) }}"
