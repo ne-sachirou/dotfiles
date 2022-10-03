@@ -23,6 +23,7 @@
       versions: ["3.10.6"]
     - role: ruby
       versions: ["3.1.2"]
+    - sbx
     - vim
     - zsh
 # ~/profile

@@ -49,6 +49,7 @@
       versions:
         - stable
         - nightly
+    - sbx
     - scala
     - role: terraform
       versions: ["1.2.8"]
