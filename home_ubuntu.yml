@@ -10,14 +10,14 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["25.0.4"]
+      versions: ["25.1"]
       elixir:
-        versions: ["1.13.4-otp-25"]
+        versions: ["1.14.0-otp-25"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
     - role: nodejs
-      versions: ["18.7.0"]
+      versions: ["18.10.0"]
     - private_values
     - role: python
       versions: ["3.10.6"]

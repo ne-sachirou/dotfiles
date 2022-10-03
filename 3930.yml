@@ -11,17 +11,16 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["25.0.4"]
+      versions: ["25.1"]
       elixir:
-        versions: ["1.13.4-otp-25"]
+        versions: ["1.14.0-otp-25"]
     - gcloud
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.18.5"
-        - "1.17.6"
+        - "1.19.1"
     - role: hatenablog
       private_values_project: hatena
     - hyper
@@ -30,7 +29,7 @@
     # - nix
     - role: nodejs
       versions:
-        - "18.7.0"
+        - "18.10.0"
         - "16.4.2"
         - "14.17.0"
         - "10.15.3"
@@ -39,7 +38,7 @@
     # - private_values
     - role: python
       versions:
-        - "3.10.6"
+        - "3.10.7"
         - "3.7.2"
     - role: ruby
       versions:
@@ -52,7 +51,7 @@
         - nightly
     - scala
     - role: terraform
-      versions: ["1.2.7"]
+      versions: ["1.2.8"]
     - role: ssh
       private_values_project: hatena
     - vagrant
