@@ -5,7 +5,7 @@
     versions: "{{ versions }}"
     global: "{{ global | default(versions[0]) }}"
 
-- include: rustup.yml
+- include_tasks: rustup.yml
   loop: "{{ versions }}"
   vars:
     version: "{{ item }}"

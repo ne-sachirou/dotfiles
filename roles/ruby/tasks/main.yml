@@ -5,7 +5,7 @@
     versions: "{{ versions }}"
     global: "{{ global | default(versions[0]) }}"
 
-- include: gem.yml
+- include_tasks: gem.yml
   loop: "{{ versions }}"
   vars:
     version: "{{ item }}"

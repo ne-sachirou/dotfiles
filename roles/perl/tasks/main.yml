@@ -12,7 +12,7 @@
     versions: "{{ versions }}"
     global: "{{ global | default(versions[0]) }}"
 
-- include: cpanm.yml
+- include_tasks: cpanm.yml
   loop: "{{ versions }}"
   vars:
     version: "{{ item }}"

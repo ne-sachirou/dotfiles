@@ -5,7 +5,7 @@
     versions: "{{ elixir.versions }}"
     global: "{{ elixir.global | default(elixir.versions[0]) }}"
 
-- include: mix.yml
+- include_tasks: mix.yml
   loop: "{{ elixir.versions }}"
   vars:
     version: "{{ item }}"

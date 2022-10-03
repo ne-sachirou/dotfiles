@@ -5,7 +5,7 @@
     versions: "{{ versions }}"
     global: "{{ global | default(versions[0]) }}"
 
-- include: go_get.yml
+- include_tasks: go_get.yml
   loop: "{{ versions }}"
   vars:
     version: "{{ item }}"
