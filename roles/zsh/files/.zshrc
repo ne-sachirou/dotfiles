@@ -152,6 +152,8 @@ linux*)
   ;;
 esac
 
+# complete -o nospace -C /Users/ne-sachirou/.asdf/shims/terraform terraform
+
 # if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' $HOME/.zcompdump) / 86400)) ]; then
 #   compinit
 # else
