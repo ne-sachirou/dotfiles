@@ -37,7 +37,7 @@ if __name__ == "__main__":
             "sh",
             "-c",
             r"""
-            locate .tool-version | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo'
+            locate .tool-versions | grep '/\.tool-versions$' | sort | xargs -I{} sh -c 'echo {} && sort {} | awk '"'"'{print"\t"$0}'"'"' && echo'
             """,
         ],
         check=True,
