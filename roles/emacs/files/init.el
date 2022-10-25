@@ -127,19 +127,20 @@
 (global-linum-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-    (url-retrieve-synchronously "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-; (el-get-bundle 'overtone-emacs-live
-;   :type http-zip
-;   :url "https://github.com/overtone/emacs-live/archive/master.zip"
-;   :build (let* ((username "my")
-;                 (src-dir (substitute-in-file-name "$HOME/.emacs.d/el-get/overtone-emacs-live/packs/template/user-template-pack/"))
-;                 (dest-dir (substitute-in-file-name (concat "$HOME/.live-packs/" username "-pack"))))
-;            `(("mkdir" "-p" ,(eval dest-dir))
-;              ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
+(unless (require 'el-get nil t)
+  (url-retrieve
+   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+   (lambda (s)
+     (end-of-buffer)
+     (eval-print-last-sexp))))
+(el-get-bundle 'overtone-emacs-live
+  :type http-zip
+  :url "https://github.com/overtone/emacs-live/archive/master.zip"
+  :build (let* ((username "my")
+                (src-dir (substitute-in-file-name "$HOME/.emacs.d/el-get/overtone-emacs-live/packs/template/user-template-pack/"))
+                (dest-dir (substitute-in-file-name (concat "$HOME/.live-packs/" username "-pack"))))
+           `(("mkdir" "-p" ,(eval dest-dir))
+             ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
 (el-get-bundle 'proof-general)
 (el-get-bundle 'proof-general
        :description "A generic Emacs interface for interactive proof assistants."
