@@ -6,7 +6,7 @@
     [clojure.string :as str]))
 
 
-(defn from-str
+(defn str->metric
   ""
   [expression]
   (let [[name value-str time-str] (str/split expression #"\t" 3)]
@@ -15,7 +15,7 @@
      :time (-> time-str read-string (* 1000) java.util.Date.)}))
 
 
-(defn to-str
+(defn metric->str
   ""
   [{:keys [name value time]}]
   (str/join "\t" [name value (-> time .getTime (/ 1000) Math/floor int)]))
@@ -52,7 +52,7 @@
   ""
   []
   (try
-    (->> cache-filename slurp str/split-lines (filter #(not= "" %)) (map metric/from-str))
+    (->> cache-filename slurp str/split-lines (filter #(not= "" %)) (map metric/str->metric))
     (catch java.io.FileNotFoundException _err
       [])))
 
@@ -60,7 +60,7 @@
 (defn write-cache
   ""
   [metrics]
-  (->> metrics (map metric/to-str) (str/join "\n") (spit cache-filename)))
+  (->> metrics (map metric/metric->str) (str/join "\n") (spit cache-filename)))
 
 
 (defn measure-with-cache
@@ -90,7 +90,7 @@
                                                     :metrics [{:name "download" :label "download"}
                                                               {:name "upload" :label "upload"}]}
                                   :speedtest.ping {:label "Speedtest Ping"
-                                                   :unit "float" ; seconds
+                                                   :unit "seconds"
                                                    :metrics [{:name "ping" :label "ping"}]}}})))
 
 
@@ -100,7 +100,7 @@
   (let [time (java.util.Date.)
         metrics (speedtest/measure-with-cache time)]
     (doseq [metric metrics]
-      (println (metric/to-str metric)))))
+      (println (metric/metric->str metric)))))
 
 
 (if (= "1" (System/getenv "MACKEREL_AGENT_PLUGIN_META"))
