@@ -17,7 +17,9 @@
 	br = branch
 	ci = commit
 	co = checkout
-	graph = log --graph --oneline --decorate=full
+	graph = log --decorate=full --graph --oneline
+	pull-p = !git pull -p --all && git gone && etags-of
+	push-f = push --force-if-includes --force-with-lease
 	st = status -sb
 	sw = switch
 [pull]
