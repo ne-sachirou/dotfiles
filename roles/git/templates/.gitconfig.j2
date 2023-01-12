@@ -1,18 +1,3 @@
-[core]
-	longpath = true
-	quotepath = false
-	sparseCheckout = false
-[color]
-	ui = true
-[user]
-	name = {{ user_name | default("ne_Sachirou") }}
-	email = {{ user_email | default("utakata.c4se@gmail.com") }}
-[http]
-[https]
-[url "https://"]
-[http]
-[https]
-[url "https://"]
 [alias]
 	br = branch
 	ci = commit
@@ -22,10 +7,32 @@
 	push-f = push --force-if-includes --force-with-lease
 	st = status -sb
 	sw = switch
+[color]
+	ui = true
+[commit]
+	gpgsign = true
+[core]
+	longpath = true
+	quotepath = false
+	sparseCheckout = false
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[init]
+	defaultBranch = main
 [pull]
 	rebase = false
 [push]
 	default = simple
-[init]
-	defaultBranch = main
+[user]
+	name = {{ user_name | default("ne_Sachirou") }}
+	email = {{ user_email | default("utakata.c4se@gmail.com") }}
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDGUoq8SiQ++1W+0G/NCTod1zLl5Zf6MWL9zdp73o7F+kULR052URCpSAigR8yNbRJkdS/QU91juGX6rx+1jvjl3iDZnhhYpbo2VZjWVB7K3Q2ggaqj6kh2+3aLJj0f/pi5Dn2aSZDcOH2FRXT1KLSnTPwYH2hQuGpMDPGcwk1ReVUxJ8LJ9GAWFDIsENwLWA7++YjlhV/EkZW4Xze+pl1ryqCq72VJge62EO8j3i5mG3NWdIkm95NL2yeHm2ozhjWIuJiibAwyOVhAtNtQc1mxxEd1+GtRIKb0pq0Uqs+F30qMc2GPEVJtIwqtNTPrYlKi77xmWTyfUFaFfPQLPyfv6SNnfSlBIYGhAr+drqgvhmI4dxEb8DhPIKuQkUWL+YZLcnGGooUNUsmiU8gjuEa77LB/JOfZqIN/Letx7hzVLIRrfHfPyyZaLBUr9U1ZNO6D1Qe2kl5Upn5ofHdvlLhf47b2TkXAi0T0aej+7z73jjV1OUkfgySRf5qQy8+/cM2oNRegAzx8M8gjjakj0V4G9c6Tvr3dr8D0XS67jwL5Cd2KTLKh0CxJNyk3PPfBa1Jc+j1e3B0g7MRf4OP1sqIB+HzbkbohPL5cpk31u4JTDwky9YNntUMk4Gum1WP/q1JAZduw+mbXoSt/tbdNXpAvzRuC5Dv6z9+QrQKAGDfB4w==
+[http]
+[https]
+[url "https://"]
+[http]
+[https]
+[url "https://"]
 # vim:noet:
