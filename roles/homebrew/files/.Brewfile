@@ -67,6 +67,8 @@ brew 'noti'
 brew 'nss' # mkcert Firefox
 brew 'nuget'
 brew 'openapi-generator'
+brew 'pass'
+brew 'pass-otp'
 brew 'peco'
 brew 'percona-toolkit'
 brew 'plantuml'
@@ -89,6 +91,7 @@ brew 'v8@3.15' # for therubyracer on Ruby 2.6.3
 brew 'vim'
 brew 'watch'
 brew 'wget'
+brew 'wine-stable'
 brew 'wxwidgets' # Erlang/OTP
 brew 'yamllint'
 brew 'youtube-dl'
