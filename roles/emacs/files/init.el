@@ -50,6 +50,7 @@
     nginx-mode
     nix-mode
     nixpkgs-fmt
+    nov
     origami
     osx-clipboard
     package-utils
@@ -340,6 +341,9 @@
 
 ;; nixpkgs-fmt
 (add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode)
+
+;; nov
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 ;; origami
 (global-origami-mode t)
