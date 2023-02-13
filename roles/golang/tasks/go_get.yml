@@ -2,11 +2,12 @@
 - name: asdf local
   command: asdf local golang {{ version }}
 
-- name: go get
-  command: go get {{ item }}
+- name: go install
+  command: go install {{ item }}
   loop:
     []
     # - github.com/x-motemen/gore
+    - github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
 
 - name: asdf reshim
   command: asdf reshim golang

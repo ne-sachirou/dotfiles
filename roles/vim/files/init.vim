@@ -74,6 +74,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'digitaltoad/vim-pug', {'for': 'pug'}
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
 Plug 'evidens/vim-twig', {'for': 'twig'}
+Plug 'google/vim-jsonnet', {'for': 'jsonnet'}
 Plug 'groenewege/vim-less', {'for': 'less'}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'kongo2002/fsharp-vim', {'for': 'fsharp'}

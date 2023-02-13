@@ -41,6 +41,7 @@
     ivy
     j-mode
     jinja2-mode
+    jsonnet-mode
     lua-mode
     magit
     markdown-mode
@@ -316,6 +317,8 @@
 ;; j-mode
 
 ;; jinja2-mode
+
+;; jsonnet-mode
 
 ;; lua-mode
 

@@ -48,6 +48,7 @@ brew 'istioctl'
 brew 'itchyny/tap/base58'
 brew 'jasper', link: true # PlantUML JPEG2000
 brew 'jq'
+brew 'jsonnet'
 brew 'k1LoW/tap/tbls'
 brew 'krew'
 brew 'kubeconform'
