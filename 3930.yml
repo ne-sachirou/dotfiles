@@ -3,7 +3,7 @@
   roles:
     - homebrew
     - role: asdf
-      asdf_version: v0.10.2
+      asdf_version: v0.11.1
     - role: clojure
       versions: ["1.10.3.1087"]
     - dev_dir
@@ -20,7 +20,7 @@
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.19.1"
+        - "1.20.1"
     - role: hatenablog
       private_values_project: hatena
     - hyper
