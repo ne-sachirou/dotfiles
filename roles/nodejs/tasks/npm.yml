@@ -16,6 +16,7 @@
     - "@google/clasp"
     - "@hubspot/cli"
     - "@marp-team/marp-cli"
+    - clear-npx-cache
     - nbb
     - npm-check-updates
     - npm-safety-updater
