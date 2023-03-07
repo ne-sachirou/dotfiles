@@ -8,6 +8,8 @@ clean: ## Clean.
 	find . -name '*.retry' -exec rm -v {} \+
 	find . -name '.*.un~' -exec rm -v {} \+
 	find . -name '.*.~undo-tree~' -exec rm -v {} \+
+	find . -name '.*.swp' -exec rm -v {} \+
+	find . -name '.*.swo' -exec rm -v {} \+
 	find . -name '.DS_Store' -exec rm -v {} \+
 
 .PHONY: install
