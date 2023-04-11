@@ -25,14 +25,10 @@
 	rebase = false
 [push]
 	default = simple
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 [user]
 	name = {{ user_name | default("ne-sachirou") }}
 	email = {{ user_email | default("utakata.c4se@gmail.com") }}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBsyRKxoaO6xthoCslV9zZWg8E4rNEcPIA5ruL9INuce
-[http]
-[https]
-[url "https://"]
-[http]
-[https]
-[url "https://"]
 # vim:noet:
