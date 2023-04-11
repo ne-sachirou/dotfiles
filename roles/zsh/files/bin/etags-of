@@ -24,8 +24,8 @@
   (if (.exists (io/file "TAGS"))
     (io/delete-file "TAGS")
     :ok)
-  ;; ag -g '\.(c|cpp|el|erl|go|h|hrl|java|lua|php|pl|py|rb|tex|y)$' | xargs -t etags -a
-  (let [filenames (ag-g "\\.(c|cpp|el|erl|go|h|hrl|java|lua|php|pl|py|rb|tex|y)$")]
+  ;; ag -g 'Makefile|(\.(c|cpp|el|erl|go|h|hrl|java|lua|php|pl|py|rb|rs|tex|y))$' | xargs -t etags -a
+  (let [filenames (ag-g "Makefile|(\\.(c|cpp|el|erl|go|h|hrl|java|lua|php|pl|py|rb|rs|tex|y))$")]
     (doseq [filenames (partition-all 101 filenames)]
       (try
         (apply sh (concat ["etags" "-a"] filenames))
