@@ -33,6 +33,7 @@ brew 'dotnet'
 brew 'emacs'
 brew 'envchain'
 brew 'kayac/tap/ecspresso'
+brew 'flac'
 brew 'fop' # Erlang/OTP
 brew 'fswatch'
 brew 'fzy'
