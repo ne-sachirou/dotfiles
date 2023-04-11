@@ -3,7 +3,7 @@
 fpath=(~/.zsh ~/.asdf/completions $fpath)
 
 # {{{ init
-bindkey -e
+bindkey -v
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
@@ -18,6 +18,7 @@ zi ice src"init.sh"
 export ENHANCD_COMPLETION_KEYBIND=^I
 export ENHANCD_COMPLETION_BEHAVIOR=list
 zi light b4b4r07/enhancd
+# zi light jeffreytse/zsh-vi-mode # Similar to `bindkey -v`
 zi light mollifier/anyframe
 zi light momo-lab/zsh-abbrev-alias
 zi light zsh-users/zsh-autosuggestions
@@ -133,10 +134,8 @@ fi
 # }}} cd
 
 # {{{ anyframe
-bindkey '^xr' anyframe-widget-execute-history
-bindkey '^x^r' anyframe-widget-execute-history
-bindkey '^xk' anyframe-widget-kill
-bindkey '^x^k' anyframe-widget-kill
+# bindkey '^r' history-incremental-search-backward # This is zsh default.
+bindkey '^r' anyframe-widget-execute-history
 # }}}
 
 PATH=/nix/var/nix/profiles/default/bin:$PATH
