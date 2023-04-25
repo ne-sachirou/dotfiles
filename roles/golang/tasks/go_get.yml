@@ -5,7 +5,6 @@
 - name: go install
   command: go install {{ item }}
   loop:
-    []
     # - github.com/x-motemen/gore
     - github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
 

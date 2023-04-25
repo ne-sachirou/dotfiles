@@ -12,6 +12,23 @@ clean: ## Clean.
 	find . -name '.*.swo' -exec rm -v {} \+
 	find . -name '.DS_Store' -exec rm -v {} \+
 
+.PHONY: format
+format: format-clojure format-markdown format-python format-yaml ## Format files.
+	# ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}
+.PHONY: format-clojure
+format-clojure:
+	cljstyle fix || true
+.PHONY: format-markdown
+format-markdown:
+	npx prettier --write README.md
+.PHONY: format-python
+format-python:
+	git ls-files | grep -E '\.py$$' | xargs -t black
+	git ls-files | grep -E '\.py$$' | xargs -t isort
+.PHONY: format-yaml
+format-yaml:
+	git ls-files | grep -E '\.ya?ml$$' | xargs -t npx prettier --write
+
 .PHONY: install
 PLAYBOOK ?= $(shell perl -e 'map{print $$_,"\n"}grep /\.yml$$/,<*>' | peco --select-1 --on-cancel error)
 install: ## ansible-playbook
@@ -19,27 +36,26 @@ install: ## ansible-playbook
 	rm -fv .tool-versions
 	ansible-playbook -v -K -i hosts $(PLAYBOOK)
 
-.PHONY: format
-format: ## Format files.
-	# ag -l '\r' | xargs -t -I{} sed -i -e 's/\r//' {}
-	npx prettier --write README.md
-	find . -name '*.yml' -exec npx prettier --write {} \+
-	find . -name '*.py' -exec black {} \+
-	find . -name '*.py' -exec isort {} \+
-	cljstyle fix || true
-
 .PHONY: test
-test: ## Test.
+test: test-ansible test-clojure test-sh test-yaml ## Test.
+.PHONY: test-ansible
+test-ansible:
 	ansible -i hosts -m setup default > /dev/null 2>&1
-	find . -name '*.yml' -exec yamllint {} \+ || true
 	ls *.yml | xargs -I{} -t ansible-playbook -v -K -i hosts --syntax-check {}
 	ansible-lint *.yml roles/*/tasks/*.yml
 	ansible-playbook -v -C -K -i hosts $(PLAYBOOK)
-	find . -name '*.sh' -exec shellcheck {} \+
-	zsh -n roles/zsh/files/.z* || true
-	shellcheck -e SC1090,SC1091,SC2148 roles/zsh/files/.z* || true
+.PHONY: test-clojure
+test-clojure:
 	cljstyle check || true
 	cljstyle find | xargs -t clj-kondo --no-warnings --parallel --lint
 	cljstyle find | xargs -t clj-kondo --parallel --lint || true
+.PHONY: test-sh
+test-sh:
+	git ls-files | grep -E '\.sh$$' | xargs -t shellcheck
+	zsh -n roles/zsh/files/.z* || true
+	shellcheck -e SC1090,SC1091,SC2148 roles/zsh/files/.z* || true
+.PHONY: test-yaml
+test-yaml:
+	git ls-files | grep -E '\.ya?ml$$' | xargs -t yamllint || true
 
 # vim:set noet:
