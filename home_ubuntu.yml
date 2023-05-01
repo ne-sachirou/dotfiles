@@ -17,7 +17,7 @@
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
     - role: nodejs
-      versions: ["18.13.0"]
+      versions: ["18.16.0"]
     - private_values
     - role: python
       versions: ["3.11.1"]
