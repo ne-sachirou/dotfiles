@@ -3,7 +3,7 @@
   roles:
     - apt
     - role: asdf
-      asdf_version: v0.11.1
+      asdf_version: v0.11.3
     - role: clojure
       versions: ["1.11.1.1208"]
     # - docker
