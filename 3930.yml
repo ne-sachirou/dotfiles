@@ -11,9 +11,9 @@
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["25.2.1"]
+      versions: ["26.0"]
       elixir:
-        versions: ["1.14.3-otp-25"]
+        versions: ["1.14.4-otp-26"]
     - gcloud
     - role: git
       user_name: ne-sachirou
