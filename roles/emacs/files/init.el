@@ -13,7 +13,7 @@
  '(package-selected-packages
    '(web-mode
      vimrc-mode
-     use-package
+     ;use-package
      undo-tree
      typescript-mode
      slim-mode
