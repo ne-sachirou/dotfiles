@@ -1,3 +1,3 @@
 resolvers += Resolver.sonatypeRepo("snapshots")
-addSbtPlugin("org.scalameta" % "sbt-metals" % "0.11.2")
-addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.5.6")
+addSbtPlugin("org.scalameta" % "sbt-metals" % "1.0.0")
+addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.5.9")
