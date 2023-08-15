@@ -17,7 +17,6 @@ brew 'ansible'
 brew 'ansible-lint'
 brew 'assh'
 brew 'autoconf'
-brew 'aws-sam-cli'
 brew 'awscli'
 brew 'awslogs'
 brew 'azure-cli'
@@ -133,7 +132,5 @@ cask 'wireshark'
 cask 'xquartz'
 
 mas 'Kindle', id: 405399194
-# mas 'LINE', id: 539883307
 mas 'Slack', id: 803453959
 mas 'The Unarchiver', id: 425424353
-mas 'Trello', id: 1278508951
