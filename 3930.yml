@@ -3,24 +3,24 @@
   roles:
     - homebrew
     - role: asdf
-      asdf_version: v0.11.3
+      asdf_version: v0.12.0
     - role: clojure
-      versions: ["1.11.1.1208"]
+      versions: ["1.11.1.1403"]
     - dev_dir
     - docker
     - editorconfig
     - emacs
     - role: erlang
-      versions: ["26.0"]
+      versions: ["26.0.2"]
       elixir:
-        versions: ["1.14.4-otp-26"]
+        versions: ["1.15.4-otp-26"]
     - gcloud
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.20.1"
+        - "1.21.0"
     - role: hatenablog
       private_values_project: hatena
     - hyper
@@ -29,23 +29,19 @@
     # - nix
     - role: nodejs
       versions:
+        - "20.5.1"
         - "18.16.0"
-        - "16.4.2"
-        - "14.17.0"
         - "10.15.3"
     - role: perl
-      versions: ["5.36.0"]
+      versions: ["5.38.0"]
     # - private_values
     - role: python
       versions:
-        - "3.11.1"
-        - "3.10.8"
-        - "3.7.2"
+        - "3.11.4"
+        - "3.8.8"
     - role: ruby
       versions:
-        - "3.2.0"
-        - "2.6.3"
-        - "2.5.7"
+        - "3.2.2"
     - role: rust
       versions:
         - stable
@@ -54,7 +50,7 @@
     - scala
     - role: terraform
       versions:
-        - "1.3.7"
+        - "1.5.5"
         - "0.14.11"
     - role: ssh
       private_values_project: hatena
