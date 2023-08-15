@@ -383,14 +383,11 @@
 (use-package
  prettier-js
  :init
- (dolist (mode
-          '('js2-mode-hook 'typescript-mode-hook 'web-mode)
-          (eval-after-load mode
-            '(progn
-               (add-hook mode #'add-node-modules-path)
-               (add-hook mode #'prettier-js-mode)))))
- ;(setq prettier-js-args '())
- )
+ (add-hook 'js2-mode-hook 'prettier-js-mode)
+ (eval-after-load 'web-mode
+    '(progn
+       (add-hook 'web-mode-hook #'add-node-modules-path)
+       (add-hook 'web-mode-hook #'prettier-js-mode))))
 
 (use-package
  projectile
