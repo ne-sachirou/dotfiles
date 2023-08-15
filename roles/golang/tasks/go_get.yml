@@ -6,6 +6,7 @@
   command: go install {{ item }}
   loop:
     # - github.com/x-motemen/gore
+    - github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
     - github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
 
 - name: asdf reshim
