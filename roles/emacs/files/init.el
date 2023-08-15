@@ -58,7 +58,6 @@
      editorconfig
      doom-themes
      dockerfile-mode
-     docker-tramp
      diminish
      csharp-mode
      counsel
@@ -214,12 +213,6 @@
  (safe-diminish "osx-clipboard" 'osx-clipboard-mode)
  (safe-diminish "smartparens" 'smartparens-mode)
  (safe-diminish "undo-tree" 'undo-tree-mode))
-
-(use-package
- docker-tramp
- :init
- (require 'docker-tramp-compat)
- (set-variable 'docker-tramp-use-names t))
 
 (use-package dockerfile-mode)
 
