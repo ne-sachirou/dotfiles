@@ -4,8 +4,6 @@
     cmd: |
       curl -L -H "Authorization:{{ lookup('private_values', 'get dotfiles GITHUB_API_TOKEN') }}" https://api.github.com/repos/ne-sachirou/private-values/releases/latest | \
         jq -r '.assets[] | select(.name == "private-values-linux-x64") | .browser_download_url'
-  args:
-    warn: false
   register: private_values_browser_download_url
   changed_when: false
   check_mode: false

@@ -1,13 +1,4 @@
 ---
-- name: 0.13/build.sbt
-  file: path={{ ansible_env.HOME }}/.sbt/0.13/build.sbt src={{ role_path }}/files/build.sbt state=link
-
-- name: 0.13/plugins
-  file: path={{ ansible_env.HOME }}/.sbt/0.13/plugins state=directory
-
-- name: 0.13/plugins.sbt
-  file: path={{ ansible_env.HOME }}/.sbt/0.13/plugins/plugins.sbt src={{ role_path }}/files/plugins.sbt state=link
-
 - name: 1.0/build.sbt
   file: path={{ ansible_env.HOME }}/.sbt/1.0/build.sbt src={{ role_path }}/files/build.sbt state=link
 

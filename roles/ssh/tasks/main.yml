@@ -5,13 +5,13 @@
 - name: ~/.ssh/id_rsa
   copy:
     dest: "{{ ansible_env.HOME }}/.ssh/id_rsa"
-    src: "{{ lookup('private_values', 'path ' ~ private_values_project) }}/id_rsa"
+    src: "{{ lookup('private_values', 'path ' ~ private_values_project) }}/ssh/id_rsa"
     mode: "0600"
 
 - name: ~/.ssh/*
   copy:
     dest: "{{ ansible_env.HOME }}/.ssh/{{ item }}"
-    src: "{{ lookup('private_values', 'path ' ~ private_values_project) }}/{{ item }}"
+    src: "{{ lookup('private_values', 'path ' ~ private_values_project) }}/ssh/{{ item }}"
   with_items:
     - id_rsa.pub
     - assh.yml

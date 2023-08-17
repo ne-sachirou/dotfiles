@@ -17,8 +17,6 @@
   shell: |
     curl -L -H "Authorization:{{ lookup('private_values', 'get dotfiles GITHUB_API_TOKEN') }}" https://api.github.com/repos/clojure-lsp/clojure-lsp/releases/latest | \
       jq -r '.tag_name'
-  args:
-    warn: false
   register: clojure_lsp_ver
   changed_when: false
   check_mode: false
