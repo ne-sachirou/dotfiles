@@ -5,19 +5,19 @@
     - role: asdf
       asdf_version: v0.12.0
     - role: clojure
-      versions: ["1.11.1.1403"]
+      versions: ["1.11.1.1413"]
     # - docker
     - editorconfig
     - emacs
     - role: erlang
       versions: ["26.0.2"]
       elixir:
-        versions: ["1.15.4-otp-26"]
+        versions: ["1.15.5-otp-26"]
     - role: git
       user_name: ne-sachirou
       user_email: utakata.c4se@gmail.com
     - role: nodejs
-      versions: ["20.5.1"]
+      versions: ["20.6.0"]
     - private_values
     - role: python
       versions: ["3.11.4"]

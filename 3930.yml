@@ -5,7 +5,7 @@
     - role: asdf
       asdf_version: v0.12.0
     - role: clojure
-      versions: ["1.11.1.1403"]
+      versions: ["1.11.1.1413"]
     - dev_dir
     - docker
     - editorconfig
@@ -13,14 +13,14 @@
     - role: erlang
       versions: ["26.0.2"]
       elixir:
-        versions: ["1.15.4-otp-26"]
+        versions: ["1.15.5-otp-26"]
     - gcloud
     - role: git
       user_name: ne-sachirou
       user_email: ne-sachirou@hatena.ne.jp
     - role: golang
       versions:
-        - "1.21.0"
+        - "1.21.1"
     - role: hatenablog
       private_values_project: hatena
     - hyper
@@ -29,7 +29,7 @@
     # - nix
     - role: nodejs
       versions:
-        - "20.5.1"
+        - "20.6.0"
         - "18.16.0"
         - "10.15.3"
     - role: perl
