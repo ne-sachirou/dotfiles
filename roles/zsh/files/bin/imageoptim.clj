@@ -24,17 +24,14 @@
         threads (mapv (fn [_]
                         (let [on-exit (async/chan)
                               ;; Using alts!! instead of alts! because of Babashka compatibility.
-                              thread (async/go-loop [[data _] (async/alts!! [chan (async/timeout timeout-ms)])]
-                                       (if data
-                                         ;; Can only recur from tail position
-                                         (do (consumer data)
-                                             (recur (async/alts!! [chan (async/timeout timeout-ms)])))
-                                         ;; (try
-                                         ;;   (consumer data)
-                                         ;;   (recur (async/alts!! [chan (async/timeout timeout-ms)]))
-                                         ;;   (catch Exception ex
-                                         ;;     (println ex)
-                                         ;;     (recur (async/alts!! [chan (async/timeout timeout-ms)]))))
+                              thread (async/go-loop [[item _] (async/alts!! [chan (async/timeout timeout-ms)])]
+                                       (if item
+                                         (do
+                                           (try
+                                             (consumer item)
+                                             (catch Exception ex
+                                               (println ex)))
+                                           (recur (async/alts!! [chan (async/timeout timeout-ms)])))
                                          (async/close! on-exit)))]
                           {:on-exit on-exit :thread thread}))
                       (range nproc))]
@@ -92,6 +89,7 @@
                             (/ input-file-length 1024.0)
                             (/ output-file-length 1024.0)
                             (* (/ output-file-length input-file-length) 100.0)))
+           (.delete input-file)
            (.renameTo output-file input-file))
          (catch Exception ex
            (println ex)
@@ -120,7 +118,7 @@
   [image]
   (compress-by-command-fn image
                           (fn [input-filename output-filename]
-                            ["zopflipng"
+                            ["/home/c4se/dev/zopfli/zopflipng"
                              "-m"
                              "--lossy_transparent"
                              input-filename
