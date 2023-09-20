@@ -40,7 +40,7 @@
 (defn measure
   ""
   [time]
-  (let [{:keys [exit out err]} (shell/sh "speedtest" "--json" "--secure")]
+  (let [{:keys [exit out err]} (shell/sh "speedtest-cli" "--json" "--secure")]
     (if (not= 0 exit) (throw (Exception. err)) :ok)
     (let [result (json/decode out)]
       [{:name "speedtest.speed.download" :value (/ (get result "download") 8.0) :time time}
