@@ -158,6 +158,15 @@
 
 (use-package company-terraform :init (company-terraform-init))
 
+(el-get-bundle
+  'copilot
+  :description "An unofficial Copilot plugin for Emacs."
+  :type github
+  :pkgname "zerolfx/copilot.el"
+  :info "readme.md"
+  :autoloads "copilot.el"
+  :website "https://github.com/zerolfx/copilot.el")
+
 (use-package
  elisp-autofmt
  :commands (elisp-autofmt-mode elisp-autofmt-buffer)

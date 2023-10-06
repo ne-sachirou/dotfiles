@@ -60,6 +60,8 @@
       vscode_extensions:
         - EditorConfig.EditorConfig
         - GitHub.vscode-pull-request-github
+        - GitHub.copilot
+        - GitHub.copilot-chat
         - MS-CEINTL.vscode-language-pack-ja
         - Orta.vscode-jest
         - VisualStudioExptTeam.intellicode-api-usage-examples
