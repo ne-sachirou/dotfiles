@@ -115,15 +115,29 @@
 ;; package 管理 tool を設定する
 
 (require 'package)
-(add-to-list
- 'package-archives '("melpa" . "https://melpa.org/packages/")
- t)
+(add-to-list 'package-archives
+  '("melpa" . "https://melpa.org/packages/")
+  t)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/")
              t)
 (setq package-archive-priorities
       '(("gnu" . 5) ("melpa" . 0) ("melpa-stable" . 10)))
 (package-initialize)
+
+; https://github.com/radian-software/straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (unless (require 'el-get nil t)
@@ -158,14 +172,13 @@
 
 (use-package company-terraform :init (company-terraform-init))
 
-(el-get-bundle
-  'copilot
-  :description "An unofficial Copilot plugin for Emacs."
-  :type github
-  :pkgname "zerolfx/copilot.el"
-  :info "readme.md"
-  :autoloads "copilot.el"
-  :website "https://github.com/zerolfx/copilot.el")
+(use-package copilot
+  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :ensure t
+  :config
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  :hook (prog-mode . copilot-mode))
 
 (use-package
  elisp-autofmt
