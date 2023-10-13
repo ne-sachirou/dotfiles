@@ -13,7 +13,6 @@
  '(package-selected-packages
    '(web-mode
      vimrc-mode
-     ;use-package
      undo-tree
      typescript-mode
      slim-mode
@@ -158,35 +157,30 @@
 
 (use-package cider :hook clojure-mode)
 
-(use-package
- clojure-mode
+(use-package clojure-mode
  :init
  (add-to-list 'auto-mode-alist '("\\.clje\\'" . clojure-mode))
  (add-hook 'clojure-mode-hook 'eglot-ensure)
- :hook
- ((clojure-mode . smartparens-mode) (clojure-mode . subword-mode)))
+ :hook ((clojure-mode . smartparens-mode)
+         (clojure-mode . subword-mode)))
 
-(use-package
- company
- :init (add-hook 'after-init-hook 'global-company-mode))
+(use-package company :init (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package company-terraform :init (company-terraform-init))
 
 (use-package copilot
   :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
   :ensure t
-  :config
-  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  :bind (:map copilot-completion-map
+          ("<tab>" . copilot-accept-completion)
+          ("TAB" . copilot-accept-completion))
   :hook (prog-mode . copilot-mode))
 
-(use-package
- elisp-autofmt
+(use-package elisp-autofmt
  :commands (elisp-autofmt-mode elisp-autofmt-buffer)
  :hook (emacs-lisp-mode . elisp-autofmt-mode))
 
-(use-package
- typescript-mode
+(use-package typescript-mode
  :init
  ;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
@@ -195,39 +189,36 @@
 (use-package company-web :init (require 'company-web-html))
 
 ; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package
- counsel
- :init
- (global-set-key (kbd "M-x") 'counsel-M-x)
- (global-set-key (kbd "<f1> f") 'counsel-describe-function)
- (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
- (global-set-key (kbd "<f1> o") 'counsel-describe-symbol)
- (global-set-key (kbd "<f1> l") 'counsel-find-library)
- (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
- (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
- (global-set-key (kbd "C-c g") 'counsel-git)
- (global-set-key (kbd "C-c j") 'counsel-git-grep)
- (global-set-key (kbd "C-c k") 'counsel-ag)
- (global-set-key (kbd "C-x l") 'counsel-locate)
- (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
- (define-key
-  minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+          ("<f1> f" . counsel-describe-function)
+          ("<f1> v" . counsel-describe-variable)
+          ("<f1> o" . counsel-describe-symbol)
+          ("<f1> l" . counsel-find-library)
+          ("<f2> i" . counsel-info-lookup-symbol)
+          ("<f2> u" . counsel-unicode-char)
+          ("C-c g" . counsel-git)
+          ("C-c j" . counsel-git-grep)
+          ("C-c k" . counsel-ag)
+          ("C-x l" . counsel-locate)
+          ("C-S-o" . counsel-rhythmbox)
+          :map minibuffer-local-map
+          ("C-r" . counsel-minibuffer-history)))
 
-;(use-package dap-mode
-;  :init
-;  (dap-mode 1)
-;  (dap-ui-mode 1)
-;  (dap-tooltip-mode 1)
-;  (tooltip-mode 1)
-;  (dap-ui-controls-mode 1))
+; (use-package dap-mode
+; :init
+;   (dap-mode 1)
+;   (dap-ui-mode 1)
+;   (dap-tooltip-mode 1)
+;   (tooltip-mode 1)
+;   (dap-ui-controls-mode 1))
 
 ; 指定したマイナーモードを表示しない(diminish篇) - Qiita https://qiita.com/tadsan/items/c859c5c04724cbda75fc
 (defmacro safe-diminish (file mode &optional new-name)
   "https://github.com/larstvei/dot-emacs/blob/master/init.org"
   `(with-eval-after-load ,file
      (diminish ,mode ,new-name)))
-(use-package
- diminish
+(use-package diminish
  :init
  (safe-diminish "company" 'company-mode)
  (safe-diminish "editorconfig" 'editorconfig-mode)
@@ -238,8 +229,7 @@
 
 (use-package dockerfile-mode)
 
-(use-package
- doom-themes
+(use-package doom-themes
  :init
  (setq
   doom-themes-enable-bold t
@@ -262,19 +252,14 @@
 
 (use-package evil-matchit :init (global-evil-matchit-mode 1))
 
-(use-package
- evil-smartparens
+(use-package evil-smartparens
  :init
  ; Slurp Barf · Clojure development with Spacemacs & Cider https://practicalli.github.io/spacemacs/structured-editing/lisp-state-slurp-barf.html
  (evil-leader/set-key
-  "kb"
-  'sp-forward-barf-sexp
-  "kB"
-  'sp-backward-barf-sexp
-  "ks"
-  'sp-forward-slurp-sexp
-  "kS"
-  'sp-backward-slurp-sexp)
+  "kb" 'sp-forward-barf-sexp
+  "kB" 'sp-backward-barf-sexp
+  "ks" 'sp-forward-slurp-sexp
+  "kS" 'sp-backward-slurp-sexp)
  :hook (smartparens-enabled . evil-smartparens-mode))
 
 (use-package evil-surround :init (global-evil-surround-mode 1))
@@ -285,44 +270,41 @@
 
 (use-package flycheck :hook (after-init . global-flycheck-mode))
 
-(use-package
- flycheck-golangci-lint
+(use-package flycheck-golangci-lint
  :init
  (eval-after-load 'flycheck
    '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
  (setq flycheck-golangci-lint-fast t))
 
-(use-package
- go-mode
- :init (add-hook 'go-mode-hook 'eglot-ensure)
- (add-hook
-  'go-mode-hook
-  (lambda () (add-hook 'before-save-hook 'gofmt-before-save nil t))))
-;(require 'project)
-;(defun project-find-go-module (dir)
-;  (when-let ((root (locate-dominating-file dir "go.mod")))
-;    (cons 'go-module root)))
-;(cl-defmethod project-root ((project (head go-module)))
-;  (cdr project))
-;(add-hook 'project-find-functions #'project-find-go-module)
+(use-package go-mode
+  :init
+  (add-hook 'go-mode-hook 'eglot-ensure)
+  (add-hook 'go-mode-hook
+    (lambda () (add-hook 'before-save-hook 'gofmt-before-save nil t))))
+; (require 'project)
+; (defun project-find-go-module (dir)
+;   (when-let ((root (locate-dominating-file dir "go.mod")))
+;     (cons 'go-module root)))
+; (cl-defmethod project-root ((project (head go-module)))
+;   (cdr project))
+; (add-hook 'project-find-functions #'project-find-go-module)
 
-;(use-package graphql-mode)
+; (use-package graphql-mode)
 
 (use-package groovy-mode)
 
 (use-package haskell-mode)
 
 ; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package
- ivy
+(use-package ivy
  :init
  (ivy-mode 1)
  (setq ivy-use-virtual-buffers t)
  (setq enable-recursive-minibuffers t)
- (global-set-key (kbd "C-c C-r") 'ivy-resume)
- (global-set-key (kbd "<f6>") 'ivy-resume))
+  :bind (("C-c C-r" . ivy-resume)
+          ("<f6>" . ivy-resume)))
 
-;(use-package j-mode)
+; (use-package j-mode)
 
 (use-package jinja2-mode)
 
@@ -342,43 +324,39 @@
 
 (use-package nginx-mode)
 
-(use-package
- nix-mode
+(use-package nix-mode
  :init
  (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
  (add-hook 'nix-mode-hook 'eglot-ensure))
 
-(use-package
- nixpkgs-fmt
+(use-package nixpkgs-fmt
  :init (add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode))
 
 ; EPUB を Emacs 上で讀む
-(use-package
- nov
+(use-package nov
  :init
  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 ; fold - Vim日本語ドキュメント https://vim-jp.org/vimdoc-ja/fold.html
-(use-package
- origami
- :init (global-origami-mode t)
- (with-eval-after-load 'origami
-   (define-key evil-normal-state-map "za" 'origami-toggle-node)
-   (define-key
-    evil-normal-state-map "zA" 'origami-recursively-toggle-node)
-   (define-key evil-normal-state-map "zc" 'origami-close-node)
-   (define-key
-    evil-normal-state-map "zC" 'origami-close-node-recursively)
-   (define-key evil-normal-state-map "zo" 'origami-open-node)
-   (define-key
-    evil-normal-state-map "zO" 'origami-open-node-recursively)
-   (define-key evil-normal-state-map "zv" 'origami-show-node)))
+(use-package origami
+  :init
+  (global-origami-mode t)
+  :bind (:map evil-normal-state-map
+          ("za" . origami-toggle-node)
+          ("zA" . origami-recursively-toggle-node)
+          ("zc" . origami-close-node)
+          ("zC" . origami-close-node-recursively)
+          ("zo" . origami-open-node)
+          ("zO" . origami-open-node-recursively)
+          ("zv" . origami-show-node)
+          ("zr" . origami-open-all-nodes)
+          ("zm" . origami-close-all-nodes)
+          ("zR" . origami-reset)))
 
 (use-package osx-clipboard :init (osx-clipboard-mode +1))
 
 ; See ~/.emacs-live.el
-(el-get-bundle
- 'overtone-emacs-live
+(el-get-bundle 'overtone-emacs-live
  :type http-zip
  :url "https://github.com/overtone/emacs-live/archive/master.zip"
  ;; NOTE: git submodule update に失敗する
@@ -402,8 +380,7 @@
 
 (use-package poly-ansible)
 
-(use-package
- prettier-js
+(use-package prettier-js
  :init
  (add-hook 'js2-mode-hook 'prettier-js-mode)
  (eval-after-load 'web-mode
@@ -411,31 +388,31 @@
        (add-hook 'web-mode-hook #'add-node-modules-path)
        (add-hook 'web-mode-hook #'prettier-js-mode))))
 
-(use-package
- projectile
- :init (global-set-key (kbd "C-x C-f") 'projectile-find-file)
- ;(defun projectile-find-file-when-find-file-not-found ()
- ;  "When find-file-not-found then projectile-find-file."
- ;  (require 'projectile)
- ;  (if (projectile-project-p)
- ;    (do
- ;      (interactive)
- ;      (let* ((project-root (projectile-ensure-project (projectile-project-root)))
- ;              (file-name (substring buffer-file-name (length project-root)))
- ;              (file (projectile-completing-read
- ;                      "Find file: "
- ;                      (projectile-project-files project-root)
- ;                      :initial-input file-name)))
- ;        (when file
- ;          (funcall #'find-file (expand-file-name file project-root))
- ;          (run-hooks 'projectile-find-file-hook)
- ;          t)))))
- ;(add-hook 'find-file-not-found-hooks 'projectile-find-file-when-find-file-not-found)
- )
+(use-package projectile
+ ; :init
+ ; (defun projectile-find-file-when-find-file-not-found ()
+ ;   "When find-file-not-found then projectile-find-file."
+ ;   (require 'projectile)
+ ;   (if (projectile-project-p)
+ ;     (do
+ ;       (interactive)
+ ;       (let* ((project-root (projectile-ensure-project (projectile-project-root)))
+ ;               (file-name (substring buffer-file-name (length project-root)))
+ ;               (file (projectile-completing-read
+ ;                       "Find file: "
+ ;                       (projectile-project-files project-root)
+ ;                       :initial-input file-name)))
+ ;         (when file
+ ;           (funcall #'find-file (expand-file-name file project-root))
+ ;           (run-hooks 'projectile-find-file-hook)
+ ;           t)))))
+ ; (add-hook 'find-file-not-found-hooks 'projectile-find-file-when-find-file-not-found)
+  :bind (("C-x C-f" . projectile-find-file)))
 
+; (use-package proof-general
+;   :streight (:host github :repo "ProofGeneral/PG"))
 (el-get-bundle 'proof-general)
-(el-get-bundle
- 'proof-general
+(el-get-bundle 'proof-general
  :description "A generic Emacs interface for interactive proof assistants."
  :type github
  :pkgname "ProofGeneral/PG"
@@ -446,8 +423,7 @@
  :autoloads "generic/proof-site.el"
  :website "http://proofgeneral.inf.ed.ac.uk/")
 
-(use-package
- quickrun
+(use-package quickrun
  :init
  (quickrun-add-command
   "clojure/babashka"
@@ -456,8 +432,7 @@
 
 (use-package rust-mode :init (setq rust-format-on-save t))
 
-(use-package
- sbt-mode
+(use-package sbt-mode
  :init
  (substitute-key-definition
   'minibuffer-complete-word
@@ -466,21 +441,19 @@
  ;(setq :program-options '("-Dsbt.supershell=false"))
  )
 
-(use-package
- scala-mode
- :init (add-hook 'scala-mode-hook 'eglot-ensure))
+(use-package scala-mode :init (add-hook 'scala-mode-hook 'eglot-ensure))
 
 (use-package slim-mode)
 
-(use-package
- smartparens
+(use-package smartparens
  :init
  ;(smartparens-global-mode t)
  (smartparens-strict-mode t)
  :hook emacs-lisp-mode)
 
 ; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package swiper :init (global-set-key "\C-s" 'swiper))
+(use-package swiper
+  :bind (("\C-s" . swiper)))
 
 (use-package terraform-mode)
 
