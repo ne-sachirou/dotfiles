@@ -12,7 +12,7 @@
 - name: init.vim
   file: path={{ item }} src={{ role_path }}/files/init.vim state=link
   with_items:
-    - "{{ ansible_env.HOME }}/.vim/init.vim"
+    # - "{{ ansible_env.HOME }}/.vim/init.vim" # for NeoVim
     - "{{ ansible_env.HOME }}/.vimrc"
 
 - name: ~/.vim/autoload/

@@ -19,7 +19,7 @@
 - name: Emacs management commands
   file: path={{ ansible_env.HOME }}/.local/bin/{{ item }} src={{ role_path }}/files/{{ item }} state=link
   with_items:
-    - emacsserver
+    # - emacsserver
     - emacs-package
 
 - name: package-get

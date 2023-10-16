@@ -15,7 +15,6 @@
      vimrc-mode
      undo-tree
      typescript-mode
-     slim-mode
      sbt-mode
      rust-mode
      quickrun
@@ -32,18 +31,13 @@
      nix-mode
      nginx-mode
      multi-term
-     monokai-theme
-     molokai-theme
      magit
      lua-mode
      lsp-ui
      lsp-metals
      jsonnet-mode
-     j-mode
      haskell-mode
-     groovy-mode
      go-mode
-     flycheck-golangci-lint
      feature-mode
      evil-tabs
      evil-surround
@@ -85,44 +79,54 @@
 (setq-default indent-tabs-mode nil)
 
 ;; file 保存前に行末尾空白を消す
-(defvar delete-trailing-whitespece-before-save t)
-(make-variable-buffer-local 'delete-trailing-whitespece-before-save)
-(advice-add
- 'delete-trailing-whitespace
- :before-while (lambda () delete-trailing-whitespece-before-save))
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook
- 'markdown-mode-hook
- '(lambda ()
-    (set
-     (make-local-variable
-      'delete-trailing-whitespece-before-save)
-     nil)))
-(add-hook
- 'yaml-mode-hook
- '(lambda ()
-    (set
-     (make-local-variable
-      'delete-trailing-whitespece-before-save)
-     nil)))
+;; EditorConfig で充分では?
+; (defvar delete-trailing-whitespece-before-save t)
+; (make-variable-buffer-local 'delete-trailing-whitespece-before-save)
+; (advice-add
+;  'delete-trailing-whitespace
+;  :before-while (lambda () delete-trailing-whitespece-before-save))
+; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+; (add-hook
+;  'markdown-mode-hook
+;  '(lambda ()
+;     (set
+;      (make-local-variable
+;       'delete-trailing-whitespece-before-save)
+;      nil)))
+; (add-hook
+;  'yaml-mode-hook
+;  '(lambda ()
+;     (set
+;      (make-local-variable
+;       'delete-trailing-whitespece-before-save)
+;      nil)))
 
 (add-to-list 'auto-mode-alist '("\\.t\\'" . perl-mode))
 
-(require 'linum)
-(global-linum-mode 1)
+; (require 'linum)
+; (global-linum-mode 1)
+(global-display-line-numbers-mode)
 
 ;; package 管理 tool を設定する
 
 (require 'package)
+(package-initialize)
 (add-to-list 'package-archives
-  '("melpa" . "https://melpa.org/packages/")
-  t)
+             '("melpa" . "https://melpa.org/packages/")
+             t)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/")
              t)
 (setq package-archive-priorities
       '(("gnu" . 5) ("melpa" . 0) ("melpa-stable" . 10)))
-(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-and-compile
+  (require 'use-package)
+  (setq use-package-always-ensure t
+        use-package-expand-minimally t))
 
 ; https://github.com/radian-software/straight.el
 (defvar bootstrap-version)
@@ -138,18 +142,13 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(unless (require 'el-get nil t)
-  (url-retrieve
-   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
-   (lambda (s)
-     (end-of-buffer)
-     (eval-print-last-sexp))))
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
+; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+; (unless (require 'el-get nil t)
+;   (url-retrieve
+;    "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+;    (lambda (s)
+;      (end-of-buffer)
+;      (eval-print-last-sexp))))
 
 ;; package を install して設定する
 
@@ -219,7 +218,7 @@
   `(with-eval-after-load ,file
      (diminish ,mode ,new-name)))
 (use-package diminish
- :init
+ :config
  (safe-diminish "company" 'company-mode)
  (safe-diminish "editorconfig" 'editorconfig-mode)
  (safe-diminish "eldoc" 'eldoc-mode)
@@ -230,7 +229,7 @@
 (use-package dockerfile-mode)
 
 (use-package doom-themes
- :init
+ :config
  (setq
   doom-themes-enable-bold t
   doom-themes-enable-italic t)
@@ -244,13 +243,13 @@
 
 (use-package erlang :init (add-hook 'erlang-mode-hook 'eglot-ensure))
 
-(use-package evil :init (evil-mode 1))
+(use-package evil :config (evil-mode 1))
 
 (use-package evil-indent-textobject)
 
-(use-package evil-leader :init (global-evil-leader-mode))
+(use-package evil-leader :config (global-evil-leader-mode))
 
-(use-package evil-matchit :init (global-evil-matchit-mode 1))
+(use-package evil-matchit :config (global-evil-matchit-mode 1))
 
 (use-package evil-smartparens
  :init
@@ -262,19 +261,13 @@
   "kS" 'sp-backward-slurp-sexp)
  :hook (smartparens-enabled . evil-smartparens-mode))
 
-(use-package evil-surround :init (global-evil-surround-mode 1))
+(use-package evil-surround :config (global-evil-surround-mode 1))
 
-(use-package evil-tabs :init (global-evil-tabs-mode t))
+(use-package evil-tabs :config (global-evil-tabs-mode t))
 
 (use-package feature-mode)
 
-(use-package flycheck :hook (after-init . global-flycheck-mode))
-
-(use-package flycheck-golangci-lint
- :init
- (eval-after-load 'flycheck
-   '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
- (setq flycheck-golangci-lint-fast t))
+(use-package flycheck)
 
 (use-package go-mode
   :init
@@ -289,22 +282,16 @@
 ;   (cdr project))
 ; (add-hook 'project-find-functions #'project-find-go-module)
 
-; (use-package graphql-mode)
-
-(use-package groovy-mode)
-
 (use-package haskell-mode)
 
 ; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
 (use-package ivy
- :init
+ :config
  (ivy-mode 1)
  (setq ivy-use-virtual-buffers t)
  (setq enable-recursive-minibuffers t)
   :bind (("C-c C-r" . ivy-resume)
           ("<f6>" . ivy-resume)))
-
-; (use-package j-mode)
 
 (use-package jinja2-mode)
 
@@ -315,10 +302,6 @@
 (use-package magit)
 
 (use-package markdown-mode)
-
-;(use-package monokai-theme
-;  :init
-;  (load-theme 'monokai t))
 
 (use-package multi-term :init (setq multi-term-program "/bin/zsh"))
 
@@ -339,7 +322,7 @@
 
 ; fold - Vim日本語ドキュメント https://vim-jp.org/vimdoc-ja/fold.html
 (use-package origami
-  :init
+  :config
   (global-origami-mode t)
   :bind (:map evil-normal-state-map
           ("za" . origami-toggle-node)
@@ -353,26 +336,26 @@
           ("zm" . origami-close-all-nodes)
           ("zR" . origami-reset)))
 
-(use-package osx-clipboard :init (osx-clipboard-mode +1))
+(use-package osx-clipboard :config (osx-clipboard-mode +1))
 
 ; See ~/.emacs-live.el
-(el-get-bundle 'overtone-emacs-live
- :type http-zip
- :url "https://github.com/overtone/emacs-live/archive/master.zip"
- ;; NOTE: git submodule update に失敗する
- ;; :type github
- ;; :pkgname "overtone/emacs-live"
- :build
- (let*
-     ((username "my")
-      (src-dir
-       (substitute-in-file-name
-        "$HOME/.emacs.d/el-get/overtone-emacs-live/packs/template/user-template-pack/"))
-      (dest-dir
-       (substitute-in-file-name
-        (concat "$HOME/.live-packs/" username "-pack"))))
-   `(("mkdir" "-p" ,(eval dest-dir))
-     ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
+; (el-get-bundle 'overtone-emacs-live
+;  :type http-zip
+;  :url "https://github.com/overtone/emacs-live/archive/master.zip"
+;  ;; NOTE: git submodule update に失敗する
+;  ;; :type github
+;  ;; :pkgname "overtone/emacs-live"
+;  :build
+;  (let*
+;      ((username "my")
+;       (src-dir
+;        (substitute-in-file-name
+;         "$HOME/.emacs.d/el-get/overtone-emacs-live/packs/template/user-template-pack/"))
+;       (dest-dir
+;        (substitute-in-file-name
+;         (concat "$HOME/.live-packs/" username "-pack"))))
+;    `(("mkdir" "-p" ,(eval dest-dir))
+;      ("cp" "-R" ,(eval src-dir) ,(eval dest-dir)))))
 
 (use-package package-utils)
 
@@ -411,20 +394,20 @@
 
 ; (use-package proof-general
 ;   :streight (:host github :repo "ProofGeneral/PG"))
-(el-get-bundle 'proof-general)
-(el-get-bundle 'proof-general
- :description "A generic Emacs interface for interactive proof assistants."
- :type github
- :pkgname "ProofGeneral/PG"
- :build
- `(("make" "clean")
-   ("make" ,(concat "EMACS=" el-get-emacs) "compile"))
- :info "doc"
- :autoloads "generic/proof-site.el"
- :website "http://proofgeneral.inf.ed.ac.uk/")
+; (el-get-bundle 'proof-general)
+; (el-get-bundle 'proof-general
+;  :description "A generic Emacs interface for interactive proof assistants."
+;  :type github
+;  :pkgname "ProofGeneral/PG"
+;  :build
+;  `(("make" "clean")
+;    ("make" ,(concat "EMACS=" el-get-emacs) "compile"))
+;  :info "doc"
+;  :autoloads "generic/proof-site.el"
+;  :website "http://proofgeneral.inf.ed.ac.uk/")
 
 (use-package quickrun
- :init
+ :config
  (quickrun-add-command
   "clojure/babashka"
   '((:command . "bb") (:exec . "%c %s"))
@@ -443,10 +426,8 @@
 
 (use-package scala-mode :init (add-hook 'scala-mode-hook 'eglot-ensure))
 
-(use-package slim-mode)
-
 (use-package smartparens
- :init
+ :config
  ;(smartparens-global-mode t)
  (smartparens-strict-mode t)
  :hook emacs-lisp-mode)
@@ -458,8 +439,6 @@
 (use-package terraform-mode)
 
 (use-package typescript-mode)
-
-(use-package use-package)
 
 (use-package vimrc-mode)
 
