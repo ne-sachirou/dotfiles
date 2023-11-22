@@ -1,26 +1,18 @@
 ---
-- name: 1.0/build.sbt
-  file: path={{ ansible_env.HOME }}/.sbt/1.0/build.sbt src={{ role_path }}/files/build.sbt state=link
-
-- name: 1.0/plugins
-  file: path={{ ansible_env.HOME }}/.sbt/1.0/plugins state=directory
-
-- name: 1.0/plugins.sbt
-  file: path={{ ansible_env.HOME }}/.sbt/1.0/plugins/plugins.sbt src={{ role_path }}/files/plugins.sbt state=link
-
-- name: coursier
-  get_url:
-    url: https://git.io/coursier-cli-macos
-    dest: /tmp/coursier
-    mode: "0750"
+# - name: 1.0/build.sbt
+#   file: path={{ ansible_env.HOME }}/.sbt/1.0/build.sbt src={{ role_path }}/files/build.sbt state=link
+#
+# - name: 1.0/plugins
+#   file: path={{ ansible_env.HOME }}/.sbt/1.0/plugins state=directory
+#
+# - name: 1.0/plugins.sbt
+#   file: path={{ ansible_env.HOME }}/.sbt/1.0/plugins/plugins.sbt src={{ role_path }}/files/plugins.sbt state=link
 
 - name: metals-emacs
   command: |
-    /tmp/coursier bootstrap \
+   coursier bootstrap \
+      --java-opt -XX:+UseG1GC \
+      --java-opt -XX:+UseStringDeduplication  \
       --java-opt -Xss4m \
       --java-opt -Xms100m \
-      --java-opt -Dmetals.client=emacs \
-      org.scalameta:metals_2.13:1.0.0 \
-      -r bintray:scalacenter/releases \
-      -r sonatype:snapshots \
-      -o /usr/local/bin/metals-emacs -f
+      org.scalameta:metals_2.13:1.1.0 -o ~/.local/bin/metals -f
