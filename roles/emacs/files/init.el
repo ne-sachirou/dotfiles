@@ -10,11 +10,60 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-    '("be84a2e5c70f991051d4aaf0f049fa11c172e5d784727e0b525565bb1533ec78" default))
- '(js-indent-level 2)
- '(js-switch-indent-offset 2)
+   '("be84a2e5c70f991051d4aaf0f049fa11c172e5d784727e0b525565bb1533ec78"
+     default))
+ '(js-indent-level 2) '(js-switch-indent-offset 2)
  '(package-selected-packages
-    '(web-mode vimrc-mode undo-tree typescript-mode sbt-mode rust-mode quickrun projectile prettier-js poly-ansible plantuml-mode php-mode package-utils osx-clipboard origami nov nixpkgs-fmt nix-mode nginx-mode multi-term magit lua-mode lsp-ui lsp-metals jsonnet-mode haskell-mode go-mode feature-mode evil-tabs evil-surround evil-smartparens evil-matchit evil-leader evil-indent-textobject erlang elixir-mode eglot editorconfig doom-themes dockerfile-mode diminish csharp-mode counsel company-web company-terraform coffee-mode async all-the-icons ag ac-cider))
+   '(web-mode
+     vimrc-mode
+     undo-tree
+     typescript-mode
+     sbt-mode
+     rust-mode
+     quickrun
+     projectile
+     prettier-js
+     poly-ansible
+     plantuml-mode
+     php-mode
+     package-utils
+     osx-clipboard
+     origami
+     nov
+     nixpkgs-fmt
+     nix-mode
+     nginx-mode
+     multi-term
+     magit
+     lua-mode
+     lsp-ui
+     lsp-metals
+     jsonnet-mode
+     haskell-mode
+     go-mode
+     feature-mode
+     evil-tabs
+     evil-surround
+     evil-smartparens
+     evil-matchit
+     evil-leader
+     evil-indent-textobject
+     erlang
+     elixir-mode
+     eglot
+     editorconfig
+     doom-themes
+     dockerfile-mode
+     diminish
+     csharp-mode
+     counsel
+     company-web
+     company-terraform
+     coffee-mode
+     async
+     all-the-icons
+     ag
+     ac-cider))
  '(ruby-insert-encoding-magic-comment nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -65,8 +114,12 @@
 
 (require 'package)
 (package-initialize)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list
+ 'package-archives '("melpa" . "https://melpa.org/packages/")
+ t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/")
+             t)
 (setq package-archive-priorities
       '(("gnu" . 5) ("melpa" . 0) ("melpa-stable" . 10)))
 
@@ -74,20 +127,23 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
-(setq use-package-always-ensure t
-      backup-directory-alist `((".*" . ,temporary-file-directory))
-      auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+(setq
+ use-package-always-ensure t
+ backup-directory-alist `((".*" . ,temporary-file-directory))
+ auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ; https://github.com/radian-software/straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+       (expand-file-name "straight/repos/straight.el/bootstrap.el"
+                         user-emacs-directory))
       (bootstrap-version 6))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
+         'silent
+         'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -106,52 +162,62 @@
 
 (use-package cider :hook clojure-mode)
 
-(use-package clojure-mode
+(use-package
+ clojure-mode
  :init
  (add-to-list 'auto-mode-alist '("\\.clje\\'" . clojure-mode))
  (add-hook 'clojure-mode-hook 'eglot-ensure)
- :hook ((clojure-mode . smartparens-mode)
-         (clojure-mode . subword-mode)))
+ :hook
+ ((clojure-mode . smartparens-mode) (clojure-mode . subword-mode)))
 
 (use-package company :hook ((after-init . global-company-mode)))
 
 (use-package company-terraform :init (company-terraform-init))
 
-(use-package copilot
-  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
-  :bind (:map copilot-completion-map
-          ("<tab>" . copilot-accept-completion)
-          ("TAB" . copilot-accept-completion))
-  :hook (prog-mode . copilot-mode))
+(use-package
+ copilot
+ :straight
+ (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+ :bind
+ (:map
+  copilot-completion-map
+  ("<tab>" . copilot-accept-completion)
+  ("TAB" . copilot-accept-completion))
+ :hook (prog-mode . copilot-mode))
 
-(use-package elisp-autofmt
+(use-package
+ elisp-autofmt
  :commands (elisp-autofmt-mode elisp-autofmt-buffer)
- :hook (emacs-lisp-mode . elisp-autofmt-mode))
+ :hook
+ ((emacs-lisp-mode . elisp-autofmt-mode)
+  (before-save . elisp-autofmt-buffer)))
 
-(use-package typescript-mode
+(use-package
+ typescript-mode
  :init
  ; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-  :hook eglot-ensure)
+ :hook eglot-ensure)
 
 (use-package company-web :init (require 'company-web-html))
 
 ;; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-         ("<f1> f" . counsel-describe-function)
-         ("<f1> v" . counsel-describe-variable)
-         ("<f1> o" . counsel-describe-symbol)
-         ("<f1> l" . counsel-find-library)
-         ("<f2> i" . counsel-info-lookup-symbol)
-         ("<f2> u" . counsel-unicode-char)
-         ("C-c g" . counsel-git)
-         ("C-c j" . counsel-git-grep)
-         ("C-c k" . counsel-ag)
-         ("C-x l" . counsel-locate)
-         ("C-S-o" . counsel-rhythmbox)
-         (:map minibuffer-local-map
-           ("C-r" . counsel-minibuffer-history))))
+(use-package
+ counsel
+ :bind
+ (("M-x" . counsel-M-x)
+  ("<f1> f" . counsel-describe-function)
+  ("<f1> v" . counsel-describe-variable)
+  ("<f1> o" . counsel-describe-symbol)
+  ("<f1> l" . counsel-find-library)
+  ("<f2> i" . counsel-info-lookup-symbol)
+  ("<f2> u" . counsel-unicode-char)
+  ("C-c g" . counsel-git)
+  ("C-c j" . counsel-git-grep)
+  ("C-c k" . counsel-ag)
+  ("C-x l" . counsel-locate)
+  ("C-S-o" . counsel-rhythmbox)
+  (:map minibuffer-local-map ("C-r" . counsel-minibuffer-history))))
 
 ; (use-package dap-mode
 ; :init
@@ -166,7 +232,8 @@
   "https://github.com/larstvei/dot-emacs/blob/master/init.org"
   `(with-eval-after-load ,file
      (diminish ,mode ,new-name)))
-(use-package diminish
+(use-package
+ diminish
  :config
  (safe-diminish "company" 'company-mode)
  (safe-diminish "editorconfig" 'editorconfig-mode)
@@ -177,10 +244,12 @@
 
 (use-package dockerfile-mode)
 
-(use-package doom-themes
+(use-package
+ doom-themes
  :config
- (setq doom-themes-enable-bold t
-       doom-themes-enable-italic t)
+ (setq
+  doom-themes-enable-bold t
+  doom-themes-enable-italic t)
  (load-theme 'doom-molokai t))
 
 (use-package editorconfig :config (editorconfig-mode 1))
@@ -199,14 +268,19 @@
 
 (use-package evil-matchit :config (global-evil-matchit-mode 1))
 
-(use-package evil-smartparens
+(use-package
+ evil-smartparens
  :init
  ; Slurp Barf · Clojure development with Spacemacs & Cider https://practicalli.github.io/spacemacs/structured-editing/lisp-state-slurp-barf.html
  (evil-leader/set-key
-  "kb" 'sp-forward-barf-sexp
-  "kB" 'sp-backward-barf-sexp
-  "ks" 'sp-forward-slurp-sexp
-  "kS" 'sp-backward-slurp-sexp)
+  "kb"
+  'sp-forward-barf-sexp
+  "kB"
+  'sp-backward-barf-sexp
+  "ks"
+  'sp-forward-slurp-sexp
+  "kS"
+  'sp-backward-slurp-sexp)
  :hook (smartparens-enabled . evil-smartparens-mode))
 
 (use-package evil-surround :config (global-evil-surround-mode 1))
@@ -215,14 +289,14 @@
 
 (use-package feature-mode)
 
-(use-package flycheck
-  :init (global-flycheck-mode))
+(use-package flycheck :init (global-flycheck-mode))
 
-(use-package go-mode
-  :init
-  (add-hook 'go-mode-hook 'eglot-ensure)
-  (add-hook 'go-mode-hook
-    (lambda () (add-hook 'before-save-hook 'gofmt-before-save nil t))))
+(use-package
+ go-mode
+ :init (add-hook 'go-mode-hook 'eglot-ensure)
+ (add-hook
+  'go-mode-hook
+  (lambda () (add-hook 'before-save-hook 'gofmt-before-save nil t))))
 ; (require 'project)
 ; (defun project-find-go-module (dir)
 ;   (when-let ((root (locate-dominating-file dir "go.mod")))
@@ -234,14 +308,14 @@
 (use-package haskell-mode)
 
 ; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package ivy
+(use-package
+ ivy
  :demand t
  :config
  (ivy-mode 1)
  (setq ivy-use-virtual-buffers t)
  (setq enable-recursive-minibuffers t)
- :bind (("C-c C-r" . ivy-resume)
-         ("<f6>" . ivy-resume)))
+ :bind (("C-c C-r" . ivy-resume) ("<f6>" . ivy-resume)))
 
 (use-package jinja2-mode)
 
@@ -257,34 +331,39 @@
 
 (use-package nginx-mode)
 
-(use-package nix-mode
+(use-package
+ nix-mode
  :init
  (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
  (add-hook 'nix-mode-hook 'eglot-ensure))
 
-(use-package nixpkgs-fmt
+(use-package
+ nixpkgs-fmt
  :init (add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode))
 
 ; EPUB を Emacs 上で讀む
-(use-package nov
+(use-package
+ nov
  :init
  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 ; fold - Vim日本語ドキュメント https://vim-jp.org/vimdoc-ja/fold.html
-(use-package origami
-  :config
-  (global-origami-mode t)
-  :bind (:map evil-normal-state-map
-          ("za" . origami-toggle-node)
-          ("zA" . origami-recursively-toggle-node)
-          ("zc" . origami-close-node)
-          ("zC" . origami-close-node-recursively)
-          ("zo" . origami-open-node)
-          ("zO" . origami-open-node-recursively)
-          ("zv" . origami-show-node)
-          ("zr" . origami-open-all-nodes)
-          ("zm" . origami-close-all-nodes)
-          ("zR" . origami-reset)))
+(use-package
+ origami
+ :config (global-origami-mode t)
+ :bind
+ (:map
+  evil-normal-state-map
+  ("za" . origami-toggle-node)
+  ("zA" . origami-recursively-toggle-node)
+  ("zc" . origami-close-node)
+  ("zC" . origami-close-node-recursively)
+  ("zo" . origami-open-node)
+  ("zO" . origami-open-node-recursively)
+  ("zv" . origami-show-node)
+  ("zr" . origami-open-all-nodes)
+  ("zm" . origami-close-all-nodes)
+  ("zR" . origami-reset)))
 
 (use-package osx-clipboard :config (osx-clipboard-mode +1))
 
@@ -316,21 +395,23 @@
 ;; Posframe is a pop-up tool that must be manually installed for dap-mode
 ;; (use-package posframe)
 
-(use-package prettier-js
- :init
- (add-hook 'js2-mode-hook 'prettier-js-mode)
+(use-package
+ prettier-js
+ :init (add-hook 'js2-mode-hook 'prettier-js-mode)
  (eval-after-load 'web-mode
-    '(progn
-       (add-hook 'web-mode-hook #'add-node-modules-path)
-       (add-hook 'web-mode-hook #'prettier-js-mode))))
+   '(progn
+      (add-hook 'web-mode-hook #'add-node-modules-path)
+      (add-hook 'web-mode-hook #'prettier-js-mode))))
 
-(use-package projectile
-  :init
-  (projectile-mode +1)
-  :bind (("C-x C-f" . projectile-find-file)
-         (:map projectile-mode-map
-           ("s-p" . projectile-command-map)
-           ("C-c p" . projectile-command-map))))
+(use-package
+ projectile
+ :init (projectile-mode +1)
+ :bind
+ (("C-x C-f" . projectile-find-file)
+  (:map
+   projectile-mode-map
+   ("s-p" . projectile-command-map)
+   ("C-c p" . projectile-command-map))))
 
 ; (use-package proof-general
 ;   :streight (:host github :repo "ProofGeneral/PG"))
@@ -346,7 +427,8 @@
 ;  :autoloads "generic/proof-site.el"
 ;  :website "http://proofgeneral.inf.ed.ac.uk/")
 
-(use-package quickrun
+(use-package
+ quickrun
  :config
  (quickrun-add-command
   "clojure/babashka"
@@ -355,33 +437,34 @@
 
 (use-package rust-mode :init (setq rust-format-on-save t))
 
-(use-package sbt-mode
-  :commands sbt-start sbt-command
-  :config
-  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
-  ;; allows using SPACE when in the minibuffer
-  (substitute-key-definition
-   'minibuffer-complete-word
-   'self-insert-command
-   minibuffer-local-completion-map)
-   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
-   (setq sbt:program-options '("-Dsbt.supershell=false")))
+(use-package
+ sbt-mode
+ :commands sbt-start sbt-command
+ :config
+ ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+ ;; allows using SPACE when in the minibuffer
+ (substitute-key-definition
+  'minibuffer-complete-word
+  'self-insert-command
+  minibuffer-local-completion-map)
+ ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
+ (setq sbt:program-options '("-Dsbt.supershell=false")))
 
-(use-package scala-mode
-  :init (add-hook 'scala-mode-hook 'eglot-ensure)
-  :hook ((scala-mode . eglot-ensure)
-         (scala-mode . company-mode))
-  :interpreter ("scala" . scala-mode))
+(use-package
+ scala-mode
+ :init (add-hook 'scala-mode-hook 'eglot-ensure)
+ :hook ((scala-mode . eglot-ensure) (scala-mode . company-mode))
+ :interpreter ("scala" . scala-mode))
 
-(use-package smartparens
+(use-package
+ smartparens
  :config
  ;(smartparens-global-mode t)
  (smartparens-strict-mode t)
  :hook emacs-lisp-mode)
 
 ; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package swiper
-  :bind (("\C-s" . swiper)))
+(use-package swiper :bind (("\C-s" . swiper)))
 
 (use-package terraform-mode)
 
