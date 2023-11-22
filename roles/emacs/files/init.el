@@ -9,58 +9,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(js-indent-level 2) '(js-switch-indent-offset 2)
+ '(custom-safe-themes
+    '("be84a2e5c70f991051d4aaf0f049fa11c172e5d784727e0b525565bb1533ec78" default))
+ '(js-indent-level 2)
+ '(js-switch-indent-offset 2)
  '(package-selected-packages
-   '(web-mode
-     vimrc-mode
-     undo-tree
-     typescript-mode
-     sbt-mode
-     rust-mode
-     quickrun
-     projectile
-     prettier-js
-     poly-ansible
-     plantuml-mode
-     php-mode
-     package-utils
-     osx-clipboard
-     origami
-     nov
-     nixpkgs-fmt
-     nix-mode
-     nginx-mode
-     multi-term
-     magit
-     lua-mode
-     lsp-ui
-     lsp-metals
-     jsonnet-mode
-     haskell-mode
-     go-mode
-     feature-mode
-     evil-tabs
-     evil-surround
-     evil-smartparens
-     evil-matchit
-     evil-leader
-     evil-indent-textobject
-     erlang
-     elixir-mode
-     eglot
-     editorconfig
-     doom-themes
-     dockerfile-mode
-     diminish
-     csharp-mode
-     counsel
-     company-web
-     company-terraform
-     coffee-mode
-     async
-     all-the-icons
-     ag
-     ac-cider))
+    '(web-mode vimrc-mode undo-tree typescript-mode sbt-mode rust-mode quickrun projectile prettier-js poly-ansible plantuml-mode php-mode package-utils osx-clipboard origami nov nixpkgs-fmt nix-mode nginx-mode multi-term magit lua-mode lsp-ui lsp-metals jsonnet-mode haskell-mode go-mode feature-mode evil-tabs evil-surround evil-smartparens evil-matchit evil-leader evil-indent-textobject erlang elixir-mode eglot editorconfig doom-themes dockerfile-mode diminish csharp-mode counsel company-web company-terraform coffee-mode async all-the-icons ag ac-cider))
  '(ruby-insert-encoding-magic-comment nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -111,22 +65,18 @@
 
 (require 'package)
 (package-initialize)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/")
-             t)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/")
-             t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (setq package-archive-priorities
       '(("gnu" . 5) ("melpa" . 0) ("melpa-stable" . 10)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-(eval-and-compile
-  (require 'use-package)
-  (setq use-package-always-ensure t
-        use-package-expand-minimally t))
+(require 'use-package)
+(setq use-package-always-ensure t
+      backup-directory-alist `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ; https://github.com/radian-software/straight.el
 (defvar bootstrap-version)
@@ -163,13 +113,12 @@
  :hook ((clojure-mode . smartparens-mode)
          (clojure-mode . subword-mode)))
 
-(use-package company :init (add-hook 'after-init-hook 'global-company-mode))
+(use-package company :hook ((after-init . global-company-mode)))
 
 (use-package company-terraform :init (company-terraform-init))
 
 (use-package copilot
   :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
-  :ensure t
   :bind (:map copilot-completion-map
           ("<tab>" . copilot-accept-completion)
           ("TAB" . copilot-accept-completion))
@@ -181,28 +130,28 @@
 
 (use-package typescript-mode
  :init
- ;(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+ ; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
- (add-hook 'typescript-mode-hook 'eglot-ensure))
+  :hook eglot-ensure)
 
 (use-package company-web :init (require 'company-web-html))
 
-; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
+;; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
-          ("<f1> f" . counsel-describe-function)
-          ("<f1> v" . counsel-describe-variable)
-          ("<f1> o" . counsel-describe-symbol)
-          ("<f1> l" . counsel-find-library)
-          ("<f2> i" . counsel-info-lookup-symbol)
-          ("<f2> u" . counsel-unicode-char)
-          ("C-c g" . counsel-git)
-          ("C-c j" . counsel-git-grep)
-          ("C-c k" . counsel-ag)
-          ("C-x l" . counsel-locate)
-          ("C-S-o" . counsel-rhythmbox)
-          :map minibuffer-local-map
-          ("C-r" . counsel-minibuffer-history)))
+         ("<f1> f" . counsel-describe-function)
+         ("<f1> v" . counsel-describe-variable)
+         ("<f1> o" . counsel-describe-symbol)
+         ("<f1> l" . counsel-find-library)
+         ("<f2> i" . counsel-info-lookup-symbol)
+         ("<f2> u" . counsel-unicode-char)
+         ("C-c g" . counsel-git)
+         ("C-c j" . counsel-git-grep)
+         ("C-c k" . counsel-ag)
+         ("C-x l" . counsel-locate)
+         ("C-S-o" . counsel-rhythmbox)
+         (:map minibuffer-local-map
+           ("C-r" . counsel-minibuffer-history))))
 
 ; (use-package dap-mode
 ; :init
@@ -212,7 +161,7 @@
 ;   (tooltip-mode 1)
 ;   (dap-ui-controls-mode 1))
 
-; 指定したマイナーモードを表示しない(diminish篇) - Qiita https://qiita.com/tadsan/items/c859c5c04724cbda75fc
+;; 指定したマイナーモードを表示しない(diminish篇) - Qiita https://qiita.com/tadsan/items/c859c5c04724cbda75fc
 (defmacro safe-diminish (file mode &optional new-name)
   "https://github.com/larstvei/dot-emacs/blob/master/init.org"
   `(with-eval-after-load ,file
@@ -230,18 +179,17 @@
 
 (use-package doom-themes
  :config
- (setq
-  doom-themes-enable-bold t
-  doom-themes-enable-italic t)
+ (setq doom-themes-enable-bold t
+       doom-themes-enable-italic t)
  (load-theme 'doom-molokai t))
 
-(use-package editorconfig :init (editorconfig-mode 1))
+(use-package editorconfig :config (editorconfig-mode 1))
 
 (use-package eglot)
 
 (use-package elscreen)
 
-(use-package erlang :init (add-hook 'erlang-mode-hook 'eglot-ensure))
+(use-package erlang :hook eglot-ensure)
 
 (use-package evil :config (evil-mode 1))
 
@@ -267,7 +215,8 @@
 
 (use-package feature-mode)
 
-(use-package flycheck)
+(use-package flycheck
+  :init (global-flycheck-mode))
 
 (use-package go-mode
   :init
@@ -286,12 +235,13 @@
 
 ; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
 (use-package ivy
+ :demand t
  :config
  (ivy-mode 1)
  (setq ivy-use-virtual-buffers t)
  (setq enable-recursive-minibuffers t)
-  :bind (("C-c C-r" . ivy-resume)
-          ("<f6>" . ivy-resume)))
+ :bind (("C-c C-r" . ivy-resume)
+         ("<f6>" . ivy-resume)))
 
 (use-package jinja2-mode)
 
@@ -361,7 +311,10 @@
 
 (use-package php-mode)
 
-(use-package poly-ansible)
+; (use-package poly-ansible)
+
+;; Posframe is a pop-up tool that must be manually installed for dap-mode
+;; (use-package posframe)
 
 (use-package prettier-js
  :init
@@ -372,25 +325,12 @@
        (add-hook 'web-mode-hook #'prettier-js-mode))))
 
 (use-package projectile
- ; :init
- ; (defun projectile-find-file-when-find-file-not-found ()
- ;   "When find-file-not-found then projectile-find-file."
- ;   (require 'projectile)
- ;   (if (projectile-project-p)
- ;     (do
- ;       (interactive)
- ;       (let* ((project-root (projectile-ensure-project (projectile-project-root)))
- ;               (file-name (substring buffer-file-name (length project-root)))
- ;               (file (projectile-completing-read
- ;                       "Find file: "
- ;                       (projectile-project-files project-root)
- ;                       :initial-input file-name)))
- ;         (when file
- ;           (funcall #'find-file (expand-file-name file project-root))
- ;           (run-hooks 'projectile-find-file-hook)
- ;           t)))))
- ; (add-hook 'find-file-not-found-hooks 'projectile-find-file-when-find-file-not-found)
-  :bind (("C-x C-f" . projectile-find-file)))
+  :init
+  (projectile-mode +1)
+  :bind (("C-x C-f" . projectile-find-file)
+         (:map projectile-mode-map
+           ("s-p" . projectile-command-map)
+           ("C-c p" . projectile-command-map))))
 
 ; (use-package proof-general
 ;   :streight (:host github :repo "ProofGeneral/PG"))
@@ -416,15 +356,22 @@
 (use-package rust-mode :init (setq rust-format-on-save t))
 
 (use-package sbt-mode
- :init
- (substitute-key-definition
-  'minibuffer-complete-word
-  'self-insert-command
-  minibuffer-local-completion-map)
- ;(setq :program-options '("-Dsbt.supershell=false"))
- )
+  :commands sbt-start sbt-command
+  :config
+  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;; allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map)
+   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
+   (setq sbt:program-options '("-Dsbt.supershell=false")))
 
-(use-package scala-mode :init (add-hook 'scala-mode-hook 'eglot-ensure))
+(use-package scala-mode
+  :init (add-hook 'scala-mode-hook 'eglot-ensure)
+  :hook ((scala-mode . eglot-ensure)
+         (scala-mode . company-mode))
+  :interpreter ("scala" . scala-mode))
 
 (use-package smartparens
  :config
