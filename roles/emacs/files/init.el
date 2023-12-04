@@ -190,7 +190,10 @@
  :commands (elisp-autofmt-mode elisp-autofmt-buffer)
  :hook
  ((emacs-lisp-mode . elisp-autofmt-mode)
-  (before-save . elisp-autofmt-buffer)))
+  (emacs-lisp-mode
+   .
+   (lambda ()
+     (add-hook 'before-save-hook 'elisp-autofmt-buffer nil t)))))
 
 (use-package
  typescript-mode
@@ -236,8 +239,11 @@
  diminish
  :config
  (safe-diminish "company" 'company-mode)
+ (safe-diminish "copilot" 'copilot-mode)
  (safe-diminish "editorconfig" 'editorconfig-mode)
  (safe-diminish "eldoc" 'eldoc-mode)
+ (safe-diminish "flycheck" 'flycheck-mode)
+ (safe-diminish "ivy" 'ivy-mode)
  (safe-diminish "osx-clipboard" 'osx-clipboard-mode)
  (safe-diminish "smartparens" 'smartparens-mode)
  (safe-diminish "undo-tree" 'undo-tree-mode))
@@ -293,17 +299,13 @@
 
 (use-package
  go-mode
- :init (add-hook 'go-mode-hook 'eglot-ensure)
- (add-hook
-  'go-mode-hook
-  (lambda () (add-hook 'before-save-hook 'gofmt-before-save nil t))))
-; (require 'project)
-; (defun project-find-go-module (dir)
-;   (when-let ((root (locate-dominating-file dir "go.mod")))
-;     (cons 'go-module root)))
-; (cl-defmethod project-root ((project (head go-module)))
-;   (cdr project))
-; (add-hook 'project-find-functions #'project-find-go-module)
+ :hook
+ ((go-mode . eglot-ensure)
+  (go-mode . company-mode)
+  (go-mode
+   .
+   (lambda ()
+     (add-hook 'before-save-hook 'gofmt-before-save nil t)))))
 
 (use-package haskell-mode)
 
