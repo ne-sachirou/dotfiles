@@ -177,7 +177,7 @@
 (use-package
  copilot
  :straight
- (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+ (:host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
  :bind
  (:map
   copilot-completion-map
