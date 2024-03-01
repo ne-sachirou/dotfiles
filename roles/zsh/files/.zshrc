@@ -14,9 +14,7 @@ compinit
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 zi ice src"init.sh"
-export ENHANCD_COMPLETION_KEYBIND=^I
-export ENHANCD_COMPLETION_BEHAVIOR=list
-zi light b4b4r07/enhancd
+zi light babarot/enhancd
 # zi light jeffreytse/zsh-vi-mode # Similar to `bindkey -v`
 zi light mollifier/anyframe
 zi light momo-lab/zsh-abbrev-alias
@@ -140,6 +138,8 @@ bindkey '^r' anyframe-widget-execute-history
 PATH=/nix/var/nix/profiles/default/bin:$PATH
 . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
 export PATH
+
+eval "$(direnv hook zsh)"
 
 case "${OSTYPE}" in
 darwin*)
