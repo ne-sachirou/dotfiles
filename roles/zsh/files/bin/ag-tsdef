@@ -7,7 +7,7 @@
   (-> ["ag"
        "-G" "(?<!\\.test)\\.[jt]s(x?)$"
        "--color"
-       (format "((class|const|function|interface|let|type|var) %s(?=\\W))|(^ *%s:)"
+       (format "((async|class|const|function|interface|let|type|var) %s(?=\\W))|(^ *%s:)"
                word
                word)]
       (concat paths)
