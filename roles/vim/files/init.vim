@@ -7,7 +7,6 @@ set ambiwidth=double
 set autoindent smartindent
 set backupdir=~/.vim/tmp,. directory=~/.vim/tmp,. undodir=~/.vim/tmp,.
 set clipboard=unnamed
-"set cryptmethod=blowfish2
 set display+=lastline
 set expandtab shiftwidth=2 tabstop=2 softtabstop=2
 set fileformats=unix,dos
@@ -65,6 +64,13 @@ autocmd vimrc BufNewFile,BufReadPost .envrc setl ft=sh
 autocmd vimrc BufNewFile,BufReadPost Makefile setl noet
 autocmd vimrc BufNewFile,BufReadPost *.xrl,*.yrl setl ft=erlang
 
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 if has('vim_starting')
   set runtimepath+=~/.vim
 endif
@@ -90,6 +96,9 @@ Plug 'wavded/vim-stylus', {'for': 'stylus'}
 Plug 'LeafCage/qutefinger.vim'
 Plug 'LeafCage/yankround.vim'
 Plug 'dannyob/quickfixstatus'
+" Error detected while processing command line..script test.vim[3]..function <SNR>2_update[1]..<SNR>2_update_impl[53]..<SNR>2_prepare[18]..<SNR>2_new_window[1]..BufNew Autocommands for "*"..function <SNR>32_UseConfigFiles:
+" line    6:
+" E495: No autocommand file name to substitute for "<afile>"
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'jceb/vim-hier'
