@@ -13,7 +13,8 @@
                               ["^\\s*%s(?=\\W)"
                                "(package|type|var)\\s+%s(?=\\W)"
                                "func.*\\W%s\\("
-                               "(?<=\\W)%s *:?="]))
+                               ;; "(?<=\\W)%s *:?="
+                               ]))
                word
                word
                word
