@@ -13,5 +13,8 @@
     - get-all
     - ns
 
-- name: kubectl krew upgrade
+- name: Update the local copy of the plugin index
+  command: kubectl krew update
+
+- name: Upgrade installed plugins to newer versions
   command: kubectl krew upgrade
