@@ -2,6 +2,9 @@
 - name: ~/.ssh
   file: path={{ ansible_env.HOME }}/.ssh state=directory
 
+- name: ~/.ssh/socks
+  file: path={{ ansible_env.HOME }}/.ssh/socks state=directory
+
 - name: ~/.ssh/id_rsa
   copy:
     dest: "{{ ansible_env.HOME }}/.ssh/id_rsa"
