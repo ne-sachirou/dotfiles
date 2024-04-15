@@ -12,6 +12,6 @@
     replace: "{{ lookup('private_values', 'get dotfiles MACKEREL_HOST_ID_ne-sachirou') }}"
   notify: mackerel_agent_restart
 
-- name: /usr/local/etc/mackerel-agent.conf
-  template: dest=/usr/local/etc/mackerel-agent.conf src={{ role_path }}/templates/mackerel-agent.conf.j2
+- name: /opt/homebrew/etc/mackerel-agent.conf
+  template: dest=/opt/homebrew/etc/mackerel-agent.conf src={{ role_path }}/templates/mackerel-agent.conf.j2
   notify: mackerel_agent_restart
