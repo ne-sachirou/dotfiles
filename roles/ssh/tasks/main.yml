@@ -17,7 +17,3 @@
     src: "{{ lookup('private_values', 'path ' ~ private_values_project) }}/ssh/{{ item }}"
   with_items:
     - id_rsa.pub
-    - assh.yml
-
-- name: assh config build
-  shell: assh config build > {{ ansible_env.HOME }}/.ssh/config

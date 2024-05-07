@@ -32,12 +32,6 @@ fi
 . ~/.zsh/lazyenv.bash
 . ~/git-subrepo/.rc
 
-_ssh_init() {
-  # _cache_hosts=($(assh config list | perl -waln -F'\->' -e 'if(/->/){$F[0]=~s/^\s*(.*?)\s*$/$1/;print$F[0]}'))
-  . ~/.zsh/assh_autocomplete.zsh
-}
-eval "$(lazyenv.load _ssh_init assh ssh)"
-
 EDITOR='vim'
 GOPATH=$HOME/go
 HISTFILE=~/.bash_history
@@ -55,7 +49,6 @@ abbrev-alias -g k=kubectl
 abbrev-alias -g pv=private-values
 
 alias j='docker run -it -v "$(pwd):/mnt" --rm nesachirou/jlang'
-alias ssh='assh wrapper ssh'
 
 alias vi='emacsclient -nw'
 #function vi() {
