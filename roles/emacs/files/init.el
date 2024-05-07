@@ -41,6 +41,7 @@
      jsonnet-mode
      haskell-mode
      go-mode
+     github-browse-file
      feature-mode
      evil-tabs
      evil-surround
@@ -177,7 +178,10 @@
 (use-package
  copilot
  :straight
- (:host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
+ (:host
+  github
+  :repo "copilot-emacs/copilot.el"
+  :files ("dist" "*.el"))
  :bind
  (:map
   copilot-completion-map
@@ -296,6 +300,8 @@
 (use-package feature-mode)
 
 (use-package flycheck :init (global-flycheck-mode))
+
+(use-package github-browse-file)
 
 (use-package
  go-mode
