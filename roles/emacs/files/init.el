@@ -190,6 +190,10 @@
  :hook (prog-mode . copilot-mode))
 
 (use-package
+ csv-mode
+ :init (add-to-list 'auto-mode-alist '("\\.csv\\'" . csv-mode)))
+
+(use-package
  elisp-autofmt
  :commands (elisp-autofmt-mode elisp-autofmt-buffer)
  :hook
