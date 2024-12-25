@@ -1,0 +1,3 @@
+---
+- name: ~/.agignore
+  file: path={{ ansible_env.HOME }}/.agignore src={{ role_path }}/files/.agignore state=link
