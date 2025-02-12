@@ -1,9 +1,14 @@
 ---
-- name: Install asdf
-  git:
-    repo: https://github.com/asdf-vm/asdf.git
-    version: "{{ asdf_version }}"
-    dest: "{{ ansible_env.HOME }}/.asdf"
+# - name: Install asdf
+#   git:
+#     repo: https://github.com/asdf-vm/asdf.git
+#     version: "{{ asdf_version }}"
+#     dest: "{{ ansible_env.HOME }}/.asdf"
+
+- name: Setip Zsh complition
+  shell: |
+    mkdir -p "${ASDF_DATA_DIR:-$HOME/.asdf}/completions" && \
+    asdf completion zsh > "${ASDF_DATA_DIR:-$HOME/.asdf}/completions/_asdf"
 
 - name: asdf plugin update --all
   command: asdf plugin update --all

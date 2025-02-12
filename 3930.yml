@@ -2,8 +2,7 @@
 - hosts: default
   roles:
     - homebrew
-    - role: asdf
-      asdf_version: v0.13.1
+    - asdf
     - role: clojure
       versions: ["1.11.1.1413"]
     - dev_dir

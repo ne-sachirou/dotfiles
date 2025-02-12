@@ -1,7 +1,5 @@
 # zmodload zsh/zprof && zprof
 
-fpath=(~/.zsh ~/.asdf/completions $fpath)
-
 # {{{ init
 bindkey -v
 zstyle :compinstall filename "$HOME/.zshrc"
@@ -23,7 +21,6 @@ zi light zsh-users/zsh-completions
 zi light zsh-users/zsh-syntax-highlighting
 # }}} zi
 
-. ~/.asdf/asdf.sh
 if [[ -a /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then
   . /usr/local/etc/bash_completion.d/git-prompt.sh
 else
@@ -132,6 +129,9 @@ PATH=/nix/var/nix/profiles/default/bin:$PATH
 . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
 export PATH
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+
 eval "$(direnv hook zsh)"
 
 case "${OSTYPE}" in
@@ -142,8 +142,6 @@ linux*)
   . ~/.zsh/.zshrc.linux
   ;;
 esac
-
-# complete -o nospace -C /Users/ne-sachirou/.asdf/shims/terraform terraform
 
 # if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' $HOME/.zcompdump) / 86400)) ]; then
 #   compinit
