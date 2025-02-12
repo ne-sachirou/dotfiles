@@ -3,7 +3,7 @@
 	ci = commit
 	co = checkout
 	graph = log --decorate=full --graph --oneline
-	pull-p = !git pull -p --all && git gone && etags-of
+	pull-p = !git pull -p --all && git submodule update && git gone && etags-of
 	push-f = push --force-if-includes --force-with-lease
 	st = status -sb
 	sw = switch
