@@ -12,6 +12,7 @@
     - ctx
     - get-all
     - ns
+    - stern
 
 - name: Update the local copy of the plugin index
   command: kubectl krew update
