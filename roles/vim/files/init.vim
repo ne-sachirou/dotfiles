@@ -10,7 +10,7 @@ set clipboard=unnamed
 set display+=lastline
 set expandtab shiftwidth=2 tabstop=2 softtabstop=2
 set fileformats=unix,dos
-set foldmethod=syntax foldlevel=2 foldnestmax=3
+set foldmethod=syntax foldlevel=4 foldnestmax=3
 set hlsearch ignorecase smartcase
 set laststatus=2
 set listchars=tab:>-,trail:-,extends:<,precedes:>,nbsp:_
