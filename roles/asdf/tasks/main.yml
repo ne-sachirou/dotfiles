@@ -5,6 +5,9 @@
 #     version: "{{ asdf_version }}"
 #     dest: "{{ ansible_env.HOME }}/.asdf"
 
+- name: ~/.asdfrc
+  file: path={{ ansible_env.HOME }}/.asdfrc src={{ role_path }}/files/.asdfrc state=link
+
 - name: Setip Zsh complition
   shell: |
     mkdir -p "${ASDF_DATA_DIR:-$HOME/.asdf}/completions" && \
