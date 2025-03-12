@@ -1,12 +1,15 @@
 ,
 .bloop/
+.clj-kondo/
 .elixir_ls/
 .envrc
 .ignore
 .log/ti-*.log
 .log/tsserver.log
+.lsp/
 .metals/
 .tool-versions
+node_modules/
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,osx,emacs,linux,windows,visualstudiocode
