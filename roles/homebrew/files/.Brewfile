@@ -1,10 +1,7 @@
 # -*- mode: ruby -*-
 
-tap 'AdoptOpenJDK/openjdk'
 tap 'aws/tap'
-tap 'caskroom/cask'
 tap 'homebrew/bundle'
-tap 'homebrew/cask'
 tap 'homebrew/services'
 tap 'itchyny/tap'
 tap 'mackerelio/mackerel-agent'
@@ -27,15 +24,16 @@ brew 'container-structure-test'
 brew 'coreutils'
 brew 'cpanminus'
 brew 'ctags'
+brew 'dash'
 brew 'direnv'
 brew 'dotnet'
 brew 'emacs'
 brew 'envchain'
-brew 'kayac/tap/ecspresso'
 brew 'flac'
 brew 'fop' # Erlang/OTP
 brew 'fswatch'
 brew 'fzy'
+brew 'gfortran' # scipy
 brew 'gh'
 brew 'ghc'
 brew 'git'
@@ -44,18 +42,18 @@ brew 'git-now'
 brew 'gnuplot'
 brew 'gpg'
 brew 'hadolint'
-brew 'imageoptim-cli'
 brew 'istioctl'
 brew 'itchyny/tap/base58'
 brew 'jasper', link: true # PlantUML JPEG2000
 brew 'jq'
 brew 'jsonnet'
 brew 'k1LoW/tap/tbls'
+brew 'kayac/tap/ecspresso'
 brew 'krew'
 brew 'kubeconform'
 brew 'kustomize'
 brew 'leiningen'
-brew 'libav' # youtube-dl
+# brew 'libav' # youtube-dl
 brew 'libxslt' # Erlang/OTP
 brew 'libyaml' # Ruby
 brew 'mackerelio/mackerel-agent/mackerel-agent', restart_service: true
@@ -75,12 +73,12 @@ brew 'pass-otp'
 brew 'peco'
 brew 'percona-toolkit'
 brew 'plantuml'
-brew 'postgresql@12', link: true, restart_service: true
+brew 'postgresql@14', link: true, restart_service: true
 brew 'pstree'
 brew 'redis', restart_service: true
 brew 'rlwrap'
 brew 'sbt'
-brew 'scalacenter/bloop/bloop', restart_service: true
+brew 'scalacenter/bloop/bloop'
 brew 'shellcheck'
 brew 'skaffold'
 brew 'sl'
@@ -91,44 +89,34 @@ brew 'tflint'
 brew 'the_silver_searcher'
 brew 'topgrade'
 brew 'tree'
-brew 'v8@3.15' # for therubyracer on Ruby 2.6.3
+# brew 'v8@3.15' # for therubyracer on Ruby 2.6.3
 brew 'vim'
 brew 'watch'
 brew 'wget'
+brew 'wireshark'
 brew 'wxwidgets' # Erlang/OTP
 brew 'yamllint'
 brew 'youtube-dl'
 brew 'zsh'
 
-cask 'adoptopenjdk11'
-cask 'adoptopenjdk16'
-# cask 'android-file-transfer'
-# cask 'android-ndk'
-# cask 'android-sdk'
 cask 'cljstyle'
-cask 'dash'
 cask 'discord'
 cask 'dynamodb-local'
 cask 'firefox'
-# cask 'fontforge'
-cask 'gfortran' # scipy
 cask 'gimp'
 cask 'github'
 cask 'google-cloud-sdk'
-cask 'hyper'
 cask 'imageoptim'
-# cask 'inkscape'
 cask 'karabiner-elements'
 cask 'notion'
 cask 'obs'
 cask 'tunnelblick' # AWS Client VPN
 cask 'vagrant'
 cask 'virtualbox'
-cask 'virtualbox-extension-pack'
+# brew 'virtualbox-extension-pack'
 cask 'visual-studio-code'
 cask 'visualvm'
 cask 'vlc'
-cask 'wireshark'
 cask 'xquartz'
 
 mas 'Kindle', id: 405399194
