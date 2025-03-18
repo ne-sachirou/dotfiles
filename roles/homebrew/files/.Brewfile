@@ -99,6 +99,7 @@ brew 'yamllint'
 brew 'youtube-dl'
 brew 'zsh'
 
+cask '1password-cli'
 cask 'cljstyle'
 cask 'discord'
 cask 'dynamodb-local'
