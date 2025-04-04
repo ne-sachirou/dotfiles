@@ -72,6 +72,7 @@ brew 'pass'
 brew 'pass-otp'
 brew 'peco'
 brew 'percona-toolkit'
+brew 'pinact'
 brew 'plantuml'
 brew 'postgresql@14', link: true, restart_service: true
 brew 'pstree'
