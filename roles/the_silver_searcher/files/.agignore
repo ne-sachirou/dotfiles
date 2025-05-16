@@ -1,3 +1,4 @@
 *.js.map
 *.mjs.map
 *.tsbuildinfo
+target/
