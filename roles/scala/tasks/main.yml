@@ -15,4 +15,4 @@
       --java-opt -XX:+UseStringDeduplication  \
       --java-opt -Xss4m \
       --java-opt -Xms100m \
-      org.scalameta:metals_2.13:1.1.0 -o ~/.local/bin/metals -f
+      org.scalameta:metals_2.13:1.5.3 -o ~/.local/bin/metals -f
