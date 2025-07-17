@@ -407,13 +407,18 @@
 ;; Posframe is a pop-up tool that must be manually installed for dap-mode
 ;; (use-package posframe)
 
+
+(defun enable-prettier-only-js ()
+  "Enable `prettier-js-mode' only for .js/.jsx files in web-mode."
+  (when buffer-file-name
+    (when (string-match-p "\\.[jt]sx?\\'" buffer-file-name)
+      (add-node-modules-path)
+      (prettier-js-mode +1))))
 (use-package
  prettier-js
  :init (add-hook 'js2-mode-hook 'prettier-js-mode)
- (eval-after-load 'web-mode
-   '(progn
-      (add-hook 'web-mode-hook #'add-node-modules-path)
-      (add-hook 'web-mode-hook #'prettier-js-mode))))
+ (eval-after-load
+     'web-mode (add-hook 'web-mode-hook #'enable-prettier-only-js)))
 
 (use-package
  projectile
@@ -484,7 +489,10 @@
 
 (use-package vimrc-mode)
 
-(use-package web-mode)
+(use-package
+ web-mode
+ :mode (("\\.eta\\'" . web-mode))
+ :config (setq web-mode-engines-alist '(("ejs" . "\\.eta\\'"))))
 
 (use-package yaml-mode)
 
