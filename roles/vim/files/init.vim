@@ -82,6 +82,8 @@ Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
 Plug 'evidens/vim-twig', {'for': 'twig'}
 Plug 'google/vim-jsonnet', {'for': 'jsonnet'}
 Plug 'groenewege/vim-less', {'for': 'less'}
+Plug 'gutenye/json5.vim', {'for': 'json5'}
+Plug 'hashivim/vim-terraform', {'for': 'tf'}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'kongo2002/fsharp-vim', {'for': 'fsharp'}
 Plug 'mgrabovsky/vim-cuesheet', {'for': 'cue'}

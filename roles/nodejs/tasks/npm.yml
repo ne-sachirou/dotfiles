@@ -13,6 +13,7 @@
   #   name: "{{ item }}"
   #   state: latest
   loop:
+    - "@anthropic-ai/claude-code"
     - "@google/clasp"
     - "@hubspot/cli"
     - "@marp-team/marp-cli"
