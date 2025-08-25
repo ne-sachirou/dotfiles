@@ -181,3 +181,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,osx,emacs,linux,windows,visualstudiocode
+
+**/.claude/settings.local.json
