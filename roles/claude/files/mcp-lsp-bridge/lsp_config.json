@@ -1,0 +1,352 @@
+{
+  "language_servers": {
+    "gopls": {
+      "command": "gopls",
+      "args": ["serve"],
+      "initialization_options": { "verboseOutput": true }
+    },
+    "pyright-langserver": {
+      "command": "pyright-langserver",
+      "args": ["--stdio"],
+      "initialization_options": {
+        "settings": {
+          "python": {
+            "analysis": {
+              "typeCheckingMode": "basic",
+              "diagnosticSeverityOverrides": {
+                "reportMissingImports": "warning",
+                "reportOptionalMemberAccess": "warning"
+              }
+            }
+          }
+        }
+      }
+    },
+    "typescript-language-server": {
+      "command": "npx",
+      "args": ["typescript-language-server", "--stdio"],
+      "initialization_options": {
+        "hostInfo": "mcp-lsp-bridge",
+        "preferences": {
+          "importModuleSpecifierEnding": "minimal",
+          "includeInlayParameterNameHints": "all",
+          "includeInlayVariableTypeHints": true,
+          "includeInlayFunctionParameterTypeHints": true
+        },
+        "tsserver": {
+          "logLevel": "verbose",
+          "logToFile": true
+        }
+      }
+    },
+    "rust-analyzer": {
+      "command": "rust-analyzer",
+      "args": [],
+      "initialization_options": {
+        "checkOnSave": {
+          "command": "clippy"
+        },
+        "cargo": {
+          "buildScripts": {
+            "enable": true
+          }
+        },
+        "procMacro": {
+          "enable": true
+        }
+      }
+    },
+    "jdtls": {
+      "command": "jdtls",
+      "args": [
+        "-configuration",
+        "/path/to/config",
+        "-data",
+        "/path/to/workspace"
+      ],
+      "initialization_options": {
+        "settings": {
+          "java": {
+            "configuration": {
+              "updateBuildConfiguration": "automatic"
+            },
+            "completion": {
+              "favoriteStaticMembers": [
+                "org.junit.Assert.*",
+                "org.junit.Assume.*",
+                "org.junit.jupiter.api.Assertions.*"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "clangd": {
+      "command": "clangd",
+      "args": ["--background-index", "--clang-tidy"],
+      "initialization_options": {
+        "fallbackFlags": ["-std=c++17"],
+        "compilationDatabasePath": ""
+      }
+    },
+    "omnisharp": {
+      "command": "omnisharp",
+      "args": ["--languageserver", "--hostPID", "1"],
+      "initialization_options": {
+        "FormattingOptions": {
+          "EnableEditorConfigSupport": true,
+          "OrganizeImports": true
+        },
+        "RoslynExtensionsOptions": {
+          "EnableAnalyzersSupport": true,
+          "EnableImportCompletion": true
+        }
+      }
+    },
+    "lua-language-server": {
+      "command": "lua-language-server",
+      "args": [],
+      "initialization_options": {
+        "Lua": {
+          "runtime": {
+            "version": "Lua 5.4"
+          },
+          "diagnostics": {
+            "globals": ["vim"]
+          },
+          "workspace": {
+            "library": [
+              "/usr/share/lua/5.4",
+              "/usr/local/share/lua/5.4"
+            ]
+          }
+        }
+      }
+    },
+    "solargraph": {
+      "command": "solargraph",
+      "args": ["stdio"],
+      "initialization_options": {
+        "diagnostics": true,
+        "completion": true,
+        "hover": true,
+        "symbols": true,
+        "definitions": true,
+        "rename": true,
+        "references": true,
+        "autoformat": false,
+        "folding": true
+      }
+    },
+    "phpactor": {
+      "command": "phpactor",
+      "args": ["language-server"],
+      "initialization_options": {
+        "language_server_phpstan.enabled": true,
+        "language_server_psalm.enabled": true,
+        "code_transform.import_name": true
+      }
+    },
+    "sourcekit-lsp": {
+      "command": "sourcekit-lsp",
+      "args": [],
+      "initialization_options": {}
+    },
+    "kotlin-language-server": {
+      "command": "kotlin-language-server",
+      "args": [],
+      "initialization_options": {
+        "storagePath": "/tmp/kotlin-language-server"
+      }
+    },
+    "metals": {
+      "command": "metals",
+      "args": [],
+      "initialization_options": {
+        "isHttpEnabled": true,
+        "compilerOptions": {
+          "snippetAutoIndent": false
+        }
+      }
+    },
+    "haskell-language-server-wrapper": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "initialization_options": {
+        "haskell": {
+          "checkParents": "CheckOnSave",
+          "checkProject": true,
+          "maxCompletions": 40
+        }
+      }
+    },
+    "elm-language-server": {
+      "command": "elm-language-server",
+      "args": [],
+      "initialization_options": {
+        "elmPath": "elm",
+        "elmFormatPath": "elm-format",
+        "elmTestPath": "elm-test"
+      }
+    },
+    "ocamllsp": {
+      "command": "ocamllsp",
+      "args": [],
+      "initialization_options": {}
+    },
+    "zls": {
+      "command": "zls",
+      "args": [],
+      "initialization_options": {
+        "enable_snippets": true,
+        "enable_ast_check_diagnostics": true,
+        "enable_build_on_save": true
+      }
+    },
+    "docker-langserver": {
+      "command": "docker-langserver",
+      "args": ["--stdio"],
+      "languages": ["dockerfile"],
+      "initialization_options": {}
+    },
+    "yaml-language-server": {
+      "command": "yaml-language-server",
+      "args": ["--stdio"],
+      "initialization_options": {
+        "yaml": {
+          "schemas": {
+            "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*",
+            "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": "/docker-compose*.yml"
+          },
+          "validate": true,
+          "hover": true,
+          "completion": true
+        }
+      }
+    },
+    "vscode-json-language-server": {
+      "command": "vscode-json-language-server",
+      "args": ["--stdio"],
+      "initialization_options": {
+        "provideFormatter": true,
+        "json": {
+          "schemas": [
+            {
+              "fileMatch": ["package.json"],
+              "url": "https://json.schemastore.org/package.json"
+            },
+            {
+              "fileMatch": ["tsconfig*.json"],
+              "url": "https://json.schemastore.org/tsconfig.json"
+            }
+          ]
+        }
+      }
+    },
+    "vscode-html-language-server": {
+      "command": "vscode-html-language-server",
+      "args": ["--stdio"],
+      "initialization_options": {
+        "configurationSection": ["html", "css", "javascript"],
+        "embeddedLanguages": {
+          "css": true,
+          "javascript": true
+        }
+      }
+    },
+    "vscode-css-language-server": {
+      "command": "vscode-css-language-server",
+      "args": ["--stdio"],
+      "initialization_options": {
+        "provideFormatter": true,
+        "css": {
+          "validate": true
+        },
+        "scss": {
+          "validate": true
+        },
+        "less": {
+          "validate": true
+        }
+      }
+    }
+  },
+  "language_server_map": {
+    "gopls": ["go"],
+    "pyright-langserver": ["python"],
+    "typescript-language-server": ["typescript", "javascript"],
+    "rust-analyzer": ["rust"],
+    "jdtls": ["java"],
+    "clangd": ["cpp", "c"],
+    "omnisharp": ["csharp"],
+    "lua-language-server": ["lua"],
+    "solargraph": ["ruby"],
+    "phpactor": ["php"],
+    "sourcekit-lsp": ["swift"],
+    "kotlin-language-server": ["kotlin"],
+    "metals": ["scala"],
+    "haskell-language-server-wrapper": ["haskell"],
+    "elm-language-server": ["elm"],
+    "ocamllsp": ["ocaml"],
+    "zls": ["zig"],
+    "docker-langserver": ["dockerfile"],
+    "yaml-language-server": ["yaml"],
+    "vscode-json-language-server": ["json"],
+    "vscode-html-language-server": ["html"],
+    "vscode-css-language-server": ["css"]
+  },
+  "extension_language_map": {
+    ".go": "go",
+    ".py": "python",
+    ".pyw": "python",
+    ".ts": "typescript",
+    ".tsx": "typescript",
+    ".js": "javascript",
+    ".jsx": "javascript",
+    ".mjs": "javascript",
+    ".cjs": "javascript",
+    ".rs": "rust",
+    ".java": "java",
+    ".cpp": "cpp",
+    ".cc": "cpp",
+    ".cxx": "cpp",
+    ".c++": "cpp",
+    ".c": "c",
+    ".h": "c",
+    ".hpp": "cpp",
+    ".hxx": "cpp",
+    ".cs": "csharp",
+    ".csx": "csharp",
+    ".lua": "lua",
+    ".rb": "ruby",
+    ".rake": "ruby",
+    ".gemspec": "ruby",
+    ".php": "php",
+    ".phtml": "php",
+    ".swift": "swift",
+    ".kt": "kotlin",
+    ".kts": "kotlin",
+    ".scala": "scala",
+    ".sc": "scala",
+    ".sbt": "scala",
+    ".hs": "haskell",
+    ".lhs": "haskell",
+    ".elm": "elm",
+    ".ml": "ocaml",
+    ".mli": "ocaml",
+    ".ocaml": "ocaml",
+    ".zig": "zig",
+    ".dockerfile": "dockerfile",
+    "Dockerfile": "dockerfile",
+    ".yaml": "yaml",
+    ".yml": "yaml",
+    ".json": "json",
+    ".jsonc": "json",
+    ".html": "html",
+    ".htm": "html",
+    ".css": "css",
+    ".scss": "css",
+    ".sass": "css",
+    ".less": "css"
+  }
+}

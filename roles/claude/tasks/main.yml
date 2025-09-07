@@ -1,0 +1,9 @@
+---
+- name: ~/.claude/settings.json
+  file: path={{ ansible_env.HOME }}/.claude/settings.json src={{ role_path }}/files/settings.json state=link
+
+- name: ~/.config/mcp-lsp-bridge/
+  file: path={{ ansible_env.HOME }}/.config/mcp-lsp-bridge state=directory
+
+- name: ~/.config/mcp-lsp-bridge/lsp_config.json
+  file: path={{ ansible_env.HOME }}/.config/mcp-lsp-bridge/lsp_config.json src={{ role_path }}/mcp-lsp-bridge/lsp_config.json
