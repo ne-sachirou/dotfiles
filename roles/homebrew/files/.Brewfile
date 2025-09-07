@@ -31,6 +31,7 @@ brew 'dotnet'
 brew 'emacs'
 brew 'envchain'
 brew 'equinix-labs/otel-cli/otel-cli'
+brew 'ffmpeg'
 brew 'flac'
 brew 'fop' # Erlang/OTP
 brew 'fswatch'

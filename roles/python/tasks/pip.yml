@@ -7,6 +7,7 @@
   loop:
     - black
     - isort
+    - openai-whisper
     - python-language-server[all]
 
 - name: asdf reshim
