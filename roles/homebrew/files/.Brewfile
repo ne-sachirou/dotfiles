@@ -82,6 +82,7 @@ brew 'plantuml'
 brew 'postgresql@14', link: true, restart_service: true
 brew 'pstree'
 brew 'redis', restart_service: true
+brew 'ripgrep'
 brew 'rlwrap'
 brew 'sbt'
 brew 'scalacenter/bloop/bloop'
@@ -129,6 +130,8 @@ cask 'visualvm'
 cask 'vlc'
 cask 'xquartz'
 
-mas 'Kindle', id: 405399194
+mas 'Skitch', id: 425955336
 mas 'Slack', id: 803453959
+mas 'Swift Playground', id: 1496833156
 mas 'The Unarchiver', id: 425424353
+mas 'Windows App', id: 1295203466

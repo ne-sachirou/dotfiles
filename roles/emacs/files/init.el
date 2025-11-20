@@ -16,6 +16,7 @@
  '(package-selected-packages
    '(web-mode
      vimrc-mode
+     vertico
      undo-tree
      typescript-mode
      sbt-mode
@@ -29,11 +30,14 @@
      package-utils
      osx-clipboard
      origami
+     orderless
      nov
      nixpkgs-fmt
      nix-mode
      nginx-mode
      multi-term
+     markdown-mode
+     marginalia
      magit
      lua-mode
      lsp-ui
@@ -50,14 +54,14 @@
      evil-leader
      evil-indent-textobject
      erlang
-     elixir-mode
+     embark
      eglot
      editorconfig
      doom-themes
      dockerfile-mode
      diminish
      csharp-mode
-     counsel
+     consult
      company-web
      company-terraform
      coffee-mode
@@ -81,6 +85,8 @@
       `((".*" ,temporary-file-directory t)))
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq-default indent-tabs-mode nil)
+
+(savehist-mode 1)
 
 ;; file 保存前に行末尾空白を消す
 ;; EditorConfig で充分では?
@@ -175,6 +181,13 @@
 
 (use-package company-terraform :init (company-terraform-init))
 
+(use-package consult
+  :ensure t
+  :bind
+  (("C-c k" . consult-ripgrep)
+   :map minibuffer-local-map
+   ("C-r" . consult-history)))
+
 (use-package
  copilot
  :straight
@@ -204,6 +217,14 @@
      (add-hook 'before-save-hook 'elisp-autofmt-buffer nil t)))))
 
 (use-package
+  embark
+  :ensure t
+  :bind
+  (("C-." . embark-act)   ;; 候補上でアクション選択
+   ("C-;" . embark-dwim)  ;; 文脈でだいたい良いアクション
+   ("C-h B" . embark-bindings)))
+
+(use-package
  typescript-mode
  :init
  ; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
@@ -211,24 +232,6 @@
  :hook eglot-ensure)
 
 (use-package company-web :init (require 'company-web-html))
-
-;; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package
- counsel
- :bind
- (("M-x" . counsel-M-x)
-  ("<f1> f" . counsel-describe-function)
-  ("<f1> v" . counsel-describe-variable)
-  ("<f1> o" . counsel-describe-symbol)
-  ("<f1> l" . counsel-find-library)
-  ("<f2> i" . counsel-info-lookup-symbol)
-  ("<f2> u" . counsel-unicode-char)
-  ("C-c g" . counsel-git)
-  ("C-c j" . counsel-git-grep)
-  ("C-c k" . counsel-ag)
-  ("C-x l" . counsel-locate)
-  ("C-S-o" . counsel-rhythmbox)
-  (:map minibuffer-local-map ("C-r" . counsel-minibuffer-history))))
 
 ; (use-package dap-mode
 ; :init
@@ -251,7 +254,6 @@
  (safe-diminish "editorconfig" 'editorconfig-mode)
  (safe-diminish "eldoc" 'eldoc-mode)
  (safe-diminish "flycheck" 'flycheck-mode)
- (safe-diminish "ivy" 'ivy-mode)
  (safe-diminish "osx-clipboard" 'osx-clipboard-mode)
  (safe-diminish "smartparens" 'smartparens-mode)
  (safe-diminish "undo-tree" 'undo-tree-mode))
@@ -319,16 +321,6 @@
 
 (use-package haskell-mode)
 
-; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package
- ivy
- :demand t
- :config
- (ivy-mode 1)
- (setq ivy-use-virtual-buffers t)
- (setq enable-recursive-minibuffers t)
- :bind (("C-c C-r" . ivy-resume) ("<f6>" . ivy-resume)))
-
 (use-package jinja2-mode)
 
 (use-package jsonnet-mode)
@@ -336,6 +328,11 @@
 (use-package lua-mode)
 
 (use-package magit)
+
+(use-package marginalia
+  :ensure t
+  :init
+  (marginalia-mode 1))
 
 (use-package markdown-mode)
 
@@ -358,6 +355,13 @@
  nov
  :init
  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 ; fold - Vim日本語ドキュメント https://vim-jp.org/vimdoc-ja/fold.html
 (use-package
@@ -480,12 +484,14 @@
  (smartparens-strict-mode t)
  :hook emacs-lisp-mode)
 
-; Ivy - a generic completion frontend for Emacs, Swiper - isearch with an overview, and more. Oh, man!
-(use-package swiper :bind (("\C-s" . swiper)))
-
 (use-package terraform-mode)
 
 (use-package typescript-mode)
+
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode 1))
 
 (use-package vimrc-mode)
 
