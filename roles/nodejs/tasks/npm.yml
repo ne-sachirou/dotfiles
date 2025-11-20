@@ -17,6 +17,7 @@
     - "@google/clasp"
     - "@hubspot/cli"
     - "@marp-team/marp-cli"
+    - "@openai/codex"
     - clear-npx-cache
     - nbb
     - npm-check-updates
