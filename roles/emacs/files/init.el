@@ -78,12 +78,21 @@
  )
 
 (when window-system
-  (set-frame-size (selected-frame) 160 63))
-(setq visible-bell 1)
+  (setq frame-resize-pixelwise t)
+  (setq initial-frame-alist
+        '((width . 242)
+          (height . 80)
+          (left . 40)
+          (top . 40)))
+  (setq default-frame-alist initial-frame-alist))
+
+;; (setq visible-bell t)
+(setq ring-bell-function 'ignore)
 
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+
 (setq-default indent-tabs-mode nil)
 
 (savehist-mode 1)
