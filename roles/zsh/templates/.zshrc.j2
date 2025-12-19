@@ -1,10 +1,16 @@
 . {{ role_path }}/files/.zshrc
 
 PATH={{ role_path }}/files/bin:$PATH
-export MACKEREL_API_KEY PATH
+export PATH
+
+export PATH="/Users/ne-sachirou/Downloads/google-cloud-sdk/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ne-sachirou/.local/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ne-sachirou/.local/bin/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/ne-sachirou/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ne-sachirou/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/ne-sachirou/.local/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ne-sachirou/.local/bin/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/ne-sachirou/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ne-sachirou/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/ne-sachirou/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

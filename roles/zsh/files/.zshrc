@@ -144,6 +144,10 @@ linux*)
   ;;
 esac
 
+export ANTHROPIC_VERTEX_PROJECT_ID=hatena-ai-village
+export CLAUDE_CODE_USE_VERTEX=1
+export CLOUD_ML_REGION=us-east5
+
 # if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' $HOME/.zcompdump) / 86400)) ]; then
 #   compinit
 # else
