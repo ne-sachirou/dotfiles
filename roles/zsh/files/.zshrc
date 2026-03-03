@@ -144,9 +144,10 @@ linux*)
   ;;
 esac
 
-export ANTHROPIC_VERTEX_PROJECT_ID=hatena-ai-village
-export CLAUDE_CODE_USE_VERTEX=1
-export CLOUD_ML_REGION=us-east5
+export ANTHROPIC_AUTH_TOKEN="$(private-values get hatena.ANTHROPIC_AUTH_TOKEN)"
+export ANTHROPIC_BASE_URL="$(private-values get hatena.ANTHROPIC_BASE_URL)"
+# curl -sS "${ANTHROPIC_BASE_URL}/v1/models" -H "Authorization: Bearer ${ANTHROPIC_AUTH_TOKEN}" | jq -r '.data[].id' | sort
+export ANTHROPIC_MODEL=gemini-2.5-flash-lite
 
 # if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' $HOME/.zcompdump) / 86400)) ]; then
 #   compinit
