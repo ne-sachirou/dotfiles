@@ -144,10 +144,13 @@ linux*)
   ;;
 esac
 
-export ANTHROPIC_AUTH_TOKEN="$(private-values get hatena.ANTHROPIC_AUTH_TOKEN)"
-export ANTHROPIC_BASE_URL="$(private-values get hatena.ANTHROPIC_BASE_URL)"
+export ANTHROPIC_AUTH_TOKEN="$(private-values get hatena.HATENA_LLM_PROXY_API_KEY)"
+export ANTHROPIC_BASE_URL="$(private-values get hatena.HATENA_LLM_PROXY_BASE_URL)"
 # curl -sS "${ANTHROPIC_BASE_URL}/v1/models" -H "Authorization: Bearer ${ANTHROPIC_AUTH_TOKEN}" | jq -r '.data[].id' | sort
-export ANTHROPIC_MODEL=gemini-2.5-flash-lite
+export ANTHROPIC_MODEL=claude-opus-4-6
+
+export GEMINI_API_KEY="$(private-values get hatena.HATENA_LLM_PROXY_API_KEY)"
+export GOOGLE_GEMINI_BASE_URL="$(private-values get hatena.HATENA_LLM_PROXY_BASE_URL)"
 
 # if [ $(($(date +%s) / 86400)) != $(($(stat -f '%m' $HOME/.zcompdump) / 86400)) ]; then
 #   compinit
