@@ -197,19 +197,16 @@
    :map minibuffer-local-map
    ("C-r" . consult-history)))
 
-(use-package
- copilot
- :straight
- (:host
-  github
-  :repo "copilot-emacs/copilot.el"
-  :files ("dist" "*.el"))
- :bind
- (:map
-  copilot-completion-map
-  ("<tab>" . copilot-accept-completion)
-  ("TAB" . copilot-accept-completion))
- :hook (prog-mode . copilot-mode))
+(use-package copilot
+  :ensure t
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . copilot-accept-completion)
+              ("TAB" . copilot-accept-completion)
+              ("C-<tab>" . copilot-accept-completion-by-word)
+              ("C-TAB" . copilot-accept-completion-by-word)
+              ("C-n" . copilot-next-completion)
+              ("C-p" . copilot-previous-completion)))
 
 (use-package
  csv-mode
@@ -277,7 +274,10 @@
   doom-themes-enable-italic t)
  (load-theme 'doom-molokai t))
 
-(use-package editorconfig :config (editorconfig-mode 1))
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 (use-package eglot)
 

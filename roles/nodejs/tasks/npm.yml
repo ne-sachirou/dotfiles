@@ -15,6 +15,7 @@
   loop:
     - "@anthropic-ai/claude-code"
     - "@github/copilot"
+    - "@github/copilot-language-server"
     - "@google/clasp"
     - "@hubspot/cli"
     - "@marp-team/marp-cli"
