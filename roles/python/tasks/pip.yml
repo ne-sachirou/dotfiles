@@ -6,6 +6,7 @@
   command: python -m pip install --user {{ item }}
   loop:
     - black
+    - flake8
     - isort
     - openai-whisper
     - python-language-server[all]

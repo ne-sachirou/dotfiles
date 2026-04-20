@@ -14,13 +14,18 @@
   #   state: latest
   loop:
     - "@anthropic-ai/claude-code"
+    - "@devcontainers/cli"
     - "@github/copilot"
     - "@github/copilot-language-server"
+    - "@github/local-action"
     - "@google/clasp"
+    - "@google/gemini-cli"
     - "@hubspot/cli"
     - "@marp-team/marp-cli"
     - "@openai/codex"
+    - chrome-devtools-mcp
     - clear-npx-cache
+    - corepack # https://yarnpkg.com/getting-started/install
     - nbb
     - npm-check-updates
     - npm-safety-updater

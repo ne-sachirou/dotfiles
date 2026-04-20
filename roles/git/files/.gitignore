@@ -1,5 +1,6 @@
 ,
 .bloop/
+.claude/worktrees/
 .clj-kondo/
 .elixir_ls/
 .envrc
@@ -48,7 +49,6 @@ tramp
 
 # cask packages
 .cask/
-dist/
 
 # Flycheck
 flycheck_*.el
