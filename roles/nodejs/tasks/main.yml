@@ -5,6 +5,9 @@
     versions: "{{ versions }}"
     global: "{{ global | default(versions[0]) }}"
 
+- name: ~/.npmrc
+  file: path={{ ansible_env.HOME }}/.npmrc src={{ role_path }}/files/.npmrc
+
 - include_tasks: npm.yml
   loop: "{{ versions }}"
   vars:
