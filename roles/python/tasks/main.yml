@@ -5,6 +5,12 @@
     versions: "{{ versions }}"
     global: "{{ global | default(versions[0]) }}"
 
+- name: ~/.config/uv/
+  file: path={{ ansible_env.HOME }}/.config/uv state=directory
+
+- name: ~/.config/uv/uv.toml
+  file: path={{ ansible_env.HOME }}/.config/uv/uv.toml src={{ role_path }}/files/uv.toml
+
 - include_tasks: pip.yml
   loop: "{{ versions }}"
   vars:

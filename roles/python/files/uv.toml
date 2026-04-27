@@ -1,0 +1,5 @@
+# Configuration files | uv https://docs.astral.sh/uv/concepts/configuration-files/
+
+# Settings | uv#exclude-newer https://docs.astral.sh/uv/reference/settings/#exclude-newer
+# Package indexes | uv#Configuring exclude-newer for an index https://docs.astral.sh/uv/concepts/indexes/#configuring-exclude-newer-for-an-index
+exclude-newer = "3 days"
