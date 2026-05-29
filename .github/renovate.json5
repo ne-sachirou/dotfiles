@@ -1,6 +1,6 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: ["config:recommended"],
+  extends: [":configMigration", "config:recommended"],
   labels: ["dependencies"],
   packageRules: [
     {
@@ -10,4 +10,8 @@
   ],
   schedule: "after 10am and before 7pm every weekday",
   timezone: "Asia/Tokyo",
+  minimumReleaseAge: "3 days",
+  vulnerabilityAlerts: {
+    labels: ["dependencies", "security"],
+  },
 }
