@@ -147,7 +147,8 @@ esac
 export ANTHROPIC_AUTH_TOKEN="$(private-values get hatena.HATENA_LLM_PROXY_API_KEY)"
 export ANTHROPIC_BASE_URL="$(private-values get hatena.HATENA_LLM_PROXY_BASE_URL)"
 # curl -sS "${ANTHROPIC_BASE_URL}/v1/models" -H "Authorization: Bearer ${ANTHROPIC_AUTH_TOKEN}" | jq -r '.data[].id' | sort
-export ANTHROPIC_MODEL=claude-opus-4-6
+export ANTHROPIC_MODEL=claude-sonnet-4-6
+export LITELLM_API_KEY="$(private-values get hatena.HATENA_LLM_PROXY_API_KEY)"
 
 export GEMINI_API_KEY="$(private-values get hatena.HATENA_LLM_PROXY_API_KEY)"
 export GOOGLE_GEMINI_BASE_URL="$(private-values get hatena.HATENA_LLM_PROXY_BASE_URL)"
