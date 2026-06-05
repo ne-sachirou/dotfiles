@@ -10,66 +10,24 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("be84a2e5c70f991051d4aaf0f049fa11c172e5d784727e0b525565bb1533ec78"
-     default))
- '(js-indent-level 2) '(js-switch-indent-offset 2)
+    '("be84a2e5c70f991051d4aaf0f049fa11c172e5d784727e0b525565bb1533ec78"
+       default))
+ '(js-indent-level 2)
+ '(js-switch-indent-offset 2)
  '(package-selected-packages
-   '(web-mode
-     vimrc-mode
-     vertico
-     undo-tree
-     typescript-mode
-     sbt-mode
-     rust-mode
-     quickrun
-     projectile
-     prettier-js
-     poly-ansible
-     plantuml-mode
-     php-mode
-     package-utils
-     osx-clipboard
-     origami
-     orderless
-     nov
-     nixpkgs-fmt
-     nix-mode
-     nginx-mode
-     multi-term
-     markdown-mode
-     marginalia
-     magit
-     lua-mode
-     lsp-ui
-     lsp-metals
-     jsonnet-mode
-     haskell-mode
-     go-mode
-     github-browse-file
-     feature-mode
-     evil-tabs
-     evil-surround
-     evil-smartparens
-     evil-matchit
-     evil-leader
-     evil-indent-textobject
-     erlang
-     embark
-     eglot
-     editorconfig
-     doom-themes
-     dockerfile-mode
-     diminish
-     csharp-mode
-     consult
-     company-web
-     company-terraform
-     coffee-mode
-     async
-     all-the-icons
-     ag
-     ac-cider))
- '(ruby-insert-encoding-magic-comment nil))
+    '(web-mode vimrc-mode vertico undo-tree transient typescript-mode
+       sbt-mode rust-mode quickrun projectile prettier-js poly-ansible
+       plantuml-mode php-mode package-utils osx-clipboard origami
+       orderless nov nixpkgs-fmt nix-mode nginx-mode multi-term
+       markdown-mode marginalia magit lua-mode lsp-ui lsp-metals
+       jsonnet-mode haskell-mode go-mode github-browse-file
+       feature-mode evil-tabs evil-surround evil-smartparens
+       evil-matchit evil-leader evil-indent-textobject erlang embark
+       eglot editorconfig doom-themes dockerfile-mode diminish
+       csharp-mode consult company-web company-terraform coffee-mode
+       async all-the-icons ag ac-cider))
+ '(ruby-insert-encoding-magic-comment nil)
+ '(safe-local-variable-values '((hcl-indent-level . 2) (evil-shift-width . 2))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -138,6 +96,7 @@
              t)
 (setq package-archive-priorities
       '(("gnu" . 5) ("melpa" . 0) ("melpa-stable" . 10)))
+(setq package-install-upgrade-built-in t)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -147,6 +106,8 @@
  use-package-always-ensure t
  backup-directory-alist `((".*" . ,temporary-file-directory))
  auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
+(use-package org :ensure t)
 
 ; https://github.com/radian-software/straight.el
 (defvar bootstrap-version)
@@ -197,16 +158,16 @@
    :map minibuffer-local-map
    ("C-r" . consult-history)))
 
-(use-package copilot
-  :ensure t
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . copilot-accept-completion)
-              ("TAB" . copilot-accept-completion)
-              ("C-<tab>" . copilot-accept-completion-by-word)
-              ("C-TAB" . copilot-accept-completion-by-word)
-              ("C-n" . copilot-next-completion)
-              ("C-p" . copilot-previous-completion)))
+; (use-package copilot
+;   :ensure t
+;   :hook (prog-mode . copilot-mode)
+;   :bind (:map copilot-completion-map
+;               ("<tab>" . copilot-accept-completion)
+;               ("TAB" . copilot-accept-completion)
+;               ("C-<tab>" . copilot-accept-completion-by-word)
+;               ("C-TAB" . copilot-accept-completion-by-word)
+;               ("C-n" . copilot-next-completion)
+;               ("C-p" . copilot-previous-completion)))
 
 (use-package
  csv-mode
@@ -335,6 +296,12 @@
 (use-package jsonnet-mode)
 
 (use-package lua-mode)
+
+(unless (package-installed-p 'transient '(0 12))
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (package-install 'transient))
+(use-package transient :ensure t)
 
 (use-package magit)
 
