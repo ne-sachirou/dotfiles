@@ -5,6 +5,8 @@
     - asdf
     - role: clojure
       versions: ["1.11.1.1413"]
+    - role: deno
+      versions: ["latest"]
     - dev_dir
     - docker
     - editorconfig

@@ -1,0 +1,8 @@
+---
+# asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
+
+- name: asdf install deno
+  asdf:
+    plugin: deno
+    versions: "{{ versions }}"
+    global: "{{ global | default(versions[0]) }}"
