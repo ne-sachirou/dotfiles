@@ -115,10 +115,7 @@
             "globals": ["vim"]
           },
           "workspace": {
-            "library": [
-              "/usr/share/lua/5.4",
-              "/usr/local/share/lua/5.4"
-            ]
+            "library": ["/usr/share/lua/5.4", "/usr/local/share/lua/5.4"]
           }
         }
       }
@@ -223,52 +220,6 @@
           "completion": true
         }
       }
-    },
-    "vscode-json-language-server": {
-      "command": "vscode-json-language-server",
-      "args": ["--stdio"],
-      "initialization_options": {
-        "provideFormatter": true,
-        "json": {
-          "schemas": [
-            {
-              "fileMatch": ["package.json"],
-              "url": "https://json.schemastore.org/package.json"
-            },
-            {
-              "fileMatch": ["tsconfig*.json"],
-              "url": "https://json.schemastore.org/tsconfig.json"
-            }
-          ]
-        }
-      }
-    },
-    "vscode-html-language-server": {
-      "command": "vscode-html-language-server",
-      "args": ["--stdio"],
-      "initialization_options": {
-        "configurationSection": ["html", "css", "javascript"],
-        "embeddedLanguages": {
-          "css": true,
-          "javascript": true
-        }
-      }
-    },
-    "vscode-css-language-server": {
-      "command": "vscode-css-language-server",
-      "args": ["--stdio"],
-      "initialization_options": {
-        "provideFormatter": true,
-        "css": {
-          "validate": true
-        },
-        "scss": {
-          "validate": true
-        },
-        "less": {
-          "validate": true
-        }
-      }
     }
   },
   "language_server_map": {
@@ -290,10 +241,7 @@
     "ocamllsp": ["ocaml"],
     "zls": ["zig"],
     "docker-langserver": ["dockerfile"],
-    "yaml-language-server": ["yaml"],
-    "vscode-json-language-server": ["json"],
-    "vscode-html-language-server": ["html"],
-    "vscode-css-language-server": ["css"]
+    "yaml-language-server": ["yaml"]
   },
   "extension_language_map": {
     ".go": "go",
