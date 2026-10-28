@@ -60,12 +60,19 @@
     nil))
 
 
+(defn checked-out-line?
+  "Whether a `git branch` line is checked out in the current (`*`) or another (`+`) worktree."
+  [line]
+  (or (str/starts-with? line "*")
+      (str/starts-with? line "+")))
+
+
 (defn local-merged-branches
   []
   (->> (util/sh "git" "branch" "--merged")
        (str/split-lines)
        (filter (fn [line]
-                 (and (not (str/starts-with? line "*"))
+                 (and (not (checked-out-line? line))
                       (not (str/ends-with? line " main"))
                       (not (str/ends-with? line " master"))
                       (not (str/ends-with? line " develop")))))
@@ -78,7 +85,7 @@
   (->> (util/sh "git" "branch" "-vv")
        (str/split-lines)
        (filter (fn [line]
-                 (and (not (str/starts-with? line "*"))
+                 (and (not (checked-out-line? line))
                       (not (str/includes? line " main "))
                       (not (str/includes? line " master "))
                       (not (str/includes? line " develop "))
