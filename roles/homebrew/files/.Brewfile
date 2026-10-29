@@ -8,7 +8,6 @@ tap 'mackerelio/mackerel-agent'
 tap 'scalacenter/bloop'
 
 brew 'act'
-brew 'actionlint'
 brew 'alp'
 brew 'ansible'
 brew 'ansible-lint'
