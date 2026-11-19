@@ -5,7 +5,9 @@
 - name: nix-channel --add
   command: nix-channel --add {{ item }}
   loop:
-    - https://nixos.org/channels/nixpkgs-21.11-darwin
+    - https://channels.nixos.org/nixpkgs-26.05-darwin
+    - https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz
+    - https://github.com/nix-darwin/nix-darwin/archive/nix-darwin-26.05.tar.gz
 
 - name: nix-channel --update
   command: nix-channel --update
