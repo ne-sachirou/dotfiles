@@ -16,7 +16,7 @@
  '(js-switch-indent-offset 2)
  '(package-selected-packages
     '(web-mode vimrc-mode vertico undo-tree transient typescript-mode
-       sbt-mode rust-mode quickrun projectile prettier-js poly-ansible
+       rust-mode quickrun projectile prettier-js poly-ansible
        plantuml-mode php-mode package-utils osx-clipboard origami
        orderless nov nixpkgs-fmt nix-mode nginx-mode multi-term
        markdown-mode marginalia magit lua-mode lsp-ui
@@ -433,19 +433,6 @@
   :default "clojure"))
 
 (use-package rust-mode :init (setq rust-format-on-save t))
-
-(use-package
- sbt-mode
- :commands sbt-start sbt-command
- :config
- ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
- ;; allows using SPACE when in the minibuffer
- (substitute-key-definition
-  'minibuffer-complete-word
-  'self-insert-command
-  minibuffer-local-completion-map)
- ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
- (setq sbt:program-options '("-Dsbt.supershell=false")))
 
 (use-package
  smartparens
