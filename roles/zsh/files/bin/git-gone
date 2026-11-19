@@ -80,6 +80,94 @@
        (map #(branch- %))))
 
 
+(defn protected-branch?
+  [branch]
+  (contains? #{"main" "master" "develop"} branch))
+
+
+(defn strip-branch-marker
+  [line]
+  (str/replace line #"^[*+]?\s+" ""))
+
+
+(defn merged-branch-names
+  "HEAD にmerge濟みのbranch名。いづれかのworktreeでcheckout中のものも含む。"
+  []
+  (->> (util/sh "git" "branch" "--merged")
+       (str/split-lines)
+       (map strip-branch-marker)
+       (set)))
+
+
+(defn gone-branch-names
+  "upstreamが消えたbranch名。いづれかのworktreeでcheckout中のものも含む。"
+  []
+  (->> (util/sh "git" "branch" "-vv")
+       (str/split-lines)
+       (filter #(str/includes? % ": gone]"))
+       (map #(first (str/split (strip-branch-marker %) #"\s+")))
+       (set)))
+
+
+(defn worktrees
+  "`git worktree list --porcelain` を [{:path :branch :locked? :detached? :bare?}] に變換する。"
+  []
+  (->> (str/split (util/sh "git" "worktree" "list" "--porcelain") #"\n\n")
+       (map str/split-lines)
+       (filter seq)
+       (map (fn [lines]
+              (reduce (fn [acc line]
+                        (cond
+                          (str/starts-with? line "worktree ") (assoc acc :path (subs line 9))
+                          (str/starts-with? line "branch refs/heads/") (assoc acc :branch (subs line 18))
+                          (str/starts-with? line "locked") (assoc acc :locked? true)
+                          (= line "detached") (assoc acc :detached? true)
+                          (= line "bare") (assoc acc :bare? true)
+                          :else acc))
+                      {}
+                      lines)))))
+
+
+(defn dirty-worktree?
+  [{:keys [path]}]
+  (not (str/blank? (util/sh "git" "-C" path "status" "--porcelain"))))
+
+
+(defn removable-worktrees
+  "branchがmerge濟みまたはgoneのworktree。main worktreeと現在のworktreeは除く。"
+  []
+  (let [top (str/trim (util/sh "git" "rev-parse" "--show-toplevel"))
+        merged (merged-branch-names)
+        gone (gone-branch-names)]
+    (->> (rest (worktrees))
+         (remove (fn [{:keys [path branch locked? detached? bare?]}]
+                   (or (= top path) locked? detached? bare? (nil? branch) (protected-branch? branch))))
+         (keep (fn [{:keys [branch] :as w}]
+                 (cond
+                   (contains? merged branch) (assoc w :why "merged")
+                   (contains? gone branch) (assoc w :why "gone"))))
+         (remove dirty-worktree?))))
+
+
+(defn select-worktrees
+  []
+  (let [candidates (removable-worktrees)
+        by-path (into {} (map (juxt :path identity)) candidates)]
+    (->> candidates
+         (map (fn [{:keys [path branch why]}] (str path "\t" branch "\t[" why "]")))
+         (util/peco {:prompt "WORKTREE>"})
+         (map #(get by-path (first (str/split % #"\t"))))
+         (remove nil?))))
+
+
+(defn remove-worktree
+  [{:keys [path]}]
+  (try
+    (util/sh "git" "worktree" "remove" path)
+    (catch Exception e
+      (println "skip:" path (.getMessage e)))))
+
+
 (defn local-force-removable-branches
   []
   (->> (util/sh "git" "branch" "-vv")
@@ -133,6 +221,13 @@
     [util]))
 
 
+(defn delete-worktrees-interactively
+  []
+  (util/sh "git" "worktree" "prune")
+  (doseq [worktree (git/select-worktrees)]
+    (git/remove-worktree worktree)))
+
+
 (defn delete-local-merged-branches
   []
   (doseq [branch (git/local-merged-branches)]
@@ -153,6 +248,7 @@
 
 (defn -main
   []
+  (delete-worktrees-interactively)
   (delete-local-merged-branches)
   (delete-local-branches-interactively)
   (delete-remote-branches-interactively)
