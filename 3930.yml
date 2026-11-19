@@ -48,7 +48,6 @@
         - stable
         - nightly
     - sbx
-    - scala
     - the_silver_searcher
     - role: terraform
       versions:

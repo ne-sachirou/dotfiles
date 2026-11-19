@@ -1,5 +1,4 @@
 ,
-.bloop/
 .claude/worktrees/
 .clj-kondo/
 .elixir_ls/
@@ -8,7 +7,6 @@
 .log/ti-*.log
 .log/tsserver.log
 .lsp/
-.metals/
 .tool-versions
 node_modules/
 

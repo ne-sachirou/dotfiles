@@ -19,7 +19,7 @@
        sbt-mode rust-mode quickrun projectile prettier-js poly-ansible
        plantuml-mode php-mode package-utils osx-clipboard origami
        orderless nov nixpkgs-fmt nix-mode nginx-mode multi-term
-       markdown-mode marginalia magit lua-mode lsp-ui lsp-metals
+       markdown-mode marginalia magit lua-mode lsp-ui
        jsonnet-mode haskell-mode go-mode github-browse-file
        feature-mode evil-tabs evil-surround evil-smartparens
        evil-matchit evil-leader evil-indent-textobject erlang embark
@@ -446,12 +446,6 @@
   minibuffer-local-completion-map)
  ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
  (setq sbt:program-options '("-Dsbt.supershell=false")))
-
-(use-package
- scala-mode
- :init (add-hook 'scala-mode-hook 'eglot-ensure)
- :hook ((scala-mode . eglot-ensure) (scala-mode . company-mode))
- :interpreter ("scala" . scala-mode))
 
 (use-package
  smartparens
