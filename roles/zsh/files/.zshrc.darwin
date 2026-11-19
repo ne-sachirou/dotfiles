@@ -12,7 +12,7 @@ CLOUDSDK_PYTHON=/usr/local/bin/python3
 CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/openssl@3/include -I/opt/homebrew/opt/postgresql@14/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/libyaml/include"
 HOMEBREW_GITHUB_API_TOKEN=$(private-values get dotfiles.GITHUB_API_TOKEN)
 LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/openssl@3/lib -L/opt/homebrew/opt/postgresql@14/lib -L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/libyaml/lib"
-PATH="$PATH:$HOME/Library/Application Support/Coursier/bin:/opt/homebrew/opt/openssl@3/bin:/Applications/ImageOptim.app/Contents/MacOS:/opt/homebrew/opt/postgresql@14/bin"
+PATH="$HOME/.rd/bin:$PATH:$HOME/Downloads/google-cloud-sdk/bin:$HOME/Library/Application Support/Coursier/bin:/opt/homebrew/opt/openssl@3/bin:/Applications/ImageOptim.app/Contents/MacOS:/opt/homebrew/opt/postgresql@14/bin"
 PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:/opt/homebrew/opt/postgresql@14/lib/pkgconfig:/opt/homebrew/opt/readline/lib/pkgconfig:/opt/homebrew/opt/zlib/lib/pkgconfig"
 export CFLAGS CLOUDSDK_PYTHON CPPFLAGS HOMEBREW_GITHUB_API_TOKEN LDFLAGS PATH PKG_CONFIG_PATH
 
